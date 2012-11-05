@@ -1,0 +1,14 @@
+[user]
+	name = Eduan Lavaque
+	email = eduan@snapsimpletech.com
+[core]
+	editor = subl -n -w
+	autocrlf = input
+[color]
+	ui = true
+[commit]
+	template = /Users/eduan/.gitmessage.txt
+[credential]
+	helper = osxkeychain
+[alias]
+	logg = log --graph --decorate --oneline --abbrev-commit --all

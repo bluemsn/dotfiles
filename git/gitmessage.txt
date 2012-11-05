@@ -1,0 +1,12 @@
+Short (50 chars or less) summary of changes.
+
+More detailed explanatory text. Wrap it to about 72 chars. You can of
+course use multiple lines, as long as no line is longer than 72 chars.
+
+* For something you fixed, like a bug a glitch or something
++ For something new you added, be it a class, function, or whole feature
+~ If you changed something, be it text, a function, etc.
+- If you removed something
++~ If you improved something in some or any way
+
+                                   50 chars mark |       72 chars mark |
