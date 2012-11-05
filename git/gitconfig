@@ -2,7 +2,7 @@
 	name = Eduan Lavaque
 	email = eduan@snapsimpletech.com
 [core]
-	editor = subl -n -w
+	editor = mvim -f
 	autocrlf = input
 [color]
 	ui = true

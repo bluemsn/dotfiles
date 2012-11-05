@@ -1,3 +1,7 @@
+# Kudos and credits to this blog, for providing a way to have a prompt the
+# current Git branch in a fancy way:
+# http://sebastiancelis.com/2009/11/16/zsh-prompt-git-users/
+
 # Initialize colors
 autoload -U colors && colors
 
@@ -14,6 +18,7 @@ typeset -ga precmd_functions
 typeset -ga chpwd_functions
 
 alias ls="ls -la -Gp -F"
+alias gvim="mvim --remote-silent"
 
 # Append git functions needed for prompt
 preexec_functions+='preexec_update_git_vars'

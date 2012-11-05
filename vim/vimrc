@@ -1,36 +1,97 @@
+" Global stuff {{{1
+
 " Forget being compatible with good ol' vi
 set nocompatible
 
-" Get that filetype stuff happening
+" Set the filetype stuff to on
 filetype off
 filetype plugin indent on
 
-set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+" Set tabstops to 4 spaces
+set tabstop=4
+set shiftwidth=4
 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'mattn/zencoding-vim'
+" Set the search scan to wrap around to the top of file
+set wrapscan
 
-" Turn on that syntax highlighting
-syntax on
-syntax enable
-set background=light
-colorscheme solarized
+" Set the search scan so that it ignores case when the search is all lower
+" case but recognizes uppercase if it's specified
+set ignorecase
+set smartcase
 
-" Why is this not a default
-set hidden
+" Set the forward slash to be the slash of note; backslashes suck!
+set shellslash
+
+" Make command input line two lines high
+set ch=2
+
+" Set to use visual bell -- The beeping sucks!
+set vb
+
+" make the 'cw' and like commands put a $ at the end instead of just deleting
+" the text and replacing it
+set cpoptions=ces$
+
+" Set the status line the way I like it
+set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][0x%B]
+
+" Tell Vim to always put a status line in, even if there is only one window
+set laststatus=2
 
 " Don't update the display while executing macros
 set lazyredraw
 
-" At least let yourself know what mode you're in
-set showmode
+" Show the current command in the lower right corner
+set showcmd
 
-" Enable enhanced command-line completion. Presumes you have compiled
-" with +wildmenu.  See :help 'wildmenu'
-set wildmenu
+" Make sure that unsaved buffers that are to be put in the background are
+" allowed to go in there (i.e. the "must save first" error doesn't come up)
+set hidden
 
+" Hide the mouse pointer while typing
+set mousehide
+
+" Disable mouse use
+set mouse=
+
+" Set the delay time you're allowed betwen key commands, in milliseconds
+set timeoutlen=500
+
+" Keep 100 entries in the history
+set history=100
+
+" These commands open folds
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+
+" When the page starts to scroll, keep the cursor 8 lines from the top and
+" from the bottom
+set scrolloff=8
+
+" Allow the cursor to go to "invalid" places
+set virtualedit=all
+
+" Incrementally match the search
+set incsearch
+
+" While typing a search command, show where the pattern, as it was typed so far, matches
+set incsearch
+
+" Enable use of manual markers
+set foldmethod=marker
+
+" Disable encryption (:X)
+set key=
+
+" Same as default except that I remove the 'u' option
+set complete=.,w,b,t
+
+" When completing by tag, show the whole tag, not just the function name
+set showfulltag
+
+" Add ignorance of whitespace to diff
+set diffopt+=iwhite
+
+" Key mappings and stuff {{{1
 " Let's make it easy to edit this file (mnemonic for the key sequence is
 " 'e'dit 'v'imrc)
 nmap <silent> ,ev :e $MYVIMRC<cr>
@@ -39,37 +100,68 @@ nmap <silent> ,ev :e $MYVIMRC<cr>
 " 's'ource 'v'imrc)
 nmap <silent> ,sv :so $MYVIMRC<cr>
 
-set nowrap        " don't wrap lines
-set tabstop=4     " a tab is four spaces
-set backspace=indent,eol,start
-                  " allow backspacing over everything in insert mode
-set autoindent    " always set autoindenting on
-set copyindent    " copy the previous indentation on autoindenting
-set number        " always show line numbers
-set shiftwidth=4  " number of spaces to use for autoindenting
-set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-set showmatch     " set show matching parenthesis
-set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,
-                  "    case-sensitive otherwise
-set smarttab      " insert tabs on the start of a line according to
-                  "    shiftwidth, not tabstop
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
+" Map CTRL-E to do what ',' used to do
+nnoremap <c-e> ,
+vnoremap <c-e> ,
 
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
-set title                " change the terminal's title
-set visualbell           " don't beep
-set noerrorbells         " don't beep
+" Vundle bundles {{{1
 
-set nobackup
-set noswapfile
+set rtp+=~/.vim/bundle/vundle/
+ call vundle#rc()
 
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'mattn/zencoding-vim'
+Bundle 'altercation/vim-colors-solarized'
 
-set mouse=a
-set ruler
-set rulerformat=%l,%c%V%=%P
+" Syntax highlighting and stuff {{{1
+" Syntax highlighting {{{2
+
+" Turn on that syntax highlighting
+syntax on
+syntax enable
+
+" Set the color scheme to use
+set background=light
+colorscheme solarized
+
+" Syntax coloring lines that are too long just slow down the world
+set synmaxcol=2048
+
+" Enable search highlighting
+set hlsearch
+
+" GUI settings {{{2
+
+" Set the text width to be 120 chars
+set textwidth=120
+
+" Get rid of the silly characters in window separators
+set fillchars=""
+
+" Set up the GUI cursor to look nice
+set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
+" set the GUI options the way I like
+set guioptions=acrgi
+
+" Show line numbers
+set number
+
+" Setup window colors and size, if in GUI mode
+if has("gui_running")
+	set guifont=Menlo:h11
+	colorscheme solarized
+	if !exists("g:vimrcloaded")
+		winpos 0 0
+		if ! $diff
+			winsize 120 40
+		else
+			winsize 227 40
+		endif
+		
+		let g:vimrcloaded=1
+	endif
+endif
+:nohls
+
