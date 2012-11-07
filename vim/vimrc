@@ -7,9 +7,28 @@ set nocompatible
 filetype off
 filetype plugin indent on
 
+" Enable search highlighting
+set hlsearch
+
+" Show the cursors current line
+set cursorline
+
 " Set tabstops to 4 spaces
 set tabstop=4
 set shiftwidth=4
+
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Always show matching bracket
+set showmatch
+
+" Change the Terminal's title
+set title
+
+" Enable showing invisible characters
+set list
+set listchars=tab:\|\ ,eol:¬
 
 " Set the search scan to wrap around to the top of file
 set wrapscan
@@ -26,7 +45,12 @@ set shellslash
 set ch=2
 
 " Set to use visual bell -- The beeping sucks!
-set vb
+set visualbell
+set noerrorbells
+
+" Disable backup files completely
+set nobackup
+set noswapfile
 
 " make the 'cw' and like commands put a $ at the end instead of just deleting
 " the text and replacing it
@@ -55,7 +79,7 @@ set mousehide
 set mouse=
 
 " Set the delay time you're allowed betwen key commands, in milliseconds
-set timeoutlen=500
+set timeoutlen=1000
 
 " Keep 100 entries in the history
 set history=100
@@ -104,6 +128,15 @@ nmap <silent> ,sv :so $MYVIMRC<cr>
 nnoremap <c-e> ,
 vnoremap <c-e> ,
 
+" Completely disable the use of the arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Allow change of theme from light to dark and vice-versa, with a hotkey
+call togglebg#map("<F5>")
+
 " Vundle bundles {{{1
 
 set rtp+=~/.vim/bundle/vundle/
@@ -113,23 +146,40 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mattn/zencoding-vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-scripts/TabBar'
 
 " Syntax highlighting and stuff {{{1
 " Syntax highlighting {{{2
 
 " Turn on that syntax highlighting
-syntax on
-syntax enable
+if &t_Co > 2 || has("gui_running")
+	" Switch syntax highlighting on, when the Terminal has colors
+	" Or when the GUI is being used
+	syntax on
+endif
 
-" Set the color scheme to use
-set background=light
-colorscheme solarized
+" For compatibility with Terminal, don't use if not using Terminal
+let g:solarized_termcolors=256
+
+" Non-text items visibility, normal low or high
+let g:solarized_visibility="low"
+
+" Show trailing white spaces
+let g:solarized_hitrail=1
+
+" Disable the solarized menu
+let g:solarized_menu=0
+
+" Set the color scheme to use dark version
+set background=dark
+
+" Check if the Terminal can show 256 colors, or if we're using a GUI
+if &t_Co >= 256 || has ("gui_running")
+	colorscheme solarized " Set colorscheme to Solarized
+endif
 
 " Syntax coloring lines that are too long just slow down the world
 set synmaxcol=2048
-
-" Enable search highlighting
-set hlsearch
 
 " GUI settings {{{2
 
@@ -164,4 +214,3 @@ if has("gui_running")
 	endif
 endif
 :nohls
-

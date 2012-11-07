@@ -8,6 +8,11 @@ autoload -U colors && colors
 # Allow for functions in the prompt
 setopt PROMPT_SUBST
 
+# Setting my preferred default editor
+EDITOR=vim
+VISUAL=mvim
+export EDITOR VISUAL
+
 # Autoload zsh functions
 fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
@@ -17,7 +22,9 @@ typeset -ga preexec_functions
 typeset -ga precmd_functions
 typeset -ga chpwd_functions
 
+# Make 'ls' do lotsa stuff
 alias ls="ls -la -Gp -F"
+# Make 'gvim' not open a new MacVim window
 alias gvim="mvim --remote-silent"
 
 # Append git functions needed for prompt
@@ -28,3 +35,9 @@ chpwd_functions+='chpwd_update_git_vars'
 # Set the prompt
 PROMPT=$'%{${fg[yellow]}%}[%T] %{${fg[cyan]}%}%~$(prompt_git_info)%{${fg[default]}%} >>> '
 RPROMPT=$'%{${fg[default]}%}[%n@%m]'
+
+# Set history options
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.history
+export HIST_IGNORE_ALL_DUPS
