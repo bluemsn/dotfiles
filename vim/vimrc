@@ -3,10 +3,6 @@
 " Forget being compatible with good ol' vi
 set nocompatible
 
-" Set the filetype stuff to on
-filetype off
-filetype plugin indent on
-
 " Enable search highlighting
 set hlsearch
 
@@ -137,7 +133,11 @@ map <right> <nop>
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map("<F5>")
 
-" Vundle bundles {{{1
+" Vundle bundles and other extensions {{{1
+
+" Set the filetype stuff to on
+filetype on
+filetype plugin indent on
 
 set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
@@ -147,6 +147,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'mattn/zencoding-vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/TabBar'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-markdown'
 
 " Syntax highlighting and stuff {{{1
 " Syntax highlighting {{{2
