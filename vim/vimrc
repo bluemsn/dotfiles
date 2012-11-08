@@ -52,8 +52,16 @@ set noswapfile
 " the text and replacing it
 set cpoptions=ces$
 
-" Set the status line the way I like it
-set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][0x%B]
+" Set the status line the way I like it {{{2
+
+" The line below sets up the left side of the thing, it basically shows all of
+" the files info, name, path, buffer, encoding etc.
+set stl=%<\ [Buf:\ %n]%m\ %f\ [%Y,\ %{''.(&fenc!=''?&fenc:&enc).''},\ %{&ff}]
+" The line below sets up the right side of the thing, it shows all the non-
+" file specific info. It shows mostly the cursors info
+set stl+=\ %=[0x\%02.2B]\ [Line:\ %l/%L\ \|\ Col:\ %c%V]\ (%P)
+
+" }}}2
 
 " Tell Vim to always put a status line in, even if there is only one window
 set laststatus=2
