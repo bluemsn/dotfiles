@@ -6,7 +6,7 @@ set nocompatible
 " Enable search highlighting
 set hlsearch
 
-" Show the cursors current line
+" Highlight the cursors current line
 set cursorline
 
 " Set tabstops to 4 spaces
@@ -21,10 +21,6 @@ set showmatch
 
 " Change the Terminal's title
 set title
-
-" Enable showing invisible characters
-set list
-set listchars=tab:\|\ ,eol:¬
 
 " Set the search scan to wrap around to the top of file
 set wrapscan
@@ -120,6 +116,7 @@ set showfulltag
 set diffopt+=iwhite
 
 " Key mappings and stuff {{{1
+
 " Let's make it easy to edit this file (mnemonic for the key sequence is
 " 'e'dit 'v'imrc)
 nmap <silent> ,ev :e $MYVIMRC<cr>
@@ -141,6 +138,12 @@ map <right> <nop>
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map("<F5>")
 
+" Fix moving line by line in the paragraph
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
 " Vundle bundles and other extensions {{{1
 
 " Set the filetype stuff to on
@@ -158,7 +161,7 @@ Bundle 'vim-scripts/TabBar'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-markdown'
 
-" Syntax highlighting and stuff {{{1
+" Syntax highlighting and GUI related stuff {{{1
 " Syntax highlighting {{{2
 
 " Turn on that syntax highlighting
@@ -193,8 +196,18 @@ set synmaxcol=2048
 
 " GUI settings {{{2
 
-" Set the text width to be 120 chars
-set textwidth=120
+" Don't use list in order to have soft wrapping
+set nolist
+"set listchars=tab:\|\ ,eol:¬
+
+" Setting up word-wrap
+set wrap linebreak textwidth=0 wrapmargin=0
+
+" Put a marker in this array of column numbers
+set colorcolumn=79
+
+" Set the formatoptions
+set fo=vt1
 
 " Get rid of the silly characters in window separators
 set fillchars=""
@@ -219,7 +232,6 @@ if has("gui_running")
 		else
 			winsize 227 40
 		endif
-		
 		let g:vimrcloaded=1
 	endif
 endif
