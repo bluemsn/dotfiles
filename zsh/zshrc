@@ -24,8 +24,15 @@ typeset -ga chpwd_functions
 
 # Make 'ls' do lotsa stuff
 alias ls="ls -la -Gp -F"
+
 # Make 'gvim' not open a new MacVim window
 alias gvim="mvim --remote-silent"
+
+# Enable the use of 'hub'
+alias git="hub"
+
+# Enable loading of MySQL
+export PATH="/usr/local/mysql/bin:$PATH"
 
 # Append git functions needed for prompt
 preexec_functions+='preexec_update_git_vars'
@@ -34,6 +41,7 @@ chpwd_functions+='chpwd_update_git_vars'
 
 # Set the prompt
 PROMPT=$'%{${fg[yellow]}%}[%T] %{${fg[cyan]}%}%~$(prompt_git_info)%{${fg[default]}%} >>> '
+# Set the right side of my prompt
 RPROMPT=$'%{${fg[default]}%}[%n@%m]'
 
 # Set history options

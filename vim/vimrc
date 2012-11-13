@@ -1,121 +1,121 @@
-" Global stuff {{{1
+" Basic Stuff {{{1
 
-" Forget being compatible with good ol' vi
+" Forget being compatible with good ol' vi, if you don't have this yourself,
+" then you're stupid. And that's the end of it.
 set nocompatible
-
-" Enable search highlighting
-set hlsearch
-
-" Highlight the cursors current line
-set cursorline
-
-" Set tabstops to 4 spaces
-set tabstop=4
-set shiftwidth=4
-
-" Allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" Always show matching bracket
-set showmatch
-
-" Change the Terminal's title
-set title
-
-" Set the search scan to wrap around to the top of file
-set wrapscan
-
-" Set the search scan so that it ignores case when the search is all lower
-" case but recognizes uppercase if it's specified
-set ignorecase
-set smartcase
-
-" Set the forward slash to be the slash of note; backslashes suck!
-set shellslash
-
-" Make command input line two lines high
-set ch=2
-
-" Set to use visual bell -- The beeping sucks!
-set visualbell
-set noerrorbells
-
-" Disable backup files completely
-set nobackup
-set noswapfile
-
-" make the 'cw' and like commands put a $ at the end instead of just deleting
-" the text and replacing it
-set cpoptions=ces$
-
-" Set the status line the way I like it {{{2
-
-" The line below sets up the left side of the thing, it basically shows all of
-" the files info, name, path, buffer, encoding etc.
-set stl=%<\ [Buf:\ %n]%m\ %f\ [%Y,\ %{''.(&fenc!=''?&fenc:&enc).''},\ %{&ff}]
-" The line below sets up the right side of the thing, it shows all the non-
-" file specific info. It shows mostly the cursors info
-set stl+=\ %=[0x\%02.2B]\ [Line:\ %l/%L\ \|\ Col:\ %c%V]\ (%P)
-
-" }}}2
-
-" Tell Vim to always put a status line in, even if there is only one window
-set laststatus=2
-
-" Don't update the display while executing macros
-set lazyredraw
-
-" Show the current command in the lower right corner
-set showcmd
 
 " Make sure that unsaved buffers that are to be put in the background are
 " allowed to go in there (i.e. the "must save first" error doesn't come up)
 set hidden
 
-" Hide the mouse pointer while typing
-set mousehide
+" Disable encryption file and buffer encryption
+set key=
 
-" Disable mouse use
-set mouse=
+" Set the default encoding to UTF-8
+set encoding=utf-8
 
-" Set the delay time you're allowed betwen key commands, in milliseconds
-set timeoutlen=1000
+" Search & Matching {{{1
 
-" Keep 100 entries in the history
-set history=100
+" Set the search scan to wrap around to the top of file
+set wrapscan
 
-" These commands open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+" Set the search scan so that it ignores case when the search is all lowercase
+set ignorecase
 
-" When the page starts to scroll, keep the cursor 8 lines from the top and
-" from the bottom
-set scrolloff=8
+" But recognizes uppercase if it's specified
+set smartcase
 
-" Allow the cursor to go to "invalid" places
-set virtualedit=all
+" Enable search highlighting
+set hlsearch
 
-" Incrementally match the search
-set incsearch
+" Set to use visual bell -- The beeping sucks!
+set visualbell
+set noerrorbells
 
 " While typing a search command, show where the pattern, as it was typed so far, matches
 set incsearch
 
+" Always show matching bracket
+set showmatch
+
+" Show the current command in the lower right corner
+set showcmd
+
+" Spell Checking {{{1
+
+" Enable spell checking
+set spell
+
+" Set the language of spell checking to english
+set spelllang=en
+
+" Command Mode & Statusline {{{1
+
+" Make command input line two lines high
+set ch=2
+
+" Set the forward slash to be the slash of note; backslashes suck!
+set shellslash
+
+" Status line {{{2
+
+" The lines below set up the left side of the thing, it basically shows all of
+" the files info, name, path, buffer, encoding, file type etc.
+let &stl='%< [Buf: %n]%m %f ['
+let &stl.='%{empty(&filetype) ? "" : "," . toupper(&filetype) . ", "}'
+let &stl.='%{(&fenc!=""?&fenc:&enc)}]'
+
+" The line below sets up the right side of the thing, it shows all the non-
+" file specific info. It shows mostly the cursors info
+let &stl.='%=[0x%02.2B] [Line: %04l/%04L | Col: %c%V] (%P)'
+
+" Tell Vim to always put a status line in, even if there is only one window
+set laststatus=2
+
+" Formatting {{{1
+
+" Set tabstops to 4 spaces
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Set indenting stuff
+set smartindent
+set autoindent
+
+" Commands Options {{{1
+
+" make the 'cw' and like commands put a $ at the end instead of just deleting
+" the text and replacing it
+set cpoptions=ces$
+
+" Set the delay time you're allowed betwen key commands, in milliseconds
+set timeoutlen=1000
+
+" History {{{1
+
+" Keep 100 entries in the history
+set history=100
+
+" Disable backup files completely
+set nobackup
+set noswapfile
+
+" Folds {{{1
+
+" Make sure folding is enabled
+set foldenable
+
+" These commands open folds
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+
 " Enable use of manual markers
 set foldmethod=marker
 
-" Disable encryption (:X)
-set key=
-
-" Same as default except that I remove the 'u' option
-set complete=.,w,b,t
-
-" When completing by tag, show the whole tag, not just the function name
-set showfulltag
-
-" Add ignorance of whitespace to diff
-set diffopt+=iwhite
-
-" Key mappings and stuff {{{1
+" Keymappings Stuff {{{1
 
 " Let's make it easy to edit this file (mnemonic for the key sequence is
 " 'e'dit 'v'imrc)
@@ -129,7 +129,7 @@ nmap <silent> ,sv :so $MYVIMRC<cr>
 nnoremap <c-e> ,
 vnoremap <c-e> ,
 
-" Completely disable the use of the arrow keys
+" Completely disable the use of the arrow keys in command mode
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
@@ -138,31 +138,92 @@ map <right> <nop>
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map("<F5>")
 
-" Fix moving line by line in the paragraph
+" Fix moving line by line in the paragraph, when soft wrap is on
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" Vundle bundles and other extensions {{{1
+" Vundle & Other Extensions {{{1
 
 " Set the filetype stuff to on
 filetype on
 filetype plugin indent on
 
+" Enable Vundle via Vundle
 set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+call vundle#rc()
 
+" All of my Vundle bundles
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mattn/zencoding-vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/TabBar'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-fugitive'
 
-" Syntax highlighting and GUI related stuff {{{1
-" Syntax highlighting {{{2
+" GUI Related {{{1
+
+" Show hidden characters
+set list
+set listchars=tab:\|\ ,eol:¬
+
+" Put a marker in this array of column numbers
+set colorcolumn=79
+
+" Set transparency to window, only if in MacVim
+if has("gui_running")
+	set transparency=0
+endif
+
+" Change the Terminal's title
+set title
+
+" Set the formatoptions
+set fo=vt
+
+" Set up the GUI cursor to look nice
+set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
+" set the GUI options the way I like
+set guioptions=acrgi
+
+" Show line numbers
+set number
+
+" Cursor & Mouse {{{2
+
+" When the page starts to scroll, keep the cursor 8 lines from the top and
+" from the bottom
+set scrolloff=8
+
+" Allow the cursor to go to "invalid" places
+set virtualedit=all
+
+" Highlight the cursors current line
+set cursorline
+
+" And current column
+set cursorcolumn
+
+" Hide the mouse pointer while typing
+set mousehide
+
+" Disable mouse use
+set mouse=
+
+" Windows/Split-windows {{{2
+
+" Get rid of the silly characters in window separators
+set fillchars=""
+
+" Automatically save the file you were on, when switching between files
+set autowrite
+
+" Syntax Highlighting {{{2
 
 " Turn on that syntax highlighting
 if &t_Co > 2 || has("gui_running")
@@ -180,51 +241,26 @@ let g:solarized_visibility="low"
 " Show trailing white spaces
 let g:solarized_hitrail=1
 
-" Disable the solarized menu
+" Disable the Solarized menu
 let g:solarized_menu=0
 
 " Set the color scheme to use dark version
 set background=dark
 
+" Set the background to the original when using the Molokai theme
+let g:molokai_original=1
+
 " Check if the Terminal can show 256 colors, or if we're using a GUI
 if &t_Co >= 256 || has ("gui_running")
-	colorscheme solarized " Set colorscheme to Solarized
+	colorscheme solarized " Set the color scheme
 endif
 
 " Syntax coloring lines that are too long just slow down the world
 set synmaxcol=2048
 
-" GUI settings {{{2
-
-" Don't use list in order to have soft wrapping
-set nolist
-"set listchars=tab:\|\ ,eol:¬
-
-" Setting up word-wrap
-set wrap linebreak textwidth=0 wrapmargin=0
-
-" Put a marker in this array of column numbers
-set colorcolumn=79
-
-" Set the formatoptions
-set fo=vt1
-
-" Get rid of the silly characters in window separators
-set fillchars=""
-
-" Set up the GUI cursor to look nice
-set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-
-" set the GUI options the way I like
-set guioptions=acrgi
-
-" Show line numbers
-set number
-
 " Setup window colors and size, if in GUI mode
 if has("gui_running")
 	set guifont=Menlo:h11
-	colorscheme solarized
 	if !exists("g:vimrcloaded")
 		winpos 0 0
 		if ! $diff
@@ -236,3 +272,26 @@ if has("gui_running")
 	endif
 endif
 :nohls
+}}}2
+
+" Diff {{{1
+
+" Add ignorance of whitespace to diff
+set diffopt+=iwhite
+
+" Auto-completion {{{1
+
+" Enable auto-completion of commands
+set wildmenu
+set wildmode=list:longest
+
+" Same as default except that I remove the 'u' option
+set complete=.,w,b,t
+
+" When completing by tag, show the whole tag, not just the function name
+set showfulltag
+
+" Macros {{{1
+
+" Don't update the display while executing macros
+set lazyredraw
