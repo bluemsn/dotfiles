@@ -11,6 +11,11 @@ set hidden
 " Indicates a faster terminal connection
 set ttyfast
 
+" Automatically load my vimrc file after saving
+if has("autocmd")
+     autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
 " Search & Matching {{{1
 
 " Set the search scan to wrap around to the top of file
@@ -112,17 +117,11 @@ let g:mapleader = ","
 nnoremap <c-e> ,
 vnoremap <c-e> ,
 
-" Let's make it easy to edit this file (mnemonic for the key sequence is
-" 'e'dit 'v'imrc)
+" Let's make it easy to edit this file, use ',ev' to open this file
 nmap <silent> ,ev :e $MYVIMRC<cr>
 
-" And to source this file as well (mnemonic for the key sequence is
-" 's'ource 'v'imrc)
+" And to source this file as well, use ',sv' to source this file
 nmap <silent> ,sv :so $MYVIMRC<cr>
-
-" Fix Vim's default regex "handling"
-nnoremap / /\v
-vnoremap / /\v
 
 " Completely disable the use of the arrow keys in command mode
 map <up> <nop>
@@ -195,8 +194,11 @@ filetype plugin indent on
 
 " Bundle settings {{{2
 
+" Vim Indent Guides {{{3
 let g:indent_guides_guide_size=1
 let g:indent_guides_enable_on_vim_startup=1
+au VimEnter * :IndentGuidesEnable
+" }}}3
 
 " }}}2
 
