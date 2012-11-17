@@ -1,0 +1,26 @@
+# System files.
+###############
+
+# Icon files
+*.(I|i)con?
+(I|i)con?
+*.icns
+
+# For Mac OS X files.
+.fseventsd
+.DS_Store
+.DS_Store?
+.Trashes
+._*
+.Spotlight-V100
+
+# For Windows files.
+ehthumbs.db
+Thumbs.db
+
+
+# Files with sensitive info.
+############################
+
+vim/bundle/Vimpress/custom/configs.vim
+vim/custom/configs.vim

@@ -8,11 +8,8 @@ set nocompatible
 " allowed to go in there (i.e. the "must save first" error doesn't come up)
 set hidden
 
-" Disable encryption file and buffer encryption
-set key=
-
-" Set the default encoding to UTF-8
-set encoding=utf-8
+" Indicates a faster terminal connection
+set ttyfast
 
 " Search & Matching {{{1
 
@@ -25,9 +22,6 @@ set ignorecase
 " But recognizes uppercase if it's specified
 set smartcase
 
-" Enable search highlighting
-set hlsearch
-
 " Set to use visual bell -- The beeping sucks!
 set visualbell
 set noerrorbells
@@ -37,9 +31,17 @@ set incsearch
 
 " Always show matching bracket
 set showmatch
+set mat=2
+" (Testing set, obviously.)
+
+" Enable search highlighting
+set hlsearch
 
 " Show the current command in the lower right corner
 set showcmd
+
+" Turn regular expressions (a.k.a. regex) on
+set magic
 
 " Spell Checking {{{1
 
@@ -56,21 +58,6 @@ set ch=2
 
 " Set the forward slash to be the slash of note; backslashes suck!
 set shellslash
-
-" Status line {{{2
-
-" The lines below set up the left side of the thing, it basically shows all of
-" the files info, name, path, buffer, encoding, file type etc.
-let &stl='%< [Buf: %n]%m %f ['
-let &stl.='%{empty(&filetype) ? "" : "," . toupper(&filetype) . ", "}'
-let &stl.='%{(&fenc!=""?&fenc:&enc)}]'
-
-" The line below sets up the right side of the thing, it shows all the non-
-" file specific info. It shows mostly the cursors info
-let &stl.='%=[0x%02.2B] [Line: %04l/%04L | Col: %c%V] (%P)'
-
-" Tell Vim to always put a status line in, even if there is only one window
-set laststatus=2
 
 " Formatting {{{1
 
@@ -117,6 +104,14 @@ set foldmethod=marker
 
 " Keymappings Stuff {{{1
 
+" Use ',' instead of '\' for leader commands
+let mapleader = ","
+let g:mapleader = ","
+
+" Map CTRL-E to do what ',' used to do
+nnoremap <c-e> ,
+vnoremap <c-e> ,
+
 " Let's make it easy to edit this file (mnemonic for the key sequence is
 " 'e'dit 'v'imrc)
 nmap <silent> ,ev :e $MYVIMRC<cr>
@@ -125,9 +120,9 @@ nmap <silent> ,ev :e $MYVIMRC<cr>
 " 's'ource 'v'imrc)
 nmap <silent> ,sv :so $MYVIMRC<cr>
 
-" Map CTRL-E to do what ',' used to do
-nnoremap <c-e> ,
-vnoremap <c-e> ,
+" Fix Vim's default regex "handling"
+nnoremap / /\v
+vnoremap / /\v
 
 " Completely disable the use of the arrow keys in command mode
 map <up> <nop>
@@ -135,41 +130,81 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-" Allow change of theme from light to dark and vice-versa, with a hotkey
-call togglebg#map("<F5>")
-
 " Fix moving line by line in the paragraph, when soft wrap is on
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+" Smart way to move between windows, uses 'Ctrl+jkhl' instead of 'Ctrl+w+jkhl'
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Disable pressing 'F1' for help
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" Makes it easy to clear out a search, by typing ', '
+nnoremap <leader><space> :noh<cr>
+
+" Allow change of theme from light to dark and vice-versa, with a hotkey
+call togglebg#map("<F5>")
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+
 " Vundle & Other Extensions {{{1
+
+" Set the filetype stuff to off
+filetype off
+filetype plugin indent off
+
+" Add Vundle to the list of auto-loading things
+set rtp+=~/.vim/bundle/vundle/
+
+" Call Vundle function...
+call vundle#rc()
+
+" This one is required baby!
+Bundle 'gmarik/vundle'
+
+" All of my Vundle bundles
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'spf13/PIV'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'PotHix/Vimpress'
+Bundle 'nathanaelkane/vim-indent-guides'
+" Color schemes
+Bundle 'altercation/vim-colors-solarized'
 
 " Set the filetype stuff to on
 filetype on
 filetype plugin indent on
 
-" Enable Vundle via Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Bundle settings {{{2
 
-" All of my Vundle bundles
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'mattn/zencoding-vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
-Bundle 'vim-scripts/TabBar'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-fugitive'
+let g:indent_guides_guide_size=1
+let g:indent_guides_enable_on_vim_startup=1
 
-" GUI Related {{{1
+" }}}2
 
-" Show hidden characters
+" User Interface Related {{{1
+
+" Show hidden characters, specifically tabs and EOLs
 set list
-set listchars=tab:\|\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬
 
 " Put a marker in this array of column numbers
 set colorcolumn=79
@@ -185,20 +220,34 @@ set title
 " Set the formatoptions
 set fo=vt
 
-" Set up the GUI cursor to look nice
-set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-
-" set the GUI options the way I like
+" Set the GUI options the way I like
 set guioptions=acrgi
 
-" Show line numbers
-set number
+" NOTICE!
+" Line numbers and stuff are controlled by this bundle:
+" https://github.com/jeffkreeftmeijer/vim-numbertoggle
 
+" Status line {{{2
+
+" The lines below set up the left side of the thing, it basically shows all of
+" the files info, name, path, buffer, encoding, file type etc.
+let &stl='%< [Buf: %n]%m %f ['
+let &stl.='%{empty(&filetype) ? "" : &filetype . ", "}'
+let &stl.='%{(&fenc!=""?&fenc:&enc)}] %{fugitive#statusline()}'
+
+" The line below sets up the right side of the thing, it shows all the non-
+" file specific info. It shows mostly the cursors info
+let &stl.='%=[0x%02.2B] [Line: %04l/%04L | Col: %c%V] (%P)'
+
+" Tell Vim to always put a status line in, even if there is only one window
+set laststatus=2
+
+" }}}2
 " Cursor & Mouse {{{2
 
 " When the page starts to scroll, keep the cursor 8 lines from the top and
 " from the bottom
-set scrolloff=8
+set scrolloff=4
 
 " Allow the cursor to go to "invalid" places
 set virtualedit=all
@@ -215,6 +264,9 @@ set mousehide
 " Disable mouse use
 set mouse=
 
+" Set up the GUI cursor to look nice
+set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
 " Windows/Split-windows {{{2
 
 " Get rid of the silly characters in window separators
@@ -223,7 +275,20 @@ set fillchars=""
 " Automatically save the file you were on, when switching between files
 set autowrite
 
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Don't use any tabs
+set tabpagemax=1
+set showtabline=0
+
+" Switch to tab or window if already open, when switching buffers
+set switchbuf=useopen,usetab
+
 " Syntax Highlighting {{{2
+
+" Syntax coloring lines that are too long just slow down the world
+set synmaxcol=2048
 
 " Turn on that syntax highlighting
 if &t_Co > 2 || has("gui_running")
@@ -232,8 +297,7 @@ if &t_Co > 2 || has("gui_running")
 	syntax on
 endif
 
-" For compatibility with Terminal, don't use if not using Terminal
-let g:solarized_termcolors=256
+" Solarized settings {{{3
 
 " Non-text items visibility, normal low or high
 let g:solarized_visibility="low"
@@ -244,23 +308,19 @@ let g:solarized_hitrail=1
 " Disable the Solarized menu
 let g:solarized_menu=0
 
+" }}}3
+
 " Set the color scheme to use dark version
 set background=dark
 
-" Set the background to the original when using the Molokai theme
-let g:molokai_original=1
-
-" Check if the Terminal can show 256 colors, or if we're using a GUI
-if &t_Co >= 256 || has ("gui_running")
-	colorscheme solarized " Set the color scheme
-endif
-
-" Syntax coloring lines that are too long just slow down the world
-set synmaxcol=2048
+" Set the color scheme
+colorscheme solarized
 
 " Setup window colors and size, if in GUI mode
 if has("gui_running")
-	set guifont=Menlo:h11
+	set guifont=Menlo:h11 " Set the font
+	set t_Co=256
+
 	if !exists("g:vimrcloaded")
 		winpos 0 0
 		if ! $diff
@@ -272,7 +332,8 @@ if has("gui_running")
 	endif
 endif
 :nohls
-}}}2
+
+" }}}2
 
 " Diff {{{1
 
@@ -295,3 +356,14 @@ set showfulltag
 
 " Don't update the display while executing macros
 set lazyredraw
+
+" File {{{1
+
+" Disable encryption file and buffer encryption
+set key=
+
+" Set the default encoding to UTF-8
+set encoding=utf-8
+
+" Set Unix as the standard file type
+set ffs=unix,dos,mac
