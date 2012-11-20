@@ -9,4 +9,9 @@ course use multiple lines, as long as no line is longer than 72 chars.
 - If you removed something
 +~ If you improved something in some or any way
 
+TODO:
++ Add todos in the same way you would achievements
+~ Change the line beginning depending on what the todo is about
++~ Improve this in any way you want
+
                                    50 chars mark |       72 chars mark |

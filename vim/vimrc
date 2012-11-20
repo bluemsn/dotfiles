@@ -49,13 +49,59 @@ set timeoutlen=1000 " Set delay between commands, in milliseconds
 set history=100 " Keep only 100 entries in the command history
 set nobackup    " Disable backup files
 set noswapfile  " Don't use a swap file in current buffer
+set nowb        " Don't write backup before saving, even if you delete it later
 
 " Folds {{{1
 
-set foldenable " Make sure folding is enabled
-" These commands open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+set foldenable        " Make sure folding is enabled
 set foldmethod=marker " Use manual markers for folds
+
+" These commands open can open folds
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+
+" Vundle & Other Extensions {{{1
+
+" Set the filetype stuff to off
+filetype off
+filetype plugin indent off
+
+set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
+call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
+
+" Add 'vundle' as a Vundle bundle
+Bundle 'gmarik/vundle'
+
+" All of my Vundle bundles
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'spf13/PIV'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'PotHix/Vimpress'
+Bundle 'nathanaelkane/vim-indent-guides'
+
+" Color schemes
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/base16-vim'
+
+" Set the filetype stuff to on
+filetype on
+filetype plugin indent on
+
+" Bundle settings {{{2
+
+" Vim Indent Guides {{{3
+let g:indent_guides_guide_size=1  " Set width of marker to one wide
+let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
+au VimEnter * :IndentGuidesEnable " Always load bundle
+" }}}3
+
+" }}}2
 
 " Keymappings Stuff {{{1
 
@@ -134,73 +180,14 @@ iabbrev ew@@ eduan@websharks-inc.com
 " Put a copyright notice when I write 'ccopy' in insert mode
 iabbrev ccopy Copyright (C) 2012 Eduan Lavaque <eduan@snapsimpletech.com>, all rights reserved.
 
-" Vundle & Other Extensions {{{1
-
-" Set the filetype stuff to off
-filetype off
-filetype plugin indent off
-
-" Add Vundle to the list of auto-loading things
-set rtp+=~/.vim/bundle/vundle/
-
-" Call Vundle function...
-call vundle#rc()
-
-" This one is required baby!
-Bundle 'gmarik/vundle'
-
-" All of my Vundle bundles
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'mattn/zencoding-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'spf13/PIV'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'PotHix/Vimpress'
-Bundle 'nathanaelkane/vim-indent-guides'
-" Color schemes
-Bundle 'altercation/vim-colors-solarized'
-
-" Set the filetype stuff to on
-filetype on
-filetype plugin indent on
-
-" Bundle settings {{{2
-
-" Vim Indent Guides {{{3
-let g:indent_guides_guide_size=1
-let g:indent_guides_enable_on_vim_startup=1
-au VimEnter * :IndentGuidesEnable
-" }}}3
-
-" }}}2
-
 " User Interface Related {{{1
 
-" Show hidden characters, specifically tabs and EOLs
-set list
-set listchars=tab:▸\ ,eol:¬
-
-" Put a marker in this array of column numbers
-set colorcolumn=79
-
-" Always be 4 chars wide, the line number column that is
-set numberwidth=4
-
-" Set transparency to window, only if in MacVim
-if has('gui_running')
-	set transparency=0
-endif
-
-" Change the Terminal's title
-set title
-
-" Set the formatoptions
-set fo=vt
+set list                    " Show hidden characters
+set listchars=tab:▸\ ,eol:¬ " Set the characters to use for tab and End Of Line
+set colorcolumn=79          " Put a marker in this array of column numbers
+set numberwidth=4           " Line numbers always be 4 chars wide
+set title                   " Change Terminal's title
+set fo=vt                   " Set the format options ('formatoptions')
 
 " NOTICE!
 " Line numbers and stuff are controlled by this bundle:
@@ -211,12 +198,12 @@ set fo=vt
 " The lines below set up the left side of the thing, it basically shows all of
 " the files info, name, path, buffer, encoding, file type etc.
 let &stl='%< [Buf: %n]%m %f ['
-let &stl.='%{empty(&filetype) ? "" : &filetype . ", "}'
-let &stl.='%{(&fenc!=""?&fenc:&enc)}] %{fugitive#statusline()}'
+let &stl.='%{empty(&filetype)?"":&filetype.", "}'
+let &stl.='%{&fenc!=""?&fenc:&enc}] %{fugitive#statusline()}'
 
 " The line below sets up the right side of the thing, it shows all the non-
 " file specific info. It shows mostly the cursors info
-let &stl.='%=[0x%02.2B] [Line: %04l/%04L | Col: %c%V] (%P)'
+let &stl.='%=[0x%02.2B] [Line: %04l/%04L | Col: %c%V] (%P) '
 
 " Tell Vim to always put a status line in, even if there is only one window
 set laststatus=2
@@ -224,79 +211,45 @@ set laststatus=2
 " }}}2
 " Cursor & Mouse {{{2
 
-" When the page starts to scroll, keep the cursor 8 lines from the top and
-" from the bottom
-set scrolloff=4
-
-" Allow the cursor to go to "invalid" places
-set virtualedit=all
-
-" Highlight the cursors current line
-set cursorline
-
-" And current column
-set cursorcolumn
-
-" Hide the mouse pointer while typing
-set mousehide
-
-" Disable mouse use
-set mouse=
+set scrolloff=4     " Keep the cursor 4 lines above/below window edge
+set virtualedit=all " Allow the cursor to go to invalid places
+set cursorline      " Highlight the cursor's current line
+set cursorcolumn    " Highlight the cursor's current column
+set mousehide       " Hide the mouse pointer while typing
+set mouse=          " Disable use of mouse
 
 " Set up the GUI cursor to look nice
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 " Windows/Split-windows {{{2
 
-" Get rid of the silly characters in window separators
-set fillchars=""
-
-" Automatically save the file you were on, when switching between buffers
-set autowrite
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" Don't use any tabs (visual tabs of course, duh!)
-set tabpagemax=1
-set showtabline=0
-
-" Switch to tab or window if already open, when switching buffers
-set switchbuf=useopen,usetab
-
-" Set the GUI options the way I like
-set guioptions=acirbhv
+set fillchars=""             " Don't put window separators between splits
+set autowrite                " When switching buffers save file automatically
+set autoread                 " Auto read files when edited outside Vim
+set tabpagemax=1             " Max tabs to open with the '-p' option
+set showtabline=0            " Don't show the Vim tab line
+set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
+set guioptions=acirbhv       " Set the GUI options the way I like them
 
 " Setup window colors and size, if in GUI mode
 if has('gui_running')
 	set guifont=Menlo:h11 " Set the font
-	set t_Co=256 " Set the GUI to use 256 colors
 
 	if !exists('g:vimrcloaded')
 		winpos 0 0
 		if ! $diff
-			set columns=120 lines=40
+			set columns=120 lines=40 " Set the width and height of window
 		else
-			set columns=240 lines=40
+			set columns=240 lines=40 " Same here, duh!
 		endif
 		let g:vimrcloaded=1
-	endif
-
-	if has('gui_macvim')
-		macmenu File.Save key=<nop>
-		macmenu File.Save\ All key=<nop>
-		macmenu File.Save\ As\.\.\. key=<nop>
 	endif
 endif
 :nohls
 
-
 " Syntax Highlighting {{{2
 
-" Syntax coloring lines that are too long just slow down the world
-set synmaxcol=2048
-
-" Turn on that syntax highlighting
+set synmaxcol=2048 " Put a max of 2048 chars to highlight in a single line
 if &t_Co > 2 || has('gui_running')
 	" Switch syntax highlighting on, when the Terminal has colors
 	" Or when the GUI is being used
@@ -319,11 +272,8 @@ let g:solarized_menu=0
 
 " }}}3
 
-" Set the color scheme to use dark version
-set background=dark
-
-" Set the color scheme
-colorscheme solarized
+set background=dark        " Use the dark version of the color scheme
+colorscheme solarized " Set the color scheme to use
 
 " }}}2
 
