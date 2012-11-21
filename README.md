@@ -12,20 +12,8 @@ BTW, you're already in my repo if you're reading this.
 
 Installing, or setting up your dotfiles is very easy, just remember I'm using a Mac so my commands will probably be different from yours if you're not using a Mac.
 
-Simply run the following commands in Terminal:
+Simply run the following commands in Terminal:<br />
+`$ cd ~/.dotfiles`<br />
+`$ sh ./make_symlinks.sh`
 
-### Vim
-
-`$ ln -s ~/.dotfiles/vim ~/.vim`<br />
-`$ ln -s ~/.dotfiles/vim/vimrc ~/.vimrc`<br />
-`$ ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc`
-
-### Zsh
-
-`$ ln -s ~/.dotfiles/zsh ~/.zsh`<br />
-`$ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc`
-
-### Git
-
-`$ ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig`<br />
-`$ ln -s ~/.dotfiles/git/gitmessage.txt ~/.gitmessage.txt`
+Which will run a script I made in order to make the symlinks for you!
