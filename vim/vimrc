@@ -1,9 +1,9 @@
 " Basic Stuff {{{1
 
 set nocompatible " Forget about being compatible with good ol' Vi
-set hidden " Make sure that unsaved buffers that are to be put in the
-           " background are allowed to go in there.
-set ttyfast " Indicates a faster terminal connection
+set hidden       " Make sure that unsaved buffers that are to be put in the
+                 " background are allowed to go in there.
+set ttyfast      " Indicates a faster terminal connection
 
 " Search & Matching {{{1
 
@@ -81,9 +81,13 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'spf13/PIV'
 Bundle 'vim-scripts/YankRing.vim'
+Bundle 'vim-scripts/SearchComplete'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'PotHix/Vimpress'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Raimondi/delimitMate'
+Bundle 'kien/ctrlp.vim'
+Bundle 'junegunn/tabularize'
 
 " Color schemes
 Bundle 'altercation/vim-colors-solarized'
@@ -99,6 +103,8 @@ filetype plugin indent on
 let g:indent_guides_guide_size=1  " Set width of marker to one wide
 let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
 au VimEnter * :IndentGuidesEnable " Always load bundle
+" Tabularize {{{3
+" Still need to fill this
 " }}}3
 
 " }}}2
@@ -208,7 +214,6 @@ let &stl.='%=[0x%02.2B] [Line: %04l/%04L | Col: %c%V] (%P) '
 " Tell Vim to always put a status line in, even if there is only one window
 set laststatus=2
 
-" }}}2
 " Cursor & Mouse {{{2
 
 set scrolloff=4     " Keep the cursor 4 lines above/below window edge
@@ -233,7 +238,7 @@ set guioptions=acirbhv       " Set the GUI options the way I like them
 
 " Setup window colors and size, if in GUI mode
 if has('gui_running')
-	set guifont=Menlo:h11 " Set the font
+	set guifont=Menlo:h13 " Set the font
 
 	if !exists('g:vimrcloaded')
 		winpos 0 0
