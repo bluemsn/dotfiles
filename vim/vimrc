@@ -35,14 +35,15 @@ set tabstop=4     " Number of spaces that defines a "tab"
 set shiftwidth=4  " Number of spaces to use for each indent level
 set softtabstop=4 " Same as 'tabstop', while doing editing operations
 set backspace=indent,eol,start " Allow backspace over everything in insert mode
-set smartindent " Do smart indenting when starting a new line
-set autoindent  " Copy indent from current line, over to the new line
+set smartindent   " Do smart indenting when starting a new line
+set autoindent    " Copy indent from current line, over to the new line
 
 " Commands Options {{{1
 
 set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
                     " word instead of just deleting and replacing the text
-set timeoutlen=1000 " Set delay between commands, in milliseconds
+set notimeout       " Disable timeout between commands and stuff
+set nottimeout      " Disable timeout between commands and stuff, in Terminal
 
 " History {{{1
 
@@ -55,13 +56,14 @@ set nowb        " Don't write backup before saving, even if you delete it later
 
 set foldenable        " Make sure folding is enabled
 set foldmethod=marker " Use manual markers for folds
+set foldlevelstart=0  " Always close folds when switching buffers
 
 " These commands open can open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " Vundle & Other Extensions {{{1
 
-" Set the filetype stuff to off
+" Set the filetype stuff to off, required for Vundle
 filetype off
 filetype plugin indent off
 
@@ -72,26 +74,27 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 Bundle 'gmarik/vundle'
 
 " All of my Vundle bundles
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'mattn/zencoding-vim'
-Bundle 'tpope/vim-fugitive'
+"Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdtree'
+"Bundle 'mattn/zencoding-vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-surround'
 Bundle 'spf13/PIV'
-Bundle 'vim-scripts/YankRing.vim'
+"Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'PotHix/Vimpress'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Raimondi/delimitMate'
-Bundle 'kien/ctrlp.vim'
-Bundle 'junegunn/tabularize'
+"Bundle 'Raimondi/delimitMate'
+"Bundle 'kien/ctrlp.vim'
+"Bundle 'junegunn/tabularize'
+Bundle 'taq/vim-git-branch-info'
+"Bundle 'sjl/clam.vim'
 
 " Color schemes
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/base16-vim'
+"Bundle 'chriskempson/base16-vim'
 
 " Set the filetype stuff to on
 filetype on
@@ -105,7 +108,20 @@ let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
 au VimEnter * :IndentGuidesEnable " Always load bundle
 " Tabularize {{{3
 " Still need to fill this
+" Git Branch Info {{{3
+let g:git_branch_status_text=" "
+let g:git_branch_status_head_current=1
+let g:git_branch_status_nogit=''
+let g:git_branch_status_around='()'
 " }}}3
+
+" File type specific stuff {{{2
+
+" Set to use manual folds in Vim files
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
 " }}}2
 
@@ -201,15 +217,30 @@ set fo=vt                   " Set the format options ('formatoptions')
 
 " Status line {{{2
 
-" The lines below set up the left side of the thing, it basically shows all of
-" the files info, name, path, buffer, encoding, file type etc.
-let &stl='%< [Buf: %n]%m %f ['
-let &stl.='%{empty(&filetype)?"":&filetype.", "}'
-let &stl.='%{&fenc!=""?&fenc:&enc}] %{fugitive#statusline()}'
+let &stl='%<'    " Truncate at beginning of line
+let &stl.=' '    " Separator
+let &stl.='[%n]' " Buffer number of this buffer
+let &stl.='%r'   " Show if file is read-only
+let &stl.='%m'   " Show modified status of file
+let &stl.=' '    " Separator
+let &stl.='%f'   " File name
+let &stl.=' '    " Separator
+let &stl.='[%{empty(&ft)?"":toupper(&ft).", "}' " Current buffer's file type
+let &stl.='%{&fenc!=""?&fenc:&enc}]' " Buffer encoding
+let &stl.='%{GitBranchInfoString()}' " Current Git branch of buffer
 
-" The line below sets up the right side of the thing, it shows all the non-
-" file specific info. It shows mostly the cursors info
-let &stl.='%=[0x%02.2B] [Line: %04l/%04L | Col: %c%V] (%P) '
+let &stl.='%='         " Right line of statusline
+let &stl.='[0x%02.2B]' " Current character's Hex ID
+let &stl.=' '          " Separator
+let &stl.='[%l'        " Current line
+let &stl.='/'          " Separator
+let &stl.='%L'        " Total of lines
+let &stl.=':'          " Separator
+let &stl.='%c'         " Current column
+let &stl.='%V]'        " Current virtual column
+let &stl.=' '          " Separator
+let &stl.='(%P)'       " Total percentage of file shown
+let &stl.=' '          " Separator
 
 " Tell Vim to always put a status line in, even if there is only one window
 set laststatus=2
@@ -217,14 +248,31 @@ set laststatus=2
 " Cursor & Mouse {{{2
 
 set scrolloff=4     " Keep the cursor 4 lines above/below window edge
+set sidescrolloff=4 " Same as above, but for side scrolling
+set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
-set cursorline      " Highlight the cursor's current line
-set cursorcolumn    " Highlight the cursor's current column
 set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable use of mouse
 
-" Set up the GUI cursor to look nice
-set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+" Set up the GUI cursor to look nice, for each mode
+set guicursor=n-v-c:block-Cursor-blinkon0
+set guicursor+=ve:ver35-Cursor
+set guicursor+=o:hor50-Cursor
+set guicursor+=i-ci:ver25-Cursor
+set guicursor+=r-cr:hor20-Cursor
+set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
+augroup cline
+	au!
+
+	" Only show 'cursorline' in the current window and in normal mode
+	au WinLeave,InsertEnter * set nocursorline
+	au WinEnter,InsertLeave * set cursorline
+
+	" Only show 'cursorcolumn' in current window and in normal mode
+	au WinLeave,InsertEnter * set nocursorcolumn
+	au WinEnter,InsertLeave * set cursorcolumn
+augroup END
 
 " Windows/Split-windows {{{2
 
@@ -235,6 +283,7 @@ set tabpagemax=1             " Max tabs to open with the '-p' option
 set showtabline=0            " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
 set guioptions=acirbhv       " Set the GUI options the way I like them
+au VimResized * :wincmd =    " Resize split windows when the window is resized
 
 " Setup window colors and size, if in GUI mode
 if has('gui_running')
@@ -281,6 +330,18 @@ set background=dark        " Use the dark version of the color scheme
 colorscheme solarized " Set the color scheme to use
 
 " }}}2
+
+if has('gui_running')
+	highlight SpellBad term=underline gui=undercurl guisp=Orange
+
+	if has('gui_macvim')
+		set fuoptions=maxvert,maxhorz " Full screen means FULL screen
+	else
+		" Other GUIs like Gvim go here
+	endif
+else
+	" Terminal only stuff!
+endif
 
 " Diff {{{1
 
