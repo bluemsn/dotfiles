@@ -15,16 +15,16 @@ set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
 call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 
 " Let Vundle handle itself as a bundle
-Bundle 'gmarik/vundle'
+"Bundle 'gmarik/vundle'
 
 " All of my Vundle bundles
-Bundle 'tpope/vim-repeat'
-Bundle 'spf13/PIV'
-Bundle 'vim-scripts/SearchComplete'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'PotHix/Vimpress'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'taq/vim-git-branch-info'
+"Bundle 'tpope/vim-repeat'
+"Bundle 'spf13/PIV'
+"Bundle 'vim-scripts/SearchComplete'
+"Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+"Bundle 'PotHix/Vimpress'
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'taq/vim-git-branch-info'
 
 " Deactivated bundles
 "Bundle 'scrooloose/nerdcommenter'
@@ -44,14 +44,14 @@ Bundle 'taq/vim-git-branch-info'
 "Bundle 'SirVer/ultisnips'
 
 " Syntax files
-Bundle 'olivierverdier/python-syntax.vim'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-git'
+"Bundle 'olivierverdier/python-syntax.vim'
+"Bundle 'tpope/vim-markdown'
+"Bundle 'tpope/vim-git'
 
 " Color schemes
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/base16-vim'
+"Bundle 'nanotech/jellybeans.vim'
+"Bundle 'altercation/vim-colors-solarized'
+"Bundle 'chriskempson/base16-vim'
 
 " Set the filetype stuff to on
 filetype on
