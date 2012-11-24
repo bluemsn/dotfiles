@@ -70,27 +70,32 @@ filetype plugin indent off
 set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
 call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 
-" Add 'vundle' as a Vundle bundle
+" Let Vundle handle itself as a bundle
 Bundle 'gmarik/vundle'
 
 " All of my Vundle bundles
-"Bundle 'scrooloose/nerdcommenter'
-"Bundle 'scrooloose/nerdtree'
-"Bundle 'mattn/zencoding-vim'
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
-"Bundle 'tpope/vim-surround'
 Bundle 'spf13/PIV'
-"Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'PotHix/Vimpress'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'taq/vim-git-branch-info'
+
+" Deactivated bundles
+"Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdtree'
+"Bundle 'mattn/zencoding-vim'
+"Bundle 'tpope/vim-surround'
+"Bundle 'vim-scripts/YankRing.vim'
 "Bundle 'Raimondi/delimitMate'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'junegunn/tabularize'
-Bundle 'taq/vim-git-branch-info'
 "Bundle 'sjl/clam.vim'
+
+" Syntax files
+Bundle 'olivierverdier/python-syntax.vim'
+Bundle 'tpope/vim-markdown'
 
 " Color schemes
 Bundle 'nanotech/jellybeans.vim'
@@ -114,6 +119,7 @@ let g:git_branch_status_text=" "
 let g:git_branch_status_head_current=1
 let g:git_branch_status_nogit=''
 let g:git_branch_status_around='()'
+let g:git_branch_file_based=1
 " }}}3
 
 " }}}2
@@ -210,30 +216,32 @@ set fo=vt                   " Set the format options ('formatoptions')
 
 " Status line {{{2
 
-let &stl='%<'    " Truncate at beginning of line
-let &stl.=' '    " Separator
-let &stl.='[%n]' " Buffer number of this buffer
-let &stl.='%r'   " Show if file is read-only
-let &stl.='%m'   " Show modified status of file
-let &stl.=' '    " Separator
-let &stl.='%f'   " File name
-let &stl.=' '    " Separator
+if has('statusline')
+let &stl=''        " Clear statusline for when vimrc is loaded
+let &stl.='[%02n]' " Buffer number of this buffer
+let &stl.='%r'     " Show if file is read-only
+let &stl.='%m'     " Show modified status of file
+let &stl.=' '      " Separator
+let &stl.='%<'     " Truncate from here on
+let &stl.='%.50F'  " File name
+let &stl.=' '      " Separator
 let &stl.='[%{empty(&ft)?"":toupper(&ft).", "}' " Current buffer's file type
-let &stl.='%{&fenc!=""?&fenc:&enc}]' " Buffer encoding
-let &stl.='%{GitBranchInfoString()}' " Current Git branch of buffer
+let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer encoding
+let &stl.='%{empty(&ff)?"":", ".&ff}]' " File type
+let &stl.='%{GitBranchInfoString()}'   " Current Git branch of buffer
 
 let &stl.='%='         " Right line of statusline
-let &stl.='[0x%02.2B]' " Current character's Hex ID
+let &stl.='[%bx%B]'   " Current character's Hex ID
 let &stl.=' '          " Separator
 let &stl.='[%l'        " Current line
-let &stl.='/'          " Separator
-let &stl.='%L'        " Total of lines
+let &stl.='/'          " Separator for current line and total of lines
+let &stl.='%L'         " Total of lines
 let &stl.=':'          " Separator
 let &stl.='%c'         " Current column
 let &stl.='%V]'        " Current virtual column
 let &stl.=' '          " Separator
 let &stl.='(%P)'       " Total percentage of file shown
-let &stl.=' '          " Separator
+endif
 
 " Tell Vim to always put a status line in, even if there is only one window
 set laststatus=2
@@ -374,6 +382,14 @@ set ffs=unix,dos,mac
 
 " Set to use manual folds in Vim files
 augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" Python specific stuff
+augroup filetype_python
+	autocmd!
+	autocmd FileType python setlocal set expandtab
+	autocmd FileType python setlocal set complete+=k~/.vim/syntax/python.vim isk+=.,(
+	autocmd FileType python setlocal set smartindent set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 augroup END
