@@ -5,6 +5,76 @@ set hidden       " Make sure that unsaved buffers that are to be put in the
                  " background are allowed to go in there.
 set ttyfast      " Indicates a faster terminal connection
 
+" Vundle & Other Extensions {{{1
+
+" Set the filetype stuff to off, required for Vundle
+filetype off
+filetype plugin indent off
+
+set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
+call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
+
+" Let Vundle handle itself as a bundle
+Bundle 'gmarik/vundle'
+
+" All of my Vundle bundles
+Bundle 'tpope/vim-repeat'
+Bundle 'spf13/PIV'
+Bundle 'vim-scripts/SearchComplete'
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'PotHix/Vimpress'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'taq/vim-git-branch-info'
+
+" Deactivated bundles
+"Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdtree'
+"Bundle 'mattn/zencoding-vim'
+"Bundle 'tpope/vim-surround'
+"Bundle 'vim-scripts/YankRing.vim'
+"Bundle 'Raimondi/delimitMate'
+
+" Bundles to check out
+"Bundle 'mileszs/ack.vim'
+"Bundle 'kien/ctrlp.vim'
+"Bundle 'sjl/clam.vim'
+"Bundle 'junegunn/tabularize'
+"Bundle 'tpope/vim-commentary'
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'SirVer/ultisnips'
+
+" Syntax files
+Bundle 'olivierverdier/python-syntax.vim'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-git'
+
+" Color schemes
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/base16-vim'
+
+" Set the filetype stuff to on
+filetype on
+filetype plugin indent on
+
+" Bundle settings {{{2
+
+" Vim Indent Guides {{{3
+let g:indent_guides_guide_size=1  " Set width of marker to one wide
+let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
+au VimEnter * :IndentGuidesEnable " Always load bundle
+" Tabularize {{{3
+" Still need to fill this
+" Git Branch Info {{{3
+let g:git_branch_status_text=" "
+let g:git_branch_status_head_current=1
+let g:git_branch_status_nogit=''
+let g:git_branch_status_around='()'
+let g:git_branch_file_based=1
+" }}}3
+
+" }}}2
+
 " Search & Matching {{{1
 
 set wrapscan    " Set the search scan to wrap around to the top of the file
@@ -60,69 +130,6 @@ set foldlevelstart=0  " Always close folds when switching buffers
 
 " These commands open can open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
-
-" Vundle & Other Extensions {{{1
-
-" Set the filetype stuff to off, required for Vundle
-filetype off
-filetype plugin indent off
-
-set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
-call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
-
-" Let Vundle handle itself as a bundle
-Bundle 'gmarik/vundle'
-
-" All of my Vundle bundles
-Bundle 'tpope/vim-repeat'
-Bundle 'spf13/PIV'
-Bundle 'vim-scripts/SearchComplete'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'PotHix/Vimpress'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'taq/vim-git-branch-info'
-
-" Deactivated bundles
-"Bundle 'scrooloose/nerdcommenter'
-"Bundle 'scrooloose/nerdtree'
-"Bundle 'mattn/zencoding-vim'
-"Bundle 'tpope/vim-surround'
-"Bundle 'vim-scripts/YankRing.vim'
-"Bundle 'Raimondi/delimitMate'
-"Bundle 'kien/ctrlp.vim'
-"Bundle 'junegunn/tabularize'
-"Bundle 'sjl/clam.vim'
-
-" Syntax files
-Bundle 'olivierverdier/python-syntax.vim'
-Bundle 'tpope/vim-markdown'
-
-" Color schemes
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/base16-vim'
-
-" Set the filetype stuff to on
-filetype on
-filetype plugin indent on
-
-" Bundle settings {{{2
-
-" Vim Indent Guides {{{3
-let g:indent_guides_guide_size=1  " Set width of marker to one wide
-let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
-au VimEnter * :IndentGuidesEnable " Always load bundle
-" Tabularize {{{3
-" Still need to fill this
-" Git Branch Info {{{3
-let g:git_branch_status_text=" "
-let g:git_branch_status_head_current=1
-let g:git_branch_status_nogit=''
-let g:git_branch_status_around='()'
-let g:git_branch_file_based=1
-" }}}3
-
-" }}}2
 
 " Keymappings Stuff {{{1
 

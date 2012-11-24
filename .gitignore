@@ -29,4 +29,4 @@ vim/custom/configs.vim
 # Random stuff.
 ###############
 
-vim/bundle
+vim/bundle/

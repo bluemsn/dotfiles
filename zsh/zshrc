@@ -28,9 +28,6 @@ alias ls="ls -la -Gp -F"
 # Make 'gvim' not open a new MacVim window
 alias gvim="mvim --remote-silent"
 
-# Enable the use of 'hub'
-alias git="hub"
-
 # Enable loading of MySQL
 export PATH="/usr/local/mysql/bin:$PATH"
 
