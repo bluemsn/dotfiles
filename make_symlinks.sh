@@ -1,3 +1,4 @@
+#!/bin/zsh
 #####################
 # make_symlinks.sh
 # This file automatically makes all your defined symlinks, in one go.
@@ -20,13 +21,6 @@ if [ $script_dir == '.' ]; then
 fi
 
 if [ $kernel == 'Darwin' ]; then
-	read -p 'Fix Vim Python errors? ' prompt1
-
-	if [ $prompt1 == [yY][eE][sS] ]; then
-		sudo mkdir -p /usr/include/python2.7
-		sudo ln -s /System/Library/Frameworks/Python.framework/Versions/Current/include/python2.7/pyconfig.h /usr/include/python2.7
-	fi
-
 	# Making symlinks to Vim files, add yours as you need
 	echo 'Making symlinks to Vim files'
 	ln -s -v $script_dir/vim ~/.vim

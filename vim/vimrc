@@ -93,8 +93,9 @@ Bundle 'taq/vim-git-branch-info'
 "Bundle 'sjl/clam.vim'
 
 " Color schemes
+Bundle 'nanotech/jellybeans.vim'
 Bundle 'altercation/vim-colors-solarized'
-"Bundle 'chriskempson/base16-vim'
+Bundle 'chriskempson/base16-vim'
 
 " Set the filetype stuff to on
 filetype on
@@ -114,14 +115,6 @@ let g:git_branch_status_head_current=1
 let g:git_branch_status_nogit=''
 let g:git_branch_status_around='()'
 " }}}3
-
-" File type specific stuff {{{2
-
-" Set to use manual folds in Vim files
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
 
 " }}}2
 
@@ -254,14 +247,6 @@ set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable use of mouse
 
-" Set up the GUI cursor to look nice, for each mode
-set guicursor=n-v-c:block-Cursor-blinkon0
-set guicursor+=ve:ver35-Cursor
-set guicursor+=o:hor50-Cursor
-set guicursor+=i-ci:ver25-Cursor
-set guicursor+=r-cr:hor20-Cursor
-set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-
 augroup cline
 	au!
 
@@ -287,17 +272,6 @@ au VimResized * :wincmd =    " Resize split windows when the window is resized
 
 " Setup window colors and size, if in GUI mode
 if has('gui_running')
-	set guifont=Menlo:h13 " Set the font
-
-	if !exists('g:vimrcloaded')
-		winpos 0 0
-		if ! $diff
-			set columns=120 lines=40 " Set the width and height of window
-		else
-			set columns=240 lines=40 " Same here, duh!
-		endif
-		let g:vimrcloaded=1
-	endif
 endif
 :nohls
 
@@ -332,12 +306,32 @@ colorscheme solarized " Set the color scheme to use
 " }}}2
 
 if has('gui_running')
-	highlight SpellBad term=underline gui=undercurl guisp=Orange
+	" Fix spell check highlighting
+	highlight SpellBad term=underline gui=undercurl guisp=Red
+
+	" Set up the GUI cursor to look nice, for each mode
+	set guicursor=n-v-c:block-Cursor-blinkon0
+	set guicursor+=ve:ver35-Cursor
+	set guicursor+=o:hor50-Cursor
+	set guicursor+=i-ci:ver25-Cursor
+	set guicursor+=r-cr:hor20-Cursor
+	set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
+	" Set the window position to coordinates
+	winpos 0 0
+
+	" Check if in diff mode
+	if ! $diff
+		set columns=120 lines=40 " Set the width and height of window
+	else
+		set columns=240 lines=40 " Same here, duh!
+	endif
 
 	if has('gui_macvim')
 		set fuoptions=maxvert,maxhorz " Full screen means FULL screen
+		set guifont=Menlo:h13         " Set the font
 	else
-		" Other GUIs like Gvim go here
+		" Other GUIs like, Gvim go here
 	endif
 else
 	" Terminal only stuff!
@@ -375,3 +369,11 @@ set encoding=utf-8
 
 " Set Unix as the standard file type
 set ffs=unix,dos,mac
+
+" File type specific stuff {{{1
+
+" Set to use manual folds in Vim files
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
