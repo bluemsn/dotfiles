@@ -240,19 +240,19 @@ if has('statusline')
 	let &stl.='%{empty(&ff)?"":", ".&ff}]' " Buffer's file type
 	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
 
-	let &stl.='%='   " Right line of statusline
-	let &stl.='[%b'  " Value of character under cursor
-	let &stl.=':'    " Separator between '%b' and '%B'
-	let &stl.='%B]'  " As above, in hexadecimal
-	let &stl.=' '    " Separator
-	let &stl.='[%l'  " Current line
-	let &stl.='/'    " Separator for current line and total of lines
-	let &stl.='%L'   " Total of lines
-	let &stl.=':'    " Separator between line and column info
-	let &stl.='%c'   " Current column
-	let &stl.='%V]'  " Current virtual column
-	let &stl.=' '    " Separator
-	let &stl.='(%P)' " Total percentage of file shown
+	let &stl.='%='    " Right line of statusline
+	let &stl.='[%b'   " Value of character under cursor
+	let &stl.=':'     " Separator between '%b' and '%B'
+	let &stl.='0x%B]' " As above, in hexadecimal
+	let &stl.=' '     " Separator
+	let &stl.='[%l'   " Current line
+	let &stl.='/'     " Separator for current line and total of lines
+	let &stl.='%L'    " Total of lines
+	let &stl.=':'     " Separator between line and column info
+	let &stl.='%c'    " Current column
+	let &stl.='%V]'   " Current virtual column
+	let &stl.=' '     " Separator
+	let &stl.='(%P)'  " Total percentage of file shown
 endif
 
 " Cursor & Mouse {{{2

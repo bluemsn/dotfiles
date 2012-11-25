@@ -20,9 +20,19 @@ if [ $script_dir == '.' ]; then
 	script_dir="$current_dir"
 fi
 
+read -p 'Do you wish to delete the old symlinks first? [y/n] ' prompt1
+
+case "$prompt1" in
+	y|Y ) source ./delete_symlinks.sh;;
+	n|N ) exit;;
+	* ) echo 'Invalid answer!';;
+esac
+
+echo "Started making new symlinks, at [$time]..."
+
 if [ $kernel == 'Darwin' ]; then
 	# Making symlinks to Vim files, add yours as you need
-	echo 'Making symlinks to Vim files'
+	echo "\nMaking symlinks to Vim files"
 	ln -s -v $script_dir/vim ~/.vim
 	ln -s -v $script_dir/vim/vimrc ~/.vimrc
 	ln -s -v $script_dir/vim/gvimrc ~/.gvimrc
@@ -61,3 +71,5 @@ if [ $kernel == 'Linux' ]; then
 	ln -s -v $script_dir/git/gitmessage.txt /home/$user/.gitmessage.txt
 	echo "Done at [$time]...\n"
 fi
+
+echo "Finished making new symlinks, at [$time]..."
