@@ -223,6 +223,9 @@ set numberwidth=4           " Line numbers always be 4 chars wide
 
 " Status line {{{2
 
+" Tell Vim to always put a status line in, even if there is only one window
+set laststatus=2
+
 if has('statusline')
 	let &stl=''        " Clear statusline for when vimrc is loaded
 	let &stl.='[%02n]' " Buffer number of this buffer
@@ -235,11 +238,11 @@ if has('statusline')
 	let &stl.='[%{empty(&ft)?"":toupper(&ft).", "}' " Buffer's file type
 	let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer's encoding
 	let &stl.='%{empty(&ff)?"":", ".&ff}]' " Buffer's file type
-	let &stl.='%{GitBranchInfoString()}'   " Current Git branch of buffer
+	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
 
 	let &stl.='%='   " Right line of statusline
 	let &stl.='[%b'  " Value of character under cursor
-	let &stl.='x'    " Separator between '%b' and '%B'
+	let &stl.=':'    " Separator between '%b' and '%B'
 	let &stl.='%B]'  " As above, in hexadecimal
 	let &stl.=' '    " Separator
 	let &stl.='[%l'  " Current line
@@ -251,9 +254,6 @@ if has('statusline')
 	let &stl.=' '    " Separator
 	let &stl.='(%P)' " Total percentage of file shown
 endif
-
-" Tell Vim to always put a status line in, even if there is only one window
-set laststatus=2
 
 " Cursor & Mouse {{{2
 
