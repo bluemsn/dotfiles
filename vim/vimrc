@@ -25,6 +25,8 @@ Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'PotHix/Vimpress'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'taq/vim-git-branch-info'
+Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-surround'
 
 " Syntax files
 Bundle 'olivierverdier/python-syntax.vim'
@@ -40,18 +42,18 @@ Bundle 'chriskempson/base16-vim'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/nerdtree'
 "Bundle 'mattn/zencoding-vim'
-"Bundle 'tpope/vim-surround'
 "Bundle 'vim-scripts/YankRing.vim'
-"Bundle 'Raimondi/delimitMate'
 
 " Bundles to check out
 "Bundle 'mileszs/ack.vim'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'sjl/clam.vim'
-"Bundle 'junegunn/tabularize'
+"Bundle 'tsaleh/vim-align'
 "Bundle 'tpope/vim-commentary'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'SirVer/ultisnips'
+"Bundle 'godlygeek/csapprox'
+"Bundle 'vim-scripts/Conque-Shell'
 
 " Set the filetype stuff to on
 filetype on
@@ -241,6 +243,7 @@ if has('statusline')
 	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
 
 	let &stl.='%='    " Right line of statusline
+	let &stl.=' '     " Separator for both sides of statusline
 	let &stl.='[%b'   " Value of character under cursor
 	let &stl.=':'     " Separator between '%b' and '%B'
 	let &stl.='0x%B]' " As above, in hexadecimal

@@ -1,12 +1,13 @@
 #!/bin/zsh
-#####################
+# =============================================================================
 # make_symlinks.sh
-# This file automatically makes all your defined symlinks, in one go.
-# This file must be at the root of your dotfiles folder.
-#####################
-# Copyright (C) 2012 Eduan Lavaque <eduan@snapsimpletech.com>
-# Licenced under the MIT license (http://mit-license.org/)
-#####################
+# -----------------------------------------------------------------------------
+# This file automatically makes all your defined symlinks, in one go. And
+# will also delete them with another script, if you say yes, and you have it.
+# =============================================================================
+# Eduan Lavaque <eduan@snapsimpletech.com>
+# Licensed under the MIT license (htpp://eduan.mit-license.org/)
+# =============================================================================
 
 kernel=`uname -s`        # Current Kernel name
 user=`whoami`            # Current Unix username
@@ -23,7 +24,7 @@ fi
 read -p 'Do you wish to delete the old symlinks first? [y/n] ' prompt1
 
 case "$prompt1" in
-	y|Y ) source ./delete_symlinks.sh;;
+	y|Y ) sh ./delete_symlinks.sh;;
 	n|N ) exit;;
 	* ) echo 'Invalid answer!';;
 esac

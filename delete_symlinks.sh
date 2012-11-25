@@ -1,11 +1,13 @@
 #!/bin/zsh
-#####################
+# =============================================================================
 # delete_symlinks.sh
-# This file will delete all your symlinks defined here
-#####################
-# Copyright (C) 2012 Eduan Lavaque <eduan@snapsimpletech.com>
-# Licenced under the MIT license (http://mit-license.org/)
-#####################
+# -----------------------------------------------------------------------------
+# This file will delete all your symlinks defined here, it will do it in a nice
+# and clean manner, telling you what's happening the whole way.
+# =============================================================================
+# Eduan Lavaque <eduan@snapsimpletech.com>
+# Licensed under the MIT license (htpp://eduan.mit-license.org/)
+# =============================================================================
 
 kernel=`uname -s`        # Current Kernel name
 user=`whoami`            # Current Unix username
@@ -44,17 +46,23 @@ fi
 
 if [ $kernel == 'Linux' ]; then
 	# Remove Vim symlinks
+	echo 'Deleting Vim symlinks...'
 	rm -v /home/$user/.vim
 	rm -v /home/$user/.vimrc
 	rm -v /home/$user/.gvimrc
+	echo "Done at [$time]...\n"
 
 	# Remove Zsh symlinks
+	echo 'Deleting Zsh symlinks...'
 	rm -v /home/$user/.zsh
 	rm -v /home/$user/.zshrc
+	echo "Done at [$time]...\n"
 
 	# Remove Git symlinks
+	echo 'Deleting Git symlinks...'
 	rm -v /home/$user/.gitconfig
 	rm -v /home/$user/.gitmessage.txt
+	echo "Done at [$time]...\n"
 fi
 
 echo "Finished deleting old symlinks, at [$time]..."
