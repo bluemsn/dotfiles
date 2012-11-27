@@ -13,7 +13,7 @@ EDITOR=vim
 VISUAL=mvim
 export EDITOR VISUAL
 
-# Autoload zsh functions
+# Autoload Zsh functions
 fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
 
@@ -27,6 +27,8 @@ alias ls="ls -la -Gp -F"
 
 # Make 'gvim' not open a new MacVim window
 alias gvim="mvim --remote-silent"
+
+alias reload!="source ~/.zshrc"
 
 # Enable loading of MySQL
 export PATH="/usr/local/mysql/bin:$PATH"

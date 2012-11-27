@@ -17,9 +17,11 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
 
+" My own bundles
+Bundle 'Greduan/vim-change-syntax'
+
 " All of my Vundle bundles
 Bundle 'tpope/vim-repeat'
-Bundle 'spf13/PIV'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'PotHix/Vimpress'
@@ -27,6 +29,10 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-surround'
+
+" Language specific bundles
+Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'spf13/PIV'
 
 " Syntax files
 Bundle 'olivierverdier/python-syntax.vim'
@@ -45,6 +51,7 @@ Bundle 'chriskempson/base16-vim'
 "Bundle 'vim-scripts/YankRing.vim'
 
 " Bundles to check out
+"Bundle 'godlygeek/tabular'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'sjl/clam.vim'
@@ -54,6 +61,7 @@ Bundle 'chriskempson/base16-vim'
 "Bundle 'SirVer/ultisnips'
 "Bundle 'godlygeek/csapprox'
 "Bundle 'vim-scripts/Conque-Shell'
+"Bundle 'sjl/gundo.vim'
 
 " Set the filetype stuff to on
 filetype on
@@ -73,6 +81,8 @@ let g:git_branch_status_head_current=1
 let g:git_branch_status_nogit=''
 let g:git_branch_status_around='()'
 let g:git_branch_file_based=1
+" Change Syntax {{{3
+:nnoremap <Leader>cs :ChangeSyntax<Space>
 " }}}3
 
 " }}}2
@@ -91,16 +101,6 @@ set hlsearch    " Enable the highlighting of the search
 set showcmd     " Show the current command in the lower right corner
 set magic       " Allow use of regular expressions in the search scans
 
-" Spell Checking {{{1
-
-set spell        " Enable spell checking
-set spelllang=en " Set the language of spell checking to English
-
-" Command Input Related {{{1
-
-set ch=2       " Make the command input line two lines high
-set shellslash " Set to use forward slash, in case you're in Windows
-
 " Formatting {{{1
 
 set tabstop=4     " Number of spaces that defines a "tab"
@@ -109,13 +109,16 @@ set softtabstop=4 " Same as 'tabstop', while doing editing operations
 set backspace=indent,eol,start " Allow backspace over everything in insert mode
 set smartindent   " Do smart indenting when starting a new line
 set autoindent    " Copy indent from current line, over to the new line
+set fo=vt         " Set the format options ('formatoptions')
 
 " Commands Options {{{1
 
 set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
                     " word instead of just deleting and replacing the text
-set notimeout       " Disable timeout between commands and stuff
-set nottimeout      " Disable timeout between commands and stuff, in Terminal
+set ch=2            " Make the command input line two lines high
+set shellslash      " Set to use forward slash, in case you're in Windows
+set timeout         " Enable timeout
+set timeoutlen=500  " Set the timeout lenght in milliseconds
 
 " History {{{1
 
@@ -207,16 +210,12 @@ iabbrev el@@ eduanlavaque@gmail.com
 iabbrev es@@ eduan@snapsimpletech.com
 iabbrev ew@@ eduan@websharks-inc.com
 
-" Put a copyright notice when I write 'ccopy' in insert mode
-iabbrev ccopy Copyright (C) 2012 Eduan Lavaque <eduan@snapsimpletech.com>, all rights reserved.
-
 " User Interface Related {{{1
 
 set list                    " Show hidden characters
 set listchars=tab:▸\ ,eol:¬ " Set the characters to use for tab and End Of Line
 set colorcolumn=79          " Put a marker in this array of column numbers
 set title                   " Change Terminal's title
-set fo=vt                   " Set the format options ('formatoptions')
 set numberwidth=4           " Line numbers always be 4 chars wide
 
 " NOTICE!
@@ -235,7 +234,8 @@ if has('statusline')
 	let &stl.='%m'     " Show modified status of file
 	let &stl.=' '      " Separator
 	let &stl.='%<'     " Truncate from here on
-	let &stl.='%.50F'  " File name
+	let &stl.='%.50F'  " Full path to file
+	"let &stl.='%{expand("%")}'
 	let &stl.=' '      " Separator
 	let &stl.='[%{empty(&ft)?"":toupper(&ft).", "}' " Buffer's file type
 	let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer's encoding
@@ -402,7 +402,16 @@ augroup END
 " Python specific stuff
 augroup filetype_python
 	autocmd!
-	autocmd FileType python setlocal set expandtab
-	autocmd FileType python setlocal set complete+=k~/.vim/syntax/python.vim isk+=.,(
-	autocmd FileType python setlocal set smartindent set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+	autocmd FileType python setlocal expandtab
+	autocmd FileType python setlocal complete+=k~/.vim/syntax/python.vim isk+=.,(
+	autocmd FileType python setlocal smartindent set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 augroup END
+
+augroup filetype_text
+	autocmd!
+	autocmd FileType text setlocal formatprg=par\ w79r
+augroup END
+
+" Functions {{{1
+
+" Nothing here yet. :(
