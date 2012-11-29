@@ -30,13 +30,13 @@ Bundle 'gmarik/vundle'
 
 " Active bundles {{{3
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'PotHix/Vimpress'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-surround'
 Bundle 'sjl/vitality.vim'
 Bundle 'Lokaltog/vim-easymotion'
 

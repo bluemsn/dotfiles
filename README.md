@@ -13,7 +13,7 @@ BTW, you're already in my repo if you're reading this.
 Installing, or setting up your dotfiles is very easy, just remember I'm using a Mac so my commands will probably be different from yours if you're not using a Mac.
 
 Simply run the following commands in Terminal:<br />
-`$ cd ~/.dotfiles`<br />
+`$ cd ~/.dotfiles/scripts/`<br />
 `$ sh ./make_symlinks.sh`
 
 Which will run a script I made in order to make the symlinks for you!
