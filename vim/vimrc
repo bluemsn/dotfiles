@@ -1,9 +1,18 @@
 " Basic Stuff {{{1
 
-set nocompatible " Forget about being compatible with good ol' Vi
-set hidden       " Make sure that unsaved buffers that are to be put in the
-                 " background are allowed to go in there.
-set ttyfast      " Indicates a faster terminal connection
+set nocompatible      " Forget about being compatible with good ol' Vi
+set hidden            " Make sure that unsaved buffers that are to be put in
+                      " the background are allowed to go in there.
+set ttyfast           " Indicates a faster terminal connection
+set clipboard=unnamed " Use the system's clipboard
+
+" Runtime stuff {{{1
+
+" The % key will switch between opening and closing brackets. By sourcing
+" matchit.vim — a standard file in Vim installations for years — the key can
+" also switch among e.g. if/elsif/else/end, between opening and closing XML
+" tags, and more.
+runtime +=macros/matchit.vim
 
 " Vundle & Other Extensions {{{1
 
@@ -17,10 +26,9 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
 
-" My own bundles
-Bundle 'Greduan/vim-change-syntax'
+" All of my Vundle bundles {{{2
 
-" All of my Vundle bundles
+" Active bundles {{{3
 Bundle 'tpope/vim-repeat'
 Bundle 'vim-scripts/SearchComplete'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
@@ -29,28 +37,30 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-surround'
+Bundle 'sjl/vitality.vim'
+Bundle 'Lokaltog/vim-easymotion'
 
-" Language specific bundles
+" Language specific bundles {{{3
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'spf13/PIV'
 
-" Syntax files
+" Syntax files {{{3
 Bundle 'olivierverdier/python-syntax.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-git'
 
-" Color schemes
+" Color schemes {{{3
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
 
-" Deactivated bundles
+" Deactivated bundles {{{3
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/nerdtree'
 "Bundle 'mattn/zencoding-vim'
 "Bundle 'vim-scripts/YankRing.vim'
 
-" Bundles to check out
+" Bundles to check out {{{3
 "Bundle 'godlygeek/tabular'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'kien/ctrlp.vim'
@@ -62,6 +72,11 @@ Bundle 'chriskempson/base16-vim'
 "Bundle 'godlygeek/csapprox'
 "Bundle 'vim-scripts/Conque-Shell'
 "Bundle 'sjl/gundo.vim'
+"Bundle 'sjl/friendly-find'
+
+" }}}3
+
+" }}}2
 
 " Set the filetype stuff to on
 filetype on
@@ -81,8 +96,11 @@ let g:git_branch_status_head_current=1
 let g:git_branch_status_nogit=''
 let g:git_branch_status_around='()'
 let g:git_branch_file_based=1
-" Change Syntax {{{3
-:nnoremap <Leader>cs :ChangeSyntax<Space>
+" NERDtree {{{3
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
+" EasyMotion {{{3
+let g:EasyMotion_leader_key='<leader><leader>'
 " }}}3
 
 " }}}2
@@ -101,11 +119,15 @@ set hlsearch    " Enable the highlighting of the search
 set showcmd     " Show the current command in the lower right corner
 set magic       " Allow use of regular expressions in the search scans
 
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 " Formatting {{{1
 
 set tabstop=4     " Number of spaces that defines a "tab"
 set shiftwidth=4  " Number of spaces to use for each indent level
 set softtabstop=4 " Same as 'tabstop', while doing editing operations
+set shiftround    " Round indent to pultiple of 'shiftwidth'
 set backspace=indent,eol,start " Allow backspace over everything in insert mode
 set smartindent   " Do smart indenting when starting a new line
 set autoindent    " Copy indent from current line, over to the new line
@@ -117,8 +139,9 @@ set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
                     " word instead of just deleting and replacing the text
 set ch=2            " Make the command input line two lines high
 set shellslash      " Set to use forward slash, in case you're in Windows
-set timeout         " Enable timeout
-set timeoutlen=500  " Set the timeout lenght in milliseconds
+set notimeout       " Don't time out on mappings
+set ttimeout        " But do timeout on key codes, like cursor keys
+set ttimeoutlen=500 " Set the timeout lenght in milliseconds
 
 " History {{{1
 
@@ -149,6 +172,10 @@ let maplocalleader = '\\'
 nnoremap <c-e> ,
 vnoremap <c-e> ,
 
+" Reverse their effects
+nnoremap ' `
+nnoremap ` '
+
 " Let's make it easy to edit this file, use ',eev' to open this file, and ',ev'
 " for opening it in a split window
 nnoremap <silent> <leader>eev :e $MYVIMRC<cr>
@@ -157,17 +184,11 @@ nnoremap <silent> <leader>ev :sp $MYVIMRC<cr>
 " And to source this file as well, use ',sv' to source this file
 nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 
-" Completely disable the use of the arrow keys in command mode
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-
-" And in visual mode
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <left> <nop>
-vnoremap <right> <nop>
+" Completely disable the use of the arrow keys in command and visual modes
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 " Fix moving line by line in the paragraph, when soft wrap is on
 nnoremap j gj
@@ -181,27 +202,39 @@ nnoremap <c-k> <c-W>k
 nnoremap <c-h> <c-W>h
 nnoremap <c-l> <c-W>l
 
-" Disable pressing 'F1' for help
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
+" Disable pressing 'F1' for help, and set it equal to escape
+noremap <F1> <ESC>
 
-" Makes it easy to clear out a search, by typing ', '
+" Makes it easy to clear out a search, by typing ',<space>'
 nnoremap <leader><space> :noh<cr>
 
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map('<F5>')
-
-" Visual mode pressing * or # searches for the current selection, forward and
-" backwards respectively
-vnoremap <silent> * :call VisualSelection('f')<cr>
-vnoremap <silent> # :call VisualSelection('b')<cr>
 
 " Change current WORD in normal mode to UPPERCASE letters using ',U'
 nnoremap <leader>U viwU<esc>
 
 " And the same to lowercase using ',u'
 nnoremap <leader>u viwu<esc>
+
+" Same as *, but doesn't move the cursor, only highlights
+nnoremap <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<cr>
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" Use ',z' to focus current fold, closing every other fold in the process
+nnoremap <leader>z zMzvzz
+
+" Use capital H/L to start/end of line, instead of 0/$
+noremap H ^
+noremap L g_
+
+" Select (charwise) the contents of the current line, excluding indentation
+nnoremap vv ^vg_
+
+" Send visual selection to sprunge.us
+vnoremap <leader>S :w !curl -sF 'sprunge=<-' 'http://sprunge.us' \| pbcopy<cr>
 
 " Abbreviations {{{1
 
@@ -214,9 +247,17 @@ iabbrev ew@@ eduan@websharks-inc.com
 
 set list                    " Show hidden characters
 set listchars=tab:▸\ ,eol:¬ " Set the characters to use for tab and End Of Line
-set colorcolumn=79          " Put a marker in this array of column numbers
 set title                   " Change Terminal's title
 set numberwidth=4           " Line numbers always be 4 chars wide
+set colorcolumn=79          " Put a marker in this array of column numbers
+set shortmess=atI           " :h shortmess
+
+" Show trailing white spaces, only when in normal mode
+augroup trailing
+	au!
+	au InsertEnter * :set listchars-=trail:⌴
+	au InsertLeave * :set listchars+=trail:⌴
+augroup END
 
 " NOTICE!
 " Line numbers and relative line numbers are controlled by this bundle:
@@ -224,20 +265,25 @@ set numberwidth=4           " Line numbers always be 4 chars wide
 
 " Status line {{{2
 
-" Tell Vim to always put a status line in, even if there is only one window
-set laststatus=2
+set laststatus=2 " Always use a statusline 
+set ruler        " Put a ruler, when my custom statusline doesn't load
 
 if has('statusline')
 	let &stl=''        " Clear statusline for when vimrc is loaded
-	let &stl.='[%02n]' " Buffer number of this buffer
-	let &stl.='%r'     " Show if file is read-only
-	let &stl.='%m'     " Show modified status of file
+	let &stl.='[%02n]' " Buffer number of current buffer
+	let &stl.='{'      " Opening curly bracket, for item group
+	let &stl.='%('     " Start of item group
+	let &stl.='%M'     " Show modified status of buffer: -, +, 
+	let &stl.='%R'     " Show if file is read-only: RO
+	let &stl.='%W'     " Show if item is a preview item?: PRV
+	let &stl.='%H'     " Show if buffer is a help file: HLP
+	let &stl.='%)'     " End of item group
+	let &stl.='}'      " Closing curly bracket, for item group
 	let &stl.=' '      " Separator
 	let &stl.='%<'     " Truncate from here on
-	let &stl.='%.50F'  " Full path to file
-	"let &stl.='%{expand("%")}'
+	let &stl.='%F'     " Full path to file
 	let &stl.=' '      " Separator
-	let &stl.='[%{empty(&ft)?"":toupper(&ft).", "}' " Buffer's file type
+	let &stl.='[%{&ft!=""?&ft.", ":""}'    " Buffer's file type
 	let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer's encoding
 	let &stl.='%{empty(&ff)?"":", ".&ff}]' " Buffer's file type
 	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
@@ -248,11 +294,11 @@ if has('statusline')
 	let &stl.=':'     " Separator between '%b' and '%B'
 	let &stl.='0x%B]' " As above, in hexadecimal
 	let &stl.=' '     " Separator
-	let &stl.='[%l'   " Current line
+	let &stl.='[L%l'
 	let &stl.='/'     " Separator for current line and total of lines
 	let &stl.='%L'    " Total of lines
 	let &stl.=':'     " Separator between line and column info
-	let &stl.='%c'    " Current column
+	let &stl.='C%c'    " Current column
 	let &stl.='%V]'   " Current virtual column
 	let &stl.=' '     " Separator
 	let &stl.='(%P)'  " Total percentage of file shown
@@ -268,7 +314,7 @@ set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable use of mouse
 
 augroup cline
-	au!
+	autocmd!
 
 	" Only show 'cursorline' in the current window and in normal mode
 	au WinLeave,InsertEnter * set nocursorline
@@ -289,11 +335,7 @@ set showtabline=0            " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
 set guioptions=acirbhv       " Set the GUI options the way I like them
 au VimResized * :wincmd =    " Resize split windows when the window is resized
-
-" Setup window colors and size, if in GUI mode
-if has('gui_running')
-endif
-:nohls
+au FocusLost * :wa           " Save all buffers when it loses focus
 
 " Syntax Highlighting {{{2
 
@@ -307,7 +349,10 @@ endif
 " Solarized settings {{{3
 
 " Make Solarized use 256 colors
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
+
+" Compatibility for Terminal
+"let g:solarized_termtrans=1
 
 " Non-text items visibility, normal low or high
 let g:solarized_visibility="low"
@@ -320,12 +365,10 @@ let g:solarized_menu=0
 
 " }}}3
 
-set background=dark        " Use the dark version of the color scheme
+set background=light " Use the light/dark version of the color scheme
 colorscheme solarized " Set the color scheme to use
 
-" }}}2
-
-if has('gui_running')
+if has('gui_running') "{{{2
 	" Fix spell check highlighting
 	highlight SpellBad term=underline gui=undercurl guisp=Red
 
@@ -340,6 +383,9 @@ if has('gui_running')
 	" Set the window position to these coordinates
 	winpos 0 0
 
+	" Set the font
+	set guifont=Monaco:h11
+
 	if ! $diff " Check if in diff mode
 		" If not, do a normal sized window
 		set columns=120 lines=40 " Set the width and height of window
@@ -350,7 +396,6 @@ if has('gui_running')
 
 	if has('gui_macvim')
 		set fuoptions=maxvert,maxhorz " Full screen means FULL screen
-		set guifont=Menlo:h13         " Set the font
 	else
 		" Other GUIs like, Gvim go here
 	endif
@@ -358,38 +403,35 @@ else
 	" Terminal only stuff!
 endif
 
+"}}}2
+
 " Diff {{{1
 
-" Add ignorance of whitespace to diff
-set diffopt+=iwhite
+set diffopt+=iwhite " Add ignorance of whitespace to diff
 
 " Auto-completion {{{1
 
-" Enable auto-completion of commands
-set wildmenu
-set wildmode=list:longest
-
-" Same as default except that I remove the 'u' option
-set complete=.,w,b,t
-
-" When completing by tag, show the whole tag, not just the function name
-set showfulltag
+set wildmenu              " Use wildmenu auto completion
+set wildmode=list:longest " Set options for auto completion
+set complete=.,w,b,t      " Default, except that I remove the 'u' option 
+set showfulltag           " Show whole tag, not just function name, when
+                          " autocompleting by tag
 
 " Macros {{{1
 
-" Don't update the display while executing macros
-set lazyredraw
+set lazyredraw " Don't update the display while executing macros
 
 " File {{{1
 
-" Disable encryption file and buffer encryption
-set key=
+set key=             " Disable encryption file and buffer encryption 
+set nobomb           " Don't use BOM's (Byte Order Marks)
+set ffs=unix,dos,mac " Set filetype to Unix, Windows and then Mac (Power PC)
 
-" Set the default encoding to UTF-8
+" Set the buffer encoding to be UTF-8
 set encoding=utf-8
-
-" Set Unix as the standard file type
-set ffs=unix,dos,mac
+set termencoding=utf-8
+set fileencodings=utf-8,iso-8859-15
+setglobal fileencoding=utf-8
 
 " File type specific stuff {{{1
 
@@ -414,4 +456,93 @@ augroup END
 
 " Functions {{{1
 
-" Nothing here yet. :(
+" Add a "number" text object {{{2
+
+" http://sprunge.us/QTPL?vim
+
+onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+
+function! s:NumberTextObject(whole)
+	normal! v
+
+	while getline('.')[col('.')] =~# '\v[0-9]'
+		normal! l
+	endwhile
+
+	if a:whole
+		normal! o
+
+		while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+			normal! h
+		endwhile
+	endif
+endfunction
+
+" Change Syntax {{{2
+
+" Quickly change the file's syntax, put in a function
+
+" Define the function that does everything
+function! ChangeSyntax(name)
+	set syntax=a:name
+endfunction
+
+" Make it a callable function through the Vim command line
+command! -nargs=* -complete=syntax ChangeSyntax call ChangeSyntax('arg')
+
+" Set to use the ',cs' mapping
+:nnoremap <Leader>cs :ChangeSyntax<Space>
+
+" Show syntax rule(s) for whatever is under the cursor {{{2
+
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+nnoremap <C-S-P> :call <SID>SynStack()<CR>
+
+" Shell {{{2
+
+" This function allows you to run shell commands from within Vim, and open it
+" in a vertical split
+
+" Define the function that does everything
+function! s:ExecuteInShell(command)
+    let command = join(map(split(a:command), 'expand(v:val)'))
+    let winnr = bufwinnr('^' . command . '$')
+    silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(command) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+    echo 'Execute ' . command . '...'
+    silent! execute 'silent %!'. command
+    silent! redraw
+    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
+    silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
+    silent! execute 'AnsiEsc'
+    echo 'Shell command ' . command . ' executed.'
+endfunction
+
+" Make it a callable function through the Vim command line
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+
+" Set to use the ',!' mapping
+nnoremap <leader>! :Shell<space>
+
+" }}}2
+
+" Tips {{{1
+
+" To show all your commands mapped to your leader key
+":map <leader>
+
+" To show all help topics containing 'help'
+":h word<CTRL-d>
