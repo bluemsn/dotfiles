@@ -29,50 +29,57 @@ Bundle 'gmarik/vundle'
 " All of my Vundle bundles {{{2
 
 " Active bundles {{{3
+
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Raimondi/delimitMate'
+Bundle 'sjl/vitality.vim'
+Bundle 'taq/vim-git-branch-info'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/SearchComplete'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'PotHix/Vimpress'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'taq/vim-git-branch-info'
-Bundle 'Raimondi/delimitMate'
-Bundle 'sjl/vitality.vim'
-Bundle 'Lokaltog/vim-easymotion'
 
 " Language specific bundles {{{3
+
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'spf13/PIV'
 
 " Syntax files {{{3
+
 Bundle 'olivierverdier/python-syntax.vim'
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-markdown'
 
 " Color schemes {{{3
-Bundle 'nanotech/jellybeans.vim'
+
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
+Bundle 'nanotech/jellybeans.vim'
 
 " Deactivated bundles {{{3
+
+"Bundle 'mattn/zencoding-vim'
+"Bundle 'PotHix/Vimpress'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/nerdtree'
-"Bundle 'mattn/zencoding-vim'
 "Bundle 'vim-scripts/YankRing.vim'
 
 " Bundles to check out {{{3
+
+"Bundle 'godlygeek/csapprox'
 "Bundle 'godlygeek/tabular'
-"Bundle 'mileszs/ack.vim'
 "Bundle 'kien/ctrlp.vim'
+"Bundle 'mileszs/ack.vim'
+"Bundle 'SirVer/ultisnips'
 "Bundle 'sjl/clam.vim'
-"Bundle 'tsaleh/vim-align'
+"Bundle 'sjl/friendly-find'
+"Bundle 'sjl/gundo.vim'
 "Bundle 'tpope/vim-commentary'
 "Bundle 'tpope/vim-fugitive'
-"Bundle 'SirVer/ultisnips'
-"Bundle 'godlygeek/csapprox'
+"Bundle 'tpope/vim-pastie'
+"Bundle 'tsaleh/vim-align'
 "Bundle 'vim-scripts/Conque-Shell'
-"Bundle 'sjl/gundo.vim'
-"Bundle 'sjl/friendly-find'
 
 " }}}3
 
@@ -88,14 +95,12 @@ filetype plugin indent on
 let g:indent_guides_guide_size=1  " Set width of marker to one wide
 let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
 au VimEnter * :IndentGuidesEnable " Always load bundle
-" Tabularize {{{3
-" Still need to fill this
 " Git Branch Info {{{3
-let g:git_branch_status_text=" "
-let g:git_branch_status_head_current=1
-let g:git_branch_status_nogit=''
-let g:git_branch_status_around='()'
-let g:git_branch_file_based=1
+let g:git_branch_status_text=' ' " Add a space before info
+let g:git_branch_status_head_current=1 " Only show current branch
+let g:git_branch_status_nogit='' " Message when there's no Git repo
+let g:git_branch_status_around='()' " Enclose the branch in between these
+let g:git_branch_file_based=1 " Check the file for info, instead of directory
 " NERDtree {{{3
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
