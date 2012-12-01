@@ -19,5 +19,7 @@ else
 	brew install ack
 	brew install par
 	brew install hub
+	brew install tmux
+	brew install reattach-to-user-namespace
 	echo 'Done, I installed your stuff, you can thank me later.'
 fi
