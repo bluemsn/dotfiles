@@ -1,12 +1,18 @@
 " Basic stuff {{{1
 
-set nocompatible      " Forget about being compatible with good ol' vi
-set hidden            " Keep changed buffers without requiring saves
-set ttyfast           " Indicates a faster terminal connection
+set nocompatible " Forget about being compatible with good ol' vi
+set hidden       " Keep changed buffers without requiring saves
+set ttyfast      " Indicates a faster terminal connection
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
 set clipboard=unnamed
+
+" Reload .vimrc file as soon as it has a change
+augroup VimReload
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
 
 " Runtime stuff {{{1
 
@@ -70,19 +76,24 @@ Bundle 'nanotech/jellybeans.vim'
 
 " Bundles to check out {{{3
 
+"Bundle 'flazz/vim-colorschemes'
 "Bundle 'godlygeek/tabular'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'Lokaltog/powerline'
+"Bundle 'mattn/gist-vim'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'SirVer/ultisnips'
 "Bundle 'sjl/clam.vim'
 "Bundle 'sjl/friendly-find'
 "Bundle 'sjl/gundo.vim'
+"Bundle 'tpope/vim-abolish'
 "Bundle 'tpope/vim-commentary'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'tpope/vim-pastie'
 "Bundle 'tsaleh/vim-align'
 "Bundle 'vim-scripts/Conque-Shell'
+"Bundle 'vim-scripts/restore_view.vim'
+"Bundle 'vim-scripts/sessionman.vim'
 
 " }}}3
 
@@ -187,17 +198,10 @@ let maplocalLeader = '\\'
 nnoremap <c-e> ,
 vnoremap <c-e> ,
 
-" Reverse their effects
-nnoremap ' `
-nnoremap ` '
-
 " Let's make it easy to edit this file, use ',eev' to open this file, and ',ev'
 " for opening it in a split window
 nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
-
-" And to source this file as well, use ',sv' to source this file
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Completely disable the use of the arrow keys in command and visual modes
 noremap <up> <nop>
@@ -225,12 +229,6 @@ nnoremap <leader><space> :noh<CR>
 
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map('<F5>')
-
-" Change current WORD in normal mode to UPPERCASE letters using ',U'
-nnoremap <leader>U viwU<esc>
-
-" And the same to lowercase using ',u'
-nnoremap <leader>u viwu<esc>
 
 " Same as *, but doesn't move the cursor, only highlights
 " http://twitter.com/dmedvinsky/status/109304047206547456
@@ -261,6 +259,10 @@ onoremap <C-A> <C-C>gggH<C-O>G
 snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
 
+" Indent in visual and select mode automatically re-selects
+vnoremap > >gv
+vnoremap < <gv
+
 " Abbreviations {{{1
 
 " Set abbreviations for all my emails
@@ -270,12 +272,14 @@ iabbrev ew@@ eduan@websharks-inc.com
 
 " UI related {{{1
 
-"set list                    " Show hidden characters
-"set listchars=tab:▸\ ,eol:¬ " Set chars to use for 'list'
-set title                   " Change Terminal's title
-set numberwidth=4           " Line numbers always be 4 chars wide
-set colorcolumn=79          " Put a marker in array of column numbers
-set shortmess=atI           " :h shortmess
+" Disable list by default, but set it's options for when it is used
+set nolist                  " Show hidden characters
+set listchars=tab:▸\ ,eol:¬ " Set chars to use for 'list'
+
+set title          " Change Terminal's title
+set numberwidth=4  " Line numbers always be 4 chars wide
+set colorcolumn=79 " Put a marker in array of column numbers
+set shortmess=astI " :h shortmess
 
 " NOTICE!
 " Line numbers and relative line numbers are controlled by this bundle:
@@ -373,7 +377,7 @@ endif "}}}3
 
 " Cursor & mouse {{{2
 
-set scrolloff=4     " Keep the cursor 4 lines above/below window edge
+set scrolloff=999   " Keep the cursor in the middle of the window
 set sidescrolloff=4 " Same as above, but for side scrolling
 set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
@@ -488,7 +492,7 @@ set showfulltag           " Show whole tag, not just function name, when
 
 set lazyredraw " Don't update the display while executing macros
 
-" File {{{1
+" File/Buffer encryption, encoding etc. {{{1
 
 set key=             " Disable encryption file and buffer encryption 
 set nobomb           " Don't use BOM's (Byte Order Marks)
@@ -655,3 +659,6 @@ endfunction
 " To show all help topics containing 'help'
 ":h word<CTRL-d>
 
+" }}}1
+
+" vim: set foldmarker={{{,}}}
