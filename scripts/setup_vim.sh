@@ -15,4 +15,4 @@ sudo ln -s /System/Library/Frameworks/Python.framework/Versions/Current/include/
 
 # Install Vundle and all it's bundles
 git clone git://github.com/gmarik/vundle.git ./../vim/bundle/vundle
-vim +BundleInstall! +BundleClean +qa
+vim +BundleInstall +BundleClean +qa

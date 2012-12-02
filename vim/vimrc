@@ -1,8 +1,9 @@
 " Basic stuff {{{1
 
 set nocompatible " Forget about being compatible with good ol' vi
-set hidden       " Keep changed buffers without requiring saves
-set ttyfast      " Indicates a faster terminal connection
+set hidden		 " Keep changed buffers without requiring saves
+set ttyfast		 " Indicates a faster terminal connection
+set viewoptions=unix,slash " Better Unix/Windows compatibility
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
@@ -10,8 +11,8 @@ set clipboard=unnamed
 
 " Reload .vimrc file as soon as it has a change
 augroup VimReload
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+	autocmd!
+	autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
 " Runtime stuff {{{1
@@ -28,59 +29,66 @@ runtime +=macros/matchit.vim
 filetype off
 filetype plugin indent off
 
+if !isdirectory(expand('~/.vim/bundle/vundle'))
+	!mkdir -p ~/.vim/bundle
+	!git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	let s:bootstrap=1
+endif
+
 set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
 call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
-
-" Let Vundle handle itself as a bundle, REQUIRED!
-Bundle 'gmarik/vundle'
 
 " All of my Vundle bundles {{{2
 
 " Active bundles {{{3
 
+" Let Vundle handle itself as a bundle, REQUIRED!
+Bundle 'gmarik/vundle'
+
+" General
+Bundle 'ervandew/supertab'
+"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'mattn/gist-vim'
+"Bundle 'mattn/zencoding-vim'
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'PotHix/Vimpress'
 Bundle 'Raimondi/delimitMate'
+"Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/SearchComplete'
 
-" Language specific bundles {{{3
+" vim-scripts repos
+Bundle 'SearchComplete'
+"Bundle 'YankRing.vim'
 
-Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'spf13/PIV'
-
-" Syntax files {{{3
-
+" Syntax files
 Bundle 'olivierverdier/python-syntax.vim'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
 
-" Color schemes {{{3
+" Language specific bundles
+Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'spf13/PIV'
 
+" Color schemes
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
 Bundle 'nanotech/jellybeans.vim'
 
-" Deactivated bundles {{{3
-
-"Bundle 'mattn/zencoding-vim'
-"Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'PotHix/Vimpress'
-"Bundle 'scrooloose/nerdcommenter'
-"Bundle 'scrooloose/nerdtree'
-"Bundle 'vim-scripts/YankRing.vim'
+" Trying out
 
 " Bundles to check out {{{3
 
-"Bundle 'flazz/vim-colorschemes'
 "Bundle 'godlygeek/tabular'
 "Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'Lokaltog/powerline'
-"Bundle 'mattn/gist-vim'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'SirVer/ultisnips'
 "Bundle 'sjl/clam.vim'
@@ -91,17 +99,13 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'tpope/vim-pastie'
 "Bundle 'tsaleh/vim-align'
-"Bundle 'vim-scripts/Conque-Shell'
-"Bundle 'vim-scripts/restore_view.vim'
-"Bundle 'vim-scripts/sessionman.vim'
+
+" vim-scripts repos
+"Bundle 'Conque-Shell'
+"Bundle 'restore_view.vim'
+"Bundle 'sessionman.vim'
 
 " }}}3
-
-" }}}2
-
-" Set the filetype stuff to on
-filetype on
-filetype plugin indent on
 
 " Bundle settings {{{2
 
@@ -120,65 +124,79 @@ let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 " EasyMotion {{{3
 let g:EasyMotion_Leader_key='<leader><leader>'
+" MiniBufExplorer {{{3
+let g:miniBufExplMapCTabSwitchBufs=1
+let g:miniBufExplUseSingleClick=1
+let g:miniBufExplForceSyntaxEnable=1
 " }}}3
 
 " }}}2
 
+if exists("s:bootstrap") && s:bootstrap
+	unlet s:bootstrap
+	BundleInstall!
+endif
+
+" Set the filetype stuff to on
+filetype on
+filetype plugin indent on
+
 " Search & matching {{{1
 
-set wrapscan    " Set the search scan to wrap around to the top of the file
-set ignorecase  " Set search scan to ignore case when search is all lowercase
-set smartcase   " But recognize uppercase if it is specified
-set visualbell  " Set to use visual bell --  the beeping sucks!
-set errorbells  " Enable use of (visual) error bells
-set incsearch   " Show results of search scan as it finds them
-set showmatch   " Always show matching bracket, quote etc.
+set wrapscan	" Set the search scan to wrap around to the top of the file
+set ignorecase	" Set search scan to ignore case when search is all lowercase
+set smartcase	" But recognize uppercase if it is specified
+set visualbell	" Set to use visual bell --  the beeping sucks!
+set errorbells	" Enable use of (visual) error bells
+set incsearch	" Show results of search scan as it finds them
+set showmatch	" Always show matching bracket, quote etc.
 set matchtime=5 " Tenths of a second to show the matching bracket, quote etc.
-set hlsearch    " Enable the highlighting of the search
-set showcmd     " Show the current command in the lower right corner
-set magic       " Allow use of regular expressions in the search scans
+set hlsearch	" Enable the highlighting of the search
+set showcmd		" Show the current command in the lower right corner
+set magic		" Allow use of regular expressions in the search scans
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 if has('win32')
-    set grepprg=internal " Windows findstr.exe just isn't good enough
+	set grepprg=internal " Windows findstr.exe just isn't good enough
 endif
 
 " Formatting {{{1
 
-set tabstop=4     " Number of spaces that defines a "tab"
+set noexpandtab   " Make sure that every file uses tabs
+set tabstop=4	  " Number of spaces that defines a "tab"
 set shiftwidth=4  " Number of spaces to use for each indent level
 set softtabstop=4 " Same as 'tabstop', while doing editing operations
-set shiftround    " Round indent to pultiple of 'shiftwidth'
+set shiftround	  " Round indent to pultiple of 'shiftwidth'
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set smartindent   " Do smart indenting when starting a new line
-set autoindent    " Copy indent from current line, over to the new line
-set fo=vt         " Set the format options ('formatoptions')
+set autoindent	  " Copy indent from current line, over to the new line
+set fo=vt		  " Set the format options ('formatoptions')
 
 " Commands options {{{1
 
-set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
-                    " word instead of just deleting and replacing the text
-set notimeout       " Don't time out on mappings
-set ttimeout        " But do timeout on key codes, like cursor keys
-set ttimeoutlen=500 " Set the timeout lenght in milliseconds
+set cpoptions=ces$	" Make the 'cw' and like commands put a $ at the end of the
+					" word instead of just deleting and replacing the text
 
 " Command line options {{{1
 
-set ch=2       " Make the command input line two lines high
-set shellslash " Set to use forward slash, in case you're in Windows
+set ch=2		   " Make the command input line two lines high
+set shellslash	   " Set to use forward slash, in case you're in Windows
+set timeout		   " Do time out on mappings and others
+set timeoutlen=500 " Set the timeout lenght in milliseconds
+set showmode	   " Always show the current mode
 
 " History {{{1
 
-set history=100 " Keep only 100 entries in the command history
-set nobackup    " Disable backup files
-set noswapfile  " Don't use a swap file in current buffer
-set nowb        " Don't write backup before saving, even if you delete it later
+set history=1000 " Keep only 100 entries in the command history
+set nobackup	 " Disable backup files
+set noswapfile	 " Don't use a swap file in current buffer
+set nowb		 " Don't write backup before saving, even if you delete it later
 
 " Folds {{{1
 
-set foldenable        " Make sure folding is enabled
+set foldenable		  " Make sure folding is enabled
 set foldmethod=marker " Use manual markers for folds
 set foldlevelstart=0  " Always close folds when switching buffers
 
@@ -186,6 +204,8 @@ set foldlevelstart=0  " Always close folds when switching buffers
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " Keymappings stuff {{{1
+
+" Leader key(s) {{{2
 
 " Set Leader key to ',', instead of '/'
 let mapleader=','
@@ -198,10 +218,15 @@ let maplocalLeader = '\\'
 nnoremap <c-e> ,
 vnoremap <c-e> ,
 
-" Let's make it easy to edit this file, use ',eev' to open this file, and ',ev'
-" for opening it in a split window
+" .vimrc stuff {{{2
+
+" Open .vimrc file in a vertical split
 nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
+
+" Open .vimrc file as a buffer and open in this split window
 nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
+
+" Arrow keys and 'hjkl' keys {{{2
 
 " Completely disable the use of the arrow keys in command and visual modes
 noremap <up> <nop>
@@ -215,20 +240,16 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" Smart way to move between windows, uses 'Ctrl+jkhl' instead of 'Ctrl+w+jkhl'
+" Smart way to move between windows, uses 'Ctrl+hjkl' instead of 'Ctrl+w+hjkl'
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" Disable pressing 'F1' for help, and set it equal to Escape
-noremap <F1> <esc>
+" Leader key mappings {{{2
 
 " Makes it easy to clear out a search, by typing ',<space>'
 nnoremap <leader><space> :noh<CR>
-
-" Allow change of theme from light to dark and vice-versa, with a hotkey
-call togglebg#map('<F5>')
 
 " Same as *, but doesn't move the cursor, only highlights
 " http://twitter.com/dmedvinsky/status/109304047206547456
@@ -246,9 +267,10 @@ nnoremap <leader>z zMzvzz
 noremap H ^
 noremap L g_
 
-" Select (charwise) the contents of the current line, excluding indentation
-" http://twitter.com/dotvimrc/status/155748943001694208
-nnoremap vv ^vg_
+" Call Preserve() and delete any trailing white space in buffer
+nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+
+" Ctrl mappings {{{2
 
 " CTRL-A selects all
 " https://github.com/wnodom/wnodom-vim-environment/blob/master/.vimrc#L325
@@ -259,9 +281,25 @@ onoremap <C-A> <C-C>gggH<C-O>G
 snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
 
+" Re-mappings {{{2
+
 " Indent in visual and select mode automatically re-selects
 vnoremap > >gv
 vnoremap < <gv
+
+" Select (charwise) the contents of the current line, excluding indentation
+" http://twitter.com/dotvimrc/status/155748943001694208
+nnoremap vv ^vg_
+
+" Function keys mappings {{{2
+
+" Allow change of theme from light to dark and vice-versa, with a hotkey
+call togglebg#map('<F5>')
+
+" Disable pressing 'F1' for help, and set it equal to Escape
+noremap <F1> <esc>
+
+" }}}2
 
 " Abbreviations {{{1
 
@@ -273,13 +311,14 @@ iabbrev ew@@ eduan@websharks-inc.com
 " UI related {{{1
 
 " Disable list by default, but set it's options for when it is used
-set nolist                  " Show hidden characters
+set nolist					" Show hidden characters
 set listchars=tab:▸\ ,eol:¬ " Set chars to use for 'list'
 
-set title          " Change Terminal's title
+set title		   " Change Terminal's title
 set numberwidth=4  " Line numbers always be 4 chars wide
 set colorcolumn=79 " Put a marker in array of column numbers
 set shortmess=astI " :h shortmess
+set linespace=0    " No extra spaces between rows
 
 " NOTICE!
 " Line numbers and relative line numbers are controlled by this bundle:
@@ -288,7 +327,7 @@ set shortmess=astI " :h shortmess
 " Status line {{{2
 
 set laststatus=2 " Always use a statusline 
-set ruler        " Put a ruler, when my custom statusline doesn't load
+set ruler		 " Put a ruler, when my custom statusline doesn't load
 
 if has('multi_statusline') "{{{3
 	" If you don't know what this means:
@@ -297,92 +336,92 @@ if has('multi_statusline') "{{{3
 	" The amount of lines the statusline is allowed to have
 	set statuslineheight=2
 
-	let &stl=''        " Clear statusline for when vimrc is loaded
+	let &stl=''		   " Clear statusline for when vimrc is loaded
 	let &stl.='[%02n]' " Buffer number of current buffer
-	let &stl.=' '      " Separator
-	let &stl.='{'      " Opening curly bracket, for item group
-	let &stl.='%('     " Start of item group
-	let &stl.='%M'     " Show modified status of buffer: -, +, 
-	let &stl.='%R'     " Show if file is read-only: RO
-	let &stl.='%W'     " Show if buffer is a preview item?: PRV
-	let &stl.='%H'     " Show if buffer is a help file: HLP
-	let &stl.='%)'     " End of item group
-	let &stl.='}'      " Closing curly bracket, for item group
-	let &stl.=' '      " Separator
+	let &stl.=' '	   " Separator
+	let &stl.='{'	   " Opening curly bracket, for item group
+	let &stl.='%('	   " Start of item group
+	let &stl.='%M'	   " Show modified status of buffer: -, +, 
+	let &stl.='%R'	   " Show if file is read-only: RO
+	let &stl.='%W'	   " Show if buffer is a preview item?: PRV
+	let &stl.='%H'	   " Show if buffer is a help file: HLP
+	let &stl.='%)'	   " End of item group
+	let &stl.='}'	   " Closing curly bracket, for item group
+	let &stl.=' '	   " Separator
 	let &stl.='[%{&ft!=""?&ft.", ":""}'    " Buffer's file type
 	let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer's encoding
 	let &stl.='%{empty(&ff)?"":", ".&ff}]' " Buffer's file type
 	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
-	let &stl.='%='     " Right side of first statusline
-	let &stl.=' '      " Separator
-	let &stl.='%<'     " Truncate from here on
-	let &stl.='%F'     " Full path to file
-	let &stl.='%@'     " Go to next line of statusline
+	let &stl.='%='	   " Right side of first statusline
+	let &stl.=' '	   " Separator
+	let &stl.='%<'	   " Truncate from here on
+	let &stl.='%F'	   " Full path to file
+	let &stl.='%@'	   " Go to next line of statusline
 
 	let &stl.='[%b'    " Value of character under cursor
-	let &stl.=':'      " Separator between '%b' and '%B'
+	let &stl.=':'	   " Separator between '%b' and '%B'
 	let &stl.='0x%B]'  " As above, in hexadecimal
-	let &stl.=' '      " Separator
+	let &stl.=' '	   " Separator
 	let &stl.='[L%l'   " Cursor's current line
-	let &stl.='/'      " Separator for current line and total of lines
-	let &stl.='%L'     " Total of lines
-	let &stl.=':'      " Separator between line and column info
+	let &stl.='/'	   " Separator for current line and total of lines
+	let &stl.='%L'	   " Total of lines
+	let &stl.=':'	   " Separator between line and column info
 	let &stl.='C%c'    " Current column
-	let &stl.='-'      " Separator between column and virtual column
+	let &stl.='-'	   " Separator between column and virtual column
 	let &stl.='%v]'    " Current virtual column
-	let &stl.=' '      " Separator
+	let &stl.=' '	   " Separator
 	let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
-	let &stl.='%='     " Right side of second statusline
-	let &stl.=' '      " Separator
+	let &stl.='%='	   " Right side of second statusline
+	let &stl.=' '	   " Separator
 	let &stl.='%f'
 
 "}}}3
-else "(normal Vim installation) {{{3
-	let &stl=''        " Clear statusline for when vimrc is loaded
+elseif has('statusline') "{{{3
+	let &stl=''		   " Clear statusline for when vimrc is loaded
 	let &stl.='[%02n]' " Buffer number of current buffer
-	let &stl.=' '      " Separator
-	let &stl.='{'      " Opening curly bracket, for item group
-	let &stl.='%('     " Start of item group
-	let &stl.='%M'     " Show modified status of buffer: -, +, 
-	let &stl.='%R'     " Show if file is read-only: RO
-	let &stl.='%W'     " Show if buffer is a preview item?: PRV
-	let &stl.='%H'     " Show if buffer is a help file: HLP
-	let &stl.='%)'     " End of item group
-	let &stl.='}'      " Closing curly bracket, for item group
-	let &stl.=' '      " Separator
-	let &stl.='%<'     " Truncate from here on
-	let &stl.='%F'     " Full path to file
-	let &stl.=' '      " Separator
+	let &stl.=' '	   " Separator
+	let &stl.='{'	   " Opening curly bracket, for item group
+	let &stl.='%('	   " Start of item group
+	let &stl.='%M'	   " Show modified status of buffer: -, +, 
+	let &stl.='%R'	   " Show if file is read-only: RO
+	let &stl.='%W'	   " Show if buffer is a preview item?: PRV
+	let &stl.='%H'	   " Show if buffer is a help file: HLP
+	let &stl.='%)'	   " End of item group
+	let &stl.='}'	   " Closing curly bracket, for item group
+	let &stl.=' '	   " Separator
+	let &stl.='%<'	   " Truncate from here on
+	let &stl.='%F'	   " Full path to file
+	let &stl.=' '	   " Separator
 	let &stl.='[%{&ft!=""?&ft.", ":""}'    " Buffer's file type
 	let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer's encoding
 	let &stl.='%{empty(&ff)?"":", ".&ff}]' " Buffer's file type
 	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
 
-	let &stl.='%='     " Right line of statusline
-	let &stl.=' '      " So there's a space between both sides
+	let &stl.='%='	   " Right line of statusline
+	let &stl.=' '	   " So there's a space between both sides
 	let &stl.='[%b'    " Value of character under cursor
-	let &stl.=':'      " Separator between '%b' and '%B'
+	let &stl.=':'	   " Separator between '%b' and '%B'
 	let &stl.='0x%B]'  " As above, in hexadecimal
-	let &stl.=' '      " Separator
+	let &stl.=' '	   " Separator
 	let &stl.='[L%l'   " Cursor's current line
-	let &stl.='/'      " Separator for current line and total of lines
-	let &stl.='%L'     " Total of lines
-	let &stl.=':'      " Separator between line and column info
+	let &stl.='/'	   " Separator for current line and total of lines
+	let &stl.='%L'	   " Total of lines
+	let &stl.=':'	   " Separator between line and column info
 	let &stl.='C%c'    " Current column
-	let &stl.='-'      " Separator between column and virtual column
+	let &stl.='-'	   " Separator between column and virtual column
 	let &stl.='%v]'    " Current virtual column
-	let &stl.=' '      " Separator
+	let &stl.=' '	   " Separator
 	let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
 endif "}}}3
 
 " Cursor & mouse {{{2
 
-set scrolloff=999   " Keep the cursor in the middle of the window
+set scrolloff=999	" Keep the cursor in the middle of the window
 set sidescrolloff=4 " Same as above, but for side scrolling
-set sidescroll=1    " Minimal columns to scroll horizontally
+set sidescroll=1	" Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
-set mousehide       " Hide the mouse pointer while typing
-set mouse=          " Disable use of mouse
+set mousehide		" Hide the mouse pointer while typing
+set mouse=			" Disable use of mouse
 
 augroup cline
 	autocmd!
@@ -398,32 +437,40 @@ augroup END
 
 " Windows/Split-windows {{{2
 
-set fillchars=""             " Don't put window separators between splits
-set autowrite                " When switching buffers save file automatically
-set autoread                 " Auto read files when edited outside Vim
-set tabpagemax=1             " Max tabs to open with the '-p' option
-set showtabline=0            " Don't show the Vim tab line
+set fillchars=""			 " Don't put window separators between splits
+set autowrite				 " When switching buffers save file automatically
+set autoread				 " Auto read files when edited outside Vim
+set tabpagemax=1			 " Max tabs to open with the '-p' option
+set showtabline=0			 " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
-set guioptions=acirbhv       " Set the GUI options the way I like them
-au VimResized * :wincmd =    " Resize split windows when the window is resized
-au FocusLost * :wa           " Save all buffers when it loses focus
+set guioptions=acirbhv		 " Set the GUI options the way I like them
+set winminheight=0			 " Minimum window height (split window)
+
+au VimResized * :wincmd =	 " Resize split windows when the window is resized
+au FocusLost * :wa			 " Save all buffers when it loses focus
 
 " Syntax highlighting {{{2
 
-set synmaxcol=2048 " Put a max of 2048 chars to highlight in a single line
+let &t_Co=256
+
 if &t_Co > 2 || has('gui_running')
 	" Switch syntax highlighting on, when the Terminal has colors
 	" Or when the GUI is being used
 	syntax on
 endif
 
+set synmaxcol=2048 " Max chars to highlight in a single line
+
 " Solarized settings {{{3
 
 " Make Solarized use 256 colors
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 
 " Compatibility for Terminal
-"let g:solarized_termtrans=1
+let g:solarized_termtrans=1
+
+" Leave this at normal at all times
+let g:solarized_contrast='normal'
 
 " Non-text items visibility, normal low or high
 let g:solarized_visibility='normal'
@@ -436,7 +483,8 @@ let g:solarized_menu=0
 
 " }}}3
 
-set background=light " Use the light/dark version of the color scheme
+set background=dark " Use the light/dark version the color scheme
+
 colorscheme solarized " Set the color scheme to use
 
 if has('gui_running') "{{{2
@@ -472,9 +520,7 @@ if has('gui_running') "{{{2
 	endif
 else
 	" Terminal only stuff!
-endif
-
-"}}}2
+endif "}}}2
 
 " Diff {{{1
 
@@ -482,11 +528,13 @@ set diffopt+=iwhite " Add ignorance of whitespace to diff
 
 " Auto-completion {{{1
 
-set wildmenu              " Use wildmenu auto completion
+set wildmenu			  " Use wildmenu auto completion
 set wildmode=list:longest " Set options for auto completion
-set complete=.,w,b,t      " Default, except that I remove the 'u' option 
-set showfulltag           " Show whole tag, not just function name, when
-                          " autocompleting by tag
+set complete=.,w,b,t	  " Default, except that I remove the 'u' option 
+set showfulltag			  " Show whole tag, not just function name, when
+						  " autocompleting by tag
+
+set completeopt=longest,menuone
 
 " Macros {{{1
 
@@ -494,8 +542,8 @@ set lazyredraw " Don't update the display while executing macros
 
 " File/Buffer encryption, encoding etc. {{{1
 
-set key=             " Disable encryption file and buffer encryption 
-set nobomb           " Don't use BOM's (Byte Order Marks)
+set key=			 " Disable encryption file and buffer encryption 
+set nobomb			 " Don't use BOM's (Byte Order Marks)
 set ffs=unix,dos,mac " Set filetype to Unix, Windows and then Mac (Power PC)
 
 " Set the buffer encoding to be UTF-8
@@ -558,65 +606,6 @@ function! s:NumberTextObject(whole)
 	endif
 endfunction
 
-" Change Syntax {{{2
-
-" Quickly change the file's syntax, put in a function.
-"
-" I invented this one, so no need to link anywhere.
-
-" Define the function that does everything
-function! ChangeSyntax(name)
-	set syntax=a:name
-endfunction
-
-" Make it a callable function through the Vim command line
-command! -nargs=* -complete=syntax ChangeSyntax call ChangeSyntax('arg')
-
-" Set to use the ',cs' mapping
-:nnoremap <leader>cs :ChangeSyntax<Space>
-
-" Show syntax rule(s) for whatever is under the cursor {{{2
-
-" This functly allows you to figure out the name of the text object you're on
-" top of.
-"
-" I got this one from here:
-" http://vimcasts.org/episodes/creating-colorschemes-for-vim/
-
-function! <SID>SynStack()
-	if !exists("*synstack")
-		return
-	endif
-	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-nnoremap <C-S-P> :call <SID>SynStack()<CR>
-
-" Shell {{{2
-
-" This function allows you to run shell commands from within Vim, and open it
-" in a vertical split
-"
-" I got this from here:
-" https://bitbucket.org/sjl/dotfiles/src/b5e60ade957d/vim/.vimrc?at=default#cl-677
-
- function! s:ExecuteInShell(command) " {{{
-    let command = join(map(split(a:command), 'expand(v:val)'))
-    let winnr = bufwinnr('^' . command . '$')
-    silent! execute  winnr < 0 ? 'botright vnew ' . fnameEscape(command) : winnr . 'wincmd w'
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
-    echo 'Execute ' . command . '...'
-    silent! execute 'silent %!'. command
-    silent! redraw
-    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
-    silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
-    silent! execute 'AnsiEsc'
-    echo 'Shell command ' . command . ' executed.'
-endfunction " }}}
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-nnoremap <leader>! :Shell 
-
 " Motion for next object {{{2
 
 " Motion for "next/last object". For example, "din(" would go to the next "()" pair
@@ -649,15 +638,76 @@ function! s:NextTextObject(motion, dir)
 	exe "normal! ".a:dir.c."v".a:motion.c
 endfunction
 
+" SynStack() {{{2
+
+" This functly allows you to figure out the name of the text object you're on
+" top of.
+"
+" I got this one from here:
+" http://vimcasts.org/episodes/creating-colorschemes-for-vim/
+
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+nnoremap <C-S-P> :call <SID>SynStack()<CR>
+
+" Shell() {{{2
+
+" This function allows you to run shell commands from within Vim, and open it
+" in a vertical split
+"
+" I got this from here:
+" https://bitbucket.org/sjl/dotfiles/src/b5e60ade957d/vim/.vimrc?at=default#cl-677
+
+ function! s:ExecuteInShell(command) " {{{
+	let command = join(map(split(a:command), 'expand(v:val)'))
+	let winnr = bufwinnr('^' . command . '$')
+	silent! execute  winnr < 0 ? 'botright vnew ' . fnameEscape(command) : winnr . 'wincmd w'
+	setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+	echo 'Execute ' . command . '...'
+	silent! execute 'silent %!'. command
+	silent! redraw
+	silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+	silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
+	silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
+	silent! execute 'AnsiEsc'
+	echo 'Shell command ' . command . ' executed.'
+endfunction " }}}
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+nnoremap <leader>! :Shell 
+
+" Preserve() {{{2
+
+" Strip any trailing white spaces in the current file.
+"
+" I got this one from here:
+" http://vimcasts.org/episodes/tidying-whitespace/
+
+function! Preserve(command)
+	" Preparation: save last search, and cursor position.
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business:
+	execute a:command
+	" Clean up: restore previous search history, and cursor position
+	let @/=_s
+	call cursor(l, c)
+endfunction
+
 " }}}2
 
 " Tips {{{1
 
 " To show all your commands mapped to your Leader key
-":map <leader>
+" :map <leader>
 
 " To show all help topics containing 'help'
-":h word<CTRL-d>
+" :h word<CTRL-d>
 
 " }}}1
 
