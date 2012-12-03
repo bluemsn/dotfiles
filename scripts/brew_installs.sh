@@ -13,7 +13,7 @@ if test ! $(which brew); then
 	echo 'You need to install Homebrew!'
 	echo 'I will install it for you now...'
 	ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-	echo 'OK, I installed it, now I will run 'brew doctor' and make sure you have some stuff installed, follow the instructions it gives you.'
+	echo 'Follow the instructions 'brew doctor' gives you. Then run this file again.'
 	brew doctor
 else
 	brew install ack

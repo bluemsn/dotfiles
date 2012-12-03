@@ -1,8 +1,11 @@
 " Basic stuff {{{1
 
-set nocompatible " Forget about being compatible with good ol' vi
-set hidden		 " Keep changed buffers without requiring saves
-set ttyfast		 " Indicates a faster terminal connection
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+set hidden		           " Keep changed buffers without requiring saves
+set ttyfast		           " Indicates a faster terminal connection
 set viewoptions=unix,slash " Better Unix/Windows compatibility
 
 " Use the system's clipboard
@@ -40,7 +43,7 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 
 " All of my Vundle bundles {{{2
 
-" Active bundles {{{3
+" Bundles {{{3
 
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
@@ -48,6 +51,7 @@ Bundle 'gmarik/vundle'
 " General
 Bundle 'ervandew/supertab'
 "Bundle 'fholgado/minibufexpl.vim'
+Bundle 'gmarik/sudo-gui.vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'Lokaltog/vim-easymotion'
@@ -56,25 +60,29 @@ Bundle 'mattn/gist-vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'PotHix/Vimpress'
 Bundle 'Raimondi/delimitMate'
-"Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/nerdtree'
+Bundle 'SearchComplete'
+Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-
-" vim-scripts repos
-Bundle 'SearchComplete'
 "Bundle 'YankRing.vim'
 
 " Syntax files
+Bundle 'groenewege/vim-less'
+Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
+Bundle 'othree/html5.vim'
+Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
+Bundle 'zaiste/tmux.vim'
 
 " Language specific bundles
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'spf13/PIV'
+Bundle 'HTML-AutoCloseTag'
 
 " Color schemes
 Bundle 'altercation/vim-colors-solarized'
@@ -83,13 +91,18 @@ Bundle 'nanotech/jellybeans.vim'
 
 " Trying out
 
-" Bundles to check out {{{3
+" To check out {{{3
 
+"Bundle 'AndrewRadev/sideways.vim'
+"Bundle 'benmills/vimux'
 "Bundle 'godlygeek/tabular'
+"Bundle 'gregsexton/MatchTag'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'mileszs/ack.vim'
+"Bundle 'scrooloose/nerdcommenter'
+"Bundle 'Shougo/neocomplcache'
 "Bundle 'SirVer/ultisnips'
 "Bundle 'sjl/clam.vim'
 "Bundle 'sjl/friendly-find'
@@ -102,6 +115,7 @@ Bundle 'nanotech/jellybeans.vim'
 
 " vim-scripts repos
 "Bundle 'Conque-Shell'
+"Bundle 'IndexedSearch'
 "Bundle 'restore_view.vim'
 "Bundle 'sessionman.vim'
 
@@ -158,7 +172,7 @@ set magic		" Allow use of regular expressions in the search scans
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-if has('win32')
+if has('win32') || has('win64')
 	set grepprg=internal " Windows findstr.exe just isn't good enough
 endif
 
@@ -181,11 +195,11 @@ set cpoptions=ces$	" Make the 'cw' and like commands put a $ at the end of the
 
 " Command line options {{{1
 
-set ch=2		   " Make the command input line two lines high
-set shellslash	   " Set to use forward slash, in case you're in Windows
-set timeout		   " Do time out on mappings and others
-set timeoutlen=500 " Set the timeout lenght in milliseconds
-set showmode	   " Always show the current mode
+set ch=2		    " Make the command input line two lines high
+set shellslash	    " Set to use forward slash, in case you're in Windows
+set timeout		    " Do time out on mappings and others
+set timeoutlen=1000 " Set the timeout lenght in milliseconds
+set showmode	    " Always show the current mode
 
 " History {{{1
 
@@ -348,10 +362,10 @@ if has('multi_statusline') "{{{3
 	let &stl.='%)'	   " End of item group
 	let &stl.='}'	   " Closing curly bracket, for item group
 	let &stl.=' '	   " Separator
-	let &stl.='[%{&ft!=""?&ft.", ":""}'    " Buffer's file type
-	let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer's encoding
-	let &stl.='%{empty(&ff)?"":", ".&ff}]' " Buffer's file type
-	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
+	let &stl.='[%{&ft!=""?&ft.", ":""}'  " Buffer's file type
+	let &stl.='%{&fenc!=""?&fenc:&enc}'  " Buffer's encoding
+	let &stl.='%{&ff!=""?", ".&ff:""}]'  " Buffer's file type
+	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
 	let &stl.='%='	   " Right side of first statusline
 	let &stl.=' '	   " Separator
 	let &stl.='%<'	   " Truncate from here on
@@ -392,12 +406,12 @@ elseif has('statusline') "{{{3
 	let &stl.='%<'	   " Truncate from here on
 	let &stl.='%F'	   " Full path to file
 	let &stl.=' '	   " Separator
-	let &stl.='[%{&ft!=""?&ft.", ":""}'    " Buffer's file type
-	let &stl.='%{&fenc!=""?&fenc:&enc}'    " Buffer's encoding
-	let &stl.='%{empty(&ff)?"":", ".&ff}]' " Buffer's file type
-	let &stl.='%{GitBranchInfoString()}'   " Buffer's Git branch
+	let &stl.='[%{&ft!=""?&ft.", ":""}'  " Buffer's file type
+	let &stl.='%{&fenc!=""?&fenc:&enc}'  " Buffer's encoding
+	let &stl.='%{&ff!=""?", ".&ff:""}]'  " Buffer's file type
+	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
 
-	let &stl.='%='	   " Right line of statusline
+	let &stl.='%='	   " Right side of statusline
 	let &stl.=' '	   " So there's a space between both sides
 	let &stl.='[%b'    " Value of character under cursor
 	let &stl.=':'	   " Separator between '%b' and '%B'
@@ -406,9 +420,9 @@ elseif has('statusline') "{{{3
 	let &stl.='[L%l'   " Cursor's current line
 	let &stl.='/'	   " Separator for current line and total of lines
 	let &stl.='%L'	   " Total of lines
-	let &stl.=':'	   " Separator between line and column info
-	let &stl.='C%c'    " Current column
-	let &stl.='-'	   " Separator between column and virtual column
+	let &stl.=':C'	   " Separator between line and column info
+	let &stl.='%c'     " Current column
+	let &stl.='-'	   " Separator between '%c' and '%v'
 	let &stl.='%v]'    " Current virtual column
 	let &stl.=' '	   " Separator
 	let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
@@ -451,8 +465,6 @@ au FocusLost * :wa			 " Save all buffers when it loses focus
 
 " Syntax highlighting {{{2
 
-let &t_Co=256
-
 if &t_Co > 2 || has('gui_running')
 	" Switch syntax highlighting on, when the Terminal has colors
 	" Or when the GUI is being used
@@ -484,8 +496,7 @@ let g:solarized_menu=0
 " }}}3
 
 set background=dark " Use the light/dark version the color scheme
-
-colorscheme solarized " Set the color scheme to use
+colorscheme base16-default " Set the color scheme to use
 
 if has('gui_running') "{{{2
 	" Fix spell check highlighting
