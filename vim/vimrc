@@ -112,6 +112,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'tpope/vim-pastie'
 "Bundle 'tsaleh/vim-align'
+"Bundle 'xolox/vim-shell'
 
 " vim-scripts repos
 "Bundle 'Conque-Shell'
@@ -430,7 +431,8 @@ endif "}}}3
 
 " Cursor & mouse {{{2
 
-set scrolloff=999	" Keep the cursor in the middle of the window
+"set scrolloff=999	" Keep the cursor in the middle of the window
+set scrolloff=10    " How near the cursor can get to the top/bottom of window
 set sidescrolloff=4 " Same as above, but for side scrolling
 set sidescroll=1	" Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
@@ -575,8 +577,6 @@ augroup END
 augroup filetype_python
 	autocmd!
 	autocmd FileType python setlocal expandtab
-	autocmd FileType python setlocal complete+=k~/.vim/syntax/python.vim isk+=.,(
-	autocmd FileType python setlocal smartindent set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 augroup END
 
 augroup filetype_text
