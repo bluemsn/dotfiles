@@ -498,7 +498,7 @@ let g:solarized_menu=0
 " }}}3
 
 set background=dark " Use the light/dark version the color scheme
-colorscheme base16-default " Set the color scheme to use
+colorscheme solarized " Set the color scheme to use
 
 if has('gui_running') "{{{2
 	" Fix spell check highlighting
