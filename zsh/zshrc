@@ -1,6 +1,5 @@
-# Kudos and credits to this blog, for providing a way to have a prompt the
-# current Git branch in a fancy way:
-# http://sebastiancelis.com/2009/11/16/zsh-prompt-git-users/
+# Load Git prompt
+source ~/.zsh/git-prompt/zshrc.sh
 
 # Initialize colors
 autoload -U colors && colors
@@ -13,33 +12,20 @@ EDITOR=vim
 VISUAL=mvim
 export EDITOR VISUAL
 
-# Autoload Zsh functions
-fpath=(~/.zsh/functions $fpath)
-autoload -U ~/.zsh/functions/*(:t)
-
-# Enable auto-execution of functions
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
-
 # Make 'ls' do lotsa stuff
 alias ls="ls -la -Gp -F"
 
 # Make 'gvim' not open a new MacVim window
 alias gvim="mvim --remote-silent"
 
+# Make 'reload!' source the .zshrc file
 alias reload!="source ~/.zshrc"
 
 # Enable loading of MySQL
 export PATH="/usr/local/mysql/bin:$PATH"
 
-# Append git functions needed for prompt
-preexec_functions+='preexec_update_git_vars'
-precmd_functions+='precmd_update_git_vars'
-chpwd_functions+='chpwd_update_git_vars'
-
 # Set the prompt
-PROMPT=$'%{${fg[yellow]}%}[%T] %{${fg[cyan]}%}%~$(prompt_git_info)%{${fg[default]}%} >>> '
+PROMPT=$'%{${fg[yellow]}%}[%T] %{${fg[cyan]}%}%~%{${fg[default]}%}$(git_super_status)%{${fg[default]}%} >>> '
 # Set the right side of my prompt
 RPROMPT=$'%{${fg[default]}%}[%n@%m]'
 
