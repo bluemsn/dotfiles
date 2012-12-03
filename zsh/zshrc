@@ -34,3 +34,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 export HIST_IGNORE_ALL_DUPS
+
+# To make sure the Git repo is loaded in a new window
+__EXECUTED_GIT_COMMAND=1

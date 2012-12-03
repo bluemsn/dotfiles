@@ -148,7 +148,7 @@ let g:miniBufExplForceSyntaxEnable=1
 
 if exists("s:bootstrap") && s:bootstrap
 	unlet s:bootstrap
-	BundleInstall!
+	:BundleInstall!
 endif
 
 " Set the filetype stuff to on

@@ -28,7 +28,7 @@ read -p 'Do you wish to delete the old symlinks first? [y/n] ' prompt1
 case "$prompt1" in
 	y|Y ) sh $script_dir/delete_symlinks.sh;;
 	n|N ) exit;;
-	* ) echo 'Invalid answer!';;
+	* ) echo "Invalid answer! Only answer 'y' or 'n'; please run this script again."; exit $?;;
 esac
 
 echo "Started making new symlinks, at [$time]..."
