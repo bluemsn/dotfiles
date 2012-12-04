@@ -16,6 +16,7 @@ set clipboard=unnamed
 augroup VimReload
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+	autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
 augroup END
 
 " Runtime stuff {{{1
@@ -48,12 +49,14 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
 
+" My own bundles
+Bundle 'Greduan/vim-numbertoggle'
+
 " General
 Bundle 'ervandew/supertab'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'gmarik/sudo-gui.vim'
 Bundle 'godlygeek/csapprox'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/gist-vim'
 "Bundle 'mattn/zencoding-vim'
@@ -67,6 +70,7 @@ Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
 "Bundle 'YankRing.vim'
 
 " Syntax files
@@ -306,6 +310,20 @@ vnoremap < <gv
 " http://twitter.com/dotvimrc/status/155748943001694208
 nnoremap vv ^vg_
 
+" Visually select the text that was last edited/pasted
+" http://vimcasts.org/episodes/bubbling-text/
+nnoremap gV `[v`]
+
+" Bubble single lines
+" http://vimcasts.org/episodes/bubbling-text/
+nmap <s-up> [e
+nmap <s-down> ]e
+
+" Bubble multiple lines
+" http://vimcasts.org/episodes/bubbling-text/
+vmap <s-up> [egv
+vmap <s-down> ]egv
+
 " Function keys mappings {{{2
 
 " Allow change of theme from light to dark and vice-versa, with a hotkey
@@ -313,6 +331,12 @@ call togglebg#map('<F5>')
 
 " Disable pressing 'F1' for help, and set it equal to Escape
 noremap <F1> <esc>
+
+" New mappins {{{2
+
+" Use '<space><space>' to save the file
+" https://github.com/jeffkreeftmeijer/dotfiles/blob/master/home/.vimrc#L49-L50
+nnoremap <space><space> :w<CR>
 
 " }}}2
 
@@ -722,4 +746,4 @@ endfunction
 
 " }}}1
 
-" vim: set foldmarker={{{,}}}
+" vim: set nowrap fdm={{{,}}}
