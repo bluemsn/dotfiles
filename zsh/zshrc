@@ -31,7 +31,7 @@ PROMPT+='%{${fg[default]}%} >>> ' # Default color, prompt
 
 # Set the right side of my prompt
 RPROMPT=$'%{${fg[default]}%}[%n' # Default color, current user
-RPROMPT.='@%m]' # Current server
+RPROMPT+='@%m]' # Current server
 
 # History {{{1
 
