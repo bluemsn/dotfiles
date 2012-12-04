@@ -13,11 +13,13 @@ set viewoptions=unix,slash " Better Unix/Windows compatibility
 set clipboard=unnamed
 
 " Reload .vimrc file as soon as it has a change
+if has('autocmd')
 augroup VimReload
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
 	autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
 augroup END
+endif
 
 " Runtime stuff {{{1
 
@@ -25,7 +27,10 @@ augroup END
 " matchit.vim — a standard file in Vim installations for years — the key can
 " also switch among e.g. if/elsif/else/end, between opening and closing XML
 " tags, and more.
-runtime +=macros/matchit.vim
+runtime macros/matchit.vim
+
+" Enable file type plugins
+runtime ftplugin/man.vim
 
 " Vundle & other extensions (syntaxes, filetype's etc.) {{{1
 
@@ -50,7 +55,7 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 Bundle 'gmarik/vundle'
 
 " My own bundles
-Bundle 'Greduan/vim-numbertoggle'
+Bundle 'Greduan/vim_number-toggle'
 
 " General
 Bundle 'ervandew/supertab'
@@ -170,9 +175,12 @@ set errorbells	" Enable use of (visual) error bells
 set incsearch	" Show results of search scan as it finds them
 set showmatch	" Always show matching bracket, quote etc.
 set matchtime=5 " Tenths of a second to show the matching bracket, quote etc.
-set hlsearch	" Enable the highlighting of the search
 set showcmd		" Show the current command in the lower right corner
 set magic		" Allow use of regular expressions in the search scans
+
+if &t_Co > 2 || has('gui_running')
+	set hls     " Enable the highlighting of the search
+endif
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -197,6 +205,7 @@ set fo=vt		  " Set the format options ('formatoptions')
 
 set cpoptions=ces$	" Make the 'cw' and like commands put a $ at the end of the
 					" word instead of just deleting and replacing the text
+set nojoinspaces    " :h joinspaces
 
 " Command line options {{{1
 
@@ -212,6 +221,16 @@ set history=1000 " Keep only 100 entries in the command history
 set nobackup	 " Disable backup files
 set noswapfile	 " Don't use a swap file in current buffer
 set nowb		 " Don't write backup before saving, even if you delete it later
+
+" Undo {{{2
+
+set undofile                          " Enable persistent undo
+set undodir=~/tmp/vim/undo            " Set persistent undo dir
+if !isdirectory(expand(&undodir))     " Check if undo dir doesn't exist
+    call mkdir(expand(&undodir), "p") " Create dir
+endif
+
+" }}}2
 
 " Folds {{{1
 
@@ -324,6 +343,11 @@ nmap <s-down> ]e
 vmap <s-up> [egv
 vmap <s-down> ]egv
 
+" Fix the '&' command in normal and visual modes
+" https://github.com/nelstrom/dotfiles/blob/master/vimrc#L99-L101
+nnoremap & :&&<enter>
+xnoremap & :&&<enter>
+
 " Function keys mappings {{{2
 
 " Allow change of theme from light to dark and vice-versa, with a hotkey
@@ -353,6 +377,10 @@ iabbrev ew@@ eduan@websharks-inc.com
 set nolist					" Show hidden characters
 set listchars=tab:▸\ ,eol:¬ " Set chars to use for 'list'
 
+" Enable softwrap by default, and set it's options, even if disabled
+set wrap      " By default soft-wrap text at window border
+set linebreak " Visual linebreak at 'breakat' rather than last char in window
+
 set title		   " Change Terminal's title
 set numberwidth=4  " Line numbers always be 4 chars wide
 set colorcolumn=79 " Put a marker in array of column numbers
@@ -361,97 +389,16 @@ set linespace=0    " No extra spaces between rows
 
 " NOTICE!
 " Line numbers and relative line numbers are controlled by this bundle:
-" https://github.com/jeffkreeftmeijer/vim-numbertoggle
+" https://github.com/Greduan/vim_number-toggle
 
 " Status line {{{2
 
 set laststatus=2 " Always use a statusline 
 set ruler		 " Put a ruler, when my custom statusline doesn't load
 
-if has('multi_statusline') "{{{3
-	" If you don't know what this means:
-	" https://gist.github.com/3158492
-
-	" The amount of lines the statusline is allowed to have
-	set statuslineheight=2
-
-	let &stl=''		   " Clear statusline for when vimrc is loaded
-	let &stl.='[%02n]' " Buffer number of current buffer
-	let &stl.=' '	   " Separator
-	let &stl.='{'	   " Opening curly bracket, for item group
-	let &stl.='%('	   " Start of item group
-	let &stl.='%M'	   " Show modified status of buffer: -, +, 
-	let &stl.='%R'	   " Show if file is read-only: RO
-	let &stl.='%W'	   " Show if buffer is a preview item?: PRV
-	let &stl.='%H'	   " Show if buffer is a help file: HLP
-	let &stl.='%)'	   " End of item group
-	let &stl.='}'	   " Closing curly bracket, for item group
-	let &stl.=' '	   " Separator
-	let &stl.='[%{&ft!=""?&ft.", ":""}'  " Buffer's file type
-	let &stl.='%{&fenc!=""?&fenc:&enc}'  " Buffer's encoding
-	let &stl.='%{&ff!=""?", ".&ff:""}]'  " Buffer's file type
-	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
-	let &stl.='%='	   " Right side of first statusline
-	let &stl.=' '	   " Separator
-	let &stl.='%<'	   " Truncate from here on
-	let &stl.='%F'	   " Full path to file
-	let &stl.='%@'	   " Go to next line of statusline
-
-	let &stl.='[%b'    " Value of character under cursor
-	let &stl.=':'	   " Separator between '%b' and '%B'
-	let &stl.='0x%B]'  " As above, in hexadecimal
-	let &stl.=' '	   " Separator
-	let &stl.='[L%l'   " Cursor's current line
-	let &stl.='/'	   " Separator for current line and total of lines
-	let &stl.='%L'	   " Total of lines
-	let &stl.=':'	   " Separator between line and column info
-	let &stl.='C%c'    " Current column
-	let &stl.='-'	   " Separator between column and virtual column
-	let &stl.='%v]'    " Current virtual column
-	let &stl.=' '	   " Separator
-	let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
-	let &stl.='%='	   " Right side of second statusline
-	let &stl.=' '	   " Separator
-	let &stl.='%f'
-
-"}}}3
-elseif has('statusline') "{{{3
-	let &stl=''		   " Clear statusline for when vimrc is loaded
-	let &stl.='[%02n]' " Buffer number of current buffer
-	let &stl.=' '	   " Separator
-	let &stl.='{'	   " Opening curly bracket, for item group
-	let &stl.='%('	   " Start of item group
-	let &stl.='%M'	   " Show modified status of buffer: -, +, 
-	let &stl.='%R'	   " Show if file is read-only: RO
-	let &stl.='%W'	   " Show if buffer is a preview item?: PRV
-	let &stl.='%H'	   " Show if buffer is a help file: HLP
-	let &stl.='%)'	   " End of item group
-	let &stl.='}'	   " Closing curly bracket, for item group
-	let &stl.=' '	   " Separator
-	let &stl.='%<'	   " Truncate from here on
-	let &stl.='%F'	   " Full path to file
-	let &stl.=' '	   " Separator
-	let &stl.='[%{&ft!=""?&ft.", ":""}'  " Buffer's file type
-	let &stl.='%{&fenc!=""?&fenc:&enc}'  " Buffer's encoding
-	let &stl.='%{&ff!=""?", ".&ff:""}]'  " Buffer's file type
-	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
-
-	let &stl.='%='	   " Right side of statusline
-	let &stl.=' '	   " So there's a space between both sides
-	let &stl.='[%b'    " Value of character under cursor
-	let &stl.=':'	   " Separator between '%b' and '%B'
-	let &stl.='0x%B]'  " As above, in hexadecimal
-	let &stl.=' '	   " Separator
-	let &stl.='[L%l'   " Cursor's current line
-	let &stl.='/'	   " Separator for current line and total of lines
-	let &stl.='%L'	   " Total of lines
-	let &stl.=':C'	   " Separator between line and column info
-	let &stl.='%c'     " Current column
-	let &stl.='-'	   " Separator between '%c' and '%v'
-	let &stl.='%v]'    " Current virtual column
-	let &stl.=' '	   " Separator
-	let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
-endif "}}}3
+" The Vim statusline is set in a plugin that loads after the .vimrc has been
+" loaded, otherwise we can't check for the current Git branch. It is located
+" under "~/.vim/after/plugin/statusline.vim"
 
 " Cursor & mouse {{{2
 
@@ -688,7 +635,7 @@ function! <SID>SynStack()
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-nnoremap <C-S-P> :call <SID>SynStack()<CR>
+nnoremap <C-S-p> :call <SID>SynStack()<CR>
 
 " Shell() {{{2
 
@@ -698,7 +645,7 @@ nnoremap <C-S-P> :call <SID>SynStack()<CR>
 " I got this from here:
 " https://bitbucket.org/sjl/dotfiles/src/b5e60ade957d/vim/.vimrc?at=default#cl-677
 
- function! s:ExecuteInShell(command) " {{{
+ function! s:ExecuteInShell(command)
 	let command = join(map(split(a:command), 'expand(v:val)'))
 	let winnr = bufwinnr('^' . command . '$')
 	silent! execute  winnr < 0 ? 'botright vnew ' . fnameEscape(command) : winnr . 'wincmd w'
@@ -711,14 +658,12 @@ nnoremap <C-S-P> :call <SID>SynStack()<CR>
 	silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
 	silent! execute 'AnsiEsc'
 	echo 'Shell command ' . command . ' executed.'
-endfunction " }}}
+endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 nnoremap <leader>! :Shell 
 
 " Preserve() {{{2
 
-" Strip any trailing white spaces in the current file.
-"
 " I got this one from here:
 " http://vimcasts.org/episodes/tidying-whitespace/
 
@@ -733,6 +678,28 @@ function! Preserve(command)
 	let @/=_s
 	call cursor(l, c)
 endfunction
+
+" ListWrapToggle() {{{2
+
+" The best way I've found of switching between line soft-wrap and list
+"
+" I designed this myself, here's the latest Gist:
+" https://gist.github.com/4210145
+
+function! ListWrapToggle()
+	if(&list == 1)
+		set nolist
+		set wrap
+	elseif(&wrap == 1)
+		set nowrap
+		set list
+	else
+		set nolist
+		set wrap
+	endif
+endfunction
+
+nnoremap <leader>tw :call ListWrapToggle()<CR>
 
 " }}}2
 
