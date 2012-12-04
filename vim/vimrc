@@ -7,6 +7,7 @@ set nocompatible
 set hidden		           " Keep changed buffers without requiring saves
 set ttyfast		           " Indicates a faster terminal connection
 set viewoptions=unix,slash " Better Unix/Windows compatibility
+set modeline               " Allow file specific options
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
@@ -192,14 +193,17 @@ endif
 " Formatting {{{1
 
 set noexpandtab   " Make sure that every file uses tabs
-set tabstop=4	  " Number of spaces that defines a "tab"
-set shiftwidth=4  " Number of spaces to use for each indent level
-set softtabstop=4 " Same as 'tabstop', while doing editing operations
 set shiftround	  " Round indent to pultiple of 'shiftwidth'
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set smartindent   " Do smart indenting when starting a new line
 set autoindent	  " Copy indent from current line, over to the new line
 set fo=vt		  " Set the format options ('formatoptions')
+
+" Set the tab width
+let g:tabwidth=4
+exec 'set tabstop='     . g:tabwidth 
+exec 'set shiftwidth='  . g:tabwidth
+exec 'set softtabstop=' . g:tabwidth
 
 " Commands options {{{1
 
@@ -214,6 +218,7 @@ set shellslash	    " Set to use forward slash, in case you're in Windows
 set timeout		    " Do time out on mappings and others
 set timeoutlen=1000 " Set the timeout lenght in milliseconds
 set showmode	    " Always show the current mode
+set report=4        " Threshold for reporting number of lines changed
 
 " History {{{1
 
@@ -517,6 +522,7 @@ set wildmode=list:longest " Set options for auto completion
 set complete=.,w,b,t	  " Default, except that I remove the 'u' option 
 set showfulltag			  " Show whole tag, not just function name, when
 						  " autocompleting by tag
+set pumheight=15          " Max lines to show in auto-complete box
 
 set completeopt=longest,menuone
 
