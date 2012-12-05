@@ -63,7 +63,6 @@ Bundle 'ervandew/supertab'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'gmarik/sudo-gui.vim'
 Bundle 'godlygeek/csapprox'
-Bundle 'Lokaltog/powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/gist-vim'
 "Bundle 'mattn/zencoding-vim'
@@ -110,6 +109,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'Lokaltog/powerline'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'Shougo/neocomplcache'
@@ -691,7 +691,8 @@ endfunction
 
 " ListWrapToggle() {{{2
 
-" The best way I've found of switching between line soft-wrap and list
+" The best way I've found of switching between line soft-wrap and showing
+" hidden characters.
 "
 " I designed this myself, here's the latest Gist:
 " https://gist.github.com/4210145
@@ -710,6 +711,48 @@ function! ListWrapToggle()
 endfunction
 
 nnoremap <leader>tw :call ListWrapToggle()<CR>
+
+" Recording() {{{2
+
+" This is a function I made myself in order to setup Vim for recording, either
+" HD or SD. It just changes window size.
+"
+" I designed this myself, here's the latest Gist:
+" https://gist.github.com/4217374
+
+function! Recording(quality)
+	if(a:quality == 'sd')
+		set columns=89
+		set lines=28
+
+		if(g:colors_name == 'solarized')
+			set background=light
+		endif
+	elseif(a:quality == 'hd')
+		set columns=180
+		set lines=44
+
+		if(g:colors_name == 'solarized')
+			set background=light
+		endif
+	elseif(a:quality == 'off')
+		if ! $diff " Check if in diff mode
+			" If not, do a normal sized window
+			set columns=120 lines=40 " Set the width and height of window
+		else
+			" If yes, then double that for diff mode
+			set columns=240 lines=40 " Same here, duh!
+		endif
+
+		if(g:colors_name == 'solarized')
+			set background=dark
+		endif
+	endif
+endfunction
+
+nnoremap <leader>trs :call Recording('sd')<CR>
+nnoremap <leader>trh :call Recording('hd')<CR>
+nnoremap <leader>tr :call Recording('off')<CR>
 
 " }}}2
 

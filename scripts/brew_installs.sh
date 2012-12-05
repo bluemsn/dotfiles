@@ -21,5 +21,6 @@ else
 	brew install hub
 	brew install tmux
 	brew install reattach-to-user-namespace
+	brew install bash
 	echo 'Done, I installed your stuff, you can thank me later.'
 fi
