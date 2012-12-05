@@ -33,10 +33,26 @@ ZSH_VCS_PROMPT_USING_PYTHON='false'
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
+# VCS prompt configuration {{{2
+
+# git status symbol
+VCS_SIGIL=${VCS_SIGIL:-'∇ '}
+VCS_ACTION_SEPARATOR=${VCS_ACTION_SEPARATOR:-':'}
+VCS_STAGED_SIGIL=${VCS_STAGED_SIGIL:-' ●'}
+VCS_UNSTAGED_SIGIL=${VCS_UNSTAGED_SIGIL:-' ✚'}
+VCS_UNTRACKED_SIGIL=${VCS_UNTRACKED_SIGIL:-' …'}
+VCS_CONFLICTS_SIGIL=${VCS_CONFLICTS_SIGIL:-' ✖'}
+VCS_STASHED_SIGIL=${VCS_STASHED_SIGIL:-'⚑'}
+VCS_CLEAN_SIGIL=${VCS_CLEAN_SIGIL:-'✔'}
+VCS_AHEAD_SIGIL=${VCS_AHEAD_SIGIL:-'↑'}
+VCS_BEHIND_SIGIL=${VCS_BEHIND_SIGIL:-'↓'}
+
+# }}}2
+
 # Set the prompt
 PROMPT=$'%{${fg[yellow]}%}[%T] '  # Yellow color, current time
 PROMPT+='%{${fg[cyan]}%}%~'       # Cyan color, current directory, from $HOME
-PROMPT+='%{${fg[default]}%}$(vcs_info)' # Default color, Git status
+PROMPT+='%{${fg[default]}%}$(vcs_super_info)' # Default color, Git status
 PROMPT+='%{${fg[default]}%} >>> ' # Default color, prompt
 
 # Set the right side of my prompt

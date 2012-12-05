@@ -63,6 +63,7 @@ Bundle 'ervandew/supertab'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'gmarik/sudo-gui.vim'
 Bundle 'godlygeek/csapprox'
+Bundle 'Lokaltog/powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/gist-vim'
 "Bundle 'mattn/zencoding-vim'
@@ -109,7 +110,6 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'Lokaltog/powerline'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'Shougo/neocomplcache'
@@ -153,6 +153,8 @@ let g:EasyMotion_Leader_key='<leader><leader>'
 let g:miniBufExplMapCTabSwitchBufs=1
 let g:miniBufExplUseSingleClick=1
 let g:miniBufExplForceSyntaxEnable=1
+" Vim Powerline {{{3
+let g:Powerline_symbols='fancy'
 " }}}3
 
 " }}}2
