@@ -1,7 +1,7 @@
 # Sources {{{1
 
 # Load Git prompt
-source ~/.zsh/git-prompt/zshrc.sh
+source ~/.zsh/zsh-vcs-prompt/zshrc.sh
 
 # Editor {{{1
 
@@ -23,15 +23,25 @@ export PATH="/usr/local/mysql/bin:$PATH"
 
 # Prompt {{{1
 
+# Initialize colors.
+autoload -U colors
+colors
+
+# Use shell script instead of Python
+ZSH_VCS_PROMPT_USING_PYTHON='false'
+
+# Allow for functions in the prompt.
+setopt PROMPT_SUBST
+
 # Set the prompt
 PROMPT=$'%{${fg[yellow]}%}[%T] '  # Yellow color, current time
 PROMPT+='%{${fg[cyan]}%}%~'       # Cyan color, current directory, from $HOME
-PROMPT+='%{${fg[default]}%}$(git_super_status)' # Default color, Git status
+PROMPT+='%{${fg[default]}%}' # Default color, Git status
 PROMPT+='%{${fg[default]}%} >>> ' # Default color, prompt
 
 # Set the right side of my prompt
 RPROMPT=$'%{${fg[default]}%}[%n' # Default color, current user
-RPROMPT+='@%m]' # Current server
+RPROMPT+='@%m]$(vcs_info)' # Current server
 
 # History {{{1
 
@@ -41,8 +51,5 @@ HISTFILE=~/.history # This file where to save the history
 export HIST_IGNORE_ALL_DUPS # Ignore all duplicates and usual commands
 
 # }}}1
-
-# To make sure the Git info is loaded in new windows
-__EXECUTED_GIT_COMMAND=1
 
 # vim: set foldmarker={{{,}}}
