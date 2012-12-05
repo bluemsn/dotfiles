@@ -36,12 +36,12 @@ setopt PROMPT_SUBST
 # Set the prompt
 PROMPT=$'%{${fg[yellow]}%}[%T] '  # Yellow color, current time
 PROMPT+='%{${fg[cyan]}%}%~'       # Cyan color, current directory, from $HOME
-PROMPT+='%{${fg[default]}%}' # Default color, Git status
+PROMPT+='%{${fg[default]}%}$(vcs_info)' # Default color, Git status
 PROMPT+='%{${fg[default]}%} >>> ' # Default color, prompt
 
 # Set the right side of my prompt
 RPROMPT=$'%{${fg[default]}%}[%n' # Default color, current user
-RPROMPT+='@%m]$(vcs_info)' # Current server
+RPROMPT+='@%m]' # Current server
 
 # History {{{1
 
