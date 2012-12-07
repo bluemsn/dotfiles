@@ -363,7 +363,7 @@ call togglebg#map('<F5>')
 " Disable pressing 'F1' for help, and set it equal to Escape
 noremap <F1> <esc>
 
-" New mappins {{{2
+" New mappings {{{2
 
 " Use '<space><space>' to save the file
 " https://github.com/jeffkreeftmeijer/dotfiles/blob/master/home/.vimrc#L49-L50
