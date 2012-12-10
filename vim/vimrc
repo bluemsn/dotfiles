@@ -13,14 +13,15 @@ set modeline               " Allow file specific options
 " http://twitter.com/mbadran/status/111011179907915776
 set clipboard=unnamed
 
-" Reload .vimrc file as soon as it has a change
+" Make sure Vim has autocmd support
 if has('autocmd')
+" Reload .vimrc file as soon as it has a change
 augroup VimReload
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
 	autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
 augroup END
-endif
+endif " if has('autocmd') 
 
 " Runtime stuff {{{1
 
@@ -39,6 +40,7 @@ runtime ftplugin/man.vim
 filetype off
 filetype plugin indent off
 
+" Some bootstrapping, makes sure Vundle exists
 if !isdirectory(expand('~/.vim/bundle/vundle'))
 	!mkdir -p ~/.vim/bundle
 	!git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -56,16 +58,15 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 Bundle 'gmarik/vundle'
 
 " My own bundles
-Bundle 'Greduan/vim_number-toggle'
+Bundle 'Greduan/vim-numbertoggle'
 
 " General
 Bundle 'ervandew/supertab'
-"Bundle 'fholgado/minibufexpl.vim'
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'gmarik/sudo-gui.vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/gist-vim'
-"Bundle 'mattn/zencoding-vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'PotHix/Vimpress'
 Bundle 'Raimondi/delimitMate'
@@ -107,9 +108,11 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'benmills/vimux'
 "Bundle 'godlygeek/tabular'
 "Bundle 'gregsexton/MatchTag'
+"Bundle 'jistr/vim-nerdtree-tabs'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'Lokaltog/powerline'
+"Bundle 'mattn/zencoding-vim'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'Shougo/neocomplcache'
@@ -159,6 +162,7 @@ let g:Powerline_symbols='fancy'
 
 " }}}2
 
+" The end of the Vundle bootstrapping
 if exists("s:bootstrap") && s:bootstrap
 	unlet s:bootstrap
 	:BundleInstall!
@@ -546,6 +550,7 @@ setglobal fileencoding=utf-8
 
 " File type specific stuff {{{1
 
+" Make sure Vim has autocmd support
 if has('autocmd')
 " Set to use manual folds in Vim files
 augroup filetype_vim
@@ -563,7 +568,7 @@ augroup filetype_text
 	autocmd!
 	autocmd FileType text setlocal formatprg=par\ w79r
 augroup END
-endif
+endif " if has('autocmd')
 
 " Functions {{{1
 
@@ -722,6 +727,8 @@ nnoremap <leader>tw :call ListWrapToggle()<CR>
 
 function! Recording(quality)
 	if(a:quality == 'sd')
+		set guifont=Monaco:h11
+
 		set columns=89
 		set lines=28
 
@@ -729,6 +736,8 @@ function! Recording(quality)
 			set background=light
 		endif
 	elseif(a:quality == 'hd')
+		set guifont=Monaco:h11
+
 		set columns=180
 		set lines=44
 

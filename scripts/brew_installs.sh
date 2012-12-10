@@ -19,7 +19,7 @@ else
 	brew install ack
 	brew install par
 	brew install hub
-	brew install tmux
+	brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 	brew install reattach-to-user-namespace
 	brew install bash
 	echo 'Done, I installed your stuff, you can thank me later.'
