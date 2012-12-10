@@ -21,7 +21,7 @@ if [ $script_dir == '.' ]; then
 	script_dir="$current_dir"
 fi
 
-dotfiles_dir=$script_dir/..
+dotfiles_dir="$script_dir/.."
 
 read -p 'Do you wish to delete the old symlinks first? [y/n] ' prompt1
 
