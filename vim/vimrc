@@ -15,13 +15,13 @@ set clipboard=unnamed
 
 " Make sure Vim has autocmd support
 if has('autocmd')
-" Reload .vimrc file as soon as it has a change
-augroup VimReload
-	autocmd!
-	autocmd BufWritePost $MYVIMRC source $MYVIMRC
-	autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
-augroup END
-endif " if has('autocmd') 
+	" Reload .vimrc and .gvimrc files as soon as they have a change
+	augroup VimReload
+		autocmd!
+		autocmd BufWritePost $MYVIMRC source $MYVIMRC
+		autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
+	augroup END
+endif
 
 " Runtime stuff {{{1
 
@@ -40,13 +40,6 @@ runtime ftplugin/man.vim
 filetype off
 filetype plugin indent off
 
-" Some bootstrapping, makes sure Vundle exists
-if !isdirectory(expand('~/.vim/bundle/vundle'))
-	!mkdir -p ~/.vim/bundle
-	!git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-	let s:bootstrap=1
-endif
-
 set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
 call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 
@@ -61,12 +54,12 @@ Bundle 'gmarik/vundle'
 Bundle 'Greduan/vim-numbertoggle'
 
 " General
-Bundle 'ervandew/supertab'
-Bundle 'techlivezheng/vim-plugin-minibufexpl'
+"Bundle 'ervandew/supertab'
+"Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'gmarik/sudo-gui.vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'mattn/gist-vim'
+"Bundle 'mattn/gist-vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'PotHix/Vimpress'
 Bundle 'Raimondi/delimitMate'
@@ -114,6 +107,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'mattn/zencoding-vim'
 "Bundle 'mileszs/ack.vim'
+"Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'Shougo/neocomplcache'
 "Bundle 'SirVer/ultisnips'
@@ -162,12 +156,6 @@ let g:Powerline_symbols='fancy'
 
 " }}}2
 
-" The end of the Vundle bootstrapping
-if exists("s:bootstrap") && s:bootstrap
-	unlet s:bootstrap
-	:BundleInstall!
-endif
-
 " Set the filetype stuff to on
 filetype on
 filetype plugin indent on
@@ -204,18 +192,18 @@ set backspace=indent,eol,start " Backspace over everything in insert mode
 set smartindent   " Do smart indenting when starting a new line
 set autoindent    " Copy indent from current line, over to the new line
 set fo=vt         " Set the format options ('formatoptions')
+set nojoinspaces  " :h joinspaces
 
 " Set the tab width
-let g:tabwidth=4
-exec 'set tabstop='     . g:tabwidth 
-exec 'set shiftwidth='  . g:tabwidth
-exec 'set softtabstop=' . g:tabwidth
+let s:tabwidth=4
+exec 'set tabstop='     . s:tabwidth 
+exec 'set shiftwidth='  . s:tabwidth
+exec 'set softtabstop=' . s:tabwidth
 
 " Commands options {{{1
 
 set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
                     " word instead of just deleting and replacing the text
-set nojoinspaces    " :h joinspaces
 
 " Command line options {{{1
 
@@ -224,21 +212,24 @@ set shellslash      " Set to use forward slash, in case you're in Windows
 set timeout         " Do time out on mappings and others
 set timeoutlen=1000 " Set the timeout lenght in milliseconds
 set showmode        " Always show the current mode
+set showcmd         " Show (partial) command in the last line of screen
 set report=4        " Threshold for reporting number of lines changed
 
 " History {{{1
 
-set history=1000 " Keep only 100 entries in the command history
+set history=1000 " Keep {num} entries in the command history
 set nobackup     " Disable backup files
 set noswapfile   " Don't use a swap file in current buffer
 set nowb         " Don't write backup before saving, even if you delete it later
 
 " Undo {{{2
 
-set undofile                          " Enable persistent undo
-set undodir=~/tmp/vim/undo            " Set persistent undo dir
-if !isdirectory(expand(&undodir))     " Check if undo dir doesn't exist
-    call mkdir(expand(&undodir), "p") " Create dir
+set undofile " Enable persistent undo
+
+" Set persistent undo directory
+set undodir=~/tmp/vim/undo
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), 'p')
 endif
 
 " }}}2
@@ -249,7 +240,7 @@ set foldenable        " Make sure folding is enabled
 set foldmethod=marker " Use manual markers for folds
 set foldlevelstart=0  " Always close folds when switching buffers
 
-" These commands open can open folds
+" These commands open, or can open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " Keymappings stuff {{{1
@@ -264,8 +255,8 @@ let g:mapleader=','
 let maplocalLeader = '\\'
 
 " Map CTRL-E to do what ',' used to do
-nnoremap <c-e> ,
-vnoremap <c-e> ,
+nnoremap <C-e> ,
+vnoremap <C-e> ,
 
 " .vimrc stuff {{{2
 
@@ -278,10 +269,10 @@ nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
 " Arrow keys and 'hjkl' keys {{{2
 
 " Completely disable the use of the arrow keys in command and visual modes
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
+noremap <up> <NOP>
+noremap <down> <NOP>
+noremap <left> <NOP>
+noremap <right> <NOP>
 
 " Fix moving line by line in the paragraph, when soft wrap is on
 nnoremap j gj
@@ -290,10 +281,10 @@ vnoremap j gj
 vnoremap k gk
 
 " Smart way to move between windows, uses 'Ctrl+hjkl' instead of 'Ctrl+w+hjkl'
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " Leader key mappings {{{2
 
@@ -318,6 +309,9 @@ noremap L g_
 
 " Call Preserve() and delete any trailing white space in buffer
 nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+
+" Make window controls easy
+nnoremap <leader>w <C-w>
 
 " Ctrl mappings {{{2
 
@@ -346,13 +340,13 @@ nnoremap gV `[v`]
 
 " Bubble single lines
 " http://vimcasts.org/episodes/bubbling-text/
-nmap <s-up> [e
-nmap <s-down> ]e
+nmap <S-up> [e
+nmap <S-down> ]e
 
 " Bubble multiple lines
 " http://vimcasts.org/episodes/bubbling-text/
-vmap <s-up> [egv
-vmap <s-down> ]egv
+vmap <S-up> [egv
+vmap <S-down> ]egv
 
 " Fix the '&' command in normal and visual modes
 " https://github.com/nelstrom/dotfiles/blob/master/vimrc#L99-L101
@@ -377,10 +371,7 @@ nnoremap <space><space> :w<CR>
 
 " Abbreviations {{{1
 
-" Set abbreviations for all my emails
-iabbrev el@@ eduanlavaque@gmail.com
-iabbrev es@@ eduan@snapsimpletech.com
-iabbrev ew@@ eduan@websharks-inc.com
+" Still gotta put stuff here
 
 " UI related {{{1
 
@@ -400,7 +391,7 @@ set linespace=0    " No extra spaces between rows
 
 " NOTICE!
 " Line numbers and relative line numbers are controlled by this bundle:
-" https://github.com/Greduan/vim_number-toggle
+" https://github.com/jeffkreeftmeijer/vim-numbertoggle
 
 " Status line {{{2
 
@@ -421,7 +412,7 @@ set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable use of mouse
 
-augroup cline
+augroup cursorline
 	autocmd!
 
 	" Only show 'cursorline' in the current window and in normal mode
@@ -444,8 +435,18 @@ set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
 set guioptions=acirbhv       " Set the GUI options the way I like them
 set winminheight=0           " Minimum window height (split window)
 
-au VimResized * :wincmd =    " Resize split windows when the window is resized
-au FocusLost * :wa           " Save all buffers when it loses focus
+" Make sure Vim has autocmd support
+if has('autocmd')
+	au VimResized * :wincmd =    " Resize split windows when the window is resized
+
+	" Save all buffers when Vim loses focus
+	augroup saveall
+		autocmd!
+
+		au FocusLost * :wa
+		au WinLeave * :wa
+	augroup End
+endif
 
 " Syntax highlighting {{{2
 
@@ -455,7 +456,7 @@ if &t_Co > 2 || has('gui_running')
 	syntax on
 endif
 
-set synmaxcol=2048 " Max chars to highlight in a single line
+set synmaxcol=1024 " Max chars to highlight in a single, long line
 
 " Solarized settings {{{3
 
@@ -474,7 +475,7 @@ let g:solarized_visibility='normal'
 " Show trailing white spaces
 let g:solarized_hitrail=1
 
-" Disable the Solarized menu
+" Disable the Solarized menu, when using GUI
 let g:solarized_menu=0
 
 " }}}3
@@ -511,7 +512,7 @@ if has('gui_running') "{{{2
 	if has('gui_macvim')
 		set fuoptions=maxvert,maxhorz " Full screen means FULL screen
 	else
-		" Other GUIs like, Gvim go here
+		" Other GUIs, like Gvim, go here
 	endif
 else
 	" Terminal only stuff!
