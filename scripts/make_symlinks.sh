@@ -40,6 +40,9 @@ if [ $kernel == 'Darwin' ]; then
 	ln -s -v $dotfiles_dir/vim/vimrc ~/.vimrc
 	ln -s -v $dotfiels_dir/vim/gvimrc ~/.gvimrc
 	echo "Done at [$time]...\n"
+
+	# Making symlinks to Tmux files, add yours as you need
+	ln -s -v $dotfiles_dir/vim/tmux.conf ~/.tmux.conf
 	
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'
@@ -61,6 +64,9 @@ if [ $kernel == 'Linux' ]; then
 	ln -s -v $dotfiles_dir/vim/vimrc /home/$user/.vimrc
 	ln -s -v $dotfiles_dir/vim/gvimrc /home/$user/.gvimrc
 	echo "Done at [$time]...\n"
+
+	# Making symlinks to Tmux files, add yours as you need
+	ln -s -v $dotfiles_dir/vim/tmux.conf /home/$user/.tmux.conf
 
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'

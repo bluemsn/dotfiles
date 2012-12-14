@@ -16,12 +16,13 @@ if test ! $(which brew); then
 	echo 'Follow the instructions 'brew doctor' gives you. Then run this file again.'
 	brew doctor
 else
+	# Install little utilities
 	brew install ack
 	brew install par
 	brew install hub
 
-
 	# Install tmux
+	brew install tmux
 	brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 	brew install reattach-to-user-namespace
 

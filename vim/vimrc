@@ -57,7 +57,7 @@ Bundle 'Greduan/vim-numbertoggle'
 "Bundle 'ervandew/supertab'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'gmarik/sudo-gui.vim'
-Bundle 'godlygeek/csapprox'
+"Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mattn/gist-vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
@@ -68,6 +68,7 @@ Bundle 'SearchComplete'
 Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
@@ -116,7 +117,6 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'sjl/gundo.vim'
 "Bundle 'tpope/vim-abolish'
 "Bundle 'tpope/vim-commentary'
-"Bundle 'tpope/vim-fugitive'
 "Bundle 'tpope/vim-pastie'
 "Bundle 'tsaleh/vim-align'
 "Bundle 'xolox/vim-shell'
@@ -553,22 +553,29 @@ setglobal fileencoding=utf-8
 
 " Make sure Vim has autocmd support
 if has('autocmd')
-" Set to use manual folds in Vim files
-augroup filetype_vim
-	autocmd!
-	autocmd FileType vim setlocal foldmethod=marker
-augroup END
+	" Set to use manual folds in Vim files
+	augroup filetype_vim
+		autocmd!
+		autocmd FileType vim setlocal foldmethod=marker
+	augroup END
 
-" Python specific stuff
-augroup filetype_python
-	autocmd!
-	autocmd FileType python setlocal expandtab
-augroup END
+	" Python specific stuff
+	augroup filetype_python
+		autocmd!
+		autocmd FileType python setlocal expandtab
+	augroup END
 
-augroup filetype_text
-	autocmd!
-	autocmd FileType text setlocal formatprg=par\ w79r
-augroup END
+	augroup filetype_text
+		autocmd!
+		autocmd FileType text setlocal formatprg=par\ w79r
+	augroup END
+
+	" Some settings for fugitive.vim by Tim Pope
+	augroup fugitive
+		autocmd!
+		" Delete object buffers when I leave them
+		autocmd BufReadPost fugitive://* set bufhidden=delete
+	augroup END
 endif " if has('autocmd')
 
 " Functions {{{1
