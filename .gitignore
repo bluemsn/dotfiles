@@ -30,3 +30,4 @@ vim/custom/configs.vim
 ###############
 
 vim/bundle/
+vim/undodir/

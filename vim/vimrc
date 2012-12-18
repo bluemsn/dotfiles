@@ -110,6 +110,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/syntastic'
 "Bundle 'Shougo/neocomplcache'
 "Bundle 'SirVer/ultisnips'
 "Bundle 'sjl/clam.vim'
@@ -220,14 +221,14 @@ set report=4        " Threshold for reporting number of lines changed
 set history=1000 " Keep {num} entries in the command history
 set nobackup     " Disable backup files
 set noswapfile   " Don't use a swap file in current buffer
-set nowb         " Don't write backup before saving, even if you delete it later
+set nowb         " Don't write backup before saving
 
 " Undo {{{2
 
 set undofile " Enable persistent undo
 
 " Set persistent undo directory
-set undodir=~/tmp/vim/undo
+set undodir=~/.vim/undodir
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), 'p')
 endif
@@ -352,6 +353,10 @@ vmap <S-down> ]egv
 " https://github.com/nelstrom/dotfiles/blob/master/vimrc#L99-L101
 nnoremap & :&&<enter>
 xnoremap & :&&<enter>
+
+" Make Vim always paste following the indentation for the current block
+" http://stackoverflow.com/a/164866/1622940
+nnoremap p ]p
 
 " Function keys mappings {{{2
 
