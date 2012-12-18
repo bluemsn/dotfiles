@@ -4,7 +4,9 @@ More detailed explanatory text. Wrap it to about 72 chars. You can of
 course use multiple lines, as long as no line is longer than 72 chars.
 
 * For something you fixed, like a bug a glitch or something
-+ For something new you added, be it a class, function, or whole feature
++ For something new you added, be it a class, function, or a whole
+  feature, if you need to, you can use multiple lines, lining it up as
+  I'm showing right here.
 ~ If you changed something, be it text, a function, etc.
 - If you removed something
 +~ If you improved something in some or any way

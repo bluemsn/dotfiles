@@ -460,11 +460,13 @@ set synmaxcol=1024 " Max chars to highlight in a single, long line
 
 " Solarized settings {{{3
 
-" Make Solarized use 256 colors
-let g:solarized_termcolors=256
+if !has('gui_running')
+	" Make Solarized use 256 colors
+	let g:solarized_termcolors=16
 
-" Compatibility for Terminal
-let g:solarized_termtrans=1
+	" Compatibility for Terminal
+	let g:solarized_termtrans=1
+endif
 
 " Leave this at normal at all times
 let g:solarized_contrast='normal'
