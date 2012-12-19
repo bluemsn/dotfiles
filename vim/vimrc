@@ -25,13 +25,8 @@ endif
 
 " Runtime stuff {{{1
 
-" The % key will switch between opening and closing brackets. By sourcing
-" matchit.vim — a standard file in Vim installations for years — the key can
-" also switch among e.g. if/elsif/else/end, between opening and closing XML
-" tags, and more.
-runtime macros/matchit.vim
-
-" Enable file type plugins
+" Enable use of the :Man command, for man pages, explained here:
+" http://crumbtrail.chesmart.in/post/5024677985/man-vim-dude
 runtime ftplugin/man.vim
 
 " Vundle & other extensions (syntaxes, filetype's etc.) {{{1
@@ -68,6 +63,7 @@ Bundle 'SearchComplete'
 Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
+Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'

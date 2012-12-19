@@ -31,6 +31,11 @@ if [ $kernel == 'Darwin' ]; then
 	rm -v ~/.gvimrc
 	echo "Done at [$time]...\n"
 
+	# Remove Tmux symlinks
+	echo "Deleting Tmux symlinks..."
+	ln -s -v $dotfiles_dir/vim/tmux.conf ~/.tmux.conf
+	echo "Done at  [$time]...\n"
+
 	# Remove Zsh symlinks
 	echo 'Deleting Zsh symlinks...'
 	rm -v ~/.zsh
@@ -51,6 +56,11 @@ if [ $kernel == 'Linux' ]; then
 	rm -v /home/$user/.vimrc
 	rm -v /home/$user/.gvimrc
 	echo "Done at [$time]...\n"
+
+	# Remove Tmux symlinks
+	echo "Deleting Tmux symlinks..."
+	rm -v /home/$user/.tmux.conf
+	echo "Done at  [$time]...\n"
 
 	# Remove Zsh symlinks
 	echo 'Deleting Zsh symlinks...'

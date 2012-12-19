@@ -31,18 +31,20 @@ case "$prompt1" in
 	* ) echo "Invalid answer! Only answer 'y' or 'n'; please run this script again."; exit $?;;
 esac
 
-echo "Started making new symlinks, at [$time]..."
+echo "Started making new symlinks, at [$time]...\n"
 
 if [ $kernel == 'Darwin' ]; then
 	# Making symlinks to Vim files, add yours as you need
-	echo "\nMaking symlinks to Vim files"
+	echo "Making symlinks to Vim files"
 	ln -s -v $dotfiles_dir/vim ~/.vim
 	ln -s -v $dotfiles_dir/vim/vimrc ~/.vimrc
 	ln -s -v $dotfiels_dir/vim/gvimrc ~/.gvimrc
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Tmux files, add yours as you need
+	echo "Making symlinks to Tmux files"
 	ln -s -v $dotfiles_dir/vim/tmux.conf ~/.tmux.conf
+	echo "Done at  [$time]...\n"
 	
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'
@@ -66,7 +68,9 @@ if [ $kernel == 'Linux' ]; then
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Tmux files, add yours as you need
+	echo "Making symlinks to Tmux files"
 	ln -s -v $dotfiles_dir/vim/tmux.conf /home/$user/.tmux.conf
+	echo "Done at  [$time]...\n"
 
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'
