@@ -46,6 +46,7 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 Bundle 'gmarik/vundle'
 
 " My own bundles
+Bundle 'Greduan/vim-colors-solarized'
 Bundle 'Greduan/vim-numbertoggle'
 
 " General
@@ -59,8 +60,8 @@ Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'PotHix/Vimpress'
 Bundle 'Raimondi/delimitMate'
 "Bundle 'scrooloose/nerdtree'
-Bundle 'SearchComplete'
-Bundle 'skammer/vim-css-color'
+"Bundle 'SearchComplete'
+"Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'tsaleh/vim-matchit'
@@ -86,9 +87,7 @@ Bundle 'spf13/PIV'
 Bundle 'HTML-AutoCloseTag'
 
 " Color schemes
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
-Bundle 'nanotech/jellybeans.vim'
 
 " Trying out
 
@@ -96,6 +95,8 @@ Bundle 'nanotech/jellybeans.vim'
 
 "Bundle 'AndrewRadev/sideways.vim'
 "Bundle 'benmills/vimux'
+"Bundle 'bkad/CamelCaseMotion'
+"Bundle 'bsl/obviousmode'
 "Bundle 'godlygeek/tabular'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'jistr/vim-nerdtree-tabs'
@@ -103,6 +104,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'mattn/zencoding-vim'
+"Bundle 'mbbill/VimExplorer'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'scrooloose/nerdcommenter'
@@ -123,6 +125,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'IndexedSearch'
 "Bundle 'restore_view.vim'
 "Bundle 'sessionman.vim'
+"Bundle 'ShowMarks'
 
 " }}}3
 
@@ -305,7 +308,7 @@ noremap H ^
 noremap L g_
 
 " Call Preserve() and delete any trailing white space in buffer
-nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 " Make window controls easy
 nnoremap <leader>w <C-w>
@@ -314,12 +317,12 @@ nnoremap <leader>w <C-w>
 
 " CTRL-A selects all
 " https://github.com/wnodom/wnodom-vim-environment/blob/master/.vimrc#L325
-noremap <C-A> gggH<C-O>G
-inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-A> <C-C>gggH<C-O>G
-onoremap <C-A> <C-C>gggH<C-O>G
-snoremap <C-A> <C-C>gggH<C-O>G
-xnoremap <C-A> <C-C>ggVG
+noremap <C-a> gggH<C-o>G
+inoremap <C-a> <C-o>gg<C-o>gH<C-o>G
+cnoremap <C-a> <C-c>gggH<C-o>G
+onoremap <C-a> <C-c>gggH<C-o>G
+snoremap <C-a> <C-c>gggH<C-o>G
+xnoremap <C-a> <C-c>ggVG
 
 " Re-mappings {{{2
 
@@ -481,10 +484,13 @@ let g:solarized_hitrail=1
 " Disable the Solarized menu, when using GUI
 let g:solarized_menu=0
 
+" Don't use any underline styles
+let g:solarized_underline=0
+
 " }}}3
 
 set background=dark " Use the light/dark version the color scheme
-colorscheme base16-default " Set the color scheme to use
+colorscheme solarized " Set the color scheme to use
 
 if has('gui_running') "{{{2
 	" Fix spell check highlighting
