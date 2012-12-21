@@ -54,7 +54,7 @@ Bundle 'Greduan/vim-numbertoggle'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mattn/gist-vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'PotHix/Vimpress'
@@ -63,6 +63,7 @@ Bundle 'Raimondi/delimitMate'
 "Bundle 'SearchComplete'
 "Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
+Bundle 'skwp/vim-easymotion'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-fugitive'
@@ -99,6 +100,7 @@ Bundle 'chriskempson/base16-vim'
 "Bundle 'bsl/obviousmode'
 "Bundle 'godlygeek/tabular'
 "Bundle 'gregsexton/MatchTag'
+"Bundle 'greyblake/vim-preview'
 "Bundle 'jistr/vim-nerdtree-tabs'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
@@ -123,6 +125,7 @@ Bundle 'chriskempson/base16-vim'
 " vim-scripts repos
 "Bundle 'Conque-Shell'
 "Bundle 'IndexedSearch'
+"Bundle 'netrw.vim'
 "Bundle 'restore_view.vim'
 "Bundle 'sessionman.vim'
 "Bundle 'ShowMarks'
@@ -152,6 +155,11 @@ let g:miniBufExplUseSingleClick=1
 let g:miniBufExplForceSyntaxEnable=1
 " Vim Powerline {{{3
 let g:Powerline_symbols='fancy'
+" numbertoggle {{{3
+let g:numbertoggle_defaultmodeoff='number'
+let g:NumberToggleOff='<leader>tnO'
+let g:NumberToggleTrigger='<leader>tn'
+let g:NumberToggleOn='<leader>tno'
 " }}}3
 
 " }}}2
@@ -249,7 +257,6 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " Set Leader key to ',', instead of '/'
 let mapleader=','
-let g:mapleader=','
 
 " Set my local Leader key to '\'
 let maplocalLeader = '\\'
@@ -430,18 +437,18 @@ augroup END
 
 " Windows/Split-windows {{{2
 
-set fillchars=""             " Don't put window separators between splits
-set autowrite                " When switching buffers save file automatically
-set autoread                 " Auto read files when edited outside Vim
-set tabpagemax=1             " Max tabs to open with the '-p' option
-set showtabline=0            " Don't show the Vim tab line
-set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
-set guioptions=acirbhv       " Set the GUI options the way I like them
-set winminheight=0           " Minimum window height (split window)
+set fillchars='vert:|,fold:-' " Don't put window separators between splits
+set autowrite                 " When switching buffers save file automatically
+set autoread                  " Auto read files when edited outside Vim
+set tabpagemax=1              " Max tabs to open with the '-p' option
+set showtabline=0             " Don't show the Vim tab line
+set switchbuf=useopen,usetab  " Switch to tab/window if buffer is already open
+set guioptions=acirbhv        " Set the GUI options the way I like them
+set winminheight=0            " Minimum window height (split window)
 
 " Make sure Vim has autocmd support
 if has('autocmd')
-	au VimResized * :wincmd =    " Resize split windows when the window is resized
+	au VimResized * :wincmd = " Resize split windows when the window is resized
 
 	" Save all buffers when Vim loses focus
 	augroup saveall
@@ -465,11 +472,12 @@ set synmaxcol=1024 " Max chars to highlight in a single, long line
 " Solarized settings {{{3
 
 if !has('gui_running')
+	" Compatibility for Terminal
+	let g:solarized_termtrans=1
+
 	" Make Solarized use 256 colors
 	let g:solarized_termcolors=16
 
-	" Compatibility for Terminal
-	let g:solarized_termtrans=1
 endif
 
 " Leave this at normal at all times
@@ -549,7 +557,7 @@ set lazyredraw " Don't update the display while executing macros
 " File/Buffer encryption, encoding etc. {{{1
 
 set key=             " Disable encryption file and buffer encryption 
-set nobomb           " Don't use BOM's (Byte Order Marks)
+set nobomb           " Don't use BOMs (Byte Order Marks)
 set ffs=unix,dos,mac " Set filetype to Unix, Windows and then Mac (Power PC)
 
 " Set the buffer encoding to be UTF-8
@@ -577,12 +585,12 @@ if has('autocmd')
 	augroup filetype_text
 		autocmd!
 		autocmd FileType text setlocal formatprg=par\ w79r
+		autocmd FileType gitcommit setlocal formatprg=par\ w72r
 	augroup END
 
 	" Some settings for fugitive.vim by Tim Pope
 	augroup fugitive
 		autocmd!
-		" Delete object buffers when I leave them
 		autocmd BufReadPost fugitive://* set bufhidden=delete
 	augroup END
 endif " if has('autocmd')
@@ -620,38 +628,6 @@ function! s:NumberTextObject(whole)
 	endif
 endfunction
 
-" Motion for next object {{{2
-
-" Motion for "next/last object". For example, "din(" would go to the next "()" pair
-" and delete its contents.
-"
-" I got this one from here:
-" https://gist.github.com/1171642
-
-onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<CR>
-xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<CR>
-onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<CR>
-xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<CR>
-
-onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<CR>
-xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<CR>
-onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<CR>
-xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<CR>
-
-function! s:NextTextObject(motion, dir)
-	let c = nr2char(getchar())
-
-	if c ==# "b"
-		let c = "("
-	elseif c ==# "B"
-		let c = "{"
-	elseif c ==# "d"
-		let c = "["
-	endif
-
-	exe "normal! ".a:dir.c."v".a:motion.c
-endfunction
-
 " SynStack() {{{2
 
 " This functly allows you to figure out the name of the text object you're on
@@ -668,31 +644,6 @@ function! <SID>SynStack()
 endfunc
 
 nnoremap <C-S-p> :call <SID>SynStack()<CR>
-
-" Shell() {{{2
-
-" This function allows you to run shell commands from within Vim, and open it
-" in a vertical split
-"
-" I got this from here:
-" https://bitbucket.org/sjl/dotfiles/src/b5e60ade957d/vim/.vimrc?at=default#cl-677
-
- function! s:ExecuteInShell(command)
-	let command = join(map(split(a:command), 'expand(v:val)'))
-	let winnr = bufwinnr('^' . command . '$')
-	silent! execute  winnr < 0 ? 'botright vnew ' . fnameEscape(command) : winnr . 'wincmd w'
-	setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
-	echo 'Execute ' . command . '...'
-	silent! execute 'silent %!'. command
-	silent! redraw
-	silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-	silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
-	silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
-	silent! execute 'AnsiEsc'
-	echo 'Shell command ' . command . ' executed.'
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-nnoremap <leader>! :Shell 
 
 " Preserve() {{{2
 
@@ -784,11 +735,21 @@ nnoremap <leader>tr :call Recording('off')<CR>
 
 " Tips {{{1
 
-" To show all your commands mapped to your Leader key
-" :map <leader>
-
 " To show all help topics containing 'help'
 " :h word<CTRL-d>
+
+" To open a certain URL in Vim
+" $ vim http://eduantech.com
+
+" To output the current file in HTML
+" :%TOhtml
+
+" Useful mappings:
+"
+" ZZ - save and close current file
+" zz - makes current line the center of editor
+" cc - cuts current line and puts you in insert mode
+" S  - cuts current line and puts you in insert mode
 
 " }}}1
 
