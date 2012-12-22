@@ -309,7 +309,7 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<cCR>
 " http://twitter.com/dotvimrc/status/129979569045381120
 nnoremap <leader>z zMzvzz
 
-" Use capital H/L to first/last non-space character
+" Use capital H/L to first/last non-whitespace character
 " http://twitter.com/dotvimrc/status/132489424494792704
 noremap H ^
 noremap L g_
@@ -437,7 +437,7 @@ augroup END
 
 " Windows/Split-windows {{{2
 
-set fillchars='vert:|,fold:-' " Don't put window separators between splits
+set fillchars="vert:|,fold:-" " Don't put window separators between splits
 set autowrite                 " When switching buffers save file automatically
 set autoread                  " Auto read files when edited outside Vim
 set tabpagemax=1              " Max tabs to open with the '-p' option
