@@ -8,8 +8,9 @@
 # Licensed under the MIT license (htpp://eduan.mit-license.org/)
 # =============================================================================
 
-kernel=`uname -s`        # Current Kernel name
-time=`date +%H:%M`       # Output current time
+kernel=`uname -s`  # Current Kernel name
+time=`date +%H:%M` # Output current time
+bootstrap=1        # Now scripts know they've been called by bootstrap file
 
 echo "I'm gonna do some stuff for you, OK? I started doing stuff at [$time]..."
 
@@ -27,4 +28,4 @@ source ./scripts/brew_installs.sh
 # Setup Vim for first use
 source ./scripts/setup_vim.sh
 
-echo "All right! I finished! It's [$time] right now."
+echo "All right! I finished! It's [$time] right now.\n"

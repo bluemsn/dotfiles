@@ -13,8 +13,8 @@ if test ! $(which brew); then
 	echo 'You need to install Homebrew!'
 	echo 'I will install it for you now...'
 	ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-	echo 'Follow the instructions 'brew doctor' gives you. Then run this file again.'
 	brew doctor
+	echo 'Follow the instructions 'brew doctor' gives you. Then run this file again.'
 else
 	# Install little utilities
 	brew install ack
@@ -33,5 +33,6 @@ else
 	# Install/update Vim
 	brew install macvim
 	ln -s /usr/local/Cellar/macvim/7.3-65/MacVim.app /Applications
+
 	echo 'Done, I installed your stuff, you can thank me later.'
 fi

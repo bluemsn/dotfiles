@@ -9,73 +9,74 @@
 # Licensed under the MIT license (htpp://eduan.mit-license.org/)
 # =============================================================================
 
-# Dock settings:
+if [ `uname -s` != 'Darwin' ]
+	echo "You can't run this script, you're not using a Mac"
+else
+	# Dock settings:
 
-# To have the 2D Dock instead of the fancy one.
-defaults write com.apple.dock no-glass -bool true
+	# To have the 2D Dock instead of the fancy one.
+	defaults write com.apple.dock no-glass -bool true
 
-# Remove the pop-out and pop-in delay for Dock.
-defaults write com.apple.Dock autohide-delay -float 0
+	# Remove the pop-out and pop-in delay for Dock.
+	defaults write com.apple.Dock autohide-delay -float 0
 
-# Make hidden applications transparent in Dock.
-defaults write com.apple.Dock showhidden -bool true
-
-
-# Keyboard settings:
-
-# Disable press-and-hold for keys in favor of key repeat. Requires restart.
-defaults write -g ApplePressAndHoldEnabled -bool false
-
-# Set a really fast key repeat.
-defaults write NSGlobalDomain KeyRepeat -int 0
+	# Make hidden applications transparent in Dock.
+	defaults write com.apple.Dock showhidden -bool true
 
 
-# Finder settings:
+	# Keyboard settings:
 
-# Always open everything in Finder's list view. This is important.
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+	# Disable press-and-hold for keys in favor of key repeat. Requires restart.
+	defaults write -g ApplePressAndHoldEnabled -bool false
 
-# Always show all hidden files in Finder.
-defaults write com.apple.Finder AppleShowAllFiles -bool true
-
-# Set the Finder prefs for showing a few different volumes on the Desktop.
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-
-# Always use list mode to show files in Finder.
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+	# Set a really fast key repeat.
+	defaults write NSGlobalDomain KeyRepeat -int 0
 
 
-# Spotlight settings:
+	# Finder settings:
 
-# Disable Spotlight indexing.
-sudo mdutil -a -i off
+	# Always open everything in Finder's list view. This is important.
+	defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
-# Hide the Spotlight icon, since we're not gonna use it.
-sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-killall -HUP SystemUIServer
+	# Always show all hidden files in Finder.
+	defaults write com.apple.Finder AppleShowAllFiles -bool true
 
-
-# Random settings:
-
-# Show system info at login screen.
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
-# Don't write .DS_Store files, hallelujah!
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-
-# Show the ~/Library folder.
-chflags nohidden ~/Library/
-
-# Disable warning for changing file type through the name.
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+	# Set the Finder prefs for showing a few different volumes on the Desktop.
+	defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+	defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 
-# Finishing off...
+	# Spotlight settings:
 
-# Restart all the necessary processes.
-killall Finder
-killall Dock
+	# Disable Spotlight indexing.
+	sudo mdutil -a -i off
 
-# Show done message.
-echo 'Done... Expect some serious, momentary lag. Mostly from Finder and maybe the Terminal app.'
+	# Hide the Spotlight icon, since we're not gonna use it.
+	sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
+
+	# Random settings:
+
+	# Show system info at login screen.
+	sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+	# Don't write .DS_Store files, hallelujah!
+	defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+	# Show the ~/Library folder.
+	chflags nohidden ~/Library/
+
+	# Disable warning for changing file type through the name.
+	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+
+	# Finishing off...
+
+	# Restart all the necessary processes.
+	killall Finder
+	killall Dock
+	killall -HUP SystemUIServer
+
+	# Show done message.
+	echo 'Done... Expect some serious, momentary lag. Mostly from Finder and maybe the Terminal app.'
+fi

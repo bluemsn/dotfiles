@@ -21,6 +21,7 @@ if [ $script_dir == '.' ]; then
 	script_dir="$current_dir"
 fi
 
+# Recognize the dotfiles directory
 dotfiles_dir="$script_dir/.."
 
 read -p 'Do you wish to delete the old symlinks first? [y/n] ' prompt1
@@ -45,7 +46,7 @@ if [ $kernel == 'Darwin' ]; then
 	echo "Making symlinks to Tmux files"
 	ln -s -v $dotfiles_dir/vim/tmux.conf ~/.tmux.conf
 	echo "Done at  [$time]...\n"
-	
+
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'
 	ln -s -v $dotfiles_dir/zsh ~/.zsh

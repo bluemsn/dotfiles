@@ -21,6 +21,9 @@ if [ $script_dir == '.' ]; then
 	script_dir="$current_dir"
 fi
 
+# Recognize the dotfiles directory
+dotfiles_dir="$script_dir/.."
+
 echo "Started deleting old symlinks, at [$time]...\n"
 
 if [ $kernel == 'Darwin' ]; then
