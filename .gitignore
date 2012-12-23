@@ -8,7 +8,6 @@
 
 # For Mac OS X files.
 .fseventsd
-.DS_Store
 .DS_Store?
 .Trashes
 ._*
@@ -19,15 +18,10 @@ ehthumbs.db
 Thumbs.db
 
 
-# Files with sensitive info.
-############################
+# Vim stuff.
+############
 
 vim/bundle/Vimpress/custom/configs.vim
 vim/custom/configs.vim
-
-
-# Random stuff.
-###############
-
 vim/bundle/
 vim/undodir/

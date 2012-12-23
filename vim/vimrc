@@ -7,7 +7,7 @@ set nocompatible
 set hidden                 " Keep changed buffers without requiring saves
 set ttyfast                " Indicates a faster terminal connection
 set viewoptions=unix,slash " Better Unix/Windows compatibility
-set modeline               " Allow file specific options
+set modeline               " Allow file specific Vim settings
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
@@ -155,6 +155,7 @@ let g:miniBufExplUseSingleClick=1
 let g:miniBufExplForceSyntaxEnable=1
 " Vim Powerline {{{3
 let g:Powerline_symbols='fancy'
+let g:Powerline_stl_path_style='short'
 " numbertoggle {{{3
 let g:numbertoggle_defaultmodeoff='number'
 let g:NumberToggleOff='<leader>tnO'
@@ -164,7 +165,7 @@ let g:NumberToggleOn='<leader>tno'
 
 " }}}2
 
-" Set the filetype stuff to on
+" Set the filetype stuff to on, no longer required off
 filetype on
 filetype plugin indent on
 
@@ -232,12 +233,15 @@ set nowb         " Don't write backup before saving
 
 " Undo {{{2
 
-set undofile " Enable persistent undo
+if has('persistent_undo')
+	set undofile " Enable persistent undo
 
-" Set persistent undo directory
-set undodir=~/.vim/undodir
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), 'p')
+	" Set persistent undo directory
+	set undodir=~/.vim/undodir
+	" Create undo directory if it doesn't exist
+	if !isdirectory(expand(&undodir))
+		call mkdir(expand(&undodir), 'p')
+	endif
 endif
 
 " }}}2
@@ -498,7 +502,7 @@ let g:solarized_underline=0
 " }}}3
 
 set background=dark " Use the light/dark version the color scheme
-colorscheme solarized " Set the color scheme to use
+silent! colorscheme solarized " Set the color scheme to use
 
 if has('gui_running') "{{{2
 	" Fix spell check highlighting
@@ -746,10 +750,9 @@ nnoremap <leader>tr :call Recording('off')<CR>
 
 " Useful mappings:
 "
-" ZZ - save and close current file
-" zz - makes current line the center of editor
-" cc - cuts current line and puts you in insert mode
-" S  - cuts current line and puts you in insert mode
+" ZZ     - save and close current file
+" zz     - makes current line the center of editor
+" cc, S  - cuts current line and puts you in insert mode
 
 " }}}1
 
