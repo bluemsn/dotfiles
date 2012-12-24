@@ -122,9 +122,7 @@ endif
 if (&ff != '')
 	let &stl.='%{&ff!=""?&ff.",":""}'
 endif
-if (exists('*FileSize'))
-	let &stl.='%{FileSize()}'
-endif
+let &stl.='%{FileSize()}' " Output buffer's file size
 let &stl.=']'             " Closing square bracket for file info
 if exists('*GitBranchInfoString')        " If GitBranchInfo exists
 	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
