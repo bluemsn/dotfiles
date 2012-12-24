@@ -94,14 +94,6 @@ function! FileSize() "{{{
 	endif
 endfunction "}}}
 
-" Output current file's info like size format encoding etc.
-function! FileInfo() "{{{
-	let output=''
-
-
-	return output
-endfunc "}}}
-
 " Statusline {{{
 let &stl=''        " Clear statusline for when vimrc is loaded
 let &stl.='[%{currentmode[mode()]}]'
@@ -127,8 +119,8 @@ endif
 if (&fenc != '' || &enc != '')
 	let &stl.='%{&fenc!=""?&fenc.",":&enc.","}'
 endif
-if (&ff != 'unix')
-	let &stl.='%{&ff=="unix"?"":&ff.","}'
+if (&ff != '')
+	let &stl.='%{&ff!=""?&ff.",":""}'
 endif
 if (exists('*FileSize'))
 	let &stl.='%{FileSize()}'
