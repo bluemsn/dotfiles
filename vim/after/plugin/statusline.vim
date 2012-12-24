@@ -1,27 +1,12 @@
 if has('statusline')
-" Find out current buffer's size and output it.
-" https://github.com/blueyed/dotfiles/blob/master/vimrc#L384
-function! FileSize() "{{{
-	let bytes = getfsize(expand('%:p'))
-	if (bytes >= 1024)
-		let kbytes = bytes / 1024
-	endif
-	if (exists('kbytes') && kbytes >= 1000)
-		let mbytes = kbytes / 1000
-	endif
 
-	if bytes <= 0
-		return 'null'
-	endif
+" Output the current mode.
+function! CurrentMode() "{{{
+	let mode=mode()
 
-	if (exists('mbytes'))
-		return mbytes . 'MB'
-	elseif (exists('kbytes'))
-		return kbytes . 'KB'
-	else
-		return bytes . 'B'
-	endif
-endfunction "}}}
+	let currentmode={'n': 'Normal', 'no': 'N·Operator Pending', 'v': 'Visual', 'V': 'V·Line', '': 'V·Block', 's': 'Select', 'S': 'S·Line', '': 'S·Block', 'i': 'Insert', 'R': 'Replace', 'Rv': 'V·Replace', 'c': 'Command', 'cv': 'Vim Ex', 'ce': 'Ex', 'r': 'Prompt', 'rm': 'More', 'r?': 'Confirm', '!': 'Shell',}
+	return currentmode[mode]
+endfunc "}}}
 
 " Shorten a given filename by truncating path segments.
 " https://github.com/blueyed/dotfiles/blob/master/vimrc#L396
@@ -72,72 +57,54 @@ function! ShortenFilename(bufname, maxlen) "{{{
 	return r
 endfunction "}}}
 
-" Output the current mode.
-function! CurrentMode() "{{{
-	let mode=mode()
-
-	if (mode ==# 'v')
-		let mode='Visual'
-	elseif (mode ==# 'V')
-		let mode='V-Line'
-	elseif (mode ==# '^V')
-		let mode='V-Block'
-	elseif (mode ==# 's')
-		let mode='Select'
-	elseif (mode ==# 'S')
-		let mode='S-Line'
-	elseif (mode ==# '^S')
-		let mode='S-Block'
-	elseif (mode ==# 'i')
-		let mode='Insert'
-	elseif (mode ==# 'R')
-		let mode='Replace'
-	elseif (mode ==# 'Rv')
-		let mode='V-Replace'
-	elseif (mode ==# 'c')
-		let mode='Command'
-	elseif (mode ==# 'cv')
-		let mode='Vim Ex'
-	elseif (mode ==# 'ce')
-		let mode='Ex'
-	elseif (mode ==# 'r')
-		let mode='Prompt'
-	elseif (mode ==# 'rm')
-		let mode='More'
-	elseif (mode ==# 'r?')
-		let mode='Confirm'
-	elseif (mode ==# '!')
-		let mode='Shell'
-	else
-		let mode='Normal'
+" Find out current buffer's size and output it.
+" https://github.com/blueyed/dotfiles/blob/master/vimrc#L384
+function! FileSize() "{{{
+	let bytes = getfsize(expand('%:p'))
+	if (bytes >= 1024)
+		let kbytes = bytes / 1024
+	endif
+	if (exists('kbytes') && kbytes >= 1000)
+		let mbytes = kbytes / 1000
 	endif
 
-	return mode
-endfunc "}}}
+	if bytes <= 0
+		return 'null'
+	endif
+
+	if (exists('mbytes'))
+		return mbytes . 'MB'
+	elseif (exists('kbytes'))
+		return kbytes . 'KB'
+	else
+		return bytes . 'B'
+	endif
+endfunction "}}}
 
 " Output current file's info like size format encoding etc.
 function! FileInfo() "{{{
-	let fileinfo_output=''
+	let output=''
 
 	if (&ft != '')
-		let fileinfo_output+='%{&ft!=""?&ft.",":""}'
+		let output+='%{&ft!=""?&ft.",":""}'
 	endif
 
 	if (&fenc != '' || &enc != '')
-		let fileinfo_output+='%{&fenc!=""?&fenc.",":&enc.","}'
+		let output+='%{&fenc!=""?&fenc.",":&enc.","}'
 	endif
 
 	if (&ff != 'unix')
-		let fileinfo_output+='%{&ff=="unix"?"":&ff.","}'
+		let output+='%{&ff=="unix"?"":&ff.","}'
 	endif
 
 	if (exists('*FileSize'))
-		let fileinfo_output+='%{FileSize()}'
+		let output+='%{FileSize()}'
 	endif
 
-	return fileinfo_output
+	return output
 endfunc "}}}
 
+" Statusline {{{
 let &stl=''        " Clear statusline for when vimrc is loaded
 let &stl.='[%{CurrentMode()}]'
 let &stl.=' '      " Separator
@@ -156,9 +123,7 @@ let &stl.='%<'     " Truncate from here on
 let &stl.='%t'     " Current buffer's file name
 let &stl.=' '      " Separator
 let &stl.='['      " Opening square bracket for file info
-if (exists('*FileInfo'))
-	let &stl.='%{FileInfo()}'
-endif
+let &stl.='%{FileInfo()}'
 let &stl.=']'             " Closing square bracket for file info
 if exists('*GitBranchInfoString')        " If GitBranchInfo exists
 	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
@@ -179,6 +144,8 @@ let &stl.='-'      " Separator between '%c' and '%v'
 let &stl.='%v]'    " Current virtual column
 let &stl.=' '      " Separator
 let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
+" }}}
+
 endif
 
 " vim: set nowrap fdm={{{,}}}
