@@ -1,10 +1,25 @@
-if has('statusline')
+"if has('statusline')
 
-" Output the current mode.
-function! CurrentMode() "{{{
-	let currentmode={'n': 'Normal', 'no': 'N·Operator Pending', 'v': 'Visual', 'V': 'V·Line', '': 'V·Block', 's': 'Select', 'S': 'S·Line', '': 'S·Block', 'i': 'Insert', 'R': 'Replace', 'Rv': 'V·Replace', 'c': 'Command', 'cv': 'Vim Ex', 'ce': 'Ex', 'r': 'Prompt', 'rm': 'More', 'r?': 'Confirm', '!': 'Shell',}
-	return currentmode[mode()]
-endfunc "}}}
+" Define all the different modes
+let currentmode={
+	\ 'n'  : 'Normal',
+	\ 'no' : 'N·Operator Pending',
+	\ 'v'  : 'Visual',
+	\ 'V'  : 'V·Line',
+	\ '' : 'V·Block',
+	\ 's'  : 'Select',
+	\ 'S'  : 'S·Line',
+	\ '' : 'S·Block',
+	\ 'i'  : 'Insert',
+	\ 'R'  : 'Replace',
+	\ 'Rv' : 'V·Replace',
+	\ 'c'  : 'Command',
+	\ 'cv' : 'Vim Ex',
+	\ 'ce' : 'Ex',
+	\ 'r'  : 'Prompt',
+	\ 'rm' : 'More',
+	\ 'r?' : 'Confirm',
+	\ '!'  : 'Shell',}
 
 " Shorten a given filename by truncating path segments.
 " https://github.com/blueyed/dotfiles/blob/master/vimrc#L396
@@ -83,28 +98,13 @@ endfunction "}}}
 function! FileInfo() "{{{
 	let output=''
 
-	if (&ft != '')
-		let output+='%{&ft!=""?&ft.",":""}'
-	endif
-
-	if (&fenc != '' || &enc != '')
-		let output+='%{&fenc!=""?&fenc.",":&enc.","}'
-	endif
-
-	if (&ff != 'unix')
-		let output+='%{&ff=="unix"?"":&ff.","}'
-	endif
-
-	if (exists('*FileSize'))
-		let output+='%{FileSize()}'
-	endif
 
 	return output
 endfunc "}}}
 
 " Statusline {{{
 let &stl=''        " Clear statusline for when vimrc is loaded
-let &stl.='[%{CurrentMode()}]'
+let &stl.='[%{currentmode[mode()]}]'
 let &stl.=' '      " Separator
 let &stl.='[%02n]' " Buffer number of current buffer
 let &stl.=' '      " Separator
@@ -121,7 +121,18 @@ let &stl.='%<'     " Truncate from here on
 let &stl.='%t'     " Current buffer's file name
 let &stl.=' '      " Separator
 let &stl.='['      " Opening square bracket for file info
-let &stl.='%!FileInfo()'
+if (&ft != '')
+	let &stl.='%{&ft!=""?&ft.",":""}'
+endif
+if (&fenc != '' || &enc != '')
+	let &stl.='%{&fenc!=""?&fenc.",":&enc.","}'
+endif
+if (&ff != 'unix')
+	let &stl.='%{&ff=="unix"?"":&ff.","}'
+endif
+if (exists('*FileSize'))
+	let &stl.='%{FileSize()}'
+endif
 let &stl.=']'             " Closing square bracket for file info
 if exists('*GitBranchInfoString')        " If GitBranchInfo exists
 	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
@@ -144,6 +155,6 @@ let &stl.=' '      " Separator
 let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
 " }}}
 
-endif
+"endif " if has('statusline')
 
 " vim: set nowrap fdm={{{,}}}
