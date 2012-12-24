@@ -121,7 +121,7 @@ let &stl.='%<'     " Truncate from here on
 let &stl.='%t'     " Current buffer's file name
 let &stl.=' '      " Separator
 let &stl.='['      " Opening square bracket for file info
-let &stl.='%{FileInfo()}'
+let &stl.='%!FileInfo()'
 let &stl.=']'             " Closing square bracket for file info
 if exists('*GitBranchInfoString')        " If GitBranchInfo exists
 	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info

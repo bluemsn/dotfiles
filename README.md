@@ -3,8 +3,10 @@
 In order to obtain my awesome dotfiles you can run the following command in the Mac Terminal application (or your preffered Terminal).
 ```console
 $ cd ~
-$ git clone git://github.com/Greduan/dotfiles.git ~/dotfiles
+$ git clone git://github.com/Greduan/dotfiles.git
 ```
+
+Or the one-liner version: `$ git clone git://github.com/Greduan/dotfiles.git ~/dotfiles`
 
 This command will clone my dotfiles repo and put it in the `dotfiles` repo in your home folder.
 
