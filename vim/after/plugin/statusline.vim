@@ -1,15 +1,25 @@
 if has('statusline')
-" Find out current buffer's size
+" Find out current buffer's size and output it.
 " https://github.com/blueyed/dotfiles/blob/master/vimrc#L384
 function! FileSize() "{{{
 	let bytes = getfsize(expand('%:p'))
-	if bytes <= 0
-		return ''
+	if (bytes >= 1024)
+		let kbytes = bytes / 1024
 	endif
-	if bytes < 1024
-		return bytes . 'B'
+	if (exists('kbytes') && kbytes >= 1000)
+		let mbytes = kbytes / 1000
+	endif
+
+	if bytes <= 0
+		return 'null'
+	endif
+
+	if (exists('mbytes'))
+		return mbytes . 'MB'
+	elseif (exists('kbytes'))
+		return kbytes . 'KB'
 	else
-		return (bytes / 1024) . 'K'
+		return bytes . 'B'
 	endif
 endfunction "}}}
 
@@ -62,8 +72,74 @@ function! ShortenFilename(bufname, maxlen) "{{{
 	return r
 endfunction "}}}
 
+" Output the current mode.
+function! CurrentMode() "{{{
+	let mode=mode()
+
+	if (mode ==# 'v')
+		let mode='Visual'
+	elseif (mode ==# 'V')
+		let mode='V-Line'
+	elseif (mode ==# '^V')
+		let mode='V-Block'
+	elseif (mode ==# 's')
+		let mode='Select'
+	elseif (mode ==# 'S')
+		let mode='S-Line'
+	elseif (mode ==# '^S')
+		let mode='S-Block'
+	elseif (mode ==# 'i')
+		let mode='Insert'
+	elseif (mode ==# 'R')
+		let mode='Replace'
+	elseif (mode ==# 'Rv')
+		let mode='V-Replace'
+	elseif (mode ==# 'c')
+		let mode='Command'
+	elseif (mode ==# 'cv')
+		let mode='Vim Ex'
+	elseif (mode ==# 'ce')
+		let mode='Ex'
+	elseif (mode ==# 'r')
+		let mode='Prompt'
+	elseif (mode ==# 'rm')
+		let mode='More'
+	elseif (mode ==# 'r?')
+		let mode='Confirm'
+	elseif (mode ==# '!')
+		let mode='Shell'
+	else
+		let mode='Normal'
+	endif
+
+	return mode
+endfunc "}}}
+
+" Output current file's info like size format encoding etc.
+function! FileInfo() "{{{
+	let fileinfo_output=''
+
+	if (&ft != '')
+		let fileinfo_output+='%{&ft!=""?&ft.",":""}'
+	endif
+
+	if (&fenc != '' || &enc != '')
+		let fileinfo_output+='%{&fenc!=""?&fenc.",":&enc.","}'
+	endif
+
+	if (&ff != 'unix')
+		let fileinfo_output+='%{&ff=="unix"?"":&ff.","}'
+	endif
+
+	if (exists('*FileSize'))
+		let fileinfo_output+='%{FileSize()}'
+	endif
+
+	return fileinfo_output
+endfunc "}}}
+
 let &stl=''        " Clear statusline for when vimrc is loaded
-let &stl.='[%{mode()}]'
+let &stl.='[%{CurrentMode()}]'
 let &stl.=' '      " Separator
 let &stl.='[%02n]' " Buffer number of current buffer
 let &stl.=' '      " Separator
@@ -80,16 +156,9 @@ let &stl.='%<'     " Truncate from here on
 let &stl.='%t'     " Current buffer's file name
 let &stl.=' '      " Separator
 let &stl.='['      " Opening square bracket for file info
-if (&ft != '')                        " If file has a filetype
-	let &stl.='%{&ft!=""?&ft.",":""}' " Buffer's file type
+if (exists('*FileInfo'))
+	let &stl.='%{FileInfo()}'
 endif
-if (&fenc != '' || &enc != '')                  " If file encoding exists
-	let &stl.='%{&fenc!=""?&fenc.",":&enc.","}' " Buffer's encoding
-endif
-if (&ff != 'unix')                        " If file format is not unix
-	let &stl.='%{&ff=="unix"?"":&ff.","}' " Buffer's file format
-endif
-let &stl.='%{FileSize()}' " Buffer's size (human readable)
 let &stl.=']'             " Closing square bracket for file info
 if exists('*GitBranchInfoString')        " If GitBranchInfo exists
 	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
