@@ -1,3 +1,4 @@
+if has('statusline')
 " Find out current buffer's size
 " https://github.com/blueyed/dotfiles/blob/master/vimrc#L384
 function! FileSize() "{{{
@@ -61,55 +62,54 @@ function! ShortenFilename(bufname, maxlen) "{{{
 	return r
 endfunction "}}}
 
-if has('statusline') "{{{
-	let &stl=''        " Clear statusline for when vimrc is loaded
-	let &stl.='[%{mode()}]'
-	let &stl.=' '      " Separator
-	let &stl.='[%02n]' " Buffer number of current buffer
-	let &stl.=' '      " Separator
-	let &stl.='{'      " Opening curly bracket, for item group
-	let &stl.='%('     " Start of item group
-	let &stl.='%M'     " Show modified status of buffer
-	let &stl.='%R'     " Show if file is read-only: RO
-	let &stl.='%W'     " Show if buffer is a preview item?: PRV
-	let &stl.='%H'     " Show if buffer is a help file: HLP
-	let &stl.='%)'     " End of item group
-	let &stl.='}'      " Closing curly bracket, for item group
-	let &stl.=' '      " Separator
-	let &stl.='%<'     " Truncate from here on
-	let &stl.='%t'     " Current buffer's file name
-	let &stl.=' '      " Separator
-	let &stl.='['      " Opening square bracket for file info
-	if (&ft != '')                        " If file has a filetype
-		let &stl.='%{&ft!=""?&ft.",":""}' " Buffer's file type
-	endif
-	if (&fenc != '' || &enc != '')                  " If file encoding exists
-		let &stl.='%{&fenc!=""?&fenc.",":&enc.","}' " Buffer's encoding
-	endif
-	if (&ff != 'unix')                        " If file format is not unix
-		let &stl.='%{&ff=="unix"?"":&ff.","}' " Buffer's file format
-	endif
-	let &stl.='%{FileSize()}' " Buffer's size (human readable)
-	let &stl.=']'             " Closing square bracket for file info
-	if exists('*GitBranchInfoString')        " If GitBranchInfo exists
-		let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
-	endif
+let &stl=''        " Clear statusline for when vimrc is loaded
+let &stl.='[%{mode()}]'
+let &stl.=' '      " Separator
+let &stl.='[%02n]' " Buffer number of current buffer
+let &stl.=' '      " Separator
+let &stl.='{'      " Opening curly bracket, for item group
+let &stl.='%('     " Start of item group
+let &stl.='%M'     " Show modified status of buffer
+let &stl.='%R'     " Show if file is read-only: RO
+let &stl.='%W'     " Show if buffer is a preview item?: PRV
+let &stl.='%H'     " Show if buffer is a help file: HLP
+let &stl.='%)'     " End of item group
+let &stl.='}'      " Closing curly bracket, for item group
+let &stl.=' '      " Separator
+let &stl.='%<'     " Truncate from here on
+let &stl.='%t'     " Current buffer's file name
+let &stl.=' '      " Separator
+let &stl.='['      " Opening square bracket for file info
+if (&ft != '')                        " If file has a filetype
+	let &stl.='%{&ft!=""?&ft.",":""}' " Buffer's file type
+endif
+if (&fenc != '' || &enc != '')                  " If file encoding exists
+	let &stl.='%{&fenc!=""?&fenc.",":&enc.","}' " Buffer's encoding
+endif
+if (&ff != 'unix')                        " If file format is not unix
+	let &stl.='%{&ff=="unix"?"":&ff.","}' " Buffer's file format
+endif
+let &stl.='%{FileSize()}' " Buffer's size (human readable)
+let &stl.=']'             " Closing square bracket for file info
+if exists('*GitBranchInfoString')        " If GitBranchInfo exists
+	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
+endif
 
-	let &stl.='%='     " Right side of statusline
-	let &stl.=' '      " So there's a space between both sides
-	let &stl.='[%b'    " Value of character under cursor
-	let &stl.=':'      " Separator between '%b' and '%B'
-	let &stl.='0x%B]'  " As above, in hexadecimal
-	let &stl.=' '      " Separator
-	let &stl.='[L%l'   " Cursor's current line
-	let &stl.='/'      " Separator for current line and total of lines
-	let &stl.='%L'     " Total of lines
-	let &stl.=':C'     " Separator between line and column info
-	let &stl.='%c'     " Current column
-	let &stl.='-'      " Separator between '%c' and '%v'
-	let &stl.='%v]'    " Current virtual column
-	let &stl.=' '      " Separator
-	let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
-endif "}}}
+let &stl.='%='     " Right side of statusline
+let &stl.=' '      " So there's a space between both sides
+let &stl.='[%b'    " Value of character under cursor
+let &stl.=':'      " Separator between '%b' and '%B'
+let &stl.='0x%B]'  " As above, in hexadecimal
+let &stl.=' '      " Separator
+let &stl.='[L%l'   " Cursor's current line
+let &stl.='/'      " Separator for current line and total of lines
+let &stl.='%L'     " Total of lines
+let &stl.=':'      " Separator between line and column info
+let &stl.='C%c'    " Current column
+let &stl.='-'      " Separator between '%c' and '%v'
+let &stl.='%v]'    " Current virtual column
+let &stl.=' '      " Separator
+let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
+endif
 
 " vim: set nowrap fdm={{{,}}}

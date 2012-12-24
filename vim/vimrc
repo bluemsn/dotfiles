@@ -73,8 +73,8 @@ Bundle 'tpope/vim-unimpaired'
 "Bundle 'YankRing.vim'
 
 " Syntax files
-Bundle 'groenewege/vim-less'
 Bundle 'mutewinter/vim-css3-syntax'
+Bundle 'groenewege/vim-less'
 Bundle 'olivierverdier/python-syntax.vim'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
@@ -479,9 +479,8 @@ if !has('gui_running')
 	" Compatibility for Terminal
 	let g:solarized_termtrans=1
 
-	" Make Solarized use 256 colors
+	" Make Solarized use 16 colors for Terminal support
 	let g:solarized_termcolors=16
-
 endif
 
 " Leave this at normal at all times
@@ -508,7 +507,7 @@ if has('gui_running') "{{{2
 	" Fix spell check highlighting
 	highlight SpellBad term=underline gui=undercurl guisp=Red
 
-	" Set up the GUI cursor to look nice, for each mode
+	" Set up the cursor to look nice, for each mode
 	set guicursor=n-v-c:block-Cursor-blinkon0
 	set guicursor+=ve:ver35-Cursor
 	set guicursor+=o:hor50-Cursor
@@ -536,7 +535,13 @@ if has('gui_running') "{{{2
 		" Other GUIs, like Gvim, go here
 	endif
 else
-	" Terminal only stuff!
+	" Set up the cursor to look nice, for each mode
+	set guicursor=n-v-c:block-Cursor-blinkon0
+	set guicursor+=ve:ver35-Cursor
+	set guicursor+=o:hor50-Cursor
+	set guicursor+=i-ci:ver25-Cursor
+	set guicursor+=r-cr:hor20-Cursor
+	set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 endif "}}}2
 
 " Diff {{{1
