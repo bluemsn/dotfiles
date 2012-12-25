@@ -1,7 +1,7 @@
 "if has('statusline')
 
 " Define all the different modes
-let currentmode={
+let g:currentmode={
 	\ 'n'  : 'Normal',
 	\ 'no' : 'N·Operator Pending',
 	\ 'v'  : 'Visual',
@@ -22,17 +22,24 @@ let currentmode={
 	\ '!'  : 'Shell',
 	\}
 
-function! ChangeStatuslineColor()
-	if (mode() == 'n')
-		exe 'hi! link StatusLine Statusline'
-	elseif (mode() == 'v')
-		exe 'hi! link Statusline Statement'
-	elseif (mode() == 'i')
-		exe 'hi! link StatusLine Error'
+" Automatically change the statusline color depending on mode
+function! ChangeStatuslineColor() "{{{
+	if (g:colors_name == 'solarized' && exists('g:solarized_vars'))
+		let s:vars=g:solarized_vars
+
+		if (mode() =~# '\v(n|no)')
+			exe 'hi! StatusLine '.s:vars['fmt_none'].s:vars['fg_base1'].s:vars['bg_base02'].s:vars['fmt_revbb']
+		elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block')
+			exe 'hi! StatusLine'.s:vars['fmt_none'].s:vars['fg_green'].s:vars['bg_base02'].s:vars['fmt_revbb']
+		elseif (mode() ==# 'i')
+			exe 'hi! StatusLine'.s:vars['fmt_none'].s:vars['fg_red'].s:vars['bg_base02'].s:vars['fmt_revbb']
+		else
+			exe 'hi! StatusLine '.s:vars['fmt_none'].s:vars['fg_base1'].s:vars['bg_base02'].s:vars['fmt_revbb']
+		endif
 	endif
 
-	return 0
-endfunction
+	return ''
+endfunction "}}}
 
 " Shorten a given filename by truncating path segments.
 " https://github.com/blueyed/dotfiles/blob/master/vimrc#L396
@@ -109,7 +116,7 @@ endfunction "}}}
 " Statusline {{{
 let &stl=''        " Clear statusline for when vimrc is loaded
 let &stl.='%{ChangeStatuslineColor()}'
-let &stl.='[%{toupper(currentmode[mode()])}]'
+let &stl.='[%{toupper(g:currentmode[mode()])}]'
 let &stl.=' '      " Separator
 let &stl.='[%02n]' " Buffer number of current buffer
 let &stl.=' '      " Separator
