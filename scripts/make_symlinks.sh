@@ -38,8 +38,8 @@ if [ $kernel == 'Darwin' ]; then
 	# Making symlinks to Vim files, add yours as you need
 	echo "Making symlinks to Vim files"
 	ln -s -v $dotfiles_dir/vim ~/.vim
-	ln -s -v $dotfiles_dir/vim/vimrc ~/.vimrc
-	ln -s -v $dotfiels_dir/vim/gvimrc ~/.gvimrc
+	ln -s -v $dotfiles_dir/vim/vimrc.vim ~/.vimrc
+	ln -s -v $dotfiels_dir/vim/gvimrc.vim ~/.gvimrc
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Tmux files, add yours as you need

@@ -486,6 +486,10 @@ if &t_Co > 2 || has('gui_running')
 	syntax on
 endif
 
+if !has('gui_running')
+	set term=xterm-256color
+endif
+
 set synmaxcol=1024 " Max chars to highlight in a single, long line
 
 " Solarized settings {{{3
@@ -550,13 +554,7 @@ if has('gui_running') "{{{2
 		" Other GUIs, like Gvim, go here
 	endif
 else
-	" Set up the cursor to look nice, for each mode
-	set guicursor=n-v-c:block-Cursor-blinkon0
-	set guicursor+=ve:ver35-Cursor
-	set guicursor+=o:hor50-Cursor
-	set guicursor+=i-ci:ver25-Cursor
-	set guicursor+=r-cr:hor20-Cursor
-	set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+	" Terminal settings go here
 endif "}}}2
 
 " Diff {{{1
