@@ -2,24 +2,24 @@
 
 " Define all the different modes
 let currentmode={
-	\ 'n'  : 'NORMAL',
-	\ 'no' : 'N·OPERATOR PENDING',
-	\ 'v'  : 'VISUAL',
-	\ 'V'  : 'V·LINE',
-	\ '' : 'V·BLOCk',
-	\ 's'  : 'SELECT',
-	\ 'S'  : 'S·LINE',
-	\ '' : 'S·BLOCk',
-	\ 'i'  : 'INSERT',
-	\ 'R'  : 'REPLACE',
-	\ 'Rv' : 'V·REPLACE',
-	\ 'c'  : 'COMMAND',
-	\ 'cv' : 'VIM EX',
-	\ 'ce' : 'EX',
-	\ 'r'  : 'PROMPT',
-	\ 'rm' : 'MORE',
-	\ 'r?' : 'CONFIRM',
-	\ '!'  : 'SHELL',
+	\ 'n'  : 'Normal',
+	\ 'no' : 'N·Operator Pending',
+	\ 'v'  : 'Visual',
+	\ 'V'  : 'V·Line',
+	\ '' : 'V·Block',
+	\ 's'  : 'Select',
+	\ 'S'  : 'S·Line',
+	\ '' : 'S·Block',
+	\ 'i'  : 'Insert',
+	\ 'R'  : 'Replace',
+	\ 'Rv' : 'V·Replace',
+	\ 'c'  : 'Command',
+	\ 'cv' : 'Vim Ex',
+	\ 'ce' : 'Ex',
+	\ 'r'  : 'Prompt',
+	\ 'rm' : 'More',
+	\ 'r?' : 'Confirm',
+	\ '!'  : 'Shell',
 	\}
 
 " Shorten a given filename by truncating path segments.
@@ -96,7 +96,7 @@ endfunction "}}}
 
 " Statusline {{{
 let &stl=''        " Clear statusline for when vimrc is loaded
-let &stl.='[%{currentmode[mode()]}]'
+let &stl.='[%{toupper(currentmode[mode()])}]'
 let &stl.=' '      " Separator
 let &stl.='[%02n]' " Buffer number of current buffer
 let &stl.=' '      " Separator
@@ -113,15 +113,9 @@ let &stl.='%<'     " Truncate from here on
 let &stl.='%t'     " Current buffer's file name
 let &stl.=' '      " Separator
 let &stl.='['      " Opening square bracket for file info
-if (&ft != '')
-	let &stl.='%{&ft!=""?&ft.",":""}'
-endif
-if (&fenc != '' || &enc != '')
-	let &stl.='%{&fenc!=""?&fenc.",":&enc.","}'
-endif
-if (&ff != '')
-	let &stl.='%{&ff!=""?&ff.",":""}'
-endif
+let &stl.='%{&ft!=""?&ft.",":""}'
+let &stl.='%{&fenc!=""?&fenc.",":&enc.","}'
+let &stl.='%{&ff!=""?&ff.",":""}'
 let &stl.='%{FileSize()}' " Output buffer's file size
 let &stl.=']'             " Closing square bracket for file info
 if exists('*GitBranchInfoString')        " If GitBranchInfo exists

@@ -5,7 +5,7 @@
 set nocompatible
 
 set hidden                 " Keep changed buffers without requiring saves
-set ttyfast                " Indicates a faster terminal connection
+set ttyfast                " Faster Terminal, redraws stuff quicker!
 set viewoptions=unix,slash " Better Unix/Windows compatibility
 set modeline               " Allow file specific Vim settings
 
@@ -102,6 +102,7 @@ Bundle 'chriskempson/base16-vim'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'greyblake/vim-preview'
 "Bundle 'jistr/vim-nerdtree-tabs'
+"Bundle 'kana/vim-fakeclip'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'Lokaltog/powerline'
@@ -420,8 +421,8 @@ set shortmess=astI " :h shortmess
 set linespace=0    " No extra spaces between rows
 
 " NOTICE!
-" Line numbers and relative line numbers are controlled by this bundle:
-" https://github.com/jeffkreeftmeijer/vim-numbertoggle
+" Line numbers are controlled by this Vundle bundle:
+" https://github.com/Greduan/vim-numbertoggle
 
 " Status line {{{2
 
@@ -441,6 +442,28 @@ set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable use of mouse
+
+" guicursor {{{
+
+" Normal, visual and command-line normal (append) mode
+set guicursor=n-v-c:block-Cursor-blinkon0
+
+" Visual mode with 'selection' "exclusive" (same as 'v', if not specified)
+set guicursor+=ve:ver35-Cursor
+
+" Operator-pending mode
+set guicursor+=o:hor50-Cursor-blinkwait175-blinkoff150-blinkon175
+
+" Insert and command-line insert mode
+set guicursor+=i-ci:ver20-Cursor
+
+" Replace and command-line replace mode
+set guicursor+=r-cr:hor20-Cursor
+
+" Showmatch in insert mode
+set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
+" }}}
 
 augroup cursorline
 	autocmd!
@@ -486,13 +509,7 @@ if &t_Co > 2 || has('gui_running')
 	syntax on
 endif
 
-if !has('gui_running')
-	set term=xterm-256color
-endif
-
 set synmaxcol=1024 " Max chars to highlight in a single, long line
-
-" Solarized settings {{{3
 
 if !has('gui_running')
 	" Compatibility for Terminal
@@ -517,22 +534,12 @@ let g:solarized_menu=0
 " Don't use any underline styles
 let g:solarized_underline=0
 
-" }}}3
-
 set background=dark " Use the light/dark version the color scheme
-silent! colorscheme solarized " Set the color scheme to use
+silent! colorscheme solarized " Set the color scheme to use, no errors allowed
 
 if has('gui_running') "{{{2
 	" Fix spell check highlighting
 	highlight SpellBad term=underline gui=undercurl guisp=Red
-
-	" Set up the cursor to look nice, for each mode
-	set guicursor=n-v-c:block-Cursor-blinkon0
-	set guicursor+=ve:ver35-Cursor
-	set guicursor+=o:hor50-Cursor
-	set guicursor+=i-ci:ver25-Cursor
-	set guicursor+=r-cr:hor20-Cursor
-	set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 	" Set the window position to these coordinates
 	winpos 0 0
