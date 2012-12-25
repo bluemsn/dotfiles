@@ -22,6 +22,18 @@ let currentmode={
 	\ '!'  : 'Shell',
 	\}
 
+function! ChangeStatuslineColor()
+	if (mode() == 'n')
+		exe 'hi! link StatusLine Statusline'
+	elseif (mode() == 'v')
+		exe 'hi! link Statusline Statement'
+	elseif (mode() == 'i')
+		exe 'hi! link StatusLine Error'
+	endif
+
+	return 0
+endfunction
+
 " Shorten a given filename by truncating path segments.
 " https://github.com/blueyed/dotfiles/blob/master/vimrc#L396
 function! ShortenFilename(bufname, maxlen) "{{{
@@ -96,6 +108,7 @@ endfunction "}}}
 
 " Statusline {{{
 let &stl=''        " Clear statusline for when vimrc is loaded
+let &stl.='%{ChangeStatuslineColor()}'
 let &stl.='[%{toupper(currentmode[mode()])}]'
 let &stl.=' '      " Separator
 let &stl.='[%02n]' " Buffer number of current buffer
