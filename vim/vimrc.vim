@@ -1,4 +1,4 @@
-" Basic stuff {{{1
+" Basic stuff {{{
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -23,13 +23,15 @@ if has('autocmd')
 	augroup END
 endif
 
-" Runtime stuff {{{1
+" }}}
+" Runtime stuff {{{
 
 " Enable use of the :Man command, for man pages, explained here:
 " http://crumbtrail.chesmart.in/post/5024677985/man-vim-dude
 runtime ftplugin/man.vim
 
-" Vundle & other extensions (syntaxes, filetype's etc.) {{{1
+" }}}
+" Vundle & other extensions (syntaxes, filetypes etc.) {{{
 
 " Set the filetype stuff to off, required for Vundle
 filetype off
@@ -38,9 +40,9 @@ filetype plugin indent off
 set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
 call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 
-" All of my Vundle bundles {{{2
+" All of my Vundle bundles {{{
 
-" Bundles {{{3
+" Bundles {{{
 
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
@@ -92,7 +94,8 @@ Bundle 'chriskempson/base16-vim'
 
 " Trying out
 
-" To check out {{{3
+" }}}
+" To check out {{{
 
 "Bundle 'AndrewRadev/sideways.vim'
 "Bundle 'benmills/vimux'
@@ -131,46 +134,59 @@ Bundle 'chriskempson/base16-vim'
 "Bundle 'sessionman.vim'
 "Bundle 'ShowMarks'
 
-" }}}3
+" }}}
 
-" Bundle settings {{{2
+" }}}
+" Bundle settings {{{
 
-" Vim Indent Guides {{{3
+" Vim Indent Guides {{{
 "let g:indent_guides_guide_size=1  " Set width of marker to one wide
 "let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
 "au VimEnter * :IndentGuidesEnable " Always load bundle
-" Git Branch Info {{{3
+" }}}
+" Git Branch Info {{{
 let g:git_branch_status_text=' ' " Add a space before info
 let g:git_branch_status_head_current=1 " Only show current branch
 let g:git_branch_status_nogit='' " Message when there's no Git repo
 let g:git_branch_status_around='()' " Enclose the branch in between these
 let g:git_branch_file_based=1 " Check the file for info, instead of directory
-" NERDtree {{{3
+" }}}
+" NERDtree {{{
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
-" EasyMotion {{{3
+" }}}
+" EasyMotion {{{
 let g:EasyMotion_Leader_key='<leader><leader>'
-" MiniBufExplorer {{{3
+" }}}
+" MiniBufExplorer {{{
 let g:miniBufExplMapCTabSwitchBufs=1
 let g:miniBufExplUseSingleClick=1
 let g:miniBufExplForceSyntaxEnable=1
-" Vim Powerline {{{3
+" }}}
+" Vim Powerline {{{
 let g:Powerline_symbols='fancy'
 let g:Powerline_stl_path_style='short'
-" numbertoggle {{{3
+" }}}
+" numbertoggle {{{
 let g:numbertoggle_defaultmodeoff='number'
 let g:NumberToggleOff='<leader>tnO'
 let g:NumberToggleTrigger='<leader>tn'
 let g:NumberToggleOn='<leader>tno'
-" }}}3
+" }}}
+" Vitality.vim {{{
+if !has('gui_running')
+	let g:vitality_always_assume_iterm=1
+endif
+" }}}
 
-" }}}2
+" }}}
 
 " Set the filetype stuff to on, no longer required off
 filetype on
 filetype plugin indent on
 
-" Search & matching {{{1
+" }}}
+" Search & matching {{{
 
 set wrapscan    " Set the search scan to wrap around to the top of the file
 set ignorecase  " Set search scan to ignore case when search is all lowercase
@@ -209,7 +225,8 @@ if (use_ack != 0)
 	endif
 endif
 
-" Formatting {{{1
+" }}}
+" Formatting {{{
 
 set noexpandtab   " Make sure that every file uses tabs
 set shiftround    " Round indent to pultiple of 'shiftwidth'
@@ -225,12 +242,14 @@ exec 'set tabstop='     . s:tabwidth
 exec 'set shiftwidth='  . s:tabwidth
 exec 'set softtabstop=' . s:tabwidth
 
-" Commands options {{{1
+" }}}
+" Commands options {{{
 
 set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
                     " word instead of just deleting and replacing the text
 
-" Command line options {{{1
+" }}}
+" Command line options {{{
 
 set ch=2            " Make the command input line two lines high
 set shellslash      " Set to use forward slash, in case you're in Windows
@@ -240,14 +259,15 @@ set showmode        " Always show the current mode
 set showcmd         " Show (partial) command in the last line of screen
 set report=4        " Threshold for reporting number of lines changed
 
-" History {{{1
+" }}}
+" History {{{
 
 set history=1000 " Keep {num} entries in the command history
 set nobackup     " Disable backup files
 set noswapfile   " Don't use a swap file in current buffer
 set nowb         " Don't write backup before saving
 
-" Undo {{{2
+" Undo {{{
 
 if has('persistent_undo')
 	set undofile " Enable persistent undo
@@ -260,9 +280,10 @@ if has('persistent_undo')
 	endif
 endif
 
-" }}}2
+" }}}
 
-" Folds {{{1
+" }}}
+" Folds {{{
 
 set foldenable        " Make sure folding is enabled
 set foldmethod=marker " Use manual markers for folds
@@ -271,9 +292,10 @@ set foldlevelstart=0  " Always close folds when switching buffers
 " These commands open, or can open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
-" Keymappings stuff {{{1
+" }}}
+" Keymappings stuff {{{
 
-" Leader key(s) {{{2
+" Leader key(s) {{{
 
 " Set Leader key to ',', instead of '/'
 let mapleader=','
@@ -285,7 +307,8 @@ let maplocalLeader = '\\'
 nnoremap <C-e> ,
 vnoremap <C-e> ,
 
-" .vimrc stuff {{{2
+" }}}
+" .vimrc stuff {{{
 
 " Open .vimrc file in a vertical split
 nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
@@ -293,7 +316,8 @@ nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
 " Open .vimrc file as a buffer and open in this split window
 nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
 
-" Arrow keys and 'hjkl' keys {{{2
+" }}}
+" Arrow keys and 'hjkl' keys {{{
 
 " Completely disable the use of the arrow keys in command and visual modes
 noremap <up> <NOP>
@@ -313,7 +337,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Leader key mappings {{{2
+" }}}
+" Leader key mappings {{{
 
 " Makes it easy to clear out a search, by typing ',<space>'
 nnoremap <leader><space> :noh<CR>
@@ -340,7 +365,8 @@ nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 " Make window controls easy
 nnoremap <leader>w <C-w>
 
-" Ctrl mappings {{{2
+" }}}
+" Ctrl mappings {{{
 
 " CTRL-A selects all
 " https://github.com/wnodom/wnodom-vim-environment/blob/master/.vimrc#L325
@@ -351,7 +377,8 @@ onoremap <C-a> <C-c>gggH<C-o>G
 snoremap <C-a> <C-c>gggH<C-o>G
 xnoremap <C-a> <C-c>ggVG
 
-" Re-mappings {{{2
+" }}}
+" Re-mappings {{{
 
 " Indent in visual and select mode automatically re-selects
 vnoremap > >gv
@@ -384,7 +411,8 @@ xnoremap & :&&<enter>
 " http://stackoverflow.com/a/164866/1622940
 nnoremap p ]p
 
-" Function keys mappings {{{2
+" }}}
+" Function keys mappings {{{
 
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map('<F5>')
@@ -392,19 +420,22 @@ call togglebg#map('<F5>')
 " Disable pressing 'F1' for help, and set it equal to Escape
 noremap <F1> <esc>
 
-" New mappings {{{2
+" }}}
+" New mappings {{{
 
 " Use '<space><space>' to save the file
 " https://github.com/jeffkreeftmeijer/dotfiles/blob/master/home/.vimrc#L49-L50
 nnoremap <space><space> :w<CR>
 
-" }}}2
+" }}}
 
-" Abbreviations {{{1
+" }}}
+" Abbreviations {{{
 
 " Still gotta put stuff here
 
-" UI related {{{1
+" }}}
+" UI related {{{
 
 " Enable list by default, but set it's options for when it is used
 set list                    " Show hidden characters
@@ -415,16 +446,15 @@ set nowrap    " By default soft-wrap text at window border
 set linebreak " Visual linebreak at 'breakat' rather than last char in window
 
 set title          " Change Terminal's title
-set numberwidth=4  " Line numbers always be 4 chars wide
 set colorcolumn=79 " Put a marker in array of column numbers
 set shortmess=astI " :h shortmess
-set linespace=0    " No extra spaces between rows
+set linespace=0    " No extra spaces between text lines
 
 " NOTICE!
 " Line numbers are controlled by this Vundle bundle:
 " https://github.com/Greduan/vim-numbertoggle
 
-" Status line {{{2
+" Status line {{{
 
 set laststatus=2 " Always use a statusline 
 set ruler        " Put a ruler, when my custom statusline doesn't load
@@ -433,7 +463,8 @@ set ruler        " Put a ruler, when my custom statusline doesn't load
 " loaded, otherwise we can't check for the current Git branch. It is located
 " under "~/.vim/after/plugin/statusline.vim"
 
-" Cursor & mouse {{{2
+" }}}
+" Cursor & mouse {{{
 
 "set scrolloff=999  " Keep the cursor in the middle of the window
 set scrolloff=10    " How near the cursor can get to the top/bottom of window
@@ -445,23 +476,20 @@ set mouse=          " Disable use of mouse
 
 " guicursor {{{
 
-" Normal, visual and command-line normal (append) mode
-set guicursor=n-v-c:block-Cursor-blinkon0
-
-" Visual mode with 'selection' "exclusive" (same as 'v', if not specified)
-set guicursor+=ve:ver35-Cursor
-
-" Operator-pending mode
-set guicursor+=o:hor50-Cursor-blinkwait175-blinkoff150-blinkon175
-
-" Insert and command-line insert mode
-set guicursor+=i-ci:ver20-Cursor
-
-" Replace and command-line replace mode
-set guicursor+=r-cr:hor20-Cursor
-
-" Showmatch in insert mode
-set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+if has('gui_running')
+	" Normal, visual and command-line normal (append) mode
+	set guicursor=n-v-c:block-Cursor-blinkon0
+	" Visual mode with 'selection' "exclusive" (same as 'v', if not specified)
+	set guicursor+=ve:ver35-Cursor
+	" Operator-pending mode
+	set guicursor+=o:hor50-Cursor-blinkwait175-blinkoff150-blinkon175
+	" Insert and command-line insert mode
+	set guicursor+=i-ci:ver20-Cursor
+	" Replace and command-line replace mode
+	set guicursor+=r-cr:hor20-Cursor
+	" Showmatch in insert mode
+	set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+endif
 
 " }}}
 
@@ -477,7 +505,8 @@ augroup cursorline
 	au WinEnter,InsertLeave * set cursorcolumn
 augroup END
 
-" Windows/Split-windows {{{2
+" }}}
+" Windows/Split-windows {{{
 
 set fillchars=vert:\|,fold:-  " Don't put window separators between splits
 set autowrite                 " When switching buffers save file automatically
@@ -501,7 +530,8 @@ if has('autocmd')
 	augroup End
 endif
 
-" Syntax highlighting {{{2
+" }}}
+" Syntax highlighting {{{
 
 if &t_Co > 2 || has('gui_running')
 	" Switch syntax highlighting on, when the Terminal has colors
@@ -537,7 +567,8 @@ let g:solarized_underline=0
 set background=dark " Use the light/dark version the color scheme
 silent! colorscheme solarized " Set the color scheme to use, no errors allowed
 
-if has('gui_running') "{{{2
+" }}}
+if has('gui_running') "{{{
 	" Fix spell check highlighting
 	highlight SpellBad term=underline gui=undercurl guisp=Red
 
@@ -562,13 +593,15 @@ if has('gui_running') "{{{2
 	endif
 else
 	" Terminal settings go here
-endif "}}}2
+endif "}}}
 
-" Diff {{{1
+" }}}
+" Diff {{{
 
 set diffopt+=iwhite " Add ignorance of whitespace to diff
 
-" Auto-completion {{{1
+" }}}
+" Auto-completion {{{
 
 set wildmenu              " Use wildmenu auto completion
 set wildmode=list:longest " Set options for auto completion
@@ -579,11 +612,13 @@ set pumheight=15          " Max lines to show in auto-complete box
 
 set completeopt=longest,menuone
 
-" Macros {{{1
+" }}}
+" Macros {{{
 
 set lazyredraw " Don't update the display while executing macros
 
-" File/Buffer encryption, encoding etc. {{{1
+" }}}
+" File/Buffer encryption, encoding etc. {{{
 
 set key=             " Disable encryption file and buffer encryption 
 set nobomb           " Don't use BOMs (Byte Order Marks)
@@ -595,7 +630,8 @@ set termencoding=utf-8
 set fileencodings=utf-8,iso-8859-15
 setglobal fileencoding=utf-8
 
-" File type specific stuff {{{1
+" }}}
+" File type specific stuff {{{
 
 " Make sure Vim has autocmd support
 if has('autocmd')
@@ -624,9 +660,10 @@ if has('autocmd')
 	augroup END
 endif " if has('autocmd')
 
-" Functions {{{1
+" }}}
+" Functions {{{
 
-" Add a "number" text object {{{2
+" Add a "number" text object {{{
 
 " Add's a number as a text object, so from '#123456' the number is everything
 " except the '#', at least that's how I understand it.
@@ -657,7 +694,8 @@ function! s:NumberTextObject(whole)
 	endif
 endfunction
 
-" SynStack() {{{2
+" }}}
+" SynStack() {{{
 
 " This functly allows you to figure out the name of the text object you're on
 " top of.
@@ -674,7 +712,8 @@ endfunc
 
 nnoremap <C-S-p> :call <SID>SynStack()<CR>
 
-" Preserve() {{{2
+" }}}
+" Preserve() {{{
 
 " I got this one from here:
 " http://vimcasts.org/episodes/tidying-whitespace/
@@ -691,7 +730,8 @@ function! Preserve(command)
 	call cursor(l, c)
 endfunction
 
-" ListWrapToggle() {{{2
+" }}}
+" ListWrapToggle() {{{
 
 " The best way I've found of switching between line soft-wrap and showing
 " hidden characters.
@@ -714,7 +754,8 @@ endfunction
 
 nnoremap <leader>tw :call ListWrapToggle()<CR>
 
-" Recording() {{{2
+" }}}
+" Recording() {{{
 
 " This is a function I made myself in order to setup Vim for recording, either
 " HD or SD. It just changes window size.
@@ -760,9 +801,10 @@ nnoremap <leader>trs :call Recording('sd')<CR>
 nnoremap <leader>trh :call Recording('hd')<CR>
 nnoremap <leader>tr :call Recording('off')<CR>
 
-" }}}2
+" }}}
 
-" Tips {{{1
+" }}}
+" Tips {{{
 
 " To show all help topics containing 'help'
 " :h word<CTRL-d>
@@ -779,6 +821,6 @@ nnoremap <leader>tr :call Recording('off')<CR>
 " zz     - makes current line the center of editor
 " cc, S  - cuts current line and puts you in insert mode
 
-" }}}1
+" }}}
 
 " vim: set nowrap fdm={{{,}}}
