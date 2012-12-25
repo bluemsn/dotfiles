@@ -51,7 +51,7 @@ Bundle 'Greduan/vim-numbertoggle'
 
 " General
 "Bundle 'ervandew/supertab'
-"Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
 "Bundle 'Lokaltog/vim-easymotion'
@@ -190,7 +190,22 @@ endif
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 if has('win32') || has('win64')
-	set grepprg=internal " Windows findstr.exe just isn't good enough
+	" This is for Windows/cygwin and to add -H.
+	" '$*' is not passed to the shell, but used by Vim.
+	set grepprg=grep\ -nH\ $*\ /dev/null
+endif
+
+" Set this to 1 if you want to use Ack instead of Grep
+let use_ack=0
+
+" Check if I want to use Ack
+if (use_ack != 0)
+	" Use Ack instead of Grep when available
+	if executable('ack')
+		set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
+	elseif executable('ack-grep')
+		set grepprg=ack-grep\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
+	endif
 endif
 
 " Formatting {{{1

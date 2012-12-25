@@ -2,24 +2,25 @@
 
 " Define all the different modes
 let currentmode={
-	\ 'n'  : 'Normal',
-	\ 'no' : 'N·Operator Pending',
-	\ 'v'  : 'Visual',
-	\ 'V'  : 'V·Line',
-	\ '' : 'V·Block',
-	\ 's'  : 'Select',
-	\ 'S'  : 'S·Line',
-	\ '' : 'S·Block',
-	\ 'i'  : 'Insert',
-	\ 'R'  : 'Replace',
-	\ 'Rv' : 'V·Replace',
-	\ 'c'  : 'Command',
-	\ 'cv' : 'Vim Ex',
-	\ 'ce' : 'Ex',
-	\ 'r'  : 'Prompt',
-	\ 'rm' : 'More',
-	\ 'r?' : 'Confirm',
-	\ '!'  : 'Shell',}
+	\ 'n'  : 'NORMAL',
+	\ 'no' : 'N·OPERATOR PENDING',
+	\ 'v'  : 'VISUAL',
+	\ 'V'  : 'V·LINE',
+	\ '' : 'V·BLOCk',
+	\ 's'  : 'SELECT',
+	\ 'S'  : 'S·LINE',
+	\ '' : 'S·BLOCk',
+	\ 'i'  : 'INSERT',
+	\ 'R'  : 'REPLACE',
+	\ 'Rv' : 'V·REPLACE',
+	\ 'c'  : 'COMMAND',
+	\ 'cv' : 'VIM EX',
+	\ 'ce' : 'EX',
+	\ 'r'  : 'PROMPT',
+	\ 'rm' : 'MORE',
+	\ 'r?' : 'CONFIRM',
+	\ '!'  : 'SHELL',
+	\}
 
 " Shorten a given filename by truncating path segments.
 " https://github.com/blueyed/dotfiles/blob/master/vimrc#L396
@@ -71,7 +72,6 @@ function! ShortenFilename(bufname, maxlen) "{{{
 endfunction "}}}
 
 " Find out current buffer's size and output it.
-" https://github.com/blueyed/dotfiles/blob/master/vimrc#L384
 function! FileSize() "{{{
 	let bytes = getfsize(expand('%:p'))
 	if (bytes >= 1024)
