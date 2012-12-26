@@ -55,9 +55,6 @@ defaults write com.apple.finder AppleShowAllExtensions -bool true
 # Allow text selection in Quick Look.
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
-# Show status bar in Findder.
-defaults write com.apple.finder ShowStatusBar -bool true
-
 # Don't write .DS_Store files on network volumes, hallelujah!
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
@@ -79,18 +76,8 @@ sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 # Show system info at login screen.
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
-# Disable menu bar transparency.
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
-
 # Always show scrollbars.
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-
-# Display ASCII control characters using caret notation in standard text
-# views. Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
-defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
-
-# Enable subpixel font rendering on non-Apple LCDs
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 
 # Dialogs and warnings settings:
@@ -101,7 +88,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # Expand save panel by default.
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-# Disable the “Are you sure you want to open this application?” dialog.
+# Disable the "Are you sure you want to open this application?" dialog.
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 

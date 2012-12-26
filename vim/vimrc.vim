@@ -21,6 +21,12 @@ if has('autocmd')
 		autocmd BufWritePost $MYVIMRC source $MYVIMRC
 		autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
 	augroup END
+
+	" Reload statusline.vim file as soon as it changes
+	augroup StatuslineReload
+		autocmd!
+		autocmd BufWritePost ~/.vim/after/plugin/statusline.vim source
+			\ ~/.vim/after/plugin/statusline.vim
 endif
 
 " }}}
@@ -50,6 +56,7 @@ Bundle 'gmarik/vundle'
 " My own bundles
 Bundle 'Greduan/vim-colors-solarized'
 Bundle 'Greduan/vim-numbertoggle'
+Bundle 'Greduan/vim-modecolorstatusline'
 
 " General
 "Bundle 'ervandew/supertab'
@@ -90,7 +97,6 @@ Bundle 'spf13/PIV'
 Bundle 'HTML-AutoCloseTag'
 
 " Color schemes
-Bundle 'chriskempson/base16-vim'
 
 " Trying out
 
@@ -140,8 +146,8 @@ Bundle 'chriskempson/base16-vim'
 " Bundle settings {{{
 
 " Vim Indent Guides {{{
-"let g:indent_guides_guide_size=1  " Set width of marker to one wide
-"let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
+let g:indent_guides_guide_size=1  " Set width of marker to one wide
+let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
 "au VimEnter * :IndentGuidesEnable " Always load bundle
 " }}}
 " Git Branch Info {{{
@@ -310,11 +316,17 @@ vnoremap <C-e> ,
 " }}}
 " .vimrc stuff {{{
 
-" Open .vimrc file in a vertical split
+" Open .vimrc file as a buffer and open in this split window
 nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
 
-" Open .vimrc file as a buffer and open in this split window
+" Open .vimrc file in a vertical split
 nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
+
+" Open statusline.vim file as a buffer and open in this split window
+nnoremap <silent> <leader>ees :e ~/.vim/after/plugin/statusline.vim<CR>
+
+" Open .vimrc file in a vertical split
+nnoremap <silent> <leader>es :sp ~/.vim/after/plugin/statusline.vim<CR>
 
 " }}}
 " Arrow keys and 'hjkl' keys {{{
@@ -461,7 +473,7 @@ set ruler        " Put a ruler, when my custom statusline doesn't load
 
 " The Vim statusline is set in a plugin that loads after the .vimrc has been
 " loaded, otherwise we can't check for the current Git branch. It is located
-" under "~/.vim/after/plugin/statusline.vim"
+" under "~/.vim/plugin/statusline.vim"
 
 " }}}
 " Cursor & mouse {{{
