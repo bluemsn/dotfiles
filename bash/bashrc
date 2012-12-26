@@ -38,8 +38,8 @@ export PATH="/usr/local/mysql/bin:$PATH"
 # Configuring my command prompt
 PS1='\e[0;33m[\@] [\u] \e[0;36m\W${GIT_STATUS}\e[0;m >>> '
 
-EDITOR=mvim # This option sets my preferred non-GUI editor
-VISUAL=subl # This option sets my preferred editor with GUI
+EDITOR=vim # This option sets my preferred non-GUI editor
+VISUAL=vim # This option sets my preferred editor with GUI
 export EDITOR VISUAL # Export both of these options so that they take effect
 
 # ----------------------------------------

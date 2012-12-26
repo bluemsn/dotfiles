@@ -23,16 +23,18 @@ else
 
 	# Install tmux
 	brew install tmux
-	brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 	brew install reattach-to-user-namespace
 
 	# Update shells
 	brew install bash
 	brew install zsh
 
+	# Install Mercurial
+	brew install hg
+
 	# Install/update Vim
-	brew install macvim
-	ln -s /usr/local/Cellar/macvim/7.3-65/MacVim.app /Applications
+	#brew install macvim
+	#ln -s /usr/local/Cellar/macvim/7.3-65/MacVim.app /Applications
 
 	echo 'Done, I installed your stuff, you can thank me later.'
 fi

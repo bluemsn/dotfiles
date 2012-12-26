@@ -3,9 +3,10 @@
 # Editor {{{1
 
 # Setting my preferred default editor
-EDITOR=vim  # Command line uses 'vim'
-VISUAL=mvim # Visual editor is MacVim
-export EDITOR VISUAL # Export both these options
+EDITOR=vim # Command line uses 'vim'
+VISUAL=vim # Visual editor is MacVim
+GIT_EDITOR=vim # Editor for Git
+export EDITOR VISUAL GIT_EDITOR # Export these options
 
 # Aliases {{{1
 
