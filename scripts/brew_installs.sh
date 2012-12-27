@@ -20,6 +20,7 @@ else
 	brew install ack
 	brew install par
 	brew install hub
+	brew install figlet
 
 	# Install tmux
 	brew install tmux
@@ -33,7 +34,7 @@ else
 	brew install hg
 
 	# Install/update Vim
-	#brew install macvim
+	brew install macvim --override-system-vim
 	#ln -s /usr/local/Cellar/macvim/7.3-65/MacVim.app /Applications
 
 	echo 'Done, I installed your stuff, you can thank me later.'

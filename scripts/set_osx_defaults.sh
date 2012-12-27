@@ -79,6 +79,13 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 # Always show scrollbars.
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
+# Disable Google update.
+defaults write com.google.Keystone.Agent checkInterval 0
+
+# Set the default shell (no longer Apple related).
+chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
+
 
 # Dialogs and warnings settings:
 

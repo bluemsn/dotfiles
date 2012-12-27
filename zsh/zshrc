@@ -17,7 +17,7 @@ alias reload!="source ~/.zshrc"   # Make 'reload!' source the .zshrc file
 # $PATH stuff {{{1
 
 # Enable loading of MySQL
-export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="usr/local/bin:/usr/local/mysql/bin:$PATH"
 
 # Prompt {{{1
 

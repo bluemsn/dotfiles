@@ -56,11 +56,11 @@ Bundle 'gmarik/vundle'
 " My own bundles
 Bundle 'Greduan/vim-colors-solarized'
 Bundle 'Greduan/vim-numbertoggle'
-Bundle 'Greduan/vim-modecolorstatusline'
+"Bundle 'Greduan/vim-modecolorize'
 
 " General
+Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'ervandew/supertab'
-Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
 "Bundle 'Lokaltog/vim-easymotion'
@@ -74,6 +74,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'sjl/vitality.vim'
 Bundle 'skwp/vim-easymotion'
 Bundle 'taq/vim-git-branch-info'
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
@@ -92,9 +93,9 @@ Bundle 'tpope/vim-markdown'
 Bundle 'zaiste/tmux.vim'
 
 " Language specific bundles
+Bundle 'HTML-AutoCloseTag'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'spf13/PIV'
-Bundle 'HTML-AutoCloseTag'
 
 " Color schemes
 
