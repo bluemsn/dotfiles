@@ -44,7 +44,7 @@ if [ $kernel == 'Darwin' ]; then
 
 	# Making symlinks to Tmux files, add yours as you need
 	echo "Making symlinks to Tmux files"
-	ln -s -v $dotfiles_dir/vim/tmux.conf ~/.tmux.conf
+	ln -s -v $dotfiles_dir/tmux/tmux.conf ~/.tmux.conf
 	echo "Done at  [$time]...\n"
 
 	# Making symlinks to Zsh files, add yours as you need

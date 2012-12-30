@@ -14,7 +14,7 @@ if test ! $(which brew); then
 	echo 'I will install it for you now...'
 	ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 	brew doctor
-	echo 'Follow the instructions 'brew doctor' gives you. Then run this file again.'
+	echo 'Follow the instructions "brew doctor" gives you. Then run this file again.'
 else
 	# Install little utilities
 	brew install ack

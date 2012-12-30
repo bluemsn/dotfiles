@@ -25,8 +25,8 @@ if has('autocmd')
 	" Reload statusline.vim file as soon as it changes
 	augroup StatuslineReload
 		autocmd!
-		autocmd BufWritePost ~/.vim/after/plugin/statusline.vim source
-			\ ~/.vim/after/plugin/statusline.vim
+		autocmd BufWritePost ~/.vim/plugin/statusline.vim source
+			\ ~/.vim/plugin/statusline.vim
 endif
 
 " }}}
@@ -211,7 +211,7 @@ if &t_Co > 2 || has('gui_running')
 endif
 
 " Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 if has('win32') || has('win64')
 	" This is for Windows/cygwin and to add -H.
@@ -258,7 +258,7 @@ set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
 " }}}
 " Command line options {{{
 
-set ch=2            " Make the command input line two lines high
+set cmdheight=2     " Make the command input line two lines high
 set shellslash      " Set to use forward slash, in case you're in Windows
 set timeout         " Do time out on mappings and others
 set timeoutlen=1000 " Set the timeout lenght in milliseconds
@@ -324,10 +324,10 @@ nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
 
 " Open statusline.vim file as a buffer and open in this split window
-nnoremap <silent> <leader>ees :e ~/.vim/after/plugin/statusline.vim<CR>
+nnoremap <silent> <leader>ees :e ~/.vim/plugin/statusline.vim<CR>
 
 " Open .vimrc file in a vertical split
-nnoremap <silent> <leader>es :sp ~/.vim/after/plugin/statusline.vim<CR>
+nnoremap <silent> <leader>es :sp ~/.vim/plugin/statusline.vim<CR>
 
 " }}}
 " Arrow keys and 'hjkl' keys {{{
@@ -381,14 +381,7 @@ nnoremap <leader>w <C-w>
 " }}}
 " Ctrl mappings {{{
 
-" CTRL-A selects all
-" https://github.com/wnodom/wnodom-vim-environment/blob/master/.vimrc#L325
-noremap <C-a> gggH<C-o>G
-inoremap <C-a> <C-o>gg<C-o>gH<C-o>G
-cnoremap <C-a> <C-c>gggH<C-o>G
-onoremap <C-a> <C-c>gggH<C-o>G
-snoremap <C-a> <C-c>gggH<C-o>G
-xnoremap <C-a> <C-c>ggVG
+" Nothing here yet...
 
 " }}}
 " Re-mappings {{{

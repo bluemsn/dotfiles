@@ -28,4 +28,11 @@ source ./scripts/brew_installs.sh
 # Setup Vim for first use
 source ./scripts/setup_vim.sh
 
-echo "All right! I finished! It's [$time] right now.\n"
+# Set the default shell
+chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
+
+# Install all submodules
+git submodule update --init
+
+echo "All right! I finished! It's [$time] right now."

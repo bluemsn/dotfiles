@@ -36,7 +36,7 @@ if [ $kernel == 'Darwin' ]; then
 
 	# Remove Tmux symlinks
 	echo "Deleting Tmux symlinks..."
-	ln -s -v $dotfiles_dir/vim/tmux.conf ~/.tmux.conf
+	rm -v ~/.tmux.conf
 	echo "Done at  [$time]...\n"
 
 	# Remove Zsh symlinks
