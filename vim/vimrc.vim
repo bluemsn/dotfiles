@@ -235,7 +235,7 @@ endif
 " }}}
 " Formatting {{{
 
-set noexpandtab   " Make sure that every file uses tabs
+set noexpandtab   " Make sure that every file uses real tabs, not spaces
 set shiftround    " Round indent to pultiple of 'shiftwidth'
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set smartindent   " Do smart indenting when starting a new line
@@ -245,26 +245,25 @@ set nojoinspaces  " :h joinspaces
 
 " Set the tab width
 let s:tabwidth=4
-exec 'set tabstop='     . s:tabwidth 
-exec 'set shiftwidth='  . s:tabwidth
-exec 'set softtabstop=' . s:tabwidth
+exec 'set tabstop='    .s:tabwidth
+exec 'set shiftwidth=' .s:tabwidth
+exec 'set softtabstop='.s:tabwidth
 
 " }}}
 " Commands options {{{
 
-set cpoptions=ces$  " Make the 'cw' and like commands put a $ at the end of the
-                    " word instead of just deleting and replacing the text
+set cpoptions+=$    " Default but put a '$' at the end of motion string
+set timeout         " Do time out on mappings and others
+set timeoutlen=1000 " Set the timeout lenght in milliseconds
 
 " }}}
 " Command line options {{{
 
-set cmdheight=2     " Make the command input line two lines high
-set shellslash      " Set to use forward slash, in case you're in Windows
-set timeout         " Do time out on mappings and others
-set timeoutlen=1000 " Set the timeout lenght in milliseconds
-set showmode        " Always show the current mode
-set showcmd         " Show (partial) command in the last line of screen
-set report=4        " Threshold for reporting number of lines changed
+set cmdheight=2 " Make the command input line two lines high
+set shellslash  " Set to use forward slash, in case you're in Windows
+set showmode    " Always show the current mode
+set showcmd     " Show (partial) command in the last line of screen
+set report=4    " Threshold for reporting number of lines changed
 
 " }}}
 " History {{{
@@ -381,7 +380,9 @@ nnoremap <leader>w <C-w>
 " }}}
 " Ctrl mappings {{{
 
-" Nothing here yet...
+" Better help tags navigation (IMO)
+nnoremap <C-S-Right> <C-]>
+nnoremap <C-S-Left>  <C-t>
 
 " }}}
 " Re-mappings {{{
@@ -539,7 +540,7 @@ endif
 " }}}
 " Syntax highlighting {{{
 
-if &t_Co > 2 || has('gui_running')
+if (&t_Co > 2 || has('gui_running'))
 	" Switch syntax highlighting on, when the Terminal has colors
 	" Or when the GUI is being used
 	syntax on
@@ -551,8 +552,12 @@ if !has('gui_running')
 	" Compatibility for Terminal
 	let g:solarized_termtrans=1
 
-	" Make Solarized use 16 colors for Terminal support
-	let g:solarized_termcolors=16
+	if (&t_Co >= 256 || $TERM == 'xterm-256color')
+		" Do nothing, it handles itself.
+	else
+		" Make Solarized use 16 colors for Terminal support
+		let g:solarized_termcolors=16
+	endif
 endif
 
 " Leave this at normal at all times

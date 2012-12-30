@@ -49,8 +49,9 @@ if [ $kernel == 'Darwin' ]; then
 
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'
-	ln -s -v $dotfiles_dir/zsh ~/.zsh
-	ln -s -v $dotfiles_dir/zsh/zshrc ~/.zshrc
+	ln -s -v $dotfiles_dir/shells/zsh ~/.zsh
+	ln -s -v $dotfiles_dir/shells/zsh/zshrc ~/.zshrc
+	ln -s -v $dotfiles_dir/shells/profile ~/.profile
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Git files, add yours as you need
@@ -77,6 +78,7 @@ if [ $kernel == 'Linux' ]; then
 	echo 'Making symlinks to Zsh files'
 	ln -s -v $dotfiles_dir/zsh /home/$user/.zsh
 	ln -s -v $dotfiles_dir/zsh/zshrc /home/$user/.zshrc
+	ln -s -v $dotfiles_dir/shells/profile ~/.profile
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Git files, add yours as you need
