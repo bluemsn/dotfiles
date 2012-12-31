@@ -1,3 +1,20 @@
+" My personal .vimrc file, containing lots of stuff which make it perfect for
+" my tastes. I suggest you don't use this yourself, but rather read it and
+" take what you like for yourself.
+"
+" Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
+" Maintainer URL: http://eduantech.com/
+" Last Change: 2012 Dec 31
+"
+" If you insist on using it, simply put this file here, depending on your OS:
+"
+" Unix:    ~/.vimrc
+" Mac OSX: ~/.vimrc
+" Amiga:   s:.vimrc
+" Linux:   /home/$USER/.vimrc
+" DOS:     $VIM\_vimrc
+" OpenVMS: sys$login:.vimrc
+
 " Basic stuff {{{
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -11,7 +28,7 @@ set modeline               " Allow file specific Vim settings
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
-set clipboard=unnamed
+set clipboard^=unnamed
 
 " Make sure Vim has autocmd support
 if has('autocmd')
@@ -98,6 +115,8 @@ Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'spf13/PIV'
 
 " Color schemes
+Bundle 'chriskempson/base16-vim'
+Bundle 'nanotech/jellybeans.vim'
 
 " Trying out
 
