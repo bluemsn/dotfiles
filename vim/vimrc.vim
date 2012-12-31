@@ -214,19 +214,20 @@ filetype plugin indent on
 " }}}
 " Search & matching {{{
 
-set wrapscan    " Set the search scan to wrap around to the top of the file
-set ignorecase  " Set search scan to ignore case when search is all lowercase
-set smartcase   " But recognize uppercase if it is specified
-set visualbell  " Set to use visual bell --  the beeping sucks!
-set errorbells  " Enable use of (visual) error bells
-set incsearch   " Show results of search scan as it finds them
-set showmatch   " Always show matching bracket, quote etc.
-set matchtime=5 " Tenths of a second to show the matching bracket, quote etc.
-set showcmd     " Show the current command in the lower right corner
-set magic       " Allow use of regular expressions in the search scans
+set wrapscan     " Set the search scan to wrap around to the top of the file
+set ignorecase   " Set search scan to ignore case when search is all lowercase
+set smartcase    " But recognize uppercase if it is specified
+set novisualbell " Set to use visual bell --  the beeping sucks!
+set noerrorbells " Enable use of (visual) error bells
+set incsearch    " Show results of search scan as it finds them
+set showmatch    " Always show matching bracket, quote etc.
+set matchtime=5  " Tenths of a second to show the matching paren when
+                 " 'showmatch' is set
+set showcmd      " Show the current command in the lower right corner
+set magic        " Allow use of regular expressions in the search scans
 
 if &t_Co > 2 || has('gui_running')
-	set hls     " Enable the highlighting of the search
+	set hls " Enable the highlighting of the search
 endif
 
 " Highlight VCS conflict markers
@@ -269,7 +270,7 @@ exec 'set shiftwidth=' .s:tabwidth
 exec 'set softtabstop='.s:tabwidth
 
 " }}}
-" Commands options {{{
+" Commands' options {{{
 
 set cpoptions+=$    " Default but put a '$' at the end of motion string
 set timeout         " Do time out on mappings and others
