@@ -42,7 +42,7 @@ function WrapForTmux(s)
 	let tmux_start="\<Esc>Ptmux;"
 	let tmux_end="\<Esc>\\"
 
-	return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", "g") . tmux_end
+	return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
 endfunction
 
 if exists('$ITERM_PROFILE')
@@ -50,8 +50,8 @@ if exists('$ITERM_PROFILE')
 	" unsetting doesn't work very well with tmux as it affects other shells.
 	" Put this in your zshrc: [ -n "$ITERM_PROFILE" ] && printf "\e[?2004h"
 	"
-	" let &t_ti = WrapForTmux('\<Esc>[?2004h') . &t_ti
-	" let &t_te = WrapForTmux('\<Esc>[?2004l') . &t_te
+	" let &t_ti = WrapForTmux("\<Esc>[?2004h") . &t_ti
+	" let &t_te = WrapForTmux("\<Esc>[?2004l") . &t_te
 	function XTermPasteBegin(ret)
 		set pastetoggle=<Esc>[201~
 		set paste
