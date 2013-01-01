@@ -868,3 +868,16 @@ nnoremap <leader>tr :call Recording('off')<CR>
 " }}}
 
 " vim: set nowrap fdm={{{,}}}
+
+"Toggle word checking on or off...
+function! WordCheck ()
+	"Toggle the flag (or set it if it doesn't yet exist)...
+	let w:check_words = exists('w:check_words') ? !w:check_words : 1
+
+	"Turn match mechanism on/off, according to new state of flag...
+	if w:check_words
+		exec s:words_matcher
+	else
+		match none
+	endif
+endfunction
