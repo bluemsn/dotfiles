@@ -6,7 +6,7 @@
 # will also delete them with another script, if you say yes, and you have it.
 # =============================================================================
 # Eduan Lavaque <eduan@snapsimpletech.com>
-# Licensed under the MIT license (htpp://eduan.mit-license.org/)
+# Licensed under the MIT license (htpp://eduan.mit-license.org/2012-2013)
 # =============================================================================
 
 kernel=`uname -s`        # Current Kernel name

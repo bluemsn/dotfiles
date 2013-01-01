@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2012 Dec 31
+" Last Change: 2013 Jan 1
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "

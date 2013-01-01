@@ -5,7 +5,7 @@
 # This file will automatically install some important stuff using Homebrew.
 # =============================================================================
 # Eduan Lavaque <eduan@snapsimpletech.com>
-# Licensed under the MIT license (htpp://eduan.mit-license.org/)
+# Licensed under the MIT license (htpp://eduan.mit-license.org/2012-2013)
 # =============================================================================
 
 # Check if Homebrew is installed
