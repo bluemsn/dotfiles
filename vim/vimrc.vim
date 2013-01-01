@@ -123,6 +123,7 @@ Bundle 'nanotech/jellybeans.vim'
 " }}}
 " To check out {{{
 
+"Bundle 'ap/vim-css-color'
 "Bundle 'AndrewRadev/sideways.vim'
 "Bundle 'benmills/vimux'
 "Bundle 'bkad/CamelCaseMotion'
@@ -132,12 +133,14 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'greyblake/vim-preview'
 "Bundle 'jistr/vim-nerdtree-tabs'
 "Bundle 'kana/vim-fakeclip'
+"Bundle 'kana/vim-textobj-indent'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'mattn/zencoding-vim'
 "Bundle 'mbbill/VimExplorer'
 "Bundle 'mileszs/ack.vim'
+"Bundle 'nathanaelkane/vim-command-w'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/syntastic'
@@ -148,11 +151,13 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'sjl/gundo.vim'
 "Bundle 'tpope/vim-abolish'
 "Bundle 'tpope/vim-commentary'
+"Bundle 'tpope/vim-eunuch'
 "Bundle 'tpope/vim-pastie'
 "Bundle 'tsaleh/vim-align'
 "Bundle 'xolox/vim-shell'
 
 " vim-scripts repos
+"Bundle 'bufkill.vim'
 "Bundle 'Conque-Shell'
 "Bundle 'IndexedSearch'
 "Bundle 'netrw.vim'
@@ -851,6 +856,14 @@ nnoremap <leader>tr :call Recording('off')<CR>
 " ZZ     - save and close current file
 " zz     - makes current line the center of editor
 " cc, S  - cuts current line and puts you in insert mode
+
+" }}}
+" Tmux/iTerm fixes {{{
+
+" There's actually nothing here! This is controlled by the vim script that's
+" contained under "~/.vim/after/plugin/tmux_iterm.vim". This way it loads
+" every time, but after the .vimrc file loads, in order to override some of
+" it's stuff.
 
 " }}}
 

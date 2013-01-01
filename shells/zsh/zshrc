@@ -1,6 +1,12 @@
-# Sources {{{1
+# Tmux/iTerm fixes {{{
 
-# Editor {{{1
+[ -n "$ITERM_PROFILE" ] && printf "\e[?2004h"
+
+# }}}
+# Sources {{{
+
+# }}}
+# Editor {{{
 
 # Setting my preferred default editor
 EDITOR=vim # Command line uses 'vim'
@@ -8,18 +14,21 @@ VISUAL=vim # Visual editor is MacVim
 GIT_EDITOR=vim # Editor for Git
 export EDITOR VISUAL GIT_EDITOR # Export these options
 
-# Aliases {{{1
+# }}}
+# Aliases {{{
 
 alias ls="ls -la -Gp -F"          # Make 'ls' do lotsa stuff 
 alias gvim="mvim --remote-silent" # Make 'gvim' not open a new MacVim window
 alias reload!="source ~/.zshrc"   # Make 'reload!' source the .zshrc file
 
-# $PATH stuff {{{1
+# }}}
+# $PATH stuff {{{
 
 # Enable loading of MySQL
 export PATH="usr/local/bin:/usr/local/mysql/bin:$PATH"
 
-# Prompt {{{1
+# }}}
+# Prompt {{{
 
 # Initialize colors.
 autoload -U colors
@@ -28,7 +37,7 @@ colors
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
-# VCS prompt configuration {{{2
+# VCS prompt configuration {{{
 
 # Git.
 ZSH_VCS_PROMPT_GIT_FORMATS=' (%s)[%b%c%d|%e%f%g%h%i%j]'
@@ -37,7 +46,7 @@ ZSH_VCS_PROMPT_GIT_ACTION_FORMATS=' (%s)[%b:%a%c%d|%e%f%g%h%i%j]'
 ZSH_VCS_PROMPT_VCS_FORMATS=' (%s)[%b]'
 ZSH_VCS_PROMPT_VCS_ACTION_FORMATS=' (%s)[%b:%a]'
 
-# Formats {{{3
+# Formats {{{
 
 ### Git.
 ## No action.
@@ -120,7 +129,7 @@ ZSH_VCS_PROMPT_VCS_ACTION_FORMATS+='[%{%B%F{red}%}#b%{%f%b%}'
 # Action
 ZSH_VCS_PROMPT_VCS_ACTION_FORMATS+=':%{%B%F{red}%}#a%{%f%b%}]'
 
-# }}}3
+# }}}
 
 ## The symbols.
 ZSH_VCS_PROMPT_AHEAD_SIGIL='↑'
@@ -131,7 +140,7 @@ ZSH_VCS_PROMPT_UNSTAGED_SIGIL='✚'
 ZSH_VCS_PROMPT_UNTRACKED_SIGIL='…'
 ZSH_VCS_PROMPT_STASHED_SIGIL='⚑'
 ZSH_VCS_PROMPT_CLEAN_SIGIL='✔'
-# }}}2
+# }}}
 
 # Load Git prompt
 source ~/.zsh/zsh-vcs-prompt/zshrc.sh
@@ -146,13 +155,14 @@ PROMPT+='%{${fg[default]}%} >>> ' # Default color, prompt
 RPROMPT=$'%{${fg[default]}%}[%n' # Default color, current user
 RPROMPT+='@%m]' # Current server
 
-# History {{{1
+# }}}
+# History {{{
 
 HISTSIZE=1000       # The size of the history of current shell
 SAVEHIST=1000       # The size of the history that it's gonna save in a file
 HISTFILE=~/.history # This file where to save the history
 export HIST_IGNORE_ALL_DUPS # Ignore all duplicates and usual commands
 
-# }}}1
+# }}}
 
 # vim: set foldmarker={{{,}}}
