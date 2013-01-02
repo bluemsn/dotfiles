@@ -78,7 +78,7 @@ let &stl.='%)'     " End of item group
 let &stl.='}'      " Closing curly bracket, for item group
 let &stl.=' '      " Separator
 let &stl.='%<'     " Truncate from here on
-let &stl.='%t'     " Current buffer's file name
+let &stl.='"%t"'   " Current buffer's file name
 let &stl.=' '      " Separator
 let &stl.='['      " Opening square bracket for file info
 let &stl.='%{&ft!=""?&ft.",":""}'

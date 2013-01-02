@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 1
+" Last Change: 2013 Jan 2
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -89,7 +89,7 @@ Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'ervandew/supertab'
 Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
-"Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mattn/gist-vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'PotHix/Vimpress'
@@ -98,7 +98,7 @@ Bundle 'Raimondi/delimitMate'
 "Bundle 'SearchComplete'
 "Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
-Bundle 'skwp/vim-easymotion'
+"Bundle 'skwp/vim-easymotion'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'tsaleh/vim-matchit'
@@ -283,6 +283,14 @@ exec 'set tabstop='    .s:tabwidth
 exec 'set shiftwidth=' .s:tabwidth
 exec 'set softtabstop='.s:tabwidth
 
+if (has('autocmd'))
+	augroup par_settings
+		autocmd!
+		autocmd FileType text setlocal formatprg=par\ w79r
+		autocmd FileType gitcommit setlocal formatprg=par\ w72r
+	augroup END
+endif
+
 " }}}
 " Commands' options {{{
 
@@ -350,19 +358,32 @@ nnoremap <C-e> ,
 vnoremap <C-e> ,
 
 " }}}
-" .vimrc stuff {{{
+" Edit files mappings {{{
 
-" Open .vimrc file as a buffer and open in this split window
+" Open .vimrc file as a buffer in this split window
 nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
 
 " Open .vimrc file in a vertical split
 nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
 
-" Open statusline.vim file as a buffer and open in this split window
+" Open .gvimrc file as a buffer in this split window
+nnoremap <silent> <leader>eeg :e $MYGVIMRC<CR>
+
+" Open .gvimrc file in a vertical split
+nnoremap <silent> <leader>eg :sp $MYGVIMRC<CR>
+
+" Open statusline.vim file as a buffer in this split window
 nnoremap <silent> <leader>ees :e ~/.vim/plugin/statusline.vim<CR>
 
-" Open .vimrc file in a vertical split
+" Open statusline.vim file in a vertical split
 nnoremap <silent> <leader>es :sp ~/.vim/plugin/statusline.vim<CR>
+
+" Open the tmux_iterm.vim file as a buffer in this split window
+nnoremap <silent> <leader>ees :e ~/.vim/after/plugin/tmux_iterm.vim<CR>
+
+" Open tmux_iterm.vim file in a vertical split
+nnoremap <silent> <leader>es :sp ~/.vim/after/plugin/tmux_iterm.vim<CR>
+
 
 " }}}
 " Arrow keys and 'hjkl' keys {{{
@@ -518,7 +539,7 @@ set sidescrolloff=4 " Same as above, but for side scrolling
 set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
-set mouse=a         " Enable use of mouse in all modes
+set mouse=          " Disable mouse
 
 " guicursor {{{
 
@@ -713,16 +734,16 @@ if has('autocmd')
 		autocmd FileType python setlocal expandtab
 	augroup END
 
-	augroup filetype_text
-		autocmd!
-		autocmd FileType text setlocal formatprg=par\ w79r
-		autocmd FileType gitcommit setlocal formatprg=par\ w72r
-	augroup END
-
 	" Some settings for fugitive.vim by Tim Pope
 	augroup fugitive
 		autocmd!
 		autocmd BufReadPost fugitive://* set bufhidden=delete
+	augroup END
+
+	augroup par_settings
+		autocmd!
+		autocmd FileType text setlocal formatprg=par\ w79r
+		autocmd FileType gitcommit setlocal formatprg=par\ w72r
 	augroup END
 endif " if has('autocmd')
 
