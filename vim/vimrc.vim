@@ -25,6 +25,7 @@ set hidden                 " Keep changed buffers without requiring saves
 set ttyfast                " Faster Terminal, redraws stuff quicker!
 set viewoptions=unix,slash " Better Unix/Windows compatibility
 set modeline               " Allow file specific Vim settings
+set viminfo+=!             " Keep global uppercase variables
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
@@ -44,6 +45,14 @@ if has('autocmd')
 		autocmd!
 		autocmd BufWritePost ~/.vim/plugin/statusline.vim source
 			\ ~/.vim/plugin/statusline.vim
+	augroup END
+
+	" Reload cursor settings for tmux/iTerm as soon as it changes
+	augroup tmuxiTermReload
+		autocmd!
+		autocmd BufWritePost ~/.vim/after/plugin/tmux_iterm.vim source
+			\ ~/.vim/after/plugin/tmux_iterm.vim
+	augroup END
 endif
 
 " }}}
@@ -280,6 +289,7 @@ exec 'set softtabstop='.s:tabwidth
 set cpoptions+=$    " Default but put a '$' at the end of motion string
 set timeout         " Do time out on mappings and others
 set timeoutlen=1000 " Set the timeout lenght in milliseconds
+set iskeyword+=-    " Add '-' as a keyword
 
 " }}}
 " Command line options {{{
@@ -298,6 +308,7 @@ set nobackup     " Disable backup files
 set noswapfile   " Don't use a swap file in current buffer
 set nowb         " Don't write backup before saving
 
+" }}}
 " Undo {{{
 
 if has('persistent_undo')
@@ -312,8 +323,6 @@ if has('persistent_undo')
 endif
 
 " }}}
-
-" }}}
 " Folds {{{
 
 set foldenable        " Make sure folding is enabled
@@ -324,7 +333,9 @@ set foldlevelstart=0  " Always close folds when switching buffers
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " }}}
-" Keymappings stuff {{{
+" Keyboard {{{
+
+" Keymappings {{{
 
 " Leader key(s) {{{
 
@@ -435,13 +446,14 @@ vmap <S-up> [egv
 vmap <S-down> ]egv
 
 " Fix the '&' command in normal and visual modes
-" https://github.com/nelstrom/dotfiles/blob/master/vimrc#L99-L101
+" https://github.com/nelstrom/dotfiles/blob/d245b5cf67/vimrc#L99-L101
 nnoremap & :&&<enter>
 xnoremap & :&&<enter>
 
-" Make Vim always paste following the indentation for the current block
-" http://stackoverflow.com/a/164866/1622940
-nnoremap p ]p
+" Make 'Y' behave like 'D' and 'C'
+" https://github.com/blueyed/dotfiles/blob/4407ba7905/vimrc#L1129-L1131
+nnoremap Y y$
+xnoremap Y y$
 
 " }}}
 " Function keys mappings {{{
@@ -458,6 +470,8 @@ noremap <F1> <esc>
 " Use '<space><space>' to save the file
 " https://github.com/jeffkreeftmeijer/dotfiles/blob/master/home/.vimrc#L49-L50
 nnoremap <space><space> :w<CR>
+
+" }}}
 
 " }}}
 
@@ -498,13 +512,13 @@ set ruler        " Put a ruler, when my custom statusline doesn't load
 " }}}
 " Cursor & mouse {{{
 
-"set scrolloff=999  " Keep the cursor in the middle of the window
-set scrolloff=10    " How near the cursor can get to the top/bottom of window
+set scrolloff=999   " Keep the cursor in the middle of the window
+"set scrolloff=15    " How near the cursor can get to the top/bottom of window
 set sidescrolloff=4 " Same as above, but for side scrolling
 set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
-set mouse=          " Disable use of mouse
+set mouse=a         " Enable use of mouse in all modes
 
 " guicursor {{{
 
@@ -637,16 +651,32 @@ endif "}}}
 set diffopt+=iwhite " Add ignorance of whitespace to diff
 
 " }}}
+" Help settings {{{
+
+" Nothing here yet...
+
+" }}}
+" Command line auto-completion {{{
+
+set wildmenu              " Better command line auto-completion
+set wildchar=<Tab>        " Set char to trigger wild-card expandsion in
+                          " command line
+set wildmode=list:longest " Settings for when wildchar is used
+
+" Ignore the following stuff when expanding wildcards
+set wildignore+=*.o,*.obj,.git,.svn
+set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.mp3
+set wildignore+=*.sw?
+
+" }}}
 " Auto-completion {{{
 
-set wildmenu              " Use wildmenu auto completion
-set wildmode=list:longest " Set options for auto completion
-set complete=.,w,b,t      " Default, except that I remove the 'u' option 
+set complete=.,w,b,t      " Define how keyword auto-completion in insert mode
+                          " should work
+set pumheight=15          " Max lines to show in auto-complete box
+set completeopt=longest,menuone " Settings for auto-completion
 set showfulltag           " Show whole tag, not just function name, when
                           " autocompleting by tag
-set pumheight=15          " Max lines to show in auto-complete box
-
-set completeopt=longest,menuone
 
 " }}}
 " Macros {{{
@@ -840,6 +870,19 @@ nnoremap <leader>tr :call Recording('off')<CR>
 " }}}
 
 " }}}
+" Tmux/iTerm fixes {{{
+
+" There's actually nothing here! This is controlled by the vim script that's
+" contained under "~/.vim/after/plugin/tmux_iterm.vim". This way it loads
+" every time, but after the .vimrc file loads, in order to override some of
+" it's stuff.
+
+" }}}
+" Random stuff {{{
+
+set isfname-== " Remove '=' from filename characters
+
+" }}}
 " Tips {{{
 
 " To show all help topics containing 'help'
@@ -856,14 +899,6 @@ nnoremap <leader>tr :call Recording('off')<CR>
 " ZZ     - save and close current file
 " zz     - makes current line the center of editor
 " cc, S  - cuts current line and puts you in insert mode
-
-" }}}
-" Tmux/iTerm fixes {{{
-
-" There's actually nothing here! This is controlled by the vim script that's
-" contained under "~/.vim/after/plugin/tmux_iterm.vim". This way it loads
-" every time, but after the .vimrc file loads, in order to override some of
-" it's stuff.
 
 " }}}
 
