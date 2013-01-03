@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 2
+" Last Change: 2013 Jan 3
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -102,6 +102,7 @@ Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
 Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'tsaleh/vim-matchit'
+Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
@@ -163,6 +164,8 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'tpope/vim-commentary'
 "Bundle 'tpope/vim-eunuch'
 "Bundle 'tpope/vim-pastie'
+"Bundle 'tpope/vim-speeddating'
+"Bundle 'troydm/easybuffer.vim'
 "Bundle 'tsaleh/vim-align'
 "Bundle 'xolox/vim-shell'
 
@@ -193,21 +196,10 @@ let g:git_branch_status_nogit='' " Message when there's no Git repo
 let g:git_branch_status_around='()' " Enclose the branch in between these
 let g:git_branch_file_based=1 " Check the file for info, instead of directory
 " }}}
-" NERDtree {{{
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
-" }}}
-" EasyMotion {{{
-let g:EasyMotion_Leader_key='<leader><leader>'
-" }}}
 " MiniBufExplorer {{{
 let g:miniBufExplMapCTabSwitchBufs=1
 let g:miniBufExplUseSingleClick=1
 let g:miniBufExplForceSyntaxEnable=1
-" }}}
-" Vim Powerline {{{
-let g:Powerline_symbols='fancy'
-let g:Powerline_stl_path_style='short'
 " }}}
 " numbertoggle {{{
 let g:numbertoggle_defaultmodeoff='number'
@@ -507,8 +499,8 @@ nnoremap <space><space> :w<CR>
 " UI related {{{
 
 " Enable list by default, but set it's options for when it is used
-set list                    " Show hidden characters
-set listchars=tab:▸\ ,eol:¬ " Set chars to use for 'list'
+set list                            " Show hidden characters
+set listchars=tab:▸\ ,eol:¬,trail:_ " Set chars to use for 'list'
 
 " Disable softwrap by default, and set it's options, even if disabled
 set nowrap    " By default soft-wrap text at window border
@@ -577,14 +569,15 @@ augroup END
 " }}}
 " Windows/Split-windows {{{
 
-set fillchars=vert:\|,fold:-  " Don't put window separators between splits
-set autowrite                 " When switching buffers save file automatically
-set autoread                  " Auto read files when edited outside Vim
-set tabpagemax=1              " Max tabs to open with the '-p' option
-set showtabline=0             " Don't show the Vim tab line
-set switchbuf=useopen,usetab  " Switch to tab/window if buffer is already open
-set guioptions=acirbhv        " Set the GUI options the way I like them
-set winminheight=0            " Minimum window height (split window)
+set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:- " Set the various fill
+                                                    " characters for stuff
+set autowrite                " When switching buffers save file automatically
+set autoread                 " Auto read files when edited outside Vim
+set tabpagemax=1             " Max tabs to open with the '-p' option
+set showtabline=0            " Don't show the Vim tab line
+set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
+set guioptions=acirbhv       " Set the GUI options the way I like them
+set winminheight=0           " Minimum window height (split window)
 
 " Make sure Vim has autocmd support
 if has('autocmd')
@@ -635,7 +628,7 @@ let g:solarized_hitrail=1
 let g:solarized_menu=0
 
 " Don't use any underline styles
-let g:solarized_underline=0
+let g:solarized_underline=1
 
 set background=dark " Use the light/dark version the color scheme
 silent! colorscheme solarized " Set the color scheme to use, no errors allowed

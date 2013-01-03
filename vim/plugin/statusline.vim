@@ -40,28 +40,40 @@ function! ChangeStatuslineColor() "{{{
 	return ''
 endfunction "}}}
 function! FileSize() "{{{
+	" Set a basic variable that equals the file's size in bytes
 	let bytes = getfsize(expand('%:p'))
+
+	" Set a variable that outputs KBs, only when there's KBs in file size
 	if (bytes >= 1024)
 		let kbytes = bytes / 1024
 	endif
+
+	" Set a variable that outputs MBs, only when there's MBs in file size
 	if (exists('kbytes') && kbytes >= 1000)
 		let mbytes = kbytes / 1000
 	endif
 
+	" Return 'empty' if the file has no size
 	if (bytes <= 0)
 		return 'empty'
 	endif
 
 	if (exists('mbytes'))
+		" Output MBs if they exist
 		return mbytes . 'MB'
 	elseif (exists('kbytes'))
+		" Output KBs, if MBs don't exist
 		return kbytes . 'KB'
 	else
+		" Otherwise return bytes
 		return bytes . 'B'
 	endif
 endfunction "}}}
 
 " Statusline {{{
+" The default statusline is:
+" set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
 let &stl=''        " Clear statusline for when vimrc is loaded
 let &stl.='%{ChangeStatuslineColor()}'
 let &stl.='[%{toupper(g:currentmode[mode()])}]'
