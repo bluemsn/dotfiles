@@ -24,67 +24,59 @@ fi
 # Recognize the dotfiles directory
 dotfiles_dir="$script_dir/.."
 
-read -p 'Do you wish to delete the old symlinks first? [y/n] ' prompt1
-
-case "$prompt1" in
-	y|Y ) sh $script_dir/delete_symlinks.sh;;
-	n|N ) exit;;
-	* ) echo "Invalid answer! Only answer 'y' or 'n'; please run this script again."; exit $?;;
-esac
-
 echo "Started making new symlinks, at [$time]...\n"
 
 if [ $kernel == 'Darwin' ]; then
 	# Making symlinks to Vim files, add yours as you need
 	echo "Making symlinks to Vim files"
-	ln -s -v $dotfiles_dir/vim ~/.vim
-	ln -s -v $dotfiles_dir/vim/vimrc.vim ~/.vimrc
-	ln -s -v $dotfiels_dir/vim/gvimrc.vim ~/.gvimrc
+	ln -sfn -v $dotfiles_dir/vim ~/.vim
+	ln -sfn -v $dotfiles_dir/vim/vimrc.vim ~/.vimrc
+	ln -sfn -v $dotfiels_dir/vim/gvimrc.vim ~/.gvimrc
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Tmux files, add yours as you need
 	echo "Making symlinks to Tmux files"
-	ln -s -v $dotfiles_dir/tmux/tmux.conf ~/.tmux.conf
+	ln -sfn -v $dotfiles_dir/tmux/tmux.conf ~/.tmux.conf
 	echo "Done at  [$time]...\n"
 
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'
-	ln -s -v $dotfiles_dir/shells/zsh ~/.zsh
-	ln -s -v $dotfiles_dir/shells/zsh/zshrc ~/.zshrc
-	ln -s -v $dotfiles_dir/shells/profile ~/.profile
+	ln -sfn -v $dotfiles_dir/shells/zsh ~/.zsh
+	ln -sfn -v $dotfiles_dir/shells/zsh/zshrc ~/.zshrc
+	ln -sfn -v $dotfiles_dir/shells/profile ~/.profile
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Git files, add yours as you need
 	echo 'Making symlinks to Git files'
-	ln -s -v $dotfiles_dir/git/gitconfig ~/.gitconfig
-	ln -s -v $dotfiles_dir/git/gitmessage.txt ~/.gitmessage.txt
+	ln -sfn -v $dotfiles_dir/git/gitconfig ~/.gitconfig
+	ln -sfn -v $dotfiles_dir/git/gitmessage.txt ~/.gitmessage.txt
 	echo "Done at [$time]...\n"
 fi
 
 if [ $kernel == 'Linux' ]; then
 	# Making symlinks to Vim files, add yours as you need
 	echo 'Making symlinks to Vim files'
-	ln -s -v $dotfiles_dir/vim /home/$user/.vim
-	ln -s -v $dotfiles_dir/vim/vimrc /home/$user/.vimrc
-	ln -s -v $dotfiles_dir/vim/gvimrc /home/$user/.gvimrc
+	ln -sfn -v $dotfiles_dir/vim /home/$user/.vim
+	ln -sfn -v $dotfiles_dir/vim/vimrc /home/$user/.vimrc
+	ln -sfn -v $dotfiles_dir/vim/gvimrc /home/$user/.gvimrc
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Tmux files, add yours as you need
 	echo "Making symlinks to Tmux files"
-	ln -s -v $dotfiles_dir/vim/tmux.conf /home/$user/.tmux.conf
+	ln -sfn -v $dotfiles_dir/vim/tmux.conf /home/$user/.tmux.conf
 	echo "Done at  [$time]...\n"
 
 	# Making symlinks to Zsh files, add yours as you need
 	echo 'Making symlinks to Zsh files'
-	ln -s -v $dotfiles_dir/zsh /home/$user/.zsh
-	ln -s -v $dotfiles_dir/zsh/zshrc /home/$user/.zshrc
-	ln -s -v $dotfiles_dir/shells/profile ~/.profile
+	ln -sfn -v $dotfiles_dir/zsh /home/$user/.zsh
+	ln -sfn -v $dotfiles_dir/zsh/zshrc /home/$user/.zshrc
+	ln -sfn -v $dotfiles_dir/shells/profile ~/.profile
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Git files, add yours as you need
 	echo 'Making symlinks to Git files'
-	ln -s -v $dotfiles_dir/git/gitconfig /home/$user/.gitconfig
-	ln -s -v $dotfiles_dir/git/gitmessage.txt /home/$user/.gitmessage.txt
+	ln -sfn -v $dotfiles_dir/git/gitconfig /home/$user/.gitconfig
+	ln -sfn -v $dotfiles_dir/git/gitmessage.txt /home/$user/.gitmessage.txt
 	echo "Done at [$time]...\n"
 fi
 
