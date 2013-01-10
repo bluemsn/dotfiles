@@ -15,9 +15,9 @@ time=`date +%H:%M`       # Output current time
 current_dir=$(pwd)       # Shell's current location
 script_dir=$(dirname $0) # This script's current location
 
-if [ $kernel == 'Darwin' ]
-	# Do nothing, home is already set
-elif [ $kernel == 'Linux' ]
+if [ $kernel == 'Darwin' ]; then
+	$HOME="/Users/$user"
+elif [ $kernel == 'Linux' ]; then
 	$HOME="/home/$user"
 fi
 
@@ -31,12 +31,13 @@ fi
 dotfiles_dir="$HOME/dotfiles"
 
 # Exit the script if I'm not sure of what Unix kernel this is being run on
-if [ $kernel != 'Darwin' || $kernel != 'Linux' ]; then
+if [ $kernel == 'Darwin' ] || [ $kernel == 'Linux' ]; then
+	echo "Started making new symlinks, at [$time]...\n"
+else
 	echo "I do not recognize this Unix kernel."
 	exit
 fi
 
-echo "Started making new symlinks, at [$time]...\n"
 echo "First I'm gonna backup any of the files that I find, just in case..."
 
 if [ -d "$HOME/.dotfiles_old" ]; then
@@ -65,7 +66,7 @@ if [ $kernel == 'Darwin' ]; then
 	echo "Making symlinks to Vim files"
 	ln -sfn -v $dotfiles_dir/vim $HOME/.vim
 	ln -sfn -v $dotfiles_dir/vim/vimrc.vim $HOME/.vimrc
-	ln -sfn -v $dotfiels_dir/vim/gvimrc.vim $HOME/.gvimrc
+	ln -sfn -v $dotfiles_dir/vim/gvimrc.vim $HOME/.gvimrc
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Tmux files, add yours as you need
@@ -101,10 +102,11 @@ elif [ $kernel == 'Linux' ]; then
 	echo "Done at  [$time]...\n"
 
 	# Making symlinks to shell files, add yours as you need
-	echo 'Making symlinks shell files'
+	echo 'Making symlinks to shell files'
 	ln -sfn -v $dotfiles_dir/shells/zsh $HOME/.zsh
 	ln -sfn -v $dotfiles_dir/shells/zsh/zshrc $HOME/.zshrc
 	ln -sfn -v $dotfiles_dir/shells/bash $HOME/.bash
+	ln -sfn -v $dotfiles_dir/shells/bash/bash_profile $HOME/.bash_profile
 	ln -sfn -v $dotfiles_dir/shells/bash/bashrc $HOME/.bashrc
 	ln -sfn -v $dotfiles_dir/shells/profile $HOME/.profile
 	echo "Done at [$time]...\n"

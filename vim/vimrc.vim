@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 4
+" Last Change: 2013 Jan 10
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -606,7 +606,7 @@ endif
 set synmaxcol=1024 " Max chars to highlight in a single, long line
 
 if !has('gui_running')
-	" Compatibility for Terminal
+	" Enable Terminal transparency
 	let g:solarized_termtrans=1
 
 	if (&t_Co >= 256 || $TERM == 'xterm-256color')
@@ -630,38 +630,12 @@ let g:solarized_hitrail=1
 let g:solarized_menu=0
 
 " Don't use any underline styles
-let g:solarized_underline=1
+let g:solarized_underline=0
 
 set background=dark " Use the light/dark version the color scheme
 silent! colorscheme solarized " Set the color scheme to use, no errors allowed
 
 " }}}
-if has('gui_running') "{{{
-	" Fix spell check highlighting
-	highlight SpellBad term=underline gui=undercurl guisp=Red
-
-	" Set the window position to these coordinates
-	winpos 0 0
-
-	" Set the font
-	set guifont=Monaco:h11
-
-	if ! $diff " Check if in diff mode
-		" If not, do a normal sized window
-		set columns=120 lines=40 " Set the width and height of window
-	else
-		" If yes, then double that for diff mode
-		set columns=240 lines=40 " Same here, duh!
-	endif
-
-	if has('gui_macvim')
-		set fuoptions=maxvert,maxhorz " Full screen means FULL screen
-	else
-		" Other GUIs, like Gvim, go here
-	endif
-else
-	" Terminal settings go here
-endif "}}}
 
 " }}}
 " Diff {{{
