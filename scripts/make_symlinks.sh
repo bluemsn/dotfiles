@@ -16,9 +16,9 @@ current_dir=$(pwd)       # Shell's current location
 script_dir=$(dirname $0) # This script's current location
 
 if [ $kernel == 'Darwin' ]; then
-	$HOME="/Users/$user"
+	$HOME = /Users/$user
 elif [ $kernel == 'Linux' ]; then
-	$HOME="/home/$user"
+	$HOME = /home/$user
 fi
 
 # This if statement is to know the correct location of the script, if the
@@ -39,18 +39,14 @@ else
 fi
 
 echo "First I'm gonna backup any of the files that I find, just in case..."
-
-if [ ! -d "$HOME/.dotfiles_old" ]; then
-	echo "\nMaking backup directory..."
-	mkdir -v $HOME/.dotfiles_old
-fi
-
 for file in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.tmux.conf $HOME/.zsh $HOME/.zshrc $HOME/.bash $HOME/.bashrc $HOME/.profile $HOME/.gitconfig $HOME/.gitmessage.txt
 do
 	if [ -e $file ] && [ ! -L $file ]; then
-		mv -v $file $HOME/.dotfiles_old
+		mkdir -v $HOME/.dotfiles_old
+		mv -f -v $file $HOME/.dotfiles_old
 	fi
 done
+echo ''
 
 # Making symlinks to Vim files, add yours as you need
 echo "Making symlinks to Vim files"
