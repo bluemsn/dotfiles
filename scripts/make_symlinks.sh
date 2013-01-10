@@ -42,10 +42,10 @@ echo "First I'm gonna backup any of the files that I find, just in case..."
 if [ -d "$HOME/.dotfiles_old" ]; then
 	if [ $kernel == 'Darwin' ]; then
 		echo "\nMaking backup directory..."
-		mkdir -v $HOME/.backup_directory
+		mkdir -v $HOME/.dotfiles_old
 	elif [ $kernel == 'Linux' ]; then
 		echo "\nMaking backup directory..."
-		mkdir -v $HOME/.backup_directory
+		mkdir -v $HOME/.dotfiles_old
 	fi
 fi
 
