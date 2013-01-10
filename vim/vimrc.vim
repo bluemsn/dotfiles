@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 3
+" Last Change: 2013 Jan 4
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -143,6 +143,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'greyblake/vim-preview'
 "Bundle 'jistr/vim-nerdtree-tabs'
+"Bundle 'kana/vim-arpeggio'
 "Bundle 'kana/vim-fakeclip'
 "Bundle 'kana/vim-textobj-indent'
 "Bundle 'kien/ctrlp.vim'
@@ -155,6 +156,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/whitespace2.0.vim'
 "Bundle 'Shougo/neocomplcache'
 "Bundle 'SirVer/ultisnips'
 "Bundle 'sjl/clam.vim'

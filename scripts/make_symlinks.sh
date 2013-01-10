@@ -39,10 +39,10 @@ fi
 echo "Started making new symlinks, at [$time]...\n"
 echo "First I'm gonna backup any of the files that I find, just in case..."
 
-if [ -d "~/.dotfiles_old" ]; then
+if [ -d "$HOME/.dotfiles_old" ]; then
 	if [ $kernel == 'Darwin' ]; then
 		echo "\nMaking backup directory..."
-		mkdir -v ~/.backup_directory
+		mkdir -v $HOME/.backup_directory
 	elif [ $kernel == 'Linux' ]; then
 		echo "\nMaking backup directory..."
 		mkdir -v $HOME/.backup_directory
@@ -53,7 +53,7 @@ for file in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.tmux.conf $HOME/.zsh $H
 do
 	if [ -e $file ] && [ ! -L $file ]; then
 		if [ $kernel == 'Darwin' ]; then
-			mv -v $file ~/.dotfiles_old
+			mv -v $file $HOME/.dotfiles_old
 		elif [ $kernel == 'Linux' ]; then
 			mv -v $file $HOME/.dotfiles_old
 		fi
@@ -63,29 +63,29 @@ done
 if [ $kernel == 'Darwin' ]; then
 	# Making symlinks to Vim files, add yours as you need
 	echo "Making symlinks to Vim files"
-	ln -sfn -v $dotfiles_dir/vim ~/.vim
-	ln -sfn -v $dotfiles_dir/vim/vimrc.vim ~/.vimrc
-	ln -sfn -v $dotfiels_dir/vim/gvimrc.vim ~/.gvimrc
+	ln -sfn -v $dotfiles_dir/vim $HOME/.vim
+	ln -sfn -v $dotfiles_dir/vim/vimrc.vim $HOME/.vimrc
+	ln -sfn -v $dotfiels_dir/vim/gvimrc.vim $HOME/.gvimrc
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Tmux files, add yours as you need
 	echo "Making symlinks to Tmux files"
-	ln -sfn -v $dotfiles_dir/tmux/tmux.conf ~/.tmux.conf
+	ln -sfn -v $dotfiles_dir/tmux/tmux.conf $HOME/.tmux.conf
 	echo "Done at  [$time]...\n"
 
 	# Making symlinks to shell files, add yours as you need
 	echo 'Making symlinks shell files'
-	ln -sfn -v $dotfiles_dir/shells/zsh ~/.zsh
-	ln -sfn -v $dotfiles_dir/shells/zsh/zshrc ~/.zshrc
-	ln -sfn -v $dotfiles_dir/shells/bash ~/.bash
+	ln -sfn -v $dotfiles_dir/shells/zsh $HOME/.zsh
+	ln -sfn -v $dotfiles_dir/shells/zsh/zshrc $HOME/.zshrc
+	ln -sfn -v $dotfiles_dir/shells/bash $HOME/.bash
 	ln -sfn -v $dotfiles_dir/shells/bash/bashrc
-	ln -sfn -v $dotfiles_dir/shells/profile ~/.profile
+	ln -sfn -v $dotfiles_dir/shells/profile $HOME/.profile
 	echo "Done at [$time]...\n"
 
 	# Making symlinks to Git files, add yours as you need
 	echo 'Making symlinks to Git files'
-	ln -sfn -v $dotfiles_dir/git/gitconfig ~/.gitconfig
-	ln -sfn -v $dotfiles_dir/git/gitmessage.txt ~/.gitmessage.txt
+	ln -sfn -v $dotfiles_dir/git/gitconfig $HOME/.gitconfig
+	ln -sfn -v $dotfiles_dir/git/gitmessage.txt $HOME/.gitmessage.txt
 	echo "Done at [$time]...\n"
 elif [ $kernel == 'Linux' ]; then
 	# Making symlinks to Vim files, add yours as you need
