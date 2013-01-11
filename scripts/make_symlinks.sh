@@ -49,19 +49,19 @@ done
 echo ''
 
 # Making symlinks to Vim files, add yours as you need
-echo "Making symlinks to Vim files"
+echo 'Making symlinks to Vim files...'
 ln -sfn -v $dotfiles_dir/vim $HOME/.vim
 ln -sfn -v $dotfiles_dir/vim/vimrc.vim $HOME/.vimrc
 ln -sfn -v $dotfiles_dir/vim/gvimrc.vim $HOME/.gvimrc
 echo "Done at [$time]...\n"
 
 # Making symlinks to Tmux files, add yours as you need
-echo "Making symlinks to tmux files"
+echo 'Making symlinks to tmux files...'
 ln -sfn -v $dotfiles_dir/tmux/tmux.conf $HOME/.tmux.conf
 echo "Done at  [$time]...\n"
 
 # Making symlinks to shell files, add yours as you need
-echo 'Making symlinks to shell files'
+echo 'Making symlinks to shell files...'
 ln -sfn -v $dotfiles_dir/shells/zsh $HOME/.zsh
 ln -sfn -v $dotfiles_dir/shells/zsh/zshrc $HOME/.zshrc
 ln -sfn -v $dotfiles_dir/shells/bash $HOME/.bash
@@ -71,9 +71,14 @@ ln -sfn -v $dotfiles_dir/shells/profile $HOME/.profile
 echo "Done at [$time]...\n"
 
 # Making symlinks to Git files, add yours as you need
-echo 'Making symlinks to Git files'
+echo 'Making symlinks to Git files...'
 ln -sfn -v $dotfiles_dir/git/gitconfig $HOME/.gitconfig
 ln -sfn -v $dotfiles_dir/git/gitmessage.txt $HOME/.gitmessage.txt
+echo "Done at [$time]...\n"
+
+# Making symlinks to random files, add yours as needed
+echo 'Making symlinks to KeyRemap4MacBook stuff...'
+ln -sfn -v $dotfiles_dir/random/keyremap4macbook_private.xml $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml
 echo "Done at [$time]...\n"
 
 echo "Finished making new symlinks, at [$time]..."

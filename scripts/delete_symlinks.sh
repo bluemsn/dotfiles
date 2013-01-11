@@ -76,4 +76,9 @@ rm -v $HOME/.gitconfig
 rm -v $HOME/.gitmessage.txt
 echo "Done at [$time]...\n"
 
+# Remove random symlinks
+echo 'Deleting symlinks to KeyRemap4MacBook stuff...'
+rm -v $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml
+echo "Done at [$time]...\n"
+
 echo "Finished deleting old symlinks, at [$time]..."

@@ -22,8 +22,10 @@ fi
 # Make the necessary symlinks
 source ./scripts/make_symlinks.sh
 
-# Install some Homebrew stuff
-source ./scripts/brew_installs.sh
+if [ $kernel == 'Darwin' ]; then
+	# Install some Homebrew stuff
+	source ./scripts/brew_installs.sh
+fi
 
 # Setup Vim for first use
 source ./scripts/setup_vim.sh
