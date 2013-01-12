@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 10
+" Last Change: 2013 Jan 12
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -22,10 +22,10 @@
 set nocompatible
 
 set hidden                 " Keep changed buffers without requiring saves
-set ttyfast                " Faster Terminal, redraws stuff quicker!
 set viewoptions=unix,slash " Better Unix/Windows compatibility
 set modeline               " Allow file specific Vim settings
 set viminfo+=!             " Keep global uppercase variables
+set noesckeys              " I don't use any mappings starting with <Esc>
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
@@ -230,9 +230,8 @@ set smartcase    " But recognize uppercase if it is specified
 set novisualbell " Set to use visual bell --  the beeping sucks!
 set noerrorbells " Enable use of (visual) error bells
 set incsearch    " Show results of search scan as it finds them
-set showmatch    " Always show matching bracket, quote etc.
-set matchtime=5  " Tenths of a second to show the matching paren when
-                 " 'showmatch' is set
+set noshowmatch  " Disable show match, using matchparen instead
+set matchpairs=(:),{:},[:],':',":"
 set showcmd      " Show the current command in the lower right corner
 set magic        " Allow use of regular expressions in the search scans
 
@@ -292,7 +291,8 @@ endif
 
 set cpoptions+=$    " Default but put a '$' at the end of motion string
 set timeout         " Do time out on mappings and others
-set timeoutlen=1000 " Set the timeout lenght in milliseconds
+set timeoutlen=2000 " Wait {num} ms before timing out a mapping
+set ttimeoutlen=100 " and only {num} ms before timing out on a keypress
 set iskeyword+=-    " Add '-' as a keyword
 
 " }}}
@@ -302,7 +302,7 @@ set cmdheight=2 " Make the command input line two lines high
 set shellslash  " Set to use forward slash, in case you're in Windows
 set showmode    " Always show the current mode
 set showcmd     " Show (partial) command in the last line of screen
-set report=4    " Threshold for reporting number of lines changed
+set report=0    " Report this or greater number of changes
 
 " }}}
 " History {{{
@@ -375,10 +375,10 @@ nnoremap <silent> <leader>ees :e ~/.vim/plugin/statusline.vim<CR>
 nnoremap <silent> <leader>es :sp ~/.vim/plugin/statusline.vim<CR>
 
 " Open the tmux_iterm.vim file as a buffer in this split window
-nnoremap <silent> <leader>ees :e ~/.vim/after/plugin/tmux_iterm.vim<CR>
+nnoremap <silent> <leader>eec :e ~/.vim/after/plugin/tmux_iterm.vim<CR>
 
 " Open tmux_iterm.vim file in a vertical split
-nnoremap <silent> <leader>es :sp ~/.vim/after/plugin/tmux_iterm.vim<CR>
+nnoremap <silent> <leader>ec :sp ~/.vim/after/plugin/tmux_iterm.vim<CR>
 
 
 " }}}
@@ -511,12 +511,18 @@ set linebreak " Visual linebreak at 'breakat' rather than last char in window
 set title          " Change Terminal's title
 set colorcolumn=79 " Put a marker in array of column numbers
 set shortmess=astI " :h shortmess
-set linespace=0    " No extra spaces between text lines
 
 " NOTICE!
 " Line numbers are controlled by this Vundle bundle:
 " https://github.com/Greduan/vim-numbertoggle
 
+" Screen redrawing {{{
+
+set ttyfast     " Faster Terminal, redraws stuff quicker!
+set linespace=0 " No extra spaces between text lines
+set lazyredraw  " Don't update the display while executing macros
+
+" }}}
 " Status line {{{
 
 set laststatus=2 " Always use a statusline 
@@ -673,7 +679,7 @@ set showfulltag           " Show whole tag, not just function name, when
 " }}}
 " Macros {{{
 
-set lazyredraw " Don't update the display while executing macros
+" Nothing here yet...
 
 " }}}
 " File/Buffer encryption, encoding etc. {{{
@@ -681,6 +687,7 @@ set lazyredraw " Don't update the display while executing macros
 set key=             " Disable encryption file and buffer encryption 
 set nobomb           " Don't use BOMs (Byte Order Marks)
 set ffs=unix,dos,mac " Set filetype to Unix, Windows and then Mac (Power PC)
+set endofline        " Always add a EOL to every file
 
 " Set the buffer encoding to be UTF-8
 set encoding=utf-8
