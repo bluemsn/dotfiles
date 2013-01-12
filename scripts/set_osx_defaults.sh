@@ -31,6 +31,9 @@ sudo mdutil -a -i off
 # Spotlight: hide menu bar icon
 sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
+# Chrome: disable Google update
+defaults write com.google.Keystone.Agent CheckInterval 0
+
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
