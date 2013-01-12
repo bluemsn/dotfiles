@@ -212,6 +212,7 @@ let g:NumberToggleOn='<leader>tno'
 " Vitality.vim {{{
 if !has('gui_running')
 	let g:vitality_always_assume_iterm=1
+	let g:vitality_fix_cursor=0
 endif
 " }}}
 
@@ -635,8 +636,10 @@ let g:solarized_hitrail=1
 " Disable the Solarized menu, when using GUI
 let g:solarized_menu=0
 
-" Don't use any underline styles
+" Don't use any special font styles with Solarized
 let g:solarized_underline=0
+let g:solarized_bold=0
+let g:solarized_italic=0
 
 set background=dark " Use the light/dark version the color scheme
 silent! colorscheme solarized " Set the color scheme to use, no errors allowed
@@ -669,12 +672,12 @@ set wildignore+=*.sw?
 " }}}
 " Auto-completion {{{
 
-set complete=.,w,b,t      " Define how keyword auto-completion in insert mode
-                          " should work
-set pumheight=15          " Max lines to show in auto-complete box
+set complete=.,w,b,t " Define how keyword auto-completion in insert mode
+                     " should work
+set pumheight=15     " Max lines to show in auto-complete box
 set completeopt=longest,menuone " Settings for auto-completion
-set showfulltag           " Show whole tag, not just function name, when
-                          " autocompleting by tag
+set showfulltag      " Show whole tag, not just function name, when
+                     " autocompleting by tag
 
 " }}}
 " Macros {{{
