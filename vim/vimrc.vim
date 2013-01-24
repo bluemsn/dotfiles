@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 12
+" Last Change: 2013 Jan 23
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -89,13 +89,14 @@ Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'ervandew/supertab'
 Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
+Bundle 'jszakmeister/vim-togglecursor'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mattn/gist-vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'neochrome/todo.vim'
 "Bundle 'PotHix/Vimpress'
-Bundle 'Raimondi/delimitMate'
+"Bundle 'Raimondi/delimitMate'
 "Bundle 'scrooloose/nerdtree'
-"Bundle 'SearchComplete'
 "Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
 "Bundle 'skwp/vim-easymotion'
@@ -107,7 +108,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-"Bundle 'YankRing.vim'
 
 " Syntax files
 Bundle 'mutewinter/vim-css3-syntax'
@@ -128,7 +128,9 @@ Bundle 'spf13/PIV'
 Bundle 'chriskempson/base16-vim'
 Bundle 'nanotech/jellybeans.vim'
 
-" Trying out
+" vim-scripts repos
+"Bundle 'SearchComplete'
+"Bundle 'YankRing.vim'
 
 " }}}
 " To check out {{{
@@ -163,6 +165,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'sjl/clam.vim'
 "Bundle 'sjl/friendly-find'
 "Bundle 'sjl/gundo.vim'
+"Bundle 'teranex/jk-jumps.vim'
 "Bundle 'tpope/vim-abolish'
 "Bundle 'tpope/vim-commentary'
 "Bundle 'tpope/vim-eunuch'
@@ -232,6 +235,7 @@ set novisualbell " Set to use visual bell --  the beeping sucks!
 set noerrorbells " Enable use of (visual) error bells
 set incsearch    " Show results of search scan as it finds them
 set noshowmatch  " Disable show match, using matchparen instead
+" Set the match pairs for matchparen
 set matchpairs=(:),{:},[:],':',":"
 set showcmd      " Show the current command in the lower right corner
 set magic        " Allow use of regular expressions in the search scans
@@ -636,10 +640,10 @@ let g:solarized_hitrail=1
 " Disable the Solarized menu, when using GUI
 let g:solarized_menu=0
 
-" Don't use any special font styles with Solarized
-let g:solarized_underline=0
-let g:solarized_bold=0
-let g:solarized_italic=0
+" Allow Solarized to use all the styles
+let g:solarized_underline=1
+let g:solarized_bold=1
+let g:solarized_italic=1
 
 set background=dark " Use the light/dark version the color scheme
 silent! colorscheme solarized " Set the color scheme to use, no errors allowed

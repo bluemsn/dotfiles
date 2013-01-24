@@ -16,19 +16,19 @@ echo "I'm gonna do some stuff for you, OK? I started doing stuff at [$time]..."
 
 if [ $kernel == 'Darwin' ]; then
 	# Set some OSX options
-	source ./scripts/set_osx_defaults.sh
+	source ~/dotfiles/scripts/set_osx_defaults.sh
 fi
 
 # Make the necessary symlinks
-source ./scripts/make_symlinks.sh
+source ~/dotfiles/scripts/make_symlinks.sh
 
 if [ $kernel == 'Darwin' ]; then
 	# Install some Homebrew stuff
-	source ./scripts/brew_installs.sh
+	source ~/dotfiles/scripts/brew_installs.sh
 fi
 
 # Setup Vim for first use
-source ./scripts/setup_vim.sh
+source ~/dotfiles/scripts/setup_vim.sh
 
 # Set the default shell
 chsh -s /bin/zsh
