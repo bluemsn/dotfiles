@@ -95,6 +95,7 @@ let &stl.=' '      " Separator
 let &stl.='['      " Opening square bracket for file info
 let &stl.='%{&ft!=""?&ft.",":""}'
 let &stl.='%{&fenc!=""?&fenc.",":&enc.","}'
+let &stl.='%{(&bomb?"BOM,":"")}'
 let &stl.='%{&ff!=""?&ff.",":""}'
 let &stl.='%{FileSize()}' " Output buffer's file size
 let &stl.=']'             " Closing square bracket for file info
@@ -116,7 +117,7 @@ let &stl.='C%c'    " Current column
 let &stl.='-'      " Separator between '%c' and '%v'
 let &stl.='%v]'    " Current virtual column
 let &stl.=' '      " Separator
-let &stl.='(%p%%)' " Percentage through file in lines, as in <c-g>
+let &stl.='(%p%%)' " Percentage through file in lines, as in <C-g>
 " }}}
 
 endif " if has('statusline')

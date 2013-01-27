@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 23
+" Last Change: 2013 Jan 26
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -157,6 +157,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'nathanaelkane/vim-command-w'
 "Bundle 'nelstrom/vim-visual-star-search'
+"Bundle 'nfd/filepirate'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'scrooloose/whitespace2.0.vim'
@@ -494,6 +495,25 @@ noremap <F1> <esc>
 nnoremap <space><space> :w<CR>
 
 " }}}
+
+" }}}
+" Special CAPS lock {{{
+
+" http://vim.wikia.com/wiki/Insert-mode_only_Caps_Lock
+
+" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z
+for c in range(char2nr('A'), char2nr('Z'))
+  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
+  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
+endfor
+
+" Kill the capslock when leaving insert mode
+autocmd InsertLeave * set iminsert=0
+
+" Use <F6> instead of <C-^> for toggleing CAPS lock
+noremap  <F6> :let &l:imi = !&l:imi<CR>
+inoremap <F6> <C-O>:let &l:imi = !&l:imi<CR>
+cnoremap <F6> <C-^>
 
 " }}}
 
