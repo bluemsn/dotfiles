@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 26
+" Last Change: 2013 Jan 28
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -82,26 +82,25 @@ Bundle 'gmarik/vundle'
 " My own bundles
 Bundle 'Greduan/vim-colors-solarized'
 Bundle 'Greduan/vim-numbertoggle'
-"Bundle 'Greduan/vim-modecolorize'
+Bundle 'Greduan/vim-usefulstatusline'
 
 " General
 Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'ervandew/supertab'
-Bundle 'gmarik/sudo-gui.vim'
+"Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
 Bundle 'jszakmeister/vim-togglecursor'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'mattn/gist-vim'
-"Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'neochrome/todo.vim'
 "Bundle 'PotHix/Vimpress'
 "Bundle 'Raimondi/delimitMate'
 "Bundle 'scrooloose/nerdtree'
 "Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
-"Bundle 'skwp/vim-easymotion'
 Bundle 'taq/vim-git-branch-info'
-Bundle 'techlivezheng/vim-plugin-minibufexpl'
+"Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
@@ -155,7 +154,9 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'mattn/zencoding-vim'
 "Bundle 'mbbill/VimExplorer'
 "Bundle 'mileszs/ack.vim'
+"Bundle 'moshen/vim-superstatus'
 "Bundle 'nathanaelkane/vim-command-w'
+"Bundle 'nebelschwade/statusline-vim'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'nfd/filepirate'
 "Bundle 'scrooloose/nerdcommenter'
@@ -168,6 +169,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'sjl/gundo.vim'
 "Bundle 'teranex/jk-jumps.vim'
 "Bundle 'tpope/vim-abolish'
+"Bundle 'tpope/vim-capslock'
 "Bundle 'tpope/vim-commentary'
 "Bundle 'tpope/vim-eunuch'
 "Bundle 'tpope/vim-pastie'
@@ -176,7 +178,11 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'tsaleh/vim-align'
 "Bundle 'xolox/vim-shell'
 
+" Colorschemes
+"Bundle 'molok/vim-vombato-colorscheme'
+
 " vim-scripts repos
+"Bundle 'blinking_statusline.vim"
 "Bundle 'bufkill.vim'
 "Bundle 'Conque-Shell'
 "Bundle 'IndexedSearch'
@@ -190,10 +196,14 @@ Bundle 'nanotech/jellybeans.vim'
 " }}}
 " Bundle settings {{{
 
+" togglecursor {{{
+let g:togglecursor_default='block' " Cursor for everything except insert mode
+let g:togglecursor_insert='line' " Cursor for insert mode
+let g:togglecursor_leave='block' " Cursor to set when leaving Vim
+" }}}
 " Vim Indent Guides {{{
-let g:indent_guides_guide_size=1  " Set width of marker to one wide
+let g:indent_guides_guide_size=1 " Set width of marker to one wide
 let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
-"au VimEnter * :IndentGuidesEnable " Always load bundle
 " }}}
 " Git Branch Info {{{
 let g:git_branch_status_text=' ' " Add a space before info
@@ -567,25 +577,6 @@ set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable mouse
-
-" guicursor {{{
-
-if has('gui_running')
-	" Normal, visual and command-line normal (append) mode
-	set guicursor=n-v-c:block-Cursor-blinkon0
-	" Visual mode with 'selection' "exclusive" (same as 'v', if not specified)
-	set guicursor+=ve:ver35-Cursor
-	" Operator-pending mode
-	set guicursor+=o:hor50-Cursor-blinkwait175-blinkoff150-blinkon175
-	" Insert and command-line insert mode
-	set guicursor+=i-ci:ver20-Cursor
-	" Replace and command-line replace mode
-	set guicursor+=r-cr:hor20-Cursor
-	" Showmatch in insert mode
-	set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-endif
-
-" }}}
 
 augroup cursorline
 	autocmd!

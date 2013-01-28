@@ -23,3 +23,16 @@ if has('gui_macvim')
 else
 	" Other GUIs, like Gvim, go here
 endif
+
+" Normal, visual and command-line normal (append) mode
+set guicursor=n-v-c:block-Cursor-blinkon0
+" Visual mode with 'selection' "exclusive" (same as 'v', if not specified)
+set guicursor+=ve:ver35-Cursor
+" Operator-pending mode
+set guicursor+=o:hor50-Cursor-blinkwait175-blinkoff150-blinkon175
+" Insert and command-line insert mode
+set guicursor+=i-ci:ver20-Cursor
+" Replace and command-line replace mode
+set guicursor+=r-cr:hor20-Cursor
+" Showmatch in insert mode
+set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175

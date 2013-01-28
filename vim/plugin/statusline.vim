@@ -39,36 +39,6 @@ function! ChangeStatuslineColor() "{{{
 
 	return ''
 endfunction "}}}
-function! FileSize() "{{{
-	" Set a basic variable that equals the file's size in bytes
-	let bytes = getfsize(expand('%:p'))
-
-	" Set a variable that outputs KBs, only when there's KBs in file size
-	if (bytes >= 1024)
-		let kbytes = bytes / 1024
-	endif
-
-	" Set a variable that outputs MBs, only when there's MBs in file size
-	if (exists('kbytes') && kbytes >= 1000)
-		let mbytes = kbytes / 1000
-	endif
-
-	" Return 'empty' if the file has no size
-	if (bytes <= 0)
-		return 'empty'
-	endif
-
-	if (exists('mbytes'))
-		" Output MBs if they exist
-		return mbytes . 'MB'
-	elseif (exists('kbytes'))
-		" Output KBs, if MBs don't exist
-		return kbytes . 'KB'
-	else
-		" Otherwise return bytes
-		return bytes . 'B'
-	endif
-endfunction "}}}
 
 " Statusline {{{
 " The default statusline is:
@@ -97,7 +67,7 @@ let &stl.='%{&ft!=""?&ft.",":""}'
 let &stl.='%{&fenc!=""?&fenc.",":&enc.","}'
 let &stl.='%{(&bomb?"BOM,":"")}'
 let &stl.='%{&ff!=""?&ff.",":""}'
-let &stl.='%{FileSize()}' " Output buffer's file size
+let &stl.='%{usefulstatusline_filesize#FileSizePure()}'
 let &stl.=']'             " Closing square bracket for file info
 if exists('*GitBranchInfoString')        " If GitBranchInfo exists
 	let &stl.='%{GitBranchInfoString()}' " Buffer's Git info
