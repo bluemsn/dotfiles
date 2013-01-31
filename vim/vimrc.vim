@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 28
+" Last Change: 2013 Jan 30
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -87,20 +87,17 @@ Bundle 'Greduan/vim-usefulstatusline'
 " General
 Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'ervandew/supertab'
-"Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
 Bundle 'jszakmeister/vim-togglecursor'
 "Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'mattn/gist-vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'neochrome/todo.vim'
 "Bundle 'PotHix/Vimpress'
 "Bundle 'Raimondi/delimitMate'
-"Bundle 'scrooloose/nerdtree'
-"Bundle 'skammer/vim-css-color'
 Bundle 'sjl/vitality.vim'
 Bundle 'taq/vim-git-branch-info'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Bundle 'Townk/vim-autoclose'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
@@ -121,6 +118,7 @@ Bundle 'zaiste/tmux.vim'
 " Language specific bundles
 Bundle 'HTML-AutoCloseTag'
 Bundle 'nelstrom/vim-markdown-folding'
+"Bundle 'skammer/vim-css-color'
 Bundle 'spf13/PIV'
 
 " Color schemes
@@ -134,13 +132,16 @@ Bundle 'nanotech/jellybeans.vim'
 " }}}
 " To check out {{{
 
-"Bundle 'ap/vim-css-color'
+"Bundle 'aaronbieber/quicktask'
 "Bundle 'AndrewRadev/sideways.vim'
+"Bundle 'ap/vim-css-color'
 "Bundle 'avakarev/vim-watchdog'
 "Bundle 'benmills/vimux'
 "Bundle 'bkad/CamelCaseMotion'
 "Bundle 'bsl/obviousmode'
+"Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/tabular'
+"Bundle 'goldfeld/vim-seek'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'greyblake/vim-preview'
 "Bundle 'jeetsukumaran/vim-buffergator'
@@ -151,8 +152,10 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'Lokaltog/powerline'
+"Bundle 'mattn/gist-vim'
 "Bundle 'mattn/zencoding-vim'
 "Bundle 'mbbill/VimExplorer'
+"Bundle 'mihaifm/vimpanel'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'moshen/vim-superstatus'
 "Bundle 'nathanaelkane/vim-command-w'
@@ -160,6 +163,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'nfd/filepirate'
 "Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdtree'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'scrooloose/whitespace2.0.vim'
 "Bundle 'Shougo/neocomplcache'
@@ -176,6 +180,7 @@ Bundle 'nanotech/jellybeans.vim'
 "Bundle 'tpope/vim-speeddating'
 "Bundle 'troydm/easybuffer.vim'
 "Bundle 'tsaleh/vim-align'
+"Bundle 'wikitopian/hardmode'
 "Bundle 'xolox/vim-shell'
 
 " Colorschemes
@@ -204,6 +209,10 @@ let g:togglecursor_leave='block' " Cursor to set when leaving Vim
 " Vim Indent Guides {{{
 let g:indent_guides_guide_size=1 " Set width of marker to one wide
 let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
+" }}}
+" todo.vim {{{
+let g:TodoExplicitCommentsEnabled=1 " Enable explicit comments
+hi! link TodoItemAdditionalText TodoItem
 " }}}
 " Git Branch Info {{{
 let g:git_branch_status_text=' ' " Add a space before info
@@ -500,9 +509,6 @@ noremap <F1> <esc>
 " }}}
 " New mappings {{{
 
-" Use '<space><space>' to save the file
-" https://github.com/jeffkreeftmeijer/dotfiles/blob/master/home/.vimrc#L49-L50
-nnoremap <space><space> :w<CR>
 
 " }}}
 
@@ -601,7 +607,8 @@ set tabpagemax=1             " Max tabs to open with the '-p' option
 set showtabline=0            " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
 set guioptions=acirbhv       " Set the GUI options the way I like them
-set winminheight=0           " Minimum window height (split window)
+set winminheight=5           " Minimum window height (split window)
+set winheight=20             " Height current split should have
 
 " Make sure Vim has autocmd support
 if has('autocmd')

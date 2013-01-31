@@ -18,22 +18,23 @@ function! ChangeStatuslineColor() "{{{
 	return ''
 endfunction "}}}
 
-" Statusline {{{
 " The default statusline is:
 " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 let &stl=''        " Clear statusline for when vimrc is loaded
-let &stl.='%{ChangeStatuslineColor()}'
+let &stl.='%{usefulstatusline_colorize#Colorize()}'
 let &stl.='[%{toupper(usefulstatusline_mode#CurrentModePure())}]'
 let &stl.=' '      " Separator
 let &stl.='[%02n]' " Buffer number of current buffer
 let &stl.=' '      " Separator
-let &stl.='{%('    " Start of item group
+let &stl.='{'
+let &stl.='%('     " Start of item group
 let &stl.='%M'     " Show modified status of buffer
 let &stl.='%R'     " Show if file is read-only: RO
 let &stl.='%W'     " Show if buffer is a preview item?: PRV
 let &stl.='%H'     " Show if buffer is a help file: HLP
-let &stl.='%)}'    " End of item group
+let &stl.='%)'    " End of item group
+let &stl.='}'
 let &stl.=' '      " Separator
 let &stl.='%<'     " Truncate from here on
 let &stl.='"%t"'   " Current buffer's file name
@@ -58,8 +59,7 @@ let &stl.=':'       " Separator between line and column info
 let &stl.='C%c-%v]' " Current column and virtual column
 let &stl.=' '       " Separator
 let &stl.='(%p%%)'  " Percentage through file in lines, as in <C-g>
-" }}}
 
-endif " if has('statusline')
+endif
 
 " vim: set nowrap fdm={{{,}}}
