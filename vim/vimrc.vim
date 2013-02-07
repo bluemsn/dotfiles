@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Jan 30
+" Last Change: 2013 Feb 7
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -106,8 +106,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 
 " Syntax files
-Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'groenewege/vim-less'
+Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
@@ -124,6 +124,7 @@ Bundle 'spf13/PIV'
 " Color schemes
 Bundle 'chriskempson/base16-vim'
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'tomasr/molokai'
 
 " vim-scripts repos
 "Bundle 'SearchComplete'
@@ -405,7 +406,6 @@ nnoremap <silent> <leader>eec :e ~/.vim/after/plugin/tmux_iterm.vim<CR>
 " Open tmux_iterm.vim file in a vertical split
 nnoremap <silent> <leader>ec :sp ~/.vim/after/plugin/tmux_iterm.vim<CR>
 
-
 " }}}
 " Arrow keys and 'hjkl' keys {{{
 
@@ -489,8 +489,8 @@ vmap <S-down> ]egv
 
 " Fix the '&' command in normal and visual modes
 " https://github.com/nelstrom/dotfiles/blob/d245b5cf67/vimrc#L99-L101
-nnoremap & :&&<enter>
-xnoremap & :&&<enter>
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
 
 " Make 'Y' behave like 'D' and 'C'
 " https://github.com/blueyed/dotfiles/blob/4407ba7905/vimrc#L1129-L1131
@@ -842,7 +842,7 @@ function! ListWrapToggle()
 	endif
 endfunction
 
-nnoremap <leader>tw :call ListWrapToggle()<CR>
+nnoremap <silent> <leader>tw :call ListWrapToggle()<CR>
 
 " }}}
 " Recording() {{{
@@ -887,9 +887,9 @@ function! Recording(quality)
 	endif
 endfunction
 
-nnoremap <leader>trs :call Recording('sd')<CR>
-nnoremap <leader>trh :call Recording('hd')<CR>
-nnoremap <leader>tr :call Recording('off')<CR>
+nnoremap <silent> <leader>trs :call Recording('sd')<CR>
+nnoremap <silent> <leader>trh :call Recording('hd')<CR>
+nnoremap <silent> <leader>tr :call Recording('off')<CR>
 
 " }}}
 
