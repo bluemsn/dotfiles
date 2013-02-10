@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Feb 7
+" Last Change: 2013 Feb 9
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -66,7 +66,6 @@ runtime ftplugin/man.vim
 " Vundle & other extensions (syntaxes, filetypes etc.) {{{
 
 " Set the filetype stuff to off, required for Vundle
-filetype off
 filetype plugin indent off
 
 set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
@@ -118,6 +117,7 @@ Bundle 'zaiste/tmux.vim'
 " Language specific bundles
 Bundle 'HTML-AutoCloseTag'
 Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'robmiller/vim-movar'
 "Bundle 'skammer/vim-css-color'
 Bundle 'spf13/PIV'
 
@@ -140,6 +140,7 @@ Bundle 'tomasr/molokai'
 "Bundle 'benmills/vimux'
 "Bundle 'bkad/CamelCaseMotion'
 "Bundle 'bsl/obviousmode'
+"Bundle 'chip/vim-fat-finger'
 "Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/tabular'
 "Bundle 'goldfeld/vim-seek'
@@ -243,7 +244,6 @@ endif
 " }}}
 
 " Set the filetype stuff to on, no longer required off
-filetype on
 filetype plugin indent on
 
 " }}}
@@ -257,7 +257,7 @@ set noerrorbells " Enable use of (visual) error bells
 set incsearch    " Show results of search scan as it finds them
 set noshowmatch  " Disable show match, using matchparen instead
 " Set the match pairs for matchparen
-set matchpairs=(:),{:},[:],':',":"
+set matchpairs=(:),{:},[:],':',":",<:>
 set showcmd      " Show the current command in the lower right corner
 set magic        " Allow use of regular expressions in the search scans
 
@@ -527,8 +527,8 @@ endfor
 autocmd InsertLeave * set iminsert=0
 
 " Use <F6> instead of <C-^> for toggleing CAPS lock
-noremap  <F6> :let &l:imi = !&l:imi<CR>
-inoremap <F6> <C-O>:let &l:imi = !&l:imi<CR>
+noremap <F6> :let &l:imi = !&l:imi<CR>
+inoremap <F6> <C-o>:let &l:imi = !&l:imi<CR>
 cnoremap <F6> <C-^>
 
 " }}}
