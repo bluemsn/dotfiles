@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: 2013 Feb 9
+" Last Change: February 18th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -109,6 +109,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
 Bundle 'othree/html5.vim'
+Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
@@ -162,6 +163,7 @@ Bundle 'tomasr/molokai'
 "Bundle 'moshen/vim-superstatus'
 "Bundle 'nathanaelkane/vim-command-w'
 "Bundle 'nebelschwade/statusline-vim'
+"Bundle 'nelstrom/vim-docopen'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'nfd/filepirate'
 "Bundle 'scrooloose/nerdcommenter'
@@ -182,6 +184,7 @@ Bundle 'tomasr/molokai'
 "Bundle 'tpope/vim-speeddating'
 "Bundle 'troydm/easybuffer.vim'
 "Bundle 'tsaleh/vim-align'
+"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'wikitopian/hardmode'
 "Bundle 'xolox/vim-shell'
 
