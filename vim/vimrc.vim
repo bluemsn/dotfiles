@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: February 18th, 2013
+" Last Change: February 22nd, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -609,7 +609,6 @@ set autoread                 " Auto read files when edited outside Vim
 set tabpagemax=1             " Max tabs to open with the '-p' option
 set showtabline=0            " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
-set guioptions=acirbhv       " Set the GUI options the way I like them
 set winminheight=5           " Minimum window height (split window)
 set winheight=20             " Height current split should have
 

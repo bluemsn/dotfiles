@@ -1,3 +1,5 @@
+set guioptions=acirbhv " Set the GUI options the way I like them
+
 " Set the window position to these coordinates
 winpos 0 0
 
