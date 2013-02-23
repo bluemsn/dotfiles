@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: February 22nd, 2013
+" Last Change: February 23rd, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -80,7 +80,6 @@ Bundle 'gmarik/vundle'
 
 " My own bundles
 Bundle 'Greduan/vim-colors-solarized'
-Bundle 'Greduan/vim-git-branch-info'
 Bundle 'Greduan/vim-numbertoggle'
 Bundle 'Greduan/vim-usefulstatusline'
 
