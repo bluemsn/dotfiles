@@ -80,21 +80,24 @@ Bundle 'gmarik/vundle'
 
 " My own bundles
 Bundle 'Greduan/vim-colors-solarized'
+Bundle 'Greduan/vim-git-branch-info'
 Bundle 'Greduan/vim-numbertoggle'
 Bundle 'Greduan/vim-usefulstatusline'
 
 " General
+"Bundle 'AndrewRadev/sideways.vim'
+Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'ervandew/supertab'
+Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
+"Bundle 'goldfeld/vim-seek'
 Bundle 'jszakmeister/vim-togglecursor'
 "Bundle 'Lokaltog/vim-easymotion'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'neochrome/todo.vim'
+"Bundle 'neochrome/todo.vim'
 "Bundle 'PotHix/Vimpress'
-"Bundle 'Raimondi/delimitMate'
 Bundle 'sjl/vitality.vim'
-Bundle 'taq/vim-git-branch-info'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'Townk/vim-autoclose'
 Bundle 'tsaleh/vim-matchit'
@@ -119,7 +122,7 @@ Bundle 'zaiste/tmux.vim'
 Bundle 'HTML-AutoCloseTag'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'robmiller/vim-movar'
-"Bundle 'skammer/vim-css-color'
+Bundle 'skammer/vim-css-color'
 Bundle 'spf13/PIV'
 
 " Color schemes
@@ -128,23 +131,21 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'tomasr/molokai'
 
 " vim-scripts repos
-"Bundle 'SearchComplete'
+Bundle 'SearchComplete'
 "Bundle 'YankRing.vim'
 
 " }}}
 " To check out {{{
 
-"Bundle 'aaronbieber/quicktask'
-"Bundle 'AndrewRadev/sideways.vim'
-"Bundle 'ap/vim-css-color'
+" Steal stuff from here
 "Bundle 'avakarev/vim-watchdog'
+
+"Bundle 'aaronbieber/quicktask'
+"Bundle 'ap/vim-css-color'
 "Bundle 'benmills/vimux'
 "Bundle 'bkad/CamelCaseMotion'
-"Bundle 'bsl/obviousmode'
-"Bundle 'chip/vim-fat-finger'
-"Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/tabular'
-"Bundle 'goldfeld/vim-seek'
+
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'greyblake/vim-preview'
 "Bundle 'jeetsukumaran/vim-buffergator'
@@ -166,6 +167,7 @@ Bundle 'tomasr/molokai'
 "Bundle 'nelstrom/vim-docopen'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'nfd/filepirate'
+"Bundle 'Peeja/vim-cdo'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/nerdtree'
 "Bundle 'scrooloose/syntastic'
@@ -200,6 +202,7 @@ Bundle 'tomasr/molokai'
 "Bundle 'restore_view.vim'
 "Bundle 'sessionman.vim'
 "Bundle 'ShowMarks'
+"Bundle 'VimRepress'
 
 " }}}
 
@@ -211,8 +214,11 @@ let g:togglecursor_default='block' " Cursor for everything except insert mode
 let g:togglecursor_insert='line' " Cursor for insert mode
 let g:togglecursor_leave='block' " Cursor to set when leaving Vim
 " }}}
-" Vim Indent Guides {{{
+" Indent Guides {{{
+let g:indent_guides_color_change_percent=5 " % at which to change lightness
 let g:indent_guides_guide_size=1 " Set width of marker to one wide
+let g:indent_guides_start_level=1 " Level at which to start highlighting
+let g:indent_guides_space_guides=1 " Make sure to recognize space tabs
 let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
 " }}}
 " todo.vim {{{
