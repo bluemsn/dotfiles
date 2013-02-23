@@ -616,7 +616,7 @@ set tabpagemax=1             " Max tabs to open with the '-p' option
 set showtabline=0            " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
 set winminheight=5           " Minimum window height (split window)
-set winheight=20             " Height current split should have
+set winheight=10             " Height current split should have
 
 " Make sure Vim has autocmd support
 if has('autocmd')
@@ -802,7 +802,7 @@ endfunction
 " http://vimcasts.org/episodes/creating-colorschemes-for-vim/
 
 function! <SID>SynStack()
-	if !exists("*synstack")
+	if !exists('*synstack')
 		return
 	endif
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')

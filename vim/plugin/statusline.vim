@@ -1,23 +1,5 @@
 if has('statusline')
 
-function! ChangeStatuslineColor() "{{{
-	if (g:colors_name == 'solarized' && exists('g:solarized_vars'))
-		let s:vars=g:solarized_vars
-
-		if (mode() =~# '\v(n|no)')
-			exe 'hi! StatusLine '.s:vars['fmt_none'].s:vars['fg_base1'].s:vars['bg_base02'].s:vars['fmt_revbb']
-		elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block')
-			exe 'hi! StatusLine'.s:vars['fmt_none'].s:vars['fg_green'].s:vars['bg_base02'].s:vars['fmt_revbb']
-		elseif (mode() ==# 'i')
-			exe 'hi! StatusLine'.s:vars['fmt_none'].s:vars['fg_red'].s:vars['bg_base02'].s:vars['fmt_revbb']
-		else
-			exe 'hi! StatusLine '.s:vars['fmt_none'].s:vars['fg_base1'].s:vars['bg_base02'].s:vars['fmt_revbb']
-		endif
-	endif
-
-	return ''
-endfunction "}}}
-
 " The default statusline is:
 " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
