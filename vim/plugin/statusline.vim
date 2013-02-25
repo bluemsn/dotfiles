@@ -30,9 +30,9 @@ function! Statusline()
 	let s:stl.='%{(&bomb?"BOM,":"")}'
 	let s:stl.='%{&ff!=""?&ff.",":""}'
 	if (exists('g:loaded_usefulstatusline'))
-		let s:stl.='%{usefulstatusline_filesize#FileSizePure()}'
+		let s:stl.='%{usefulstatusline_filesize#FileSizePure(1)}'
 	endif
-	let s:stl.=']'                    " Closing square bracket for file info
+	let s:stl.=']'                   " Closing square bracket for file info
 	if (exists('g:loaded_fugitive')) " If Fugitive is installed
 		let s:stl.=' %{fugitive#statusline()}'
 	endif

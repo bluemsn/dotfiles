@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: http://eduantech.com/
-" Last Change: February 23rd, 2013
+" Last Change: February 25th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -84,6 +84,7 @@ Bundle 'Greduan/vim-numbertoggle'
 Bundle 'Greduan/vim-usefulstatusline'
 
 " General
+Bundle 'airblade/vim-gitgutter'
 "Bundle 'AndrewRadev/sideways.vim'
 Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
@@ -899,14 +900,6 @@ nnoremap <silent> <leader>trh :call Recording('hd')<CR>
 nnoremap <silent> <leader>tr :call Recording('off')<CR>
 
 " }}}
-
-" }}}
-" Tmux/iTerm fixes {{{
-
-" There's actually nothing here! This is controlled by the vim script that's
-" contained under "~/.vim/after/plugin/tmux_iterm.vim". This way it loads
-" every time, but after the .vimrc file loads, in order to override some of
-" it's stuff.
 
 " }}}
 " Random stuff {{{
