@@ -40,7 +40,7 @@ brew install tmux
 brew install reattach-to-user-namespace
 
 # Install/update Vim
-brew install macvim --custom-icons --override-system-vim --with-python3
+brew install macvim --env-std --custom-icons --override-system-vim --with-python3
 
 # Link all the installed apps
 mkdir ~/Applications
