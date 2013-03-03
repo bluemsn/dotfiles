@@ -16,13 +16,13 @@ fi
 
 # Install little utilities
 brew install ack
+brew install ag
 brew install par
 brew install hub
 brew install figlet
 
-# Install Markdown and MultiMarkdown
+# Install Markdown
 brew install markdown
-brew install multimarkdown
 
 # Update shells
 brew install bash

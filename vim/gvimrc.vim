@@ -22,8 +22,6 @@ if has('gui_macvim')
 	macmenu File.Save key=<nop>
 	macmenu File.Save\ All key=<nop>
 	macmenu File.Save\ As\.\.\. key=<nop>
-else
-	" Other GUIs, like Gvim, go here
 endif
 
 " Normal, visual and command-line normal (append) mode

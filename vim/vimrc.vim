@@ -3,8 +3,8 @@
 " take what you like for yourself.
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
-" Maintainer URL: http://eduantech.com/
-" Last Change: February 25th, 2013
+" Maintainer URL: https://github.com/Greduan
+" Last Change: March 2nd, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -168,6 +168,7 @@ Bundle 'SearchComplete'
 "Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'nfd/filepirate'
 "Bundle 'Peeja/vim-cdo'
+"Bundle 'rking/ag.vim'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'scrooloose/nerdtree'
 "Bundle 'scrooloose/syntastic'
@@ -592,8 +593,9 @@ set laststatus=2 " Always use a statusline
 set ruler        " Put a ruler, when my custom statusline doesn't load
 
 " The Vim statusline is set in a plugin that loads after the .vimrc has been
-" loaded, otherwise we can't check for the current Git branch. It is located
-" under "~/.vim/plugin/statusline.vim"
+" loaded, otherwise we can't if certain plugins exist and stuff like that. The
+" file that defines the statusline can be found under
+" "~/.vim/plugin/statusline.vim"
 
 " }}}
 " Cursor & mouse {{{
@@ -695,15 +697,10 @@ silent! colorscheme solarized " Set the color scheme to use, no errors allowed
 set diffopt+=iwhite " Add ignorance of whitespace to diff
 
 " }}}
-" Help settings {{{
-
-" Nothing here yet...
-
-" }}}
 " Command line auto-completion {{{
 
 set wildmenu              " Better command line auto-completion
-set wildchar=<Tab>        " Set char to trigger wild-card expandsion in
+set wildchar=<Tab>        " Set char to trigger wild-card expansion in
                           " command line
 set wildmode=list:longest " Settings for when wildchar is used
 
