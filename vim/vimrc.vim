@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 2nd, 2013
+" Last Change: March 13th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -137,9 +137,6 @@ Bundle 'SearchComplete'
 " }}}
 " To check out {{{
 
-" Steal stuff from here
-"Bundle 'avakarev/vim-watchdog'
-
 "Bundle 'aaronbieber/quicktask'
 "Bundle 'ap/vim-css-color'
 "Bundle 'benmills/vimux'
@@ -148,6 +145,7 @@ Bundle 'SearchComplete'
 
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'greyblake/vim-preview'
+"Bundle 'hlissner/vim-multiedit'
 "Bundle 'jeetsukumaran/vim-buffergator'
 "Bundle 'jistr/vim-nerdtree-tabs'
 "Bundle 'kana/vim-arpeggio'
@@ -183,6 +181,7 @@ Bundle 'SearchComplete'
 "Bundle 'tpope/vim-capslock'
 "Bundle 'tpope/vim-commentary'
 "Bundle 'tpope/vim-eunuch'
+"Bundle 'tpope/vim-obsession'
 "Bundle 'tpope/vim-pastie'
 "Bundle 'tpope/vim-speeddating'
 "Bundle 'troydm/easybuffer.vim'
