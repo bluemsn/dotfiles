@@ -16,10 +16,12 @@ fi
 
 # Install little utilities
 brew install ack
-brew install ag
+brew install the_silver_searcher
 brew install par
 brew install hub
 brew install figlet
+# Not really brew but to hell with it
+git clone https://github.com/drbunsen/formd.git ~/bin
 
 # Install Markdown
 brew install markdown
@@ -38,12 +40,13 @@ brew install python3
 # Install tmux
 brew install tmux
 brew install reattach-to-user-namespace
+brew install https://github.com/downloads/zolrath/wemux/wemux.rb
 
 # Install/update Vim
 brew install macvim --env-std --custom-icons --override-system-vim --with-python3
 
 # Link all the installed apps
-mkdir ~/Applications
+mkdir -pv ~/Applications
 brew linkapps
 
 echo 'Done, I installed your stuff, you can thank me later.'
