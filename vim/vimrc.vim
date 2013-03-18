@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 13th, 2013
+" Last Change: March 18th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -106,6 +106,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'Valloric/YouCompleteMe'
 
 " Syntax files
 Bundle 'groenewege/vim-less'
@@ -126,8 +127,8 @@ Bundle 'skammer/vim-css-color'
 Bundle 'spf13/PIV'
 
 " Color schemes
-Bundle 'chriskempson/base16-vim'
-Bundle 'nanotech/jellybeans.vim'
+"Bundle 'chriskempson/base16-vim'
+"Bundle 'nanotech/jellybeans.vim'
 Bundle 'tomasr/molokai'
 
 " vim-scripts repos
@@ -146,8 +147,10 @@ Bundle 'SearchComplete'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'greyblake/vim-preview'
 "Bundle 'hlissner/vim-multiedit'
+"Bundle 'hwrod/interactive-replace'
 "Bundle 'jeetsukumaran/vim-buffergator'
 "Bundle 'jistr/vim-nerdtree-tabs'
+"Bundle 'junegunn/vim-scroll-position'
 "Bundle 'kana/vim-arpeggio'
 "Bundle 'kana/vim-fakeclip'
 "Bundle 'kana/vim-textobj-indent'
@@ -186,7 +189,6 @@ Bundle 'SearchComplete'
 "Bundle 'tpope/vim-speeddating'
 "Bundle 'troydm/easybuffer.vim'
 "Bundle 'tsaleh/vim-align'
-"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'wikitopian/hardmode'
 "Bundle 'xolox/vim-shell'
 
