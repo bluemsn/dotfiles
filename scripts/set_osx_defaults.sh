@@ -25,6 +25,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # My own settings                                                             #
 ###############################################################################
 
+# Set the default Terminal
+chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
+
 # Finder: Hide sidebar permamently except in some special folders
 defaults write com.apple.finder ShowSidebar -bool false
 

@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 18th, 2013
+" Last Change: March 21st, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -337,11 +337,11 @@ set timeoutlen=2000 " Wait {num} ms before timing out a mapping
 " and update the statusline. This fixes that. I got this from:
 " https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
 if !has('gui_running')
-	set ttimeoutlen=10
+	set ttimeoutlen=2000
 	augroup FastEscape
 		autocmd!
 		au InsertEnter * set timeoutlen=0
-		au InsertLeave * set timeoutlen=1000
+		au InsertLeave * set timeoutlen=2000
 	augroup END
 endif
 

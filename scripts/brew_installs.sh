@@ -10,7 +10,7 @@
 
 # Check if Homebrew is installed
 if test ! $(which brew); then
-	# Install Homebrew if it isn't already
+	# Install Homebrew if it isn't already installed
 	ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 fi
 

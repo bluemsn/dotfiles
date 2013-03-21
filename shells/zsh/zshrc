@@ -146,14 +146,13 @@ ZSH_VCS_PROMPT_CLEAN_SIGIL='✔'
 source ~/.zsh/zsh-vcs-prompt/zshrc.sh
 
 # Set the prompt
-PROMPT=$'%{${fg[yellow]}%}[%T] '  # Yellow color, current time
-PROMPT+='%{${fg[cyan]}%}%~'       # Cyan color, current directory, from $HOME
+PROMPT=$'%{${fg[green]}%}%n@%m:'  # Green color, current user@server
+PROMPT+='%{${fg[blue]}%}%~'       # Blue color, current directory, from $HOME
 PROMPT+='%{${fg[default]}%}$(vcs_super_info)' # Default color, Git status
-PROMPT+='%{${fg[default]}%} >>> ' # Default color, prompt
+PROMPT+='%{${fg[default]}%} $ ' # Default color, prompt
 
 # Set the right side of my prompt
-RPROMPT=$'%{${fg[default]}%}[%n' # Default color, current user
-RPROMPT+='@%m]' # Current server
+RPROMPT=$'%T' # Default color, time
 
 # }}}
 # History {{{
