@@ -25,6 +25,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # My own settings                                                             #
 ###############################################################################
 
+# Finder: Hide sidebar permamently except in some special folders
+defaults write com.apple.finder ShowSidebar -bool false
+
 # Spotlight: disable indexing
 sudo mdutil -a -i off
 
@@ -210,7 +213,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 # Finder                                                                      #
 ###############################################################################
 
-# Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
+# Finder: allow quitting via ⌘Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 
 # Finder: disable window animations and Get Info animations
