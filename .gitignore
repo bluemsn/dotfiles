@@ -1,28 +1,25 @@
-# System files.
-###############
-
 # Icon files
 *.(I|i)con?
 (I|i)con?
 *.icns
 
-# For Mac OS X files.
+# For Mac OS X files
 .fseventsd
 .DS_Store?
 .Trashes
+.TemporaryItems
 ._*
 .Spotlight-V100
 
-# For Windows files.
+# For Windows files
 ehthumbs.db
 Thumbs.db
 
-
-# Vim stuff.
-############
-
+# Vim stuff
 vim/bundle/Vimpress/custom/configs.vim
 vim/custom/configs.vim
 vim/bundle/
 vim/undodir/
+
+# Zsh history
 shells/zsh/zsh_history/
