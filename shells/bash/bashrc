@@ -8,9 +8,6 @@ for file in ~/.{git-completion.bash,git-prompt.sh}; do
 	[ -r "$file" ] && source "$file"
 done
 
-# Making sure that when I type git I always get hub in exchange
-alias git="hub"
-
 # Setting the GIT_STATUS variable, which contains the Git project's current
 # branch
 export GIT_STATUS=$(__git_ps1 "\e[0;31m(%s)")
@@ -29,18 +26,27 @@ export CLICOLOR=true
 export LSCOLORS=exdxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto'
 
-# Making sure that ls always uses these settings, even when not specified
-alias ls="ls -la -Gp -F"
+# Setting my preferred default editor
+EDITOR=vim # Command line uses 'vim'
+VISUAL=mvim # Visual editor is MacVim
+GIT_EDITOR=vim # Editor for Git
+export EDITOR VISUAL GIT_EDITOR # Export these options
 
-# Adding support for MySQL commands
-export PATH="/usr/local/mysql/bin:$PATH"
+alias ls="ls -la -Gp -F"        # Make 'ls' do lotsa stuff
+alias reload!="source ~/.bash_profile" # Make 'reload!' source the Bash profile file
+alias sudo="sudo "              # Fix using aliases after sudo
 
-# Configuring my command prompt
-PS1='\e[0;33m[\@] [\u] \e[0;36m\W${GIT_STATUS}\e[0;m >>> '
+#            v Homebrew     v MySQL
+export PATH="/usr/local/bin:/usr/local/mysql/bin:$PATH"
 
-EDITOR=vim # This option sets my preferred non-GUI editor
-VISUAL=vim # This option sets my preferred editor with GUI
-export EDITOR VISUAL # Export both of these options so that they take effect
+if [ -f ~/.zsh/zsh-vcs-prompt/zshrc.sh ]; then
+	source ~/.zsh/zsh-vcs-prompt/zshrc.sh 2> /dev/null
+	source ~/.zsh/vcs-prompt.sh 2> /dev/null
+
+	PS1='\u@\h:\W$(vcs_super_info) $ '
+else
+	PS1='\u@\h:\W $ '
+fi
 
 # ----------------------------------------
 # The following options are all related to the history command

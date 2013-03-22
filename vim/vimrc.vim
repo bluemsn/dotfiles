@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 21st, 2013
+" Last Change: March 22st, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -285,8 +285,9 @@ if has('win32') || has('win64')
 	set grepprg=grep\ -nH\ $*\ /dev/null
 endif
 
-" Set this to 1 if you want to use Ack instead of Grep
+" Set this to 1 if you want to use Ack instead of Grep, or ag instead of Ack
 let use_ack=0
+let use_ag=0
 
 " Check if I want to use Ack
 if (use_ack != 0)
