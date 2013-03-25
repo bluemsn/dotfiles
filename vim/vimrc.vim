@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 22st, 2013
+" Last Change: March 24th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -144,6 +144,7 @@ Bundle 'SearchComplete'
 "Bundle 'bkad/CamelCaseMotion'
 "Bundle 'godlygeek/tabular'
 
+"Bundle 'davidoc/taskpaper.vim'
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'greyblake/vim-preview'
 "Bundle 'hlissner/vim-multiedit'
@@ -156,6 +157,7 @@ Bundle 'SearchComplete'
 "Bundle 'kana/vim-textobj-indent'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'kikijump/tslime.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'mattn/gist-vim'
 "Bundle 'mattn/zencoding-vim'

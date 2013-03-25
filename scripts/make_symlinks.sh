@@ -39,9 +39,9 @@ else
 fi
 
 echo "First I'm gonna backup any of the files that I find, just in case..."
+mkdir -v $HOME/.dotfiles_old
 for file in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.tmux.conf $HOME/.zsh $HOME/.zshrc $HOME/.bash $HOME/.bashrc $HOME/.profile $HOME/.gitconfig $HOME/.gitmessage.txt
 do
-	mkdir -v $HOME/.dotfiles_old
 	if [ -e $file ] && [ ! -L $file ]; then
 		mv -f -v $file $HOME/.dotfiles_old
 	fi

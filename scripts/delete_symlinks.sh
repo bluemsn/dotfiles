@@ -38,6 +38,7 @@ else
 	exit
 fi
 
+mkdir -v $HOME/.dotfiles_old
 for file in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.tmux.conf $HOME/.zsh $HOME/.zshrc $HOME/.bash $HOME/.bashrc $HOME/.profile $HOME/.gitconfig $HOME/.gitmessage.txt
 do
 	if [ -e $file ] && [ ! -L $file ]; then
