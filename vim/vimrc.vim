@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 24th, 2013
+" Last Change: March 26th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -87,7 +87,7 @@ Bundle 'Greduan/vim-numbertoggle'
 Bundle 'Greduan/vim-usefulstatusline'
 
 " General
-Bundle 'airblade/vim-gitgutter'
+"Bundle 'airblade/vim-gitgutter'
 "Bundle 'AndrewRadev/sideways.vim'
 Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
@@ -97,6 +97,7 @@ Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'goldfeld/vim-seek'
 Bundle 'jszakmeister/vim-togglecursor'
 "Bundle 'Lokaltog/vim-easymotion'
+Bundle 'mhinz/vim-signify'
 Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'neochrome/todo.vim'
 "Bundle 'PotHix/Vimpress'
@@ -164,6 +165,7 @@ Bundle 'SearchComplete'
 "Bundle 'mattn/gist-vim'
 "Bundle 'mattn/zencoding-vim'
 "Bundle 'mbbill/VimExplorer'
+"Bundle 'mhinz/vim-tmuxify'
 "Bundle 'mihaifm/vimpanel'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'moshen/vim-superstatus'
