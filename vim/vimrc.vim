@@ -62,6 +62,9 @@ endif
 " http://crumbtrail.chesmart.in/post/5024677985/man-vim-dude
 runtime ftplugin/man.vim
 
+" Enable extended '%' matching
+runtime macros/matchit.vim
+
 " }}}
 " Vundle & other extensions (syntaxes, filetypes etc.) {{{
 
@@ -100,7 +103,6 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'sjl/vitality.vim'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'Townk/vim-autoclose'
-Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
@@ -361,9 +363,22 @@ set report=0    " Report this or greater number of changes
 " History {{{
 
 set history=1000 " Keep {num} entries in the command history
-set nobackup     " Disable backup files
-set noswapfile   " Don't use a swap file in current buffer
-set nowb         " Don't write backup before saving
+
+" }}}
+" Backups {{{
+
+set backup     " Enable backup files
+set swapfile   " Use a swap file in current buffer
+set nowb       " Write backup before saving
+
+" Set backup directory
+set backupdir=~/.vim/tmpdir
+set directory=~/.vim/tmpdir
+
+" Create backup directory if it doesn't exist
+if (!isdirectory(expand(&backupdir)))
+	call mkdir(expand(&backupdir), 'p')
+endif
 
 " }}}
 " Undo {{{
@@ -374,7 +389,7 @@ if has('persistent_undo')
 	" Set persistent undo directory
 	set undodir=~/.vim/undodir
 	" Create undo directory if it doesn't exist
-	if !isdirectory(expand(&undodir))
+	if (!isdirectory(expand(&undodir)))
 		call mkdir(expand(&undodir), 'p')
 	endif
 endif
@@ -524,6 +539,10 @@ xnoremap & :&&<CR>
 nnoremap Y y$
 xnoremap Y y$
 
+" <C-e> and <C-y> scroll the viewport a single line, bump this up a bit
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
 " }}}
 " Function keys mappings {{{
 
@@ -536,6 +555,7 @@ noremap <F1> <esc>
 " }}}
 " New mappings {{{
 
+Nothing here yet...
 
 " }}}
 
