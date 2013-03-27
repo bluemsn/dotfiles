@@ -18,7 +18,7 @@ git config --global user.email "eduan@snapsimpletech.com"
 git config --global core.editor vim
 
 # Setup commit template
-git config --global commit.template $HOME/.gitmessage.txt
+git config --global commit.template $HOME/.gitmessage
 
 # Setup script to use to show commit history etc.
 git config --global core.pager 'less'

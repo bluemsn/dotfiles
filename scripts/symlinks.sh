@@ -16,8 +16,10 @@ read -p "What's your dotfiles folder? Full path please...\n" dotfiles_root
 # extension...
 for source in `find $dotfiles_root -maxdepth 2 -name \*.symlink`
 do
-	# Set the destination as `$HOME/name_of_file_with.symlink`.
-	dest = "$HOME/.`basename \"${source%.*}\"`"
+	# Set the destination as `$HOME/.file` instead of `$HOME/.file.txt.symlink`
+	# for example.
+	dest = "$HOME/.`basename \"${source%%.*}\"`"
+
 	# Make a symlink to each of these files, delete previous files if they
 	# exist(ed).
 	ln -sfn -v $source $dest
