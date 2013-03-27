@@ -10,9 +10,9 @@
 # =============================================================================
 
 # Just ask the user where the dotfiles are, simple...
-read -p 'What\'s your dotfiles folder? Full path please...' dotfiles_root
+read -p "What's your dotfiles folder? Full path please...\n" dotfiles_root
 
-# For each file in the dotfiles folder with .symlink as it's last file name
+# For each file in the dotfiles folder with `.symlink` as it's last file name
 # extension...
 for source in `find $dotfiles_root -maxdepth 2 -name \*.symlink`
 do

@@ -26,5 +26,13 @@ ssh-keygen -t rsa -C "eduan@snapsimpletech.com"
 # Make sure to give it the correct directory...
 # Enter the passphrase twice...
 
-# Copy the SSH key to my clipboard
-pbcopy < ~/.ssh/id_rsa.pub
+if [ `uname -s` == 'Darwin' ]; then
+	# Copy the contents of 'id_rsa.pub' (SSH key) to my clipboard
+	pbcopy < ~/.ssh/id_rsa.pub
+elif [ `uname -s` == 'Linux' ]; then
+	# Install `xclip`, assuming you're on Arch Linux
+	pacman -S xclip
+
+	# Copy the contents of 'id_rsa.pub' (SSH key) to my clipboard
+	xclip -sel clip < ~/.ssh/id_rsa.pub
+fi

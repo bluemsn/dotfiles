@@ -24,3 +24,7 @@ vim/tmpdir/
 
 # Zsh history
 shells/zsh/zsh_history/
+
+# Environment specific files
+.c9revisions
+.idea
