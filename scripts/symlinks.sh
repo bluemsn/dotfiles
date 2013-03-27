@@ -9,8 +9,8 @@
 # Licensed under the MIT license (http://eduan.mit-license.org)
 # =============================================================================
 
-# Define what the dotfiles root is...
-dotfiles_root = "$HOME/dotfiles"
+# Just ask the user where the dotfiles are, simple...
+read -p 'What\'s your dotfiles folder? Full path please...' dotfiles_root
 
 # For each file in the dotfiles folder with .symlink as it's last file name
 # extension...
