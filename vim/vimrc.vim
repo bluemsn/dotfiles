@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 26th, 2013
+" Last Change: March 27th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -46,13 +46,6 @@ if has('autocmd')
 		autocmd BufWritePost ~/.vim/plugin/statusline.vim source
 			\ ~/.vim/plugin/statusline.vim
 	augroup END
-
-	" Reload cursor settings for tmux/iTerm as soon as it changes
-	augroup tmuxiTermReload
-		autocmd!
-		autocmd BufWritePost ~/.vim/after/plugin/tmux_iterm.vim source
-			\ ~/.vim/after/plugin/tmux_iterm.vim
-	augroup END
 endif
 
 " }}}
@@ -62,8 +55,11 @@ endif
 " http://crumbtrail.chesmart.in/post/5024677985/man-vim-dude
 runtime ftplugin/man.vim
 
-" Enable extended '%' matching
-runtime macros/matchit.vim
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+" Found this here: https://github.com/tpope/vim-sensible
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
 " }}}
 " Vundle & other extensions (syntaxes, filetypes etc.) {{{

@@ -2,8 +2,7 @@
 # =============================================================================
 # brew_installs.sh
 # -----------------------------------------------------------------------------
-# This file will automatically setup a SSH key for you with GitHub. Creating it
-# in your OS and making GitHub accept it as well.
+# This file will automatically setup a SSH key for you.
 # =============================================================================
 # Eduan Lavaque <eduan@snapsimpletech.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)

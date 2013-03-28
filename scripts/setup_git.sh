@@ -18,7 +18,7 @@ git config --global user.email "eduan@snapsimpletech.com"
 git config --global core.editor vim
 
 # Setup commit template
-git config --global commit.template $HOME/.gitmessage
+git config --global commit.template $HOME/.gitmessage.txt
 
 # Setup script to use to show commit history etc.
 git config --global core.pager 'less'
@@ -31,3 +31,6 @@ git config --global color.ui true
 
 # Automatically use LF line endings when commiting
 git config --global core.autocrlf input
+
+# Create Git aliases...
+git config --global alias.logg 'log --graph --decorate --oneline --abbrev-commit --all'
