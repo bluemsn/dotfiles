@@ -1,4 +1,4 @@
-git#!/usr/bin/python2
+#!/usr/bin/python2
 # symlinks.py by Eduan Lavaque <eduan@snapsimpletech.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # This file will generate my symlinks. For new installs.
