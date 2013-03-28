@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+git#!/usr/bin/python2
 # symlinks.py by Eduan Lavaque <eduan@snapsimpletech.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # This file will generate my symlinks. For new installs.
@@ -25,9 +25,9 @@ if not os.path.exists(backup_folder):
 	os.mkdir(backup_folder, 0755)
 
 # Tuple with all the locations of the files from $DOTROOT (in a manner of speech)
-source = expanduser('~') + '/dotfiles/' + ['git/gitmessate.txt', 'shells/bash', 'shells/bash/bash_profile', 'shells/bash/bashrc', 'shells/zsh', 'shells/zsh/zshrc', 'shells/profile', 'tmux/tmux.conf', 'vim', 'vim/gvimrc.vim', 'vim/vimrc.vim']
+source = ['git/gitmessate.txt', 'shells/bash', 'shells/bash/bash_profile', 'shells/bash/bashrc', 'shells/zsh', 'shells/zsh/zshrc', 'shells/profile', 'tmux/tmux.conf', 'vim', 'vim/gvimrc.vim', 'vim/vimrc.vim']
 # Tuple with all the destinations of the files in the dotfiles
-destination = expanduser('~') + ['.gitmessage.txt', '.bash', '.bash_profile', '.bashrc', '.zsh', '.zshrc', '.profile', '.tmux.conf', '.vim', '.gvimrc', '.vimrc']
+destination = ['.gitmessage.txt', '.bash', '.bash_profile', '.bashrc', '.zsh', '.zshrc', '.profile', '.tmux.conf', '.vim', '.gvimrc', '.vimrc']
 
 for src in source:
 	for dest in destination:
@@ -42,5 +42,15 @@ for src in source:
 			# Move the file as a backup to the backup destination
 			os.rename(dest, backup_dest)
 
+		# The actual source that's going to be used
+		final_src = expanduser('~') + '/dotfiles/' + src
+		# The actual destination that's going to be used
+		final_dest = expanduser('~') + dest
+
 		# Make symlink
-		os.symlink(src, dest)
+		os.symlink(final_src, final_dest)
+
+		# Print message regarding currently symlink...
+		print '%s -> %s' % (final_dest, final_src)
+
+print 'Finished making symlinks!'
