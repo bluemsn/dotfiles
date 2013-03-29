@@ -4,7 +4,7 @@
 # This file will generate my symlinks. For new installs.
 # -*- coding: utf-8 -*-
 import os
-from os.path import expanduser
+from os.path import expanduser, exists, islink
 from time import gmtime, strftime
 
 # Backup main folder, user's home folder plus directory
