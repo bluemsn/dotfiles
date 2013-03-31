@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: March 27th, 2013
+" Last Change: March 30th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -182,6 +182,7 @@ Bundle 'SearchComplete'
 "Bundle 'sjl/friendly-find'
 "Bundle 'sjl/gundo.vim'
 "Bundle 'teranex/jk-jumps.vim'
+"Bundle 'terryma/vim-expand-region'
 "Bundle 'tpope/vim-abolish'
 "Bundle 'tpope/vim-capslock'
 "Bundle 'tpope/vim-commentary'
