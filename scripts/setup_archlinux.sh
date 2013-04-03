@@ -2,8 +2,8 @@
 # =============================================================================
 # setup_archlinux.sh
 # -----------------------------------------------------------------------------
-# This file will "setup" Arch Linux for first use. It should also be used
-# regularly for maintenance.
+# This file is meant to install stuff that the following script didn't
+# install/setup: https://github.com/helmuthdu/aui
 # =============================================================================
 # Eduan Lavaque <eduan@snapsimpletech.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
@@ -37,8 +37,6 @@ pacman -S mercurial
 # Install (G)Vim
 pacman -S gvim
 
-# Font stuff software
-pacman -S freetype2
 # Install development/monospaced fonts
 pacman -S ttf-dejavu
 pacman -S ttf-monaco

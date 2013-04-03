@@ -42,4 +42,7 @@ SAVEHIST=1000       # The size of the history that it's gonna save in a file
 HISTFILE=~/.history # This file where to save the history
 export HIST_IGNORE_ALL_DUPS # Ignore all duplicates and usual commands
 
+# http://stackoverflow.com/q/12247777/1622940
+export PROMPT_COMMAND="history -a; history -n"
+
 # vim: set foldmarker={{{,}}}

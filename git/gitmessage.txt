@@ -8,12 +8,12 @@ course use multiple lines, as long as no line is longer than 72 chars.
   feature, if you need to, you can use multiple lines, lining it up as
   I'm showing right here.
 ~ If you changed something, be it text, a function, etc.
-- If you removed something
-+~ If you improved something in some or any way
++~ If you improved something in some or any way.
+- If you removed something.
 
 TODO:
-+ Add todos in the same way you would achievements
-~ Change the line beginning depending on what the todo is about
-+~ Improve this in any way you want
++ Add todos in the same way you would achievements.
+~ Change the line beginning depending on what the todo is about.
++~ Improve this in any way you want.
 
                                    50 chars mark |       72 chars mark |
