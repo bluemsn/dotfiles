@@ -51,17 +51,25 @@ files = {
 	'/vim/vimrc.vim': '.vimrc',
 }
 
+backup_boolean = input('Do you want to backup your old files? [y/n] ').lower()
+
+if backup_boolean == 'y' or 'ye' or 'yes':
+	print 'Gonna do backups of actual files and delete symlinks. Backed up files will be moved to \'%s\'' % (backup_folder)
+elif backup_boolean == 'n' or 'no':
+	print 'OK, not gonna do backup of the files... Don\'t blame me if you lose anything. :)'
+
 for src, dest in files.iteritems():
-	# If the file exists but it's a symlink...
-	if os.path.exists(dest) and os.path.islink(dest):
-		# Then delete it
-		os.remove(dest)
-	# If the file exists and it's NOT a symlink...
-	elif os.path.exists(dest) and not os.path.islink(dest):
-		# Figure out the backup destination
-		backup_dest = backup_folder + '/' + dest
-		# Move the file as a backup to the backup destination
-		os.rename(dest, backup_dest)
+	if backup_boolean == 'y' or 'ye' or 'yes':
+		# If the file exists but it's a symlink...
+		if os.path.exists(dest) and os.path.islink(dest):
+			# Then delete it
+			os.remove(dest)
+		# If the file exists and it's NOT a symlink...
+		elif os.path.exists(dest) and not os.path.islink(dest):
+			# Figure out the backup destination
+			backup_dest = backup_folder + '/' + dest
+			# Move the file as a backup to the backup destination
+			os.rename(dest, backup_dest)
 
 	# The actual source that's going to be used
 	final_src = dotroot + src
