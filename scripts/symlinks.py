@@ -7,8 +7,11 @@ import os
 from os.path import expanduser, exists, islink
 from time import gmtime, strftime
 
+# Figure out the home folder
+home_folder = expanduser('~')
+
 # Backup main folder, user's home folder plus directory
-backup_main_folder = expanduser('~') + '/.dotfiles_old'
+backup_main_folder = home_folder + '/.dotfiles_old'
 
 # If the main backup folder doesn't exist then create it with 0755 permissions
 if not os.path.exists(backup_main_folder):
@@ -24,8 +27,14 @@ backup_folder = backup_main_folder + '/' + date
 if not os.path.exists(backup_folder):
 	os.mkdir(backup_folder, 0755)
 
-# Set a definite $DOTROOT sorta variable
-dotroot = expanduser('~') + '/dotfiles'
+# Ask dotfiles folder from user, from $HOME
+dotroot_input = input("Where is your dotfiles folder located?\n~/")
+# Strip possible trailing slash to avoid problems...
+if dotroot_input.endswith('/'):
+	dotroot_input = dotroot_input[:-1]
+
+# Set the dotfiles root folder
+dotroot = home_folder + '/' + dotroot_input
 
 # On the left side, the source (from $DOTROOT). On the right side, the destination (from $HOME)
 files = {
@@ -50,14 +59,14 @@ for src, dest in files.iteritems():
 	# If the file exists and it's NOT a symlink...
 	elif os.path.exists(dest) and not os.path.islink(dest):
 		# Figure out the backup destination
-		backup_dest = backup_folder + dest
+		backup_dest = backup_folder + '/' + dest
 		# Move the file as a backup to the backup destination
 		os.rename(dest, backup_dest)
 
 	# The actual source that's going to be used
 	final_src = dotroot + src
 	# The actual destination that's going to be used
-	final_dest = expanduser('~') + dest
+	final_dest = home_folder + '/' + dest
 
 	# Make symlink
 	os.symlink(final_src, final_dest)
