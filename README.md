@@ -26,7 +26,7 @@ Installing, or setting up your dotfiles is very easy, just remember I'm using a 
 Simply run the following commands in Terminal:
 ```console
 $ cd ~/dotfiles
-$ sh ./scripts/symlinks.sh
+$ ./scripts/symlinks.py
 ```
 
 Which will run a script I made in order to make the symlinks, and other stuff, for you! Make a backup of any files that count as `*rc` files, cause they're gonna be deleted, if they're symlinks it doesn't matter though.

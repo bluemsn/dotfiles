@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: February 3rd, 2013
+" Last Change: April 8th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -109,6 +109,7 @@ Bundle 'tpope/vim-unimpaired'
 
 " Syntax files
 Bundle 'groenewege/vim-less'
+Bundle 'kloppster/Wordpress-Vim-Syntax'
 Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
 Bundle 'othree/html5.vim'
@@ -151,6 +152,7 @@ Bundle 'SearchComplete'
 "Bundle 'jeetsukumaran/vim-buffergator'
 "Bundle 'jistr/vim-nerdtree-tabs'
 "Bundle 'junegunn/vim-scroll-position'
+"Bundle 'justincampbell/vim-eighties'
 "Bundle 'kana/vim-arpeggio'
 "Bundle 'kana/vim-fakeclip'
 "Bundle 'kana/vim-textobj-indent'
