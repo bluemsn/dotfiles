@@ -4,7 +4,7 @@
 "
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: April 8th, 2013
+" Last Change: April 10th, 2013
 "
 " If you insist on using it, simply put this file here, depending on your OS:
 "
@@ -70,42 +70,97 @@ filetype plugin indent off
 set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
 call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 
-" All of my Vundle bundles {{{
-
 " Bundles {{{
 
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
 
-" My own bundles
-Bundle 'Greduan/vim-colors-solarized'
-Bundle 'Greduan/vim-numbertoggle'
-Bundle 'Greduan/vim-usefulstatusline'
-
 " General
+"Bundle 'aaronbieber/quicktask'
 "Bundle 'airblade/vim-gitgutter'
 "Bundle 'AndrewRadev/sideways.vim'
+"Bundle 'ap/vim-css-color'
+"Bundle 'benmills/vimux'
+"Bundle 'bkad/CamelCaseMotion'
 Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
+"Bundle 'davidoc/taskpaper.vim'
 "Bundle 'ervandew/supertab'
 Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
+"Bundle 'godlygeek/tabular'
 "Bundle 'goldfeld/vim-seek'
+"Bundle 'gregsexton/MatchTag'
+"Bundle 'greyblake/vim-preview'
+Bundle 'Greduan/vim-numbertoggle'
+Bundle 'Greduan/vim-usefulstatusline'
+"Bundle 'hlissner/vim-multiedit'
+"Bundle 'hwrod/interactive-replace'
+"Bundle 'jeetsukumaran/vim-buffergator'
+"Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'jszakmeister/vim-togglecursor'
+"Bundle 'junegunn/vim-scroll-position'
+"Bundle 'justincampbell/vim-eighties'
+"Bundle 'kablamo/vim-git-log'
+"Bundle 'kana/vim-arpeggio'
+"Bundle 'kana/vim-fakeclip'
+"Bundle 'kana/vim-textobj-indent'
+"Bundle 'kbarrette/mediummode'
+"Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'kikijump/tslime.vim'
+"Bundle 'Lokaltog/powerline'
 "Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'mattn/gist-vim'
+"Bundle 'mattn/zencoding-vim'
+"Bundle 'mbbill/VimExplorer'
 Bundle 'mhinz/vim-signify'
+"Bundle 'mhinz/vim-tmuxify'
+"Bundle 'mihaifm/vimpanel'
+"Bundle 'mileszs/ack.vim'
+"Bundle 'moshen/vim-superstatus'
+"Bundle 'nathanaelkane/vim-command-w'
 Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'nebelschwade/statusline-vim'
+"Bundle 'nelstrom/vim-americanize'
+"Bundle 'nelstrom/vim-docopen'
+"Bundle 'nelstrom/vim-visual-star-search'
+"Bundle 'nfd/filepirate'
 "Bundle 'neochrome/todo.vim'
+"Bundle 'Peeja/vim-cdo'
 "Bundle 'PotHix/Vimpress'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'rking/ag.vim'
+"Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/whitespace2.0.vim'
+"Bundle 'Shougo/neocomplcache'
+"Bundle 'SirVer/ultisnips'
+"Bundle 'sjl/clam.vim'
+"Bundle 'sjl/friendly-find'
+"Bundle 'sjl/gundo.vim'
 Bundle 'sjl/vitality.vim'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
+"Bundle 'teranex/jk-jumps.vim'
+"Bundle 'terryma/vim-expand-region'
 Bundle 'Townk/vim-autoclose'
+"Bundle 'tpope/vim-abolish'
+"Bundle 'tpope/vim-capslock'
+"Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
+"Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-obsession'
+"Bundle 'tpope/vim-pastie'
 Bundle 'tpope/vim-repeat'
+"Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+"Bundle 'troydm/easybuffer.vim'
+"Bundle 'tsaleh/vim-align'
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'wikitopian/hardmode'
+"Bundle 'xolox/vim-shell'
 
 " Syntax files
 Bundle 'groenewege/vim-less'
@@ -128,79 +183,10 @@ Bundle 'spf13/PIV'
 
 " Color schemes
 "Bundle 'chriskempson/base16-vim'
-"Bundle 'nanotech/jellybeans.vim'
-Bundle 'tomasr/molokai'
-
-" vim-scripts repos
-Bundle 'SearchComplete'
-"Bundle 'YankRing.vim'
-
-" }}}
-" To check out {{{
-
-"Bundle 'aaronbieber/quicktask'
-"Bundle 'ap/vim-css-color'
-"Bundle 'benmills/vimux'
-"Bundle 'bkad/CamelCaseMotion'
-"Bundle 'godlygeek/tabular'
-
-"Bundle 'davidoc/taskpaper.vim'
-"Bundle 'gregsexton/MatchTag'
-"Bundle 'greyblake/vim-preview'
-"Bundle 'hlissner/vim-multiedit'
-"Bundle 'hwrod/interactive-replace'
-"Bundle 'jeetsukumaran/vim-buffergator'
-"Bundle 'jistr/vim-nerdtree-tabs'
-"Bundle 'junegunn/vim-scroll-position'
-"Bundle 'justincampbell/vim-eighties'
-"Bundle 'kana/vim-arpeggio'
-"Bundle 'kana/vim-fakeclip'
-"Bundle 'kana/vim-textobj-indent'
-"Bundle 'kbarrette/mediummode'
-"Bundle 'kien/ctrlp.vim'
-"Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'kikijump/tslime.vim'
-"Bundle 'Lokaltog/powerline'
-"Bundle 'mattn/gist-vim'
-"Bundle 'mattn/zencoding-vim'
-"Bundle 'mbbill/VimExplorer'
-"Bundle 'mhinz/vim-tmuxify'
-"Bundle 'mihaifm/vimpanel'
-"Bundle 'mileszs/ack.vim'
-"Bundle 'moshen/vim-superstatus'
-"Bundle 'nathanaelkane/vim-command-w'
-"Bundle 'nebelschwade/statusline-vim'
-"Bundle 'nelstrom/vim-docopen'
-"Bundle 'nelstrom/vim-visual-star-search'
-"Bundle 'nfd/filepirate'
-"Bundle 'Peeja/vim-cdo'
-"Bundle 'rking/ag.vim'
-"Bundle 'scrooloose/nerdcommenter'
-"Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'scrooloose/whitespace2.0.vim'
-"Bundle 'Shougo/neocomplcache'
-"Bundle 'SirVer/ultisnips'
-"Bundle 'sjl/clam.vim'
-"Bundle 'sjl/friendly-find'
-"Bundle 'sjl/gundo.vim'
-"Bundle 'teranex/jk-jumps.vim'
-"Bundle 'terryma/vim-expand-region'
-"Bundle 'tpope/vim-abolish'
-"Bundle 'tpope/vim-capslock'
-"Bundle 'tpope/vim-commentary'
-"Bundle 'tpope/vim-eunuch'
-"Bundle 'tpope/vim-obsession'
-"Bundle 'tpope/vim-pastie'
-"Bundle 'tpope/vim-speeddating'
-"Bundle 'troydm/easybuffer.vim'
-"Bundle 'tsaleh/vim-align'
-"Bundle 'Valloric/YouCompleteMe'
-"Bundle 'wikitopian/hardmode'
-"Bundle 'xolox/vim-shell'
-
-" Colorschemes
+Bundle 'Greduan/vim-colors-solarized'
 "Bundle 'molok/vim-vombato-colorscheme'
+"Bundle 'nanotech/jellybeans.vim'
+"Bundle 'tomasr/molokai'
 
 " vim-scripts repos
 "Bundle 'blinking_statusline.vim"
@@ -209,11 +195,11 @@ Bundle 'SearchComplete'
 "Bundle 'IndexedSearch'
 "Bundle 'progressbar-widget'
 "Bundle 'restore_view.vim'
+"Bundle 'SearchComplete'
 "Bundle 'sessionman.vim'
 "Bundle 'ShowMarks'
+"Bundle 'YankRing.vim'
 "Bundle 'VimRepress'
-
-" }}}
 
 " }}}
 " Bundle settings {{{
