@@ -38,7 +38,7 @@ dotroot = home_folder + '/' + dotroot_input
 
 # On the left side, the source (from $DOTROOT). On the right side, the destination (from $HOME)
 files = {
-	'/git/gitmessage.txt': '.gitmessage.txt',
+	'/random/gitmessage.txt': '.gitmessage.txt',
 	'/shells/bash': '.bash',
 	'/shells/bash/bash_profile': '.bash_profile',
 	'/shells/bash/bashrc': '.bashrc',
