@@ -32,7 +32,7 @@ set noesckeys              " I don't use any mappings starting with <Esc>
 set clipboard^=unnamed
 
 " Make sure Vim has autocmd support
-if has('autocmd')
+if (has('autocmd'))
 	" Reload .vimrc and .gvimrc files as soon as they have a change
 	augroup VimReload
 		autocmd!
@@ -56,8 +56,8 @@ endif
 runtime ftplugin/man.vim
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
-" Found this here: https://github.com/tpope/vim-sensible
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+" Found this trick here: https://github.com/tpope/vim-sensible
+if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
   runtime! macros/matchit.vim
 endif
 
@@ -86,7 +86,7 @@ Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'davidoc/taskpaper.vim'
 "Bundle 'ervandew/supertab'
-Bundle 'gmarik/sudo-gui.vim'
+"Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
 "Bundle 'godlygeek/tabular'
 "Bundle 'goldfeld/vim-seek'
@@ -121,7 +121,7 @@ Bundle 'mhinz/vim-signify'
 "Bundle 'mileszs/ack.vim'
 "Bundle 'moshen/vim-superstatus'
 "Bundle 'nathanaelkane/vim-command-w'
-Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'nebelschwade/statusline-vim'
 "Bundle 'nelstrom/vim-americanize'
 "Bundle 'nelstrom/vim-docopen'
@@ -147,6 +147,7 @@ Bundle 'sjl/vitality.vim'
 Bundle 'Townk/vim-autoclose'
 "Bundle 'tpope/vim-abolish'
 "Bundle 'tpope/vim-capslock'
+"Bundle 'tpope/vim-characterize'
 "Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 "Bundle 'tpope/vim-eunuch'
@@ -240,7 +241,7 @@ let g:NumberToggleTrigger='<leader>tn'
 let g:NumberToggleOn='<leader>tno'
 " }}}
 " Vitality.vim {{{
-if !has('gui_running')
+if (!has('gui_running'))
 	let g:vitality_always_assume_iterm=1
 	let g:vitality_fix_cursor=0
 endif
@@ -266,14 +267,14 @@ set matchpairs=(:),{:},[:],':',":",<:>
 set showcmd      " Show the current command in the lower right corner
 set magic        " Allow use of regular expressions in the search scans
 
-if &t_Co > 2 || has('gui_running')
+if (&t_Co > 2 || has('gui_running'))
 	set hls " Enable the highlighting of the search
 endif
 
 " Highlight VCS conflict markers
 " match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-if has('win32') || has('win64')
+if (has('win32') || has('win64'))
 	" This is for Windows/cygwin and to add -H.
 	" '$*' is not passed to the shell, but used by Vim.
 	set grepprg=grep\ -nH\ $*\ /dev/null
@@ -286,9 +287,9 @@ let use_ag=0
 " Check if I want to use Ack
 if (use_ack != 0)
 	" Use Ack instead of Grep when available
-	if executable('ack')
+	if (executable('ack'))
 		set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
-	elseif executable('ack-grep')
+	elseif (executable('ack-grep'))
 		set grepprg=ack-grep\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 	endif
 endif
@@ -331,7 +332,7 @@ set timeoutlen=2000 " Wait {num} ms before timing out a mapping
 " default take a second or another keystroke to leave insert mode completely
 " and update the statusline. This fixes that. I got this from:
 " https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-if !has('gui_running')
+if (!has('gui_running'))
 	set ttimeoutlen=2000
 	augroup FastEscape
 		autocmd!
@@ -373,7 +374,7 @@ endif
 " }}}
 " Undo {{{
 
-if has('persistent_undo')
+if (has('persistent_undo'))
 	set undofile " Enable persistent undo
 
 	" Set persistent undo directory
@@ -648,7 +649,7 @@ set winminheight=5           " Minimum window height (split window)
 set winheight=10             " Height current split should have
 
 " Make sure Vim has autocmd support
-if has('autocmd')
+if (has('autocmd'))
 	au VimResized * :wincmd = " Resize split windows when the window is resized
 
 	" Save all buffers when Vim loses focus
@@ -671,7 +672,7 @@ endif
 
 set synmaxcol=1024 " Max chars to highlight in a single, long line
 
-if !has('gui_running')
+if (!has('gui_running'))
 	" Enable Terminal transparency
 	let g:solarized_termtrans=1
 
@@ -756,7 +757,7 @@ setglobal fileencoding=utf-8
 " File type specific stuff {{{
 
 " Make sure Vim has autocmd support
-if has('autocmd')
+if (has('autocmd'))
 	" Set to use manual folds in Vim files
 	augroup filetype_vim
 		autocmd!
@@ -780,7 +781,7 @@ if has('autocmd')
 		autocmd FileType text setlocal formatprg=par\ w79r
 		autocmd FileType gitcommit setlocal formatprg=par\ w72r
 	augroup END
-endif " if has('autocmd')
+endif
 
 " }}}
 " Functions {{{
@@ -926,7 +927,7 @@ endfunction
 " }}}
 " Numbers {{{
 
-" Motion for numbers.  Great for CSS.  Lets you do things like this:
+" Motion for numbers. Great for CSS. Lets you do things like this:
 "
 " margin-top: 200px; -> daN -> margin-top: px;
 "              ^                          ^
@@ -940,19 +941,19 @@ onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 
 function! s:NumberTextObject(whole)
-    normal! v
-
-    while getline('.')[col('.')] =~# '\v[0-9]'
-        normal! l
-    endwhile
-
-    if a:whole
-        normal! o
-
-        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-            normal! h
-        endwhile
-    endif
+	normal! v
+	
+	while getline('.')[col('.')] =~# '\v[0-9]'
+		normal! l
+	endwhile
+	
+	if a:whole
+		normal! o
+	
+		while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+			normal! h
+		endwhile
+	endif
 endfunction
 
 " }}}
@@ -1049,52 +1050,6 @@ endfunction
 nnoremap <silent> <leader>tw :call ListWrapToggle()<CR>
 
 " }}}
-" Recording() {{{
-
-" This is a function I made myself in order to setup Vim for recording, either
-" HD or SD. It just changes window size.
-"
-" I designed this myself.
-
-function! Recording(quality)
-	if(a:quality == 'sd')
-		set guifont=Monaco:h11
-
-		set columns=89
-		set lines=28
-
-		if(g:colors_name == 'solarized')
-			set background=light
-		endif
-	elseif(a:quality == 'hd')
-		set guifont=Monaco:h11
-
-		set columns=180
-		set lines=44
-
-		if(g:colors_name == 'solarized')
-			set background=light
-		endif
-	elseif(a:quality == 'off')
-		if ! $diff " Check if in diff mode
-			" If not, do a normal sized window
-			set columns=120 lines=40 " Set the width and height of window
-		else
-			" If yes, then double that for diff mode
-			set columns=240 lines=40 " Same here, duh!
-		endif
-
-		if(g:colors_name == 'solarized')
-			set background=dark
-		endif
-	endif
-endfunction
-
-nnoremap <silent> <leader>trs :call Recording('sd')<CR>
-nnoremap <silent> <leader>trh :call Recording('hd')<CR>
-nnoremap <silent> <leader>tr :call Recording('off')<CR>
-
-" }}}
 
 " }}}
 " Random stuff {{{
@@ -1108,9 +1063,9 @@ set isfname-== " Remove '=' from filename characters
 " :h word<CTRL-d>
 
 " To open a certain URL in Vim
-" $ vim http://eduantech.com
+" $ vim $URL
 
-" To output the current file in HTML
+" To output the current file in HTML. It comes along with syntax highlighting.
 " :%TOhtml
 
 " Useful mappings:
