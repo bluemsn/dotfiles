@@ -1,19 +1,6 @@
-" My personal .vimrc file, containing lots of stuff which make it perfect for
-" my tastes. I suggest you don't use this yourself, but rather read it and
-" take what you like for yourself.
-"
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: April 15th, 2013
-"
-" If you insist on using it, simply put this file here, depending on your OS:
-"
-" Unix:    ~/.vimrc
-" Mac OSX: ~/.vimrc
-" Amiga:   s:.vimrc
-" Linux:   /home/$USER/.vimrc
-" DOS:     $VIM\_vimrc
-" OpenVMS: sys$login:.vimrc
+" Last Change: April 16th, 2013
 
 " Basic stuff {{{
 
