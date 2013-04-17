@@ -1,0 +1,2 @@
+# Start E17 when I run `startx`
+exec enlightenment_start

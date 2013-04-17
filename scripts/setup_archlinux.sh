@@ -9,11 +9,6 @@
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # =============================================================================
 
-# Update Arch Linux
-pacman -Syu
-# In case `pacman` was upgraded...
-pacman -Syu
-
 # This will stop working on 2017
 pacman -S flashplugin
 
@@ -27,8 +22,8 @@ pacman -S python
 # Install Zsh
 pacman -S zsh
 # Set Zsh as default shell
-chsh -s $(which zsh)
-sudo chsh -s $(which zsh)
+chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
 
 # VCS
 pacman -S git
@@ -38,16 +33,14 @@ pacman -S mercurial
 pacman -S gvim
 
 # Install development/monospaced fonts
-pacman -S ttf-dejavu
-pacman -S ttf-monaco
-pacman -S ttf-inconsolata
-pacman -S ttf-inconsolata-g
+packer -S ttf-dejavu
 # Variable width fonts
-pacman -S ttf-tahoma
-pacman -S ttf-symbola
+packer -S ttf-tahoma
+packer -S ttf-symbola
 # Font packages
-pacman -S ttf-google-webfonts
-pacman -S ttf-google-webfonts-hg
-pacman -S ttf-ms-fonts
-pacman -S ttf-vista-fonts
-pacman -S ttf-mac-fonts
+packer -S ttf-google-webfonts-git
+packer -S ttf-ms-fonts
+packer -S ttf-vista-fonts
+packer -S ttf-mac-fonts
+
+

@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: April 16th, 2013
+" Last Change: April 17th, 2013
 
 " Basic stuff {{{
 
@@ -114,7 +114,7 @@ Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'scrooloose/nerdtree'
 "Bundle 'scrooloose/syntastic'
 ""Bundle 'scrooloose/whitespace2.0.vim'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neocomplcache'
 "Bundle 'SirVer/ultisnips'
 "Bundle 'sjl/clam.vim'
 "Bundle 'sjl/gundo.vim'
@@ -311,20 +311,17 @@ set cpoptions+=$    " Default but put a '$' at the end of motion string
 set iskeyword+=-    " Add '-' as a keyword
 
 set timeout         " Do time out on mappings and others
-set timeoutlen=2000 " Wait {num} ms before timing out a mapping
 
 " When you’re pressing Escape to leave insert mode in the terminal, it will by
 " default take a second or another keystroke to leave insert mode completely
 " and update the statusline. This fixes that. I got this from:
 " https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-if (!has('gui_running'))
-	set ttimeoutlen=2000
-	augroup FastEscape
-		autocmd!
-		au InsertEnter * set timeoutlen=0
-		au InsertLeave * set timeoutlen=2000
-	augroup END
-endif
+set ttimeoutlen=2000
+augroup FastEscape
+	autocmd!
+	au InsertEnter * set timeoutlen=0
+	au InsertLeave * set timeoutlen=2000
+augroup END
 
 " }}}
 " Command line options {{{
