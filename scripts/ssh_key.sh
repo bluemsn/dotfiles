@@ -19,6 +19,10 @@ elif [ -d ~/.ssh ]; then
 	rm id_rsa*
 fi
 
+if ! $(which ssh-keygen); then
+	pacman -S openssh
+fi
+
 # Generate a SSH key
 ssh-keygen -t rsa -C "eduan@snapsimpletech.com"
 
@@ -29,8 +33,10 @@ if [ `uname -s` == 'Darwin' ]; then
 	# Copy the contents of 'id_rsa.pub' (SSH key) to my clipboard
 	pbcopy < ~/.ssh/id_rsa.pub
 elif [ `uname -s` == 'Linux' ]; then
-	# Install `xclip`, assuming you're on Arch Linux
-	pacman -S xclip
+	if ! $(which xclip); then
+		# Install `xclip`, assuming you're on Arch Linux
+		pacman -S xclip
+	fi
 
 	# Copy the contents of 'id_rsa.pub' (SSH key) to my clipboard
 	xclip -sel clip < ~/.ssh/id_rsa.pub

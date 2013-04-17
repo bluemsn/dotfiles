@@ -46,6 +46,7 @@ files = {
 	'/shells/zsh': '.zsh',
 	'/shells/zsh/zshrc': '.zshrc',
 	'/shells/profile': '.profile',
+	'/ssh': '.ssh',
 	'/tmux/tmux.conf': '.tmux.conf',
 	'/vim': '.vim',
 	'/vim/gvimrc.vim': '.gvimrc',

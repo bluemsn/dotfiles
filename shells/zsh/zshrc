@@ -1,6 +1,3 @@
-# A little something for Vim and tmux
-[ -n "$ITERM_PROFILE" ] && printf "\e[?2004h"
-
 # Setting my preferred default editor
 EDITOR=vim # Command line uses 'vim'
 VISUAL=mvim # Visual editor is MacVim
@@ -10,9 +7,6 @@ export EDITOR VISUAL GIT_EDITOR # Export these options
 alias ls="ls -la -Gp -F"        # Make 'ls' do lotsa stuff
 alias reload!="source ~/.zshrc" # Make 'reload!' source the .zshrc file
 alias sudo="sudo "              # Fix using aliases after sudo
-
-#            v Homebrew     v MySQL
-export PATH="/usr/local/bin:/usr/local/mysql/bin:$PATH"
 
 # Initialize colors.
 autoload -U colors
