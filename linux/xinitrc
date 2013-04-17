@@ -1,2 +1,5 @@
 # Start E17 when I run `startx`
-exec enlightenment_start
+#exec enlightenment_start
+
+# Start Openbox when I run `startx`
+exec openbox-session
