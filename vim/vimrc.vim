@@ -94,7 +94,7 @@ Bundle 'justincampbell/vim-eighties'
 "Bundle 'kikijump/tslime.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'lyokha/vim-xkbswitch'
+Bundle 'lyokha/vim-xkbswitch'
 "Bundle 'mattn/gist-vim'
 ""Bundle 'mbbill/VimExplorer'
 Bundle 'mhinz/vim-signify'
@@ -528,7 +528,7 @@ noremap <F1> <esc>
 " }}}
 " New mappings {{{
 
-Nothing here yet...
+" Nothing here yet...
 
 " }}}
 
@@ -937,8 +937,6 @@ function! s:NumberTextObject(whole)
 		endwhile
 	endif
 endfunction
-
-" }}}
 
 " }}}
 " Add a "number" motion object {{{

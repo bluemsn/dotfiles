@@ -7,7 +7,7 @@ function! Statusline()
 	let s:stl=''        " Clear statusline for when vimrc is loaded
 	if exists('g:loaded_usefulstatusline')
 		let s:stl.='%{usefulstatusline_colorize#Colorize()}'
-		let s:stl.='[%{toupper(usefulstatusline_mode#CurrentModePure())}]'
+		let s:stl.='%{toupper(usefulstatusline_mode#CurrentMode())}'
 	endif
 	let s:stl.=' '      " Separator
 	let s:stl.='[%02n]' " Buffer number of current buffer
@@ -33,6 +33,10 @@ function! Statusline()
 		let s:stl.='%{usefulstatusline_filesize#FileSizePure(1)}'
 	endif
 	let s:stl.=']'                   " Closing square bracket for file info
+	let s:stl.=' '
+	if (exists('g:loaded_usefulstatusline'))
+		let s:stl.='%{usefulstatusline_date_time#DateTime(3, 1)}'
+	endif
 	if (exists('g:loaded_fugitive')) " If Fugitive is installed
 		let s:stl.=' %{fugitive#statusline()}'
 	endif

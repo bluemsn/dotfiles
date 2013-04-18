@@ -43,4 +43,5 @@ packer -S ttf-ms-fonts
 packer -S ttf-vista-fonts
 packer -S ttf-mac-fonts
 
+packer -S xkb-switch-git
 
