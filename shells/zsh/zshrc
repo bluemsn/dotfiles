@@ -7,6 +7,7 @@ export EDITOR VISUAL GIT_EDITOR # Export these options
 alias ls="ls -la -Gp -F"        # Make 'ls' do lotsa stuff
 alias reload!="source ~/.zshrc" # Make 'reload!' source the .zshrc file
 alias sudo="sudo "              # Fix using aliases after sudo
+alias eduan="cd ~/Desktop/Eduan"
 
 # Initialize colors.
 autoload -U colors

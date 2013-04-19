@@ -94,7 +94,7 @@ Bundle 'justincampbell/vim-eighties'
 "Bundle 'kikijump/tslime.vim'
 "Bundle 'Lokaltog/powerline'
 "Bundle 'Lokaltog/vim-easymotion'
-Bundle 'lyokha/vim-xkbswitch'
+""Bundle 'lyokha/vim-xkbswitch'
 "Bundle 'mattn/gist-vim'
 ""Bundle 'mbbill/VimExplorer'
 Bundle 'mhinz/vim-signify'
@@ -627,7 +627,8 @@ set autoread                 " Auto read files when edited outside Vim
 set tabpagemax=1             " Max tabs to open with the '-p' option
 set showtabline=0            " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
-set winminheight=5           " Minimum window height (split window)
+set winheight=3              " Just to avoid errors, don't pay attention here
+set winminheight=3           " Minimum window height (split window)
 set winheight=10             " Height current split should have
 
 " Make sure Vim has autocmd support
@@ -635,7 +636,7 @@ if (has('autocmd'))
 	au VimResized * :wincmd = " Resize split windows when the window is resized
 
 	" Save all buffers when Vim loses focus
-	augroup saveall
+	augroup SaveAll
 		autocmd!
 
 		au FocusLost * :wa

@@ -9,39 +9,45 @@
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # =============================================================================
 
-# This will stop working on 2017
-pacman -S flashplugin
+# AUR Packages
+##############
 
-# Install my development environment
-####################################
+packer -S dropbox
+packer -S centerim
 
-# Python
-pacman -S python2
-pacman -S python
-
-# Install Zsh
-pacman -S zsh
-# Set Zsh as default shell
-chsh -s /bin/zsh
-sudo chsh -s /bin/zsh
-
-# VCS
-pacman -S git
-pacman -S mercurial
-
-# Install (G)Vim
-pacman -S gvim
-
-# Install development/monospaced fonts
 packer -S ttf-dejavu
-# Variable width fonts
 packer -S ttf-tahoma
 packer -S ttf-symbola
-# Font packages
 packer -S ttf-google-webfonts-git
 packer -S ttf-ms-fonts
 packer -S ttf-vista-fonts
 packer -S ttf-mac-fonts
 
-packer -S xkb-switch-git
+# Official Packages
+###################
 
+pacman -S openbox
+pacman -S tint2
+
+pacman -S firefox
+pacman -S chromium
+pacman -S flashplugin
+pacman -S lib32-flashplugin
+
+pacman -S python2
+pacman -S python
+
+pacman -S zsh
+chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
+
+pacman -S git
+pacman -S mercurial
+
+pacman -S gvim
+
+pacman -S apache php php-apache mariadb
+
+pacman -S irssi
+pacman -S mupdf
+pacman -S unzip

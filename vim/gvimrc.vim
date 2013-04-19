@@ -4,7 +4,14 @@ set guioptions=acirbhv " Set the GUI options the way I like them
 winpos 0 0
 
 " Set the font
-set guifont=DejaVu\ Sans\ Mono:h11
+set guifont=DejaVu\ Sans\ Mono:h9
+set guifontset=DejaVu\ Sans\ Mono:h9
+
+if (has('gui_gtk2'))
+	" Set the font
+	set guifont=DejaVu\ Sans\ Mono 9
+	set guifontset=DejaVu\ Sans\ Mono 9
+endif
 
 if ! $diff " Check if in diff mode
 	" If not, do a normal sized window

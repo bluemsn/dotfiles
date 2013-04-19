@@ -1,5 +1,8 @@
-# Start E17 when I run `startx`
-exec enlightenment_start
-
-# Start Openbox when I run `startx`
-#exec openbox-session
+#!/bin/sh
+# ~/.xinitrc
+#
+# Executed by `startx` (run your window manager from here)
+dropboxd
+tint2 &
+exec openbox-session
+#exec enlightenment_start
