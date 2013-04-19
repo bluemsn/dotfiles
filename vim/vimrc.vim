@@ -750,7 +750,7 @@ if (has('autocmd'))
 	" Python specific stuff
 	augroup filetype_python
 		autocmd!
-		autocmd FileType python setlocal expandtab
+		autocmd FileType python setlocal noexpandtab
 	augroup END
 
 	" Some settings for fugitive.vim by Tim Pope
