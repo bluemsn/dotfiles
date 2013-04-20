@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: April 17th, 2013
+" Last Change: April 19th, 2013
 
 " Basic stuff {{{
 
@@ -83,7 +83,7 @@ Bundle 'Greduan/vim-usefulstatusline'
 "Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'jszakmeister/vim-togglecursor'
 ""Bundle 'junegunn/vim-scroll-position'
-Bundle 'justincampbell/vim-eighties'
+"Bundle 'justincampbell/vim-eighties'
 ""Bundle 'kablamo/vim-git-log'
 "Bundle 'kana/vim-arpeggio'
 "Bundle 'kana/vim-fakeclip'
@@ -143,6 +143,7 @@ Bundle 'tpope/vim-unimpaired'
 "Bundle 'Valloric/YouCompleteMe'
 ""Bundle 'wikitopian/hardmode'
 "Bundle 'xolox/vim-shell'
+Bundle 'zhaocai/GoldenView.vim'
 
 " Syntax files
 Bundle 'groenewege/vim-less'
@@ -293,8 +294,8 @@ set nojoinspaces  " :h joinspaces
 " Set the tab width
 let s:tabwidth=4
 exec 'set tabstop='    .s:tabwidth
-exec 'set shiftwidth=' .s:tabwidth
 exec 'set softtabstop='.s:tabwidth
+exec 'set shiftwidth=' .s:tabwidth
 
 if (has('autocmd'))
 	augroup par_settings
@@ -747,10 +748,13 @@ if (has('autocmd'))
 		autocmd FileType vim setlocal foldmethod=marker
 	augroup END
 
-	" Python specific stuff
-	augroup filetype_python
+	" Specific settings for the Openbox rc.xml file
+	augroup file_openboxrc
 		autocmd!
-		autocmd FileType python setlocal noexpandtab
+		autocmd BufRead rc.xml setlocal expandtab
+		autocmd BufRead rc.xml setlocal shiftwidth=2
+		autocmd BufRead rc.xml setlocal tabstop=2
+		autocmd BufRead rc.xml setlocal softtabstop=2
 	augroup END
 
 	" Some settings for fugitive.vim by Tim Pope

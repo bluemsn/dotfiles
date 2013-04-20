@@ -2,8 +2,9 @@
 # =============================================================================
 # setup_archlinux.sh
 # -----------------------------------------------------------------------------
-# This file is meant to install stuff that the following script didn't
-# install/setup: https://github.com/helmuthdu/aui
+# This file is meant to install stuff that doesn't come pre-installed with Arch
+# Linux, but that you do need. Also stuff that you did or didn't install during
+# the setup process...
 # =============================================================================
 # Eduan Lavaque <eduan@snapsimpletech.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
@@ -18,28 +19,24 @@ packer -S centerim
 packer -S ttf-dejavu
 packer -S ttf-tahoma
 packer -S ttf-symbola
-packer -S ttf-google-webfonts-git
-packer -S ttf-ms-fonts
-packer -S ttf-vista-fonts
-packer -S ttf-mac-fonts
+packer -S ttf-google-webfonts-git ttf-ms-fonts ttf-vista-fonts ttf-mac-fonts
 
 # Official Packages
 ###################
 
-pacman -S openbox
-pacman -S tint2
+pacman -S xcompmgr
+pacman -S transset-df
+
+#pacman -S thunar thunar-archive-plugin thunar-media-tags-plugin tumbler ffmpegthumbnailer
 
 pacman -S firefox
 pacman -S chromium
-pacman -S flashplugin
-pacman -S lib32-flashplugin
+pacman -S flashplugin lib32-flashplugin
 
-pacman -S python2
-pacman -S python
+pacman -S python2 python
 
 pacman -S zsh
-chsh -s /bin/zsh
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh && sudo chsh -s /bin/zsh
 
 pacman -S git
 pacman -S mercurial

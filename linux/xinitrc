@@ -2,7 +2,4 @@
 # ~/.xinitrc
 #
 # Executed by `startx` (run your window manager from here)
-dropboxd
-tint2 &
-exec openbox-session
-#exec enlightenment_start
+exec enlightenment_start
