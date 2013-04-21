@@ -29,7 +29,7 @@ PROMPT+='%{${fg[default]}%}$(vcs_super_info)' # Default color, Git status
 PROMPT+='%{${fg[default]}%} $ ' # Default color, prompt
 
 # Set the right side of my prompt
-RPROMPT=$'%T' # Default color, time
+RPROMPT=$'$(acpi | grep -o \'[0-9]*%\')% %T' # Default color, time
 
 # Some history settings
 HISTSIZE=1000       # The size of the history of current shell
