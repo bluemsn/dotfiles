@@ -28,9 +28,11 @@ packer -S filezilla
 packer -S dropbox
 
 pacman -S apache php php-apache mariadb
-packer -S xampp
+systemctl enable httpd
+systemctl start htppd
+#packer -S xampp
 
-pacman -S python2 python
+pacman -S python2 python python2-parsedatetime
 pacman -S zsh
 chsh -s /bin/zsh && sudo chsh -s /bin/zsh
 pacman -S acpi
@@ -42,3 +44,7 @@ pacman -S irssi
 packer -S centerim
 pacman -S unzip
 packer -S par
+pacman -S python2-pip
+pip2 install jrnl
+
+#pacman -S steam libtxc_dxtn lib32-libtxc_dxtn lib32-intel-dri

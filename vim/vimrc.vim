@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: April 19th, 2013
+" Last Change: April 24th, 2013
 
 " Basic stuff {{{
 
@@ -16,7 +16,8 @@ set noesckeys              " I don't use any mappings starting with <Esc>
 
 " Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
-set clipboard^=unnamed
+set clipboard+=unnamed
+set clipboard+=unnamedplus
 
 " Make sure Vim has autocmd support
 if (has('autocmd'))
@@ -71,7 +72,7 @@ Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'davidoc/taskpaper.vim'
 ""Bundle 'ervandew/supertab'
-"Bundle 'gmarik/sudo-gui.vim'
+Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
 Bundle 'godlygeek/tabular'
 ""Bundle 'goldfeld/vim-seek'
@@ -564,7 +565,7 @@ cnoremap <F6> <C-^>
 
 " Enable list by default, but set it's options for when it is used
 set list                            " Show hidden characters
-set listchars=tab:▸\ ,eol:¬,trail:_ " Set chars to use for 'list'
+set listchars=tab:\|\ ,eol:$,trail:_ " Set chars to use for 'list'
 
 " Disable softwrap by default, and set it's options, even if disabled
 set nowrap    " By default soft-wrap text at window border
