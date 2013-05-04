@@ -4,7 +4,7 @@
 # This file will generate my symlinks. For new installs.
 # -*- coding: utf-8 -*-
 import os
-from os.path import expanduser, exists, islink
+from os.path import expanduser, exists
 from time import gmtime, strftime
 
 # Figure out the home folder
@@ -36,21 +36,37 @@ files = {
 	'/vim/vimrc.vim': '.vimrc',
 }
 
-for src, dest in files.iteritems():
-	# If the file exists...
-	if os.path.exists(dest)
-		# Then delete it
-		os.remove(dest)
+commands = os.listdir(dotroot + '/bin/')
 
+for src, dest in files.iteritems():
 	# The actual source that's going to be used
 	final_src = dotroot + src
 	# The actual destination that's going to be used
 	final_dest = home_folder + '/' + dest
+
+	# If the file exists...
+	if os.path.exists(dest):
+		# Then delete it
+		os.remove(dest)
 
 	# Make symlink
 	os.symlink(final_src, final_dest)
 
 	# Print message regarding currently symlink...
 	print '%s -> %s' % (final_dest, final_src)
+
+for cmd in commands:
+	# The location of the command script
+	final_src = dotroot + '/bin/' + cmd
+	# The destination of the command script symlink
+	final_dest = '/usr/local/bin/' + cmd
+
+	# If the file exists...
+	if os.path.exists(final_dest):
+		# Then delete it
+		os.remove(final_dest)
+
+	# Make symlinks to commands
+	os.symlink(final_src, final_dest)
 
 print 'Finished making symlinks!'

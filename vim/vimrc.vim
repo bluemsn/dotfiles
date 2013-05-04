@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: April 24th, 2013
+" Last Change: May 3rd, 2013
 
 " Basic stuff {{{
 
@@ -72,7 +72,7 @@ Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'davidoc/taskpaper.vim'
 ""Bundle 'ervandew/supertab'
-Bundle 'gmarik/sudo-gui.vim'
+"Bundle 'gmarik/sudo-gui.vim'
 "Bundle 'godlygeek/csapprox'
 Bundle 'godlygeek/tabular'
 ""Bundle 'goldfeld/vim-seek'
@@ -148,7 +148,7 @@ Bundle 'zhaocai/GoldenView.vim'
 
 " Syntax files
 Bundle 'groenewege/vim-less'
-Bundle 'kloppster/Wordpress-Vim-Syntax'
+"Bundle 'kloppster/Wordpress-Vim-Syntax'
 Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
 Bundle 'othree/html5.vim'
@@ -161,7 +161,7 @@ Bundle 'zaiste/tmux.vim'
 " Language specific bundles
 Bundle 'ap/vim-css-color'
 Bundle 'gregsexton/MatchTag'
-Bundle 'HTML-AutoCloseTag'
+"Bundle 'HTML-AutoCloseTag'
 Bundle 'mattn/zencoding-vim'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'robmiller/vim-movar'
