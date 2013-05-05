@@ -38,8 +38,6 @@ systemctl start htppd
 #packer -S xampp
 
 pacman -S python2 python
-pacman -S python2-pip
-pip2 install sh
 pacman -S zsh
 chsh -s /bin/zsh && sudo chsh -s /bin/zsh
 pacman -S acpi
@@ -52,6 +50,7 @@ pacman -S irssi
 packer -S centerim
 pacman -S unzip
 packer -S par
+pacman -S python2-pip
 pip2 install parsedatetime
 pip2 install jrnl
 

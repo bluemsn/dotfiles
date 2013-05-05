@@ -3,7 +3,7 @@
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # This file will generate my symlinks. For new installs.
 # -*- coding: utf-8 -*-
-import os
+import os, subprocess
 from os.path import expanduser, exists
 from time import gmtime, strftime
 
@@ -64,10 +64,10 @@ for cmd in commands:
 	# If the file exists...
 	if os.path.exists(final_dest):
 		# Then delete it
-		os.popen('sudo rm ' + final_dest, 'w')
+		subprocess.Popen('sudo rm ' + final_dest, shell=True)
 
 	# Make symlinks to commands
-	os.popen('sudo ln -s ' + final_src + ' ' + final_dest, 'w')
+	subprocess.Popen('sudo ln -s ' + final_src + ' ' + final_dest, shell=True)
 
 	# Print message regarding symlink to current command...
 	print 'Finished installing `%s` script under "/usr/local/bin/"' % (cmd)
