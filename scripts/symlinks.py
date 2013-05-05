@@ -3,7 +3,7 @@
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # This file will generate my symlinks. For new installs.
 # -*- coding: utf-8 -*-
-import os
+import os, sh
 from os.path import expanduser, exists
 from time import gmtime, strftime
 
@@ -45,14 +45,14 @@ for src, dest in files.iteritems():
 	final_dest = home_folder + '/' + dest
 
 	# If the file exists...
-	if os.path.exists(dest):
+	if os.path.exists(final_dest):
 		# Then delete it
-		os.remove(dest)
+		os.remove(final_dest)
 
 	# Make symlink
 	os.symlink(final_src, final_dest)
 
-	# Print message regarding currently symlink...
+	# Print message regarding current symlink...
 	print '%s -> %s' % (final_dest, final_src)
 
 for cmd in commands:
@@ -61,12 +61,17 @@ for cmd in commands:
 	# The destination of the command script symlink
 	final_dest = '/usr/local/bin/' + cmd
 
-	# If the file exists...
-	if os.path.exists(final_dest):
-		# Then delete it
-		os.remove(final_dest)
+	# Ask the user for sudo access
+	with sh.sudo:
+		# If the file exists...
+		if os.path.exists(final_dest):
+			# Then delete it
+			sh.rm('-r', final_dest)
 
-	# Make symlinks to commands
-	os.symlink(final_src, final_dest)
+		# Make symlinks to commands
+		sh.ln('-s', final_src, final_dest)
+
+	# Print message regarding symlink to current command...
+	print 'Finished installing `%s` script under "/usr/local/bin/"' % (cmd)
 
 print 'Finished making symlinks!'
