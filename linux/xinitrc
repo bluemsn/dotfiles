@@ -3,4 +3,5 @@
 #
 # Executed by `startx` (run your window manager from here)
 exec enlightenment_start
+dropboxd
 setxkbmap -layout "latam" -variant "deadtilde"

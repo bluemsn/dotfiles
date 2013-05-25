@@ -3,9 +3,8 @@
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # This file will generate my symlinks. For new installs.
 # -*- coding: utf-8 -*-
-import os, subprocess
+import os
 from os.path import expanduser, exists
-from time import gmtime, strftime
 
 # Figure out the home folder
 home_folder = expanduser('~')
@@ -21,22 +20,25 @@ dotroot = home_folder + '/' + dotroot_input
 
 # On the left side, the source (from $DOTROOT). On the right side, the destination (from $HOME)
 files = {
-	'/linux/xinitrc': '.xinitrc',
-	'/random/gitmessage.txt': '.gitmessage.txt',
-	'/shells/bash': '.bash',
-	'/shells/bash/bash_profile': '.bash_profile',
-	'/shells/bash/bashrc': '.bashrc',
-	'/shells/zsh': '.zsh',
-	'/shells/zsh/zshrc': '.zshrc',
-	'/shells/profile': '.profile',
-	'/ssh': '.ssh',
-	'/tmux/tmux.conf': '.tmux.conf',
-	'/vim': '.vim',
-	'/vim/gvimrc.vim': '.gvimrc',
-	'/vim/vimrc.vim': '.vimrc',
+	'/linux/xinitrc'            : '.xinitrc',
+	'/random/gitmessage.txt'    : '.gitmessage.txt',
+	'/shells/bash'              : '.bash',
+	'/shells/bash/bash_profile' : '.bash_profile',
+	'/shells/bash/bashrc'       : '.bashrc',
+	'/shells/zsh'               : '.zsh',
+	'/shells/zsh/zshrc'         : '.zshrc',
+	'/shells/profile'           : '.profile',
+	'/ssh'                      : '.ssh',
+	'/tmux/tmux.conf'           : '.tmux.conf',
+	'/vim'                      : '.vim',
+	'/vim/gvimrc.vim'           : '.gvimrc',
+	'/vim/vimrc.vim'            : '.vimrc',
 }
 
-commands = os.listdir(dotroot + '/bin/')
+# Set the commands that will be symlinked...
+commands = {
+	'/bin/tmux-vim-select-pane' : 'tmux-vim-select-pane',
+}
 
 for src, dest in files.iteritems():
 	# The actual source that's going to be used
@@ -55,21 +57,18 @@ for src, dest in files.iteritems():
 	# Print message regarding current symlink...
 	print '%s -> %s' % (final_dest, final_src)
 
-for cmd in commands:
+for src, cmd in commands.iteritems():
 	# The location of the command script
-	final_src = dotroot + '/bin/' + cmd
+	final_src = dotroot + src
 	# The destination of the command script symlink
 	final_dest = '/usr/local/bin/' + cmd
 
 	# If the file exists...
 	if os.path.exists(final_dest):
 		# Then delete it
-		subprocess.Popen('sudo rm ' + final_dest, shell=True)
+		os.popen('sudo rm ' + final_dest, 'w')
 
 	# Make symlinks to commands
-	subprocess.Popen('sudo ln -s ' + final_src + ' ' + final_dest, shell=True)
-
-	# Print message regarding symlink to current command...
-	print 'Finished installing `%s` script under "/usr/local/bin/"' % (cmd)
+	os.popen('sudo ln -vs ' + final_src + ' ' + final_dest, 'w')
 
 print 'Finished making symlinks!'

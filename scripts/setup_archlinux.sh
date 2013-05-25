@@ -23,6 +23,7 @@ packer -S econnman
 systemctl enable connman
 systemctl start connman
 pacman -S ddclient
+pacman -S openssh
 
 pacman -S firefox
 pacman -S chromium
@@ -31,23 +32,28 @@ packer -S filezilla
 packer -S dropbox
 pacman -S gimp
 packer -S acroread
+#packer -S spotify ffmpeg-spotify
+packer -S qbittorrent
+packer -S potamux
 
 pacman -S apache php php-apache mariadb
 systemctl enable httpd
 systemctl start htppd
 #packer -S xampp
 
-pacman -S python2 python
 pacman -S zsh
 chsh -s /bin/zsh && sudo chsh -s /bin/zsh
-pacman -S acpi
 pacman -S git
 pacman -S mercurial
+pacman -S python2 python
+pacman -S ruby
+packer -S ruby-sass
+pacman -S acpi
 pacman -S gvim
 pacman -S markdown
 
-pacman -S irssi
-packer -S centerim
+#pacman -S irssi
+#packer -S centerim
 pacman -S unzip
 packer -S par
 pacman -S python2-pip
