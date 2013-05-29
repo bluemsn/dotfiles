@@ -2,6 +2,15 @@
 # ~/.xinitrc
 #
 # Executed by `startx` (run your window manager from here)
-exec enlightenment_start
-dropboxd
-setxkbmap -layout "latam" -variant "deadtilde"
+# Start up programs
+conky &
+tint2 &
+dropboxd &
+xbindkeys
+
+# Start DE/WM
+#exec enlightenment_start
+exec openbox-session
+
+# Other settings
+#setxkbmap -layout "latam" -variant "deadtilde"

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+	<menu id="root-menu" label="OpenBox 3">
+		<menu id="1" label="Development">
+			<item label="Elementary Test"> <action name="Execute">
+				<execute>elementary_test</execute>
+			</action> </item>
+			<item label="IDLE"> <action name="Execute">
+				<execute>idle</execute>
+			</action> </item>
+			<item label="Python"> <action name="Execute">
+				<execute>xterm -e python</execute>
+			</action> </item>
+			<item label="Qt4 Assistant"> <action name="Execute">
+				<execute>assistant-qt4</execute>
+			</action> </item>
+			<item label="Qt4 Designer"> <action name="Execute">
+				<execute>designer-qt4</execute>
+			</action> </item>
+			<item label="Qt4 Linguist"> <action name="Execute">
+				<execute>linguist-qt4</execute>
+			</action> </item>
+			<item label="Qt4 QDbusViewer"> <action name="Execute">
+				<execute>qdbusviewer-qt4</execute>
+			</action> </item>
+		</menu>
+		<menu id="2" label="Editors">
+			<item label="GVim"> <action name="Execute">
+				<execute>gvim</execute>
+			</action> </item>
+			<item label="Nano"> <action name="Execute">
+				<execute>xterm -e nano</execute>
+			</action> </item>
+			<item label="Sublime Text"> <action name="Execute">
+				<execute>subl</execute>
+			</action> </item>
+			<item label="Vi"> <action name="Execute">
+				<execute>xterm -e vi</execute>
+			</action> </item>
+			<item label="Vim"> <action name="Execute">
+				<execute>xterm -e vim</execute>
+			</action> </item>
+		</menu>
+		<menu id="18" label="Games">
+			<menu id="9" label="Adventure">
+				<item label="Sclient"> <action name="Execute">
+					<execute>sclient</execute>
+				</action> </item>
+			</menu>
+			<menu id="10" label="Arcade">
+				<item label="PacMan"> <action name="Execute">
+					<execute>pacman</execute>
+				</action> </item>
+			</menu>
+		</menu>
+		<menu id="6" label="Graphics">
+			<item label="GNU Image Manipulation Program"> <action name="Execute">
+				<execute>gimp-2.8</execute>
+			</action> </item>
+			<item label="The GIMP"> <action name="Execute">
+				<execute>gimp</execute>
+			</action> </item>
+		</menu>
+		<menu id="7" label="Multimedia">
+			<item label="ALSA mixer"> <action name="Execute">
+				<execute>xterm -e alsamixer</execute>
+			</action> </item>
+			<item label="Potamus"> <action name="Execute">
+				<execute>potamus</execute>
+			</action> </item>
+			<item label="Spotify"> <action name="Execute">
+				<execute>spotify</execute>
+			</action> </item>
+			<item label="VLC media player"> <action name="Execute">
+				<execute>vlc</execute>
+			</action> </item>
+		</menu>
+		<menu id="5" label="Network">
+			<item label="Avahi SSH Server Browser"> <action name="Execute">
+				<execute>bssh</execute>
+			</action> </item>
+			<item label="Avahi VNC Server Browser"> <action name="Execute">
+				<execute>bvnc</execute>
+			</action> </item>
+			<item label="Chromium"> <action name="Execute">
+				<execute>chromium</execute>
+			</action> </item>
+			<item label="EConnMan"> <action name="Execute">
+				<execute>econnman-bin</execute>
+			</action> </item>
+			<item label="EConnMan with Agent"> <action name="Execute">
+				<execute>econnman-bin --agent</execute>
+			</action> </item>
+			<item label="FileZilla"> <action name="Execute">
+				<execute>filezilla</execute>
+			</action> </item>
+			<item label="FTP"> <action name="Execute">
+				<execute>xterm -e ftp</execute>
+			</action> </item>
+			<item label="Irssi"> <action name="Execute">
+				<execute>xterm -e irssi</execute>
+			</action> </item>
+			<item label="Mail"> <action name="Execute">
+				<execute>xterm -e mail</execute>
+			</action> </item>
+			<item label="Mail Reader"> <action name="Execute">
+				<execute>exo-open --launch MailReader</execute>
+			</action> </item>
+			<item label="qBittorrent"> <action name="Execute">
+				<execute>qbittorrent</execute>
+			</action> </item>
+			<item label="Steam"> <action name="Execute">
+				<execute>steam</execute>
+			</action> </item>
+			<item label="Talk"> <action name="Execute">
+				<execute>xterm -e talk</execute>
+			</action> </item>
+			<item label="Telnet"> <action name="Execute">
+				<execute>xterm -e telnet</execute>
+			</action> </item>
+			<item label="TkVNC"> <action name="Execute">
+				<execute>xterm -e tkvnc</execute>
+			</action> </item>
+			<item label="Web Browser"> <action name="Execute">
+				<execute>exo-open --launch WebBrowser</execute>
+			</action> </item>
+		</menu>
+		<menu id="3" label="Office">
+			<item label="Adobe Reader 9"> <action name="Execute">
+				<execute>acroread</execute>
+			</action> </item>
+		</menu>
+		<menu id="39" label="Other">
+			<item label="CMake"> <action name="Execute">
+				<execute>cmake-gui</execute>
+			</action> </item>
+			<item label="Dropbox"> <action name="Execute">
+				<execute>dropboxd</execute>
+			</action> </item>
+			<item label="Dwarf Fortress"> <action name="Execute">
+				<execute>dwarffortress</execute>
+			</action> </item>
+			<item label="Help"> <action name="Execute">
+				<execute>khelpcenter</execute>
+			</action> </item>
+			<item label="QT V4L2 test Utility"> <action name="Execute">
+				<execute>qv4l2</execute>
+			</action> </item>
+		</menu>
+		<menu id="19" label="Shells">
+			<item label="Enlightenment File Manager"> <action name="Execute">
+				<execute>enlightenment_filemanager</execute>
+			</action> </item>
+			<item label="GIT"> <action name="Execute">
+				<execute>xterm -e git</execute>
+			</action> </item>
+			<item label="Konsole"> <action name="Execute">
+				<execute>konsole</execute>
+			</action> </item>
+			<item label="Terminology"> <action name="Execute">
+				<execute>terminology</execute>
+			</action> </item>
+			<item label="Thunar File Manager"> <action name="Execute">
+				<execute>thunar</execute>
+			</action> </item>
+			<item label="UXTerm"> <action name="Execute">
+				<execute>uxterm</execute>
+			</action> </item>
+			<item label="Xterm"> <action name="Execute">
+				<execute>xterm</execute>
+			</action> </item>
+		</menu>
+		<menu id="37" label="System">
+			<menu id="36" label="Settings">
+				<menu id="21" label="GNOME">
+					<item label="Adobe Flash Player"> <action name="Execute">
+						<execute>flash-player-properties</execute>
+					</action> </item>
+				</menu>
+				<item label="Elementary Configuration"> <action name="Execute">
+					<execute>elementary_config</execute>
+				</action> </item>
+				<item label="File Manager"> <action name="Execute">
+					<execute>thunar-settings</execute>
+				</action> </item>
+				<item label="Notifications"> <action name="Execute">
+					<execute>xfce4-notifyd-config</execute>
+				</action> </item>
+				<item label="Preferred Applications"> <action name="Execute">
+					<execute>exo-preferred-applications</execute>
+				</action> </item>
+				<item label="Removable Drives and Media"> <action name="Execute">
+					<execute>thunar-volman-settings</execute>
+				</action> </item>
+			</menu>
+			<item label="Avahi Zeroconf Browser"> <action name="Execute">
+				<execute>avahi-discover</execute>
+			</action> </item>
+			<item label="Bulk Rename"> <action name="Execute">
+				<execute>/usr/lib/Thunar/ThunarBulkRename</execute>
+			</action> </item>
+			<item label="dconf Editor"> <action name="Execute">
+				<execute>dconf-editor</execute>
+			</action> </item>
+			<item label="Nepomuk Backup"> <action name="Execute">
+				<execute>nepomukbackup</execute>
+			</action> </item>
+			<item label="Nepomuk Cleaner"> <action name="Execute">
+				<execute>nepomukcleaner</execute>
+			</action> </item>
+			<item label="Nepomuk File Indexing Controller"> <action name="Execute">
+				<execute>nepomukcontroller</execute>
+			</action> </item>
+			<item label="pstree"> <action name="Execute">
+				<execute>xterm -e pstree</execute>
+			</action> </item>
+			<item label="pstree"> <action name="Execute">
+				<execute>xterm -e /usr/bin/pstree.x11</execute>
+			</action> </item>
+			<item label="pstree"> <action name="Execute">
+				<execute>xterm -e pstree.x11</execute>
+			</action> </item>
+			<item label="Top"> <action name="Execute">
+				<execute>xterm -e top</execute>
+			</action> </item>
+		</menu>
+		<menu id="38" label="Utilities">
+			<item label="7-Zip FM"> <action name="Execute">
+				<execute>7zFM</execute>
+			</action> </item>
+			<item label="About Xfce"> <action name="Execute">
+				<execute>xfce4-about</execute>
+			</action> </item>
+			<item label="Archive Manager"> <action name="Execute">
+				<execute>file-roller</execute>
+			</action> </item>
+			<item label="File Manager"> <action name="Execute">
+				<execute>exo-open --launch FileManager</execute>
+			</action> </item>
+			<item label="Files"> <action name="Execute">
+				<execute>nautilus</execute>
+			</action> </item>
+			<item label="Info"> <action name="Execute">
+				<execute>xterm -e info</execute>
+			</action> </item>
+			<item label="Terminal Emulator"> <action name="Execute">
+				<execute>exo-open --launch TerminalEmulator</execute>
+			</action> </item>
+			<item label="Xclock (analog)"> <action name="Execute">
+				<execute>xclock -analog</execute>
+			</action> </item>
+			<item label="Xclock (digital)"> <action name="Execute">
+				<execute>xclock -digital -update 1</execute>
+			</action> </item>
+			<item label="Xclock (digital)"> <action name="Execute">
+				<execute>xclock -digital</execute>
+			</action> </item>
+			<item label="Xrefresh"> <action name="Execute">
+				<execute>xrefresh</execute>
+			</action> </item>
+			<item label="Xsetroot"> <action name="Execute">
+				<execute>xsetroot</execute>
+			</action> </item>
+		</menu>
+		<separator/>
+		<menu id="40" label="OpenBox">
+			<menu id="client-list-menu"/>
+			<item label="Reconfigure"> <action name="Reconfigure"/> </item>
+			<separator/>
+			<item label="Exit"> <action name="Exit"/> </item>
+		</menu>
+	</menu>
+</openbox_menu>

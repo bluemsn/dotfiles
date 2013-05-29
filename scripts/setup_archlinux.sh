@@ -16,14 +16,24 @@ packer -S ttf-symbola
 packer -S ttf-google-webfonts-git ttf-ms-fonts ttf-vista-fonts ttf-mac-fonts
 fc-cache -vf
 
-pacman -S englightenment17
+#pacman -S englightenment17
 #pacman -S networkmanager network-manager-applet
-pacman -s connman
-packer -S econnman
-systemctl enable connman
-systemctl start connman
+
+pacman -S openbox
+pacman -S tint2
+pacman -S dmenu && packer -S dmenu-launch
+pacman -S xbindkeys
+pacman -S conky
+pacman -S nautilus
+pacman -S file-roller unrar zip p7zip arj unace unzip
+pacman -S thunar-archive-plugin thunar-media-tags-plugin ffmpegthumbnailer tumbler
+
 pacman -S ddclient
 pacman -S openssh
+pacman -s connman
+#packer -S econnman
+systemctl enable connman
+systemctl start connman
 
 pacman -S firefox
 pacman -S chromium
@@ -54,7 +64,6 @@ pacman -S markdown
 
 #pacman -S irssi
 #packer -S centerim
-pacman -S unzip
 packer -S par
 pacman -S python2-pip
 pip2 install parsedatetime

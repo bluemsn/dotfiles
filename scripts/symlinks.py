@@ -20,6 +20,8 @@ dotroot = home_folder + '/' + dotroot_input
 
 # On the left side, the source (from $DOTROOT). On the right side, the destination (from $HOME)
 files = {
+	'/linux/openbox'            : '.config/openbox',
+	'/linux/xbindkeysrc'        : '.xbindkeysrc',
 	'/linux/xinitrc'            : '.xinitrc',
 	'/random/gitmessage.txt'    : '.gitmessage.txt',
 	'/shells/bash'              : '.bash',
