@@ -5,3 +5,5 @@
 #
 
 thunar --daemon &
+volumeicon &
+feh --bg-fill ~/.themes/wallpaper.jpg

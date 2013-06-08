@@ -147,7 +147,8 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'zhaocai/GoldenView.vim'
 
 " Syntax files
-Bundle 'groenewege/vim-less'
+Bundle 'cakebaker/scss-syntax.vim'
+"Bundle 'groenewege/vim-less'
 "Bundle 'kloppster/Wordpress-Vim-Syntax'
 Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
@@ -159,7 +160,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'zaiste/tmux.vim'
 
 " Language specific bundles
-Bundle 'ap/vim-css-color'
+"Bundle 'ap/vim-css-color'
 Bundle 'gregsexton/MatchTag'
 "Bundle 'HTML-AutoCloseTag'
 Bundle 'mattn/zencoding-vim'

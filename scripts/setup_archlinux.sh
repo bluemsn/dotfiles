@@ -10,63 +10,94 @@
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 # =============================================================================
 
-packer -S ttf-dejavu
-packer -S ttf-tahoma
-packer -S ttf-symbola
-packer -S ttf-google-webfonts-git ttf-ms-fonts ttf-vista-fonts ttf-mac-fonts
-fc-cache -vf
+# WINDOW MANAGER / DESKTOP ENVIRONMENT
 
 #pacman -S englightenment17
-#pacman -S networkmanager network-manager-applet
 
-pacman -S openbox
-pacman -S tint2
+pacman -S openbox obconf
+pacman -S feh
+pacman -S tint2 && packer -S volumeicon
 pacman -S dmenu && packer -S dmenu-launch
 pacman -S xbindkeys
 pacman -S conky
 pacman -S nautilus
+pacman -S thunar
 pacman -S file-roller unrar zip p7zip arj unace unzip
 pacman -S thunar-archive-plugin thunar-media-tags-plugin ffmpegthumbnailer tumbler
 
-pacman -S ddclient
-pacman -S openssh
-pacman -s connman
-#packer -S econnman
-systemctl enable connman
-systemctl start connman
 
-pacman -S firefox
-pacman -S chromium
-pacman -S flashplugin lib32-flashplugin
-packer -S filezilla
-packer -S dropbox
-pacman -S gimp
-packer -S acroread
-#packer -S spotify ffmpeg-spotify
-packer -S qbittorrent
-packer -S potamux
-
-pacman -S apache php php-apache mariadb
-systemctl enable httpd
-systemctl start htppd
-#packer -S xampp
+# CODE / DEV ENVIRONMENT
 
 pacman -S zsh
 chsh -s /bin/zsh && sudo chsh -s /bin/zsh
 pacman -S git
 pacman -S mercurial
 pacman -S python2 python
-pacman -S ruby
-packer -S ruby-sass
-pacman -S acpi
+#pacman -S ruby
+#packer -S ruby-sass
+#
 pacman -S gvim
+packer -S sublime-text
 pacman -S markdown
 
+
+# NETWORK & INTERNET
+
+packer -S qbittorrent
+packer -S filezilla
+packer -S dropbox
+pacman -S ddclient
+pacman -S openssh
 #pacman -S irssi
 #packer -S centerim
+
+##  Web Browsers
+
+pacman -S firefox
+pacman -S chromium
+pacman -S opera
+
+## Local Dev
+
+pacman -S apache php php-apache mariadb
+systemctl enable httpd
+systemctl start htppd
+#packer -S xampp
+
+## Network Manager / Wifi support
+
+#pacman -S networkmanager network-manager-applet
+pacman -S wpa_supplicant
+pacman -s connman
+systemctl enable connman
+systemctl start connman
+packer -S econnman
+
+
+# MEDIA & ENTERTAINMENT
+
+pacman -S flashplugin lib32-flashplugin
+pacman -S gimp
+packer -S acroread
+pacman -S recordmydesktop gtk-recordmydesktop jack
+pacman -S vlc
+#packer -S spotify ffmpeg-spotify
+#packer -S potamux
+#pacman -S steam libtxc_dxtn lib32-libtxc_dxtn lib32-intel-dri
+
+
+# FONTS
+
+packer -S ttf-dejavu ttf-tahoma ttf-symbola
+packer -S ttf-google-fonts-git ttf-ms-fonts ttf-vista-fonts ttf-mac-fonts
+fc-cache -vf
+
+
+# MISCELLANEOUS
+
+pacman -S acpi
 packer -S par
 pacman -S python2-pip
-pip2 install parsedatetime
-pip2 install jrnl
-
-#pacman -S steam libtxc_dxtn lib32-libtxc_dxtn lib32-intel-dri
+#pip2 install parsedatetime
+#pip2 install jrnl
+pacman -S xclip
