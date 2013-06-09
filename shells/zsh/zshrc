@@ -1,6 +1,6 @@
 # Setting my preferred default editor
 EDITOR=vim # Command line uses 'vim'
-VISUAL=mvim # Visual editor is MacVim
+VISUAL=gvim # Visual editor is MacVim
 GIT_EDITOR=vim # Editor for Git
 export EDITOR VISUAL GIT_EDITOR # Export these options
 
