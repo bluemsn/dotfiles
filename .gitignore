@@ -15,6 +15,9 @@
 ehthumbs.db
 Thumbs.db
 
+# KDE files
+.directory
+
 # Vim stuff
 vim/bundle/Vimpress/custom/configs.vim
 vim/custom/configs.vim

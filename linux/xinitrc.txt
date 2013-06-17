@@ -3,14 +3,16 @@
 #
 # Executed by `startx` (run your window manager from here)
 # Start up programs
-conky &
-tint2 &
+#conky &
 dropboxd &
 xbindkeys
 
 # Start DE/WM
+#exec openbox-session
 #exec enlightenment_start
-exec openbox-session
+exec startkde
+
+#tint2 &
 
 # Other settings
 #setxkbmap -layout "latam" -variant "deadtilde"

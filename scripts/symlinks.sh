@@ -15,7 +15,7 @@ ln -fs $HOME/dotfiles/shells/bash/bash_profile $HOME/.bash_profile
 ln -fs $HOME/dotfiles/shells/bash/bashrc       $HOME/.bashrc
 ln -fs $HOME/dotfiles/shells/zsh               $HOME/.zsh
 ln -fs $HOME/dotfiles/shells/zsh/zshrc         $HOME/.zshrc
-ln -fs $HOME/dotfiles/profile                  $HOME/.profile
+ln -fs $HOME/dotfiles/shells/profile           $HOME/.profile
 ln -fs $HOME/dotfiles/ssh                      $HOME/.ssh
 ln -fs $HOME/dotfiles/tmux/tmux.conf           $HOME/.tmux.conf
 ln -fs $HOME/dotfiles/vim                      $HOME/.vim

@@ -12,18 +12,19 @@
 
 # WINDOW MANAGER / DESKTOP ENVIRONMENT
 
-#pacman -S englightenment17
+pacman -S englightenment17
+pacman -S kde
 
-pacman -S openbox obconf
-pacman -S feh
-pacman -S tint2 && packer -S volumeicon
+#pacman -S openbox obconf
+#pacman -S feh
+#pacman -S tint2 && packer -S volumeicon
 pacman -S dmenu && packer -S dmenu-launch
 pacman -S xbindkeys
 pacman -S conky
-pacman -S nautilus
-pacman -S thunar
-pacman -S file-roller unrar zip p7zip arj unace unzip
-pacman -S thunar-archive-plugin thunar-media-tags-plugin ffmpegthumbnailer tumbler
+#pacman -S nautilus
+#pacman -S thunar
+#pacman -S file-roller unrar zip p7zip arj unace unzip
+#pacman -S thunar-archive-plugin thunar-media-tags-plugin ffmpegthumbnailer tumbler
 
 
 # CODE / DEV ENVIRONMENT
@@ -35,8 +36,9 @@ pacman -S mercurial
 pacman -S python2 python
 #pacman -S ruby
 #packer -S ruby-sass
-#
-pacman -S gvim
+
+#pacman -S gvim
+pacman -S vim
 packer -S sublime-text
 pacman -S markdown
 
@@ -101,3 +103,6 @@ pacman -S python2-pip
 #pip2 install parsedatetime
 #pip2 install jrnl
 pacman -S xclip
+
+packer -S nodejs
+npm install -g docpad

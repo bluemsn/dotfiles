@@ -13,6 +13,9 @@ alias eduan="cd ~/Desktop/Eduan"
 autoload -U colors
 colors
 
+# Define $PATH variable
+export PATH=~/.gem/ruby/2.0.0/bin:/root/.gem/ruby/2.0.0/bin:$PATH
+
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
