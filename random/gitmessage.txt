@@ -10,6 +10,7 @@ course use multiple lines, as long as no line is longer than 72 chars.
 ~ If you changed something, be it text, a function, etc.
 +~ If you improved something in some or any way.
 - If you removed something.
+-* If you introduced a new bug, say what it is here.
 
 TODO:
 + Add todos in the same way you would achievements.
@@ -17,3 +18,4 @@ TODO:
 +~ Improve this in any way you want.
 
                                    50 chars mark |       72 chars mark |
+

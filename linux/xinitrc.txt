@@ -6,6 +6,8 @@
 #conky &
 dropboxd &
 xbindkeys
+#blueman-applet &
+#touchegg &
 
 # Start DE/WM
 #exec openbox-session

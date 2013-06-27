@@ -69,10 +69,12 @@ systemctl start htppd
 ## Network Manager / Wifi support
 
 #pacman -S networkmanager network-manager-applet
-pacman -S wpa_supplicant
+pacman -S wpa_supplicant bluedevil
 pacman -s connman
 systemctl enable connman
+systemctl enable bluetooth
 systemctl start connman
+systemctl start bluetooth
 packer -S econnman
 
 
@@ -90,7 +92,8 @@ pacman -S vlc
 
 # FONTS
 
-packer -S ttf-dejavu ttf-tahoma ttf-symbola
+packer -S ttf-dejavu ttf-source-code-pro ttf-anonymous-pro
+packer -S ttf-tahoma ttf-symbola
 packer -S ttf-google-fonts-git ttf-ms-fonts ttf-vista-fonts ttf-mac-fonts
 fc-cache -vf
 
@@ -99,10 +102,11 @@ fc-cache -vf
 
 pacman -S acpi
 packer -S par
-pacman -S python2-pip
+#pacman -S python2-pip
 #pip2 install parsedatetime
 #pip2 install jrnl
 pacman -S xclip
+packer -S redshift
 
 packer -S nodejs
 npm install -g docpad

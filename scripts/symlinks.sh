@@ -22,12 +22,22 @@ ln -fs $HOME/dotfiles/vim                      $HOME/.vim
 ln -fs $HOME/dotfiles/vim/gvimrc.vim           $HOME/.gvimrc
 ln -fs $HOME/dotfiles/vim/vimrc.vim            $HOME/.vimrc
 
+# Sublime Text 2
 rm -r $HOME/.config/sublime-text-2/Installed\ Packages
 rm -r $HOME/.config/sublime-text-2/Packages
 rm -r $HOME/.config/sublime-text-2/Pristine\ Packages
 ln -s $HOME/Dropbox/Sublime\ Text\ 2/Installed\ Packages $HOME/.config/sublime-text-2/Installed\ Packages
 ln -s $HOME/Dropbox/Sublime\ Text\ 2/Packages            $HOME/.config/sublime-text-2/Packages
 ln -s $HOME/Dropbox/Sublime\ Text\ 2/Pristine\ Packages  $HOME/.config/sublime-text-2/Pristine\ Packages
+# Sublime Text 3
+rm -r $HOME/.config/sublime-text-3/Cache
+rm -r $HOME/.config/sublime-text-3/Installed\ Packages
+rm -r $HOME/.config/sublime-text-3/Local
+rm -r $HOME/.config/sublime-text-3/Packages
+ln -s $HOME/Dropbox/Sublime Text\ 3/Cache               $HOME/.config/sublime-text-3/Cache
+ln -s $HOME/Dropbox/Sublime Text\ 3/Installed\ Packages $HOME/.config/sublime-text-3/Installed\ Packages
+ln -s $HOME/Dropbox/Sublime Text\ 3/Local               $HOME/.config/sublime-text-3/Local
+ln -s $HOME/Dropbox/Sublime Text\ 3/Packages            $HOME/.config/sublime-text-3/Packages
 
 sudo ln -fs $HOME/dotfiles/bin/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
 sudo ln -fs $HOME/dotfiles/bin/feh_browser.sh       /usr/local/bin/feh_browser
