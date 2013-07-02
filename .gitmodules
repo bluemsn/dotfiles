@@ -1,3 +1,6 @@
 [submodule "shells/zsh/zsh-vcs-prompt"]
 	path = shells/zsh/zsh-vcs-prompt
 	url = git://github.com/yonchu/zsh-vcs-prompt.git
+[submodule "linux/xmonad/ledmon"]
+	path = linux/xmonad/ledmon
+	url = git://github.com/jgoerzen/ledmon.git
