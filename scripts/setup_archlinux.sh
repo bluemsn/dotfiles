@@ -15,16 +15,16 @@
 pacman -S xf86-input-synaptics
 
 
-# WINDOW MANAGER / DESKTOP ENVIRONMENT
+# WINDOW MANAGER / DESKTOP ENVIRONMENT / ENVIRONMENT
 
-#pacman -S awesome
-pacman -S xmonad
+pacman -S awesome
 pacman -S xorg-server-xephyr
-pacman -S xmobar trayer
 
 pacman -S dmenu && packer -S dmenu-launch
 pacman -S xbindkeys
 pacman -S conky
+pacman -S ranger
+pacman -S libcaca highlight atool lynx poppler transmission-cli mediainfo
 #pacman -S thunar
 #pacman -S file-roller unrar zip p7zip arj unace unzip
 #pacman -S thunar-archive-plugin thunar-media-tags-plugin ffmpegthumbnailer tumbler
@@ -55,8 +55,8 @@ pacman -S rxvt-unicode
 packer -S qbittorrent
 packer -S filezilla
 packer -S dropbox
-#pacman -S ddclient
 pacman -S openssh
+#pacman -S ddclient
 #pacman -S irssi
 #packer -S centerim
 

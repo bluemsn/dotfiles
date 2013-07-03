@@ -10,6 +10,79 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+-- Compositing manager
+awful.util.spawn_with_shell("xcompmgr &")
+
+-- {{{ Functions
+-- Binary clock {{{
+
+binClock = wibox.widget.base.make_widget()
+binClock.radius = 1.5 -- delete a little bit of the circles, so they're visible separate
+binClock.shift = 1.8 -- space in between dots(?)
+binClock.farShift = 2 -- space between HH,MM,SS columns
+binClock.border = 1 -- border width
+binClock.lineWidth = 1 -- can't figure it out...
+binClock.colorActive = beautiful.bg_focus -- also can't figure it out...
+
+binClock.fit = function(binClock, width, height)
+	local size = math.min(width, height)
+	return 6 * 2 * binClock.radius + 5 * binClock.shift + 2 * binClock.farShift + 2 * binClock.border + 2 * binClock.border, size
+end
+
+binClock.draw = function(binClock, wibox, cr, width, height)
+	local curTime = os.date("*t")
+
+	local column = {}
+	table.insert(column, string.format("%04d", binClock:dec_bin(string.sub(string.format("%02d", curTime.hour), 1, 1))))
+	table.insert(column, string.format("%04d", binClock:dec_bin(string.sub(string.format("%02d", curTime.hour), 2, 2))))
+	table.insert(column, string.format("%04d", binClock:dec_bin(string.sub(string.format("%02d", curTime.min), 1, 1))))
+	table.insert(column, string.format("%04d", binClock:dec_bin(string.sub(string.format("%02d", curTime.min), 2, 2))))
+	table.insert(column, string.format("%04d", binClock:dec_bin(string.sub(string.format("%02d", curTime.sec), 1, 1))))
+	table.insert(column, string.format("%04d", binClock:dec_bin(string.sub(string.format("%02d", curTime.sec), 2, 2))))
+
+	local bigColumn = 0
+	for i = 0, 5 do
+		if math.floor(i / 2) > bigColumn then
+			bigColumn = bigColumn + 1
+		end
+		for j = 0, 3 do
+			if string.sub(column[i + 1], j + 1, j + 1) == "0" then
+				active = false
+			else
+				active = true
+			end
+			binClock:draw_point(cr, bigColumn, i, j, active)
+		end
+	end
+end
+
+binClock.dec_bin = function(binClock, inNum)
+	inNum = tonumber(inNum)
+	local base, enum, outNum, rem = 2, "01", "", 0
+	while inNum > (base - 1) do
+		inNum, rem = math.floor(inNum / base), math.fmod(inNum, base)
+		outNum = string.sub(enum, rem + 1, rem + 1) .. outNum
+	end
+	outNum = inNum .. outNum
+	return outNum
+end
+
+binClock.draw_point = function(binClock, cr, bigColumn, column, row, active)
+	cr:arc(binClock.border + column * (2 * binClock.radius + binClock.shift) + bigColumn * binClock.farShift + binClock.radius,
+		binClock.border + row * (2 * binClock.radius + binClock.shift) + binClock.radius, 2, 0, 2 * math.pi)
+	if active then
+		cr:set_source_rgba(0,0.7,0,1)
+	else
+		cr:set_source_rgba(1,1,1,1)
+	end
+	cr:fill()
+end
+
+binClocktimer = timer { timeout = 1 }
+binClocktimer:connect_signal("timeout", function() binClock:emit_signal("widget::updated") end)
+binClocktimer:start()
+-- }}}
+-- }}}
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -109,7 +182,8 @@ menubar.utils.terminal = "xterm" -- Set the terminal for applications that requi
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
+--mytextclock = awful.widget.textclock()
+mytextclock = binClock
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -177,7 +251,7 @@ for s = 1, screen.count() do
 	mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
 	-- Create the wibox
-	mywibox[s] = awful.wibox({ position = "top", screen = s })
+	mywibox[s] = awful.wibox({ position = "top", screen = s, height = "20" })
 
 	-- Widgets that are aligned to the left
 	local left_layout = wibox.layout.fixed.horizontal()
