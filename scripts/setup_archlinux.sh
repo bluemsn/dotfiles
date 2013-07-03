@@ -99,7 +99,7 @@ pacman -S vlc
 
 # FONTS
 
-packer -S ttf-dejavu ttf-source-code-pro ttf-anonymous-pro artwiz-fonts
+packer -S ttf-dejavu ttf-source-code-pro ttf-anonymous-pro terminus-font-ttf
 packer -S ttf-tahoma ttf-symbola
 packer -S ttf-google-fonts-git ttf-ms-fonts ttf-vista-fonts ttf-mac-fonts
 fc-cache -vf
