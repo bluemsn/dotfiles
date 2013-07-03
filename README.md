@@ -21,7 +21,7 @@ This command will clone my dotfiles repo and put it in the `dotfiles` repo/folde
 Installing, or setting up your dotfiles is very easy. Simply run the following commands in Terminal:
 
     $ cd ~/dotfiles
-    $ python2 ./scripts/symlinks.py
+    $ sh ./scripts/symlinks.sh
 
 Which will run a script I made in order to make the symlinks, and other stuff, for you! This will not make a backup of anything, so if you do need backups, make them before running this script.
 
