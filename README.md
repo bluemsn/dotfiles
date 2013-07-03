@@ -2,11 +2,11 @@
 
 Welcome to my dotfiles repo! This is one of those repos in between thousands that are named the same, however have different contents.
 
-This repo contains lots of customizations for [Vim][1] (not `vi` mind you), [Zsh][2], [Bash][3], [tmux][4], [Git][5] and lots of Linux software specific rc files.
+This repo contains lots of customizations for [Vim][1] (not `vi` mind you), [Zsh][2], [Bash][3], [tmux][4], [Git][5] and lots of Linux software. I am running [Arch Linux][6] as my main OS.
 
-I don't suggest you use these dotfiles as-is, because these are optimized for me, and I'm using a Mac Mini with Mac OSX Mountain Lion. I suggest you simply glance through them or look for a solution in them, and if you find something that looks nice then just implement it in *your* dotfiles, made to work for *you*.
+I don't suggest you use these dotfiles as-is, because these are optimized for me, and I'm using a Mac Mini (2011) and a Dell Vostro 1500 laptop as well, both running Arch Linux. I suggest you simply glance through them or look for a solution in them, and if you find something that looks nice then just implement it in *your* dotfiles, made to work for *you*.
 
-I don't suggest you just grab a  file and copy it over to your dotfiles. I suggest instead you read the file and grab what you like.
+I don't suggest you just grab a  file and copy it over to your dotfiles, in fact I really discourage this. I suggest instead you read the file and grab what you like.
 
 ## How to get my dotfiles
 
@@ -21,7 +21,7 @@ This command will clone my dotfiles repo and put it in the `dotfiles` repo/folde
 Installing, or setting up your dotfiles is very easy. Simply run the following commands in Terminal:
 
     $ cd ~/dotfiles
-    $ python2 ./scripts/symlinks.py
+    $ sh ./scripts/symlinks.sh
 
 Which will run a script I made in order to make the symlinks, and other stuff, for you! This will not make a backup of anything, so if you do need backups, make them before running this script.
 
@@ -41,3 +41,4 @@ Now, you can open an issue expressing your ideas, or you can just fork this proj
   [3]: http://es.wikipedia.org/wiki/Bash
   [4]: http://tmux.sourceforge.net/
   [5]: http://git-scm.com/
+  [6]: https://www.archlinux.org/
