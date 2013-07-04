@@ -5,3 +5,5 @@
 
 # Start DE/WM
 exec alopex
+
+setxkbmap -layout "latam" -variant "deadtilde"

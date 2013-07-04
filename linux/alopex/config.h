@@ -11,16 +11,16 @@ static const char *tile_modes[] = { "monocle", "bstack", "rstack", NULL };
 
 // Determines the appearance of tags on the statusbar.
 static const Tagcon tagcons[] = {
-	/* prefix icon  suffix */
-	{ "1:",   NULL, "one"   },
-	{ "2:",   NULL, "two"   },
-	{ "3:",   NULL, "three" },
-	{ "4:",   NULL, "four"  },
-	{ "5:",   NULL, "five"  },
-	{ "6:",   NULL, "six"   },
-	{ "7:",   NULL, "seven" },
-	{ "8:",   NULL, "eight" },
-	{ "9:",   NULL, "nine"  },
+	/* prefix icon     suffix */
+	{ "1:",   NO_ICON, "one"   },
+	{ "2:",   NO_ICON, "two"   },
+	{ "3:",   NO_ICON, "three" },
+	{ "4:",   NO_ICON, "four"  },
+	{ "5:",   NO_ICON, "five"  },
+	{ "6:",   NO_ICON, "six"   },
+	{ "7:",   NO_ICON, "seven" },
+	{ "8:",   NO_ICON, "eight" },
+	{ "9:",   NO_ICON, "nine"  },
 };
 
 //The x11 cursor designated for alopex to render.
@@ -66,13 +66,9 @@ static int stackcount = 3;
  */
 
 /* VARIABLES AND STUFF */
-#define DMENU "dmenu_run"
+#define DMENU "dmenu_run -fn \"-misc-fixed-medium-r-normal--13-120-75-75-c-70-*-*\" -nb \"#101010\" -nf \"#484862\" -sb \"#080808\" -sf \"#FFDD0E\""
 
-#ifdef THEME_NAME
-#define TERM "urxvt -name " THEME_NAME
-#else
 #define TERM "terminology" // Set the terminal to use
-#endif
 
 #define CMD(app) app "&"
 
@@ -96,7 +92,7 @@ static Key keys[] = {
 	// Launchers + Misc.
 	{ MOD1,      XK_Return,  spawn,      CMD(TERM)     }, // Launch terminal
 	{ MOD1,      XK_p,       spawn,      CMD(DMENU)    }, // Use Dmenu
-	{ MOD1,      XK_w,       spawn,      CMD("luakit") }, // Launch web browser
+	//{ MOD1,      XK_w,       spawn,      CMD("luakit") }, // Launch web browser
 	{ MOD1|MOD4, XK_q,       quit,       NULL          }, // Close Alopex
 	{ MOD2,      XK_F4,      killclient, NULL          }, // Close window
 	{ MOD1,      XK_f,       fullscreen, NULL          }, // Toggle fullscreen mode
@@ -107,7 +103,7 @@ static Key keys[] = {
 
 	// Tiling management
 	{ MOD1, XK_space,  tile,      "cycle"    }, // Cycle between window layouts
-	{ MOD1, XK_i       tile_conf, "increase" }, // Increase pixels alloted to current window
+	{ MOD1, XK_i,      tile_conf, "increase" }, // Increase pixels alloted to current window
 	{ MOD1, XK_d,      tile_conf, "decrease" }, // Decrease pixels alloted to current window
 	{ MOD1, XK_equal,  tile_conf, "+"        }, // Not sure...
 	{ MOD1, XK_minus,  tile_conf, "-"        }, // Not sure...
