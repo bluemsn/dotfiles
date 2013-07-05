@@ -12,41 +12,42 @@
 
 # DRIVERS / HARDWARE
 
-pacman -S xf86-input-synaptics
+sudo pacman -S xf86-input-synaptics
 
 
 # WINDOW MANAGER / DESKTOP ENVIRONMENT / ENVIRONMENT
 
-pacman -S awesome
-pacman -S xorg-server-xephyr
+packer -S alopex-git
+packer -S wmfs2-git
+sudo pacman -S xorg-server-xephyr
 
-pacman -S dmenu && packer -S dmenu-launch
-pacman -S xbindkeys
-pacman -S conky
-pacman -S ranger
-pacman -S libcaca highlight atool lynx poppler transmission-cli mediainfo
-#pacman -S thunar
-#pacman -S file-roller unrar zip p7zip arj unace unzip
-#pacman -S thunar-archive-plugin thunar-media-tags-plugin ffmpegthumbnailer tumbler
+sudo pacman -S dmenu && packer -S dmenu-launch
+sudo pacman -S xbindkeys
+sudo pacman -S conky
+sudo pacman -S ranger
+sudo pacman -S libcaca highlight atool lynx poppler transmission-cli mediainfo
+#sudo pacman -S thunar
+#sudo pacman -S file-roller unrar zip p7zip arj unace unzip
+#sudo pacman -S thunar-archive-plugin thunar-media-tags-plugin ffmpegthumbnailer tumbler
 
 
 # CODE / DEV ENVIRONMENT
 
-pacman -S zsh
-chsh -s /bin/zsh eduan && chsh -s /bin/zsh
-pacman -S git
-pacman -S mercurial
+sudo pacman -S zsh
+chsh -s /bin/zsh && sudo chsh -s /bin/zsh
+sudo pacman -S git
+sudo pacman -S mercurial
 
-pacman -S python2 python
-#pacman -S markdown
+sudo pacman -S python2 python
+#sudo pacman -S markdown
 
-pacman -S vim
+sudo pacman -S vim
 packer -S sublime-text
 packer -S sublime-text-nightly # ST3 dev
 packer -S terminology-git
-pacman -S rxvt-unicode
-#pacman -S konsole
-#pacman -S yakuake
+sudo pacman -S rxvt-unicode
+#sudo pacman -S konsole
+#sudo pacman -S yakuake
 #git clone https://github.com/zealot128/yakuake-solarized.git ~/yakuake-solarized && sh ~/yakuake-solarized/install.sh && rm ~/yakuake-solarized
 
 
@@ -55,29 +56,29 @@ pacman -S rxvt-unicode
 packer -S qbittorrent
 packer -S filezilla
 packer -S dropbox
-pacman -S openssh
-#pacman -S ddclient
-#pacman -S irssi
+sudo pacman -S openssh
+#sudo pacman -S ddclient
+#sudo pacman -S irssi
 #packer -S centerim
 
 ##  Web Browsers
 
-pacman -S firefox
-pacman -S chromium
-pacman -S opera
+sudo pacman -S firefox
+sudo pacman -S chromium
+sudo pacman -S opera
 
 ## Local Dev
 
-pacman -S apache php php-apache mariadb
+sudo pacman -S apache php php-apache mariadb
 systemctl enable httpd
 systemctl start htppd
 #packer -S xampp
 
 ## Network Manager / Wifi support
 
-#pacman -S networkmanager network-manager-applet
-pacman -S wpa_supplicant bluez bluez-utils
-pacman -s connman
+#sudo pacman -S networkmanager network-manager-applet
+sudo pacman -S wpa_supplicant bluez bluez-utils
+sudo pacman -s connman
 systemctl enable connman
 systemctl enable bluetooth
 systemctl start connman
@@ -87,14 +88,14 @@ packer -S econnman
 
 # MEDIA & ENTERTAINMENT
 
-pacman -S flashplugin lib32-flashplugin
-pacman -S gimp
+sudo pacman -S flashplugin lib32-flashplugin
+sudo pacman -S gimp
 #packer -S acroread
-#pacman -S recordmydesktop gtk-recordmydesktop jack
-pacman -S vlc
+#sudo pacman -S recordmydesktop gtk-recordmydesktop jack
+sudo pacman -S vlc
 #packer -S spotify ffmpeg-spotify
 #packer -S potamux
-#pacman -S steam libtxc_dxtn lib32-libtxc_dxtn lib32-intel-dri
+#sudo pacman -S steam libtxc_dxtn lib32-libtxc_dxtn lib32-intel-dri
 
 
 # FONTS
@@ -107,12 +108,12 @@ fc-cache -vf
 
 # MISCELLANEOUS
 
-pacman -S acpi
+sudo pacman -S acpi
 packer -S par
-#pacman -S python2-pip
+#sudo pacman -S python2-pip
 #pip2 install parsedatetime
 #pip2 install jrnl
-pacman -S xclip
+sudo pacman -S xclip
 packer -S redshift
 
 packer -S nodejs

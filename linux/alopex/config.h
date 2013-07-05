@@ -12,15 +12,15 @@ static const char *tile_modes[] = { "monocle", "bstack", "rstack", NULL };
 // Determines the appearance of tags on the statusbar.
 static const Tagcon tagcons[] = {
 	/* prefix icon     suffix */
-	{ "1:",   NO_ICON, "one"   },
-	{ "2:",   NO_ICON, "two"   },
-	{ "3:",   NO_ICON, "three" },
-	{ "4:",   NO_ICON, "four"  },
-	{ "5:",   NO_ICON, "five"  },
-	{ "6:",   NO_ICON, "six"   },
-	{ "7:",   NO_ICON, "seven" },
-	{ "8:",   NO_ICON, "eight" },
-	{ "9:",   NO_ICON, "nine"  },
+	{ NULL,   NO_ICON, "1" },
+	{ NULL,   NO_ICON, "2" },
+	{ NULL,   NO_ICON, "3" },
+	{ NULL,   NO_ICON, "4" },
+	{ NULL,   NO_ICON, "5" },
+	{ NULL,   NO_ICON, "6" },
+	{ NULL,   NO_ICON, "7" },
+	{ NULL,   NO_ICON, "8" },
+	{ NULL,   NO_ICON, "9" },
 };
 
 //The x11 cursor designated for alopex to render.

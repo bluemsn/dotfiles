@@ -2,8 +2,10 @@
 # ~/.xinitrc
 #
 # Executed by `startx` (run your window manager from here)
-
-# Start DE/WM
-exec alopex
-
 setxkbmap -layout "latam" -variant "deadtilde"
+xbindkeys
+dropboxd &
+# WM
+#exec alopex
+exec wmfs
+#exec enlightenment_start
