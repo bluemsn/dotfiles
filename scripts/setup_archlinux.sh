@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/zsh
 # =============================================================================
 # setup_archlinux.sh
 # -----------------------------------------------------------------------------
@@ -13,12 +13,14 @@
 # DRIVERS / HARDWARE
 
 sudo pacman -S xf86-input-synaptics
+libtxc_dxtn lib32-libtxc_dxtn lib32-intel-dri
 
 
 # WINDOW MANAGER / DESKTOP ENVIRONMENT / ENVIRONMENT
 
 packer -S alopex-git
-packer -S wmfs2-git
+packer -S interrobang-git
+sudo pacman -S bash-completion
 sudo pacman -S xorg-server-xephyr
 
 sudo pacman -S dmenu && packer -S dmenu-launch
@@ -95,7 +97,10 @@ sudo pacman -S gimp
 sudo pacman -S vlc
 #packer -S spotify ffmpeg-spotify
 #packer -S potamux
-#sudo pacman -S steam libtxc_dxtn lib32-libtxc_dxtn lib32-intel-dri
+#
+## GAMES
+sudo pacman -S steam
+packer -S dwarffortress-ironhand
 
 
 # FONTS
@@ -110,11 +115,11 @@ fc-cache -vf
 
 sudo pacman -S acpi
 packer -S par
+sudo pacman -S xclip
+#packer -S redshift
 #sudo pacman -S python2-pip
 #pip2 install parsedatetime
 #pip2 install jrnl
-sudo pacman -S xclip
-packer -S redshift
 
 packer -S nodejs
 npm install -g docpad

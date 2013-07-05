@@ -7,9 +7,11 @@ symlink() {
 	ln -fsv $HOME/dotfiles/$1 $HOME/$2
 }
 
-symlink linux/openbox            .config/openbox
-symlink linux/themes             .themes
+symlink linux/alopex             .config/alopex
+#symlink linux/openbox            .config/openbox
+#symlink linux/themes             .themes
 symlink linux/conkyrc.txt        .conkyrc
+mkdir $HOME/.config/tint2
 symlink linux/tint2rc.txt        .config/tint2/tint2rc
 symlink linux/xbindkeysrc.txt    .xbindkeysrc
 symlink linux/xinitrc.txt        .xinitrc
@@ -43,5 +45,5 @@ ln -s $HOME/Dropbox/Sublime Text\ 3/Installed\ Packages $HOME/.config/sublime-te
 ln -s $HOME/Dropbox/Sublime Text\ 3/Local               $HOME/.config/sublime-text-3/Local
 ln -s $HOME/Dropbox/Sublime Text\ 3/Packages            $HOME/.config/sublime-text-3/Packages
 
-#sudo ln -fs $HOME/dotfiles/bin/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
+sudo ln -fs $HOME/dotfiles/bin/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
 #sudo ln -fs $HOME/dotfiles/bin/feh_browser.sh       /usr/local/bin/feh_browser
