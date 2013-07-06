@@ -96,6 +96,7 @@ static Key keys[] = {
 	{ MOD1|MOD4, XK_q,       quit,       NULL          }, // Close Alopex
 	{ MOD2,      XK_F4,      killclient, NULL          }, // Close window
 	{ MOD1,      XK_f,       fullscreen, NULL          }, // Toggle fullscreen mode
+	{ MOD1,      XK_Menu,    windowlist, "interrobang alopex" }, // App jump with Interrobang thing
 	{ MOD1|MOD2, XK_f,       toggle,     "floating"    }, // Toggle between floating window and not
 	{ MOD1,      XK_x,       toggle,     "place bar"   }, // Change statusbar to top/bottom
 	{ MOD1,      XK_a,       toggle,     "visible bar" }, // Show/hide the statusbar

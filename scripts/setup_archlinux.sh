@@ -39,6 +39,7 @@ sudo pacman -S zsh
 chsh -s /bin/zsh && sudo chsh -s /bin/zsh
 sudo pacman -S git
 sudo pacman -S mercurial
+sudo pacman -S ack
 
 sudo pacman -S python2 python
 #sudo pacman -S markdown

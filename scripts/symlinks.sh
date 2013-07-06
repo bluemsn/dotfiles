@@ -7,7 +7,7 @@ symlink() {
 	ln -fsv $HOME/dotfiles/$1 $HOME/$2
 }
 
-symlink linux/alopex             .config/alopex
+symlink linux/alopex/config.h    .alopex_conf.h
 #symlink linux/openbox            .config/openbox
 #symlink linux/themes             .themes
 symlink linux/conkyrc.txt        .conkyrc
