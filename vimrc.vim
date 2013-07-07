@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: Apr 26th, 2013
+" Last Change: Jul 7th, 2013
 
 " Basic stuff {{{
 
@@ -144,19 +144,21 @@ Bundle 'tpope/vim-unimpaired'
 "Bundle 'Valloric/YouCompleteMe'
 ""Bundle 'wikitopian/hardmode'
 "Bundle 'xolox/vim-shell'
-Bundle 'zhaocai/GoldenView.vim'
+Bundle 'yonchu/accelerated-smooth-scroll'
+Bundle 'zhaocai/GoldenView.Vim'
 
 " Syntax files
-Bundle 'cakebaker/scss-syntax.vim'
+"Bundle 'cakebaker/scss-syntax.vim'
 "Bundle 'groenewege/vim-less'
 "Bundle 'kloppster/Wordpress-Vim-Syntax'
-Bundle 'mutewinter/vim-css3-syntax'
+"Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
-Bundle 'othree/html5.vim'
+"Bundle 'othree/html5.vim'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
+Bundle 'wavded/vim-stylus'
 Bundle 'zaiste/tmux.vim'
 
 " Language specific bundles
