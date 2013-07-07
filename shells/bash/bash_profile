@@ -1,4 +1,0 @@
-# Load ~/.bashrc, .git-completion.bash, and git-prompt.sh
-for file in ~/.{bashrc,git-completion.bash,git-prompt.sh}; do
-	[ -r "$file" ] && source "$file"
-done
