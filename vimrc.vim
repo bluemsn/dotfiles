@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: Jul 7th, 2013
+" Last Change: Jul 9th, 2013
 
 " Basic stuff {{{
 
@@ -121,6 +121,7 @@ Bundle 'scrooloose/nerdtree'
 "Bundle 'sjl/gundo.vim'
 Bundle 'sjl/vitality.vim'
 "Bundle 'suan/vim-instant-markdown'
+Bundle 'svermeulen/vim-easyclip'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 "Bundle 'teranex/jk-jumps.vim'
 "Bundle 'terryma/vim-expand-region'

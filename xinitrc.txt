@@ -3,5 +3,5 @@ setxkbmap -layout "latam" -variant "deadtilde"
 dropboxd &
 
 # WM
-exec alopex "/home/eduan/dotfiles/linux/alopex/statusbar.sh"
+exec alopex "/home/eduan/dotfiles/config/alopex/statusbar.sh"
 #exec alopex "while true;do date +'%F %r';sleep 1;done"

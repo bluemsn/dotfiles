@@ -39,12 +39,12 @@ sudo pacman -S zsh
 chsh -s /bin/zsh && sudo chsh -s /bin/zsh
 sudo pacman -S git
 sudo pacman -S mercurial
-sudo pacman -S ack
 
 sudo pacman -S python2 python
 #sudo pacman -S markdown
 
 sudo pacman -S vim
+sudo pacman -S tmux
 packer -S sublime-text
 packer -S sublime-text-nightly # ST3 dev
 packer -S terminology-git
@@ -101,6 +101,7 @@ sudo pacman -S vlc
 #
 ## GAMES
 sudo pacman -S steam
+packer -S desurium
 packer -S dwarffortress-ironhand
 
 

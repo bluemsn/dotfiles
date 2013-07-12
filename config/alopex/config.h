@@ -68,7 +68,7 @@ static int stackcount = 3;
 /* VARIABLES AND STUFF */
 #define DMENU "dmenu_run -fn \"-misc-fixed-medium-r-normal--13-120-75-75-c-70-*-*\" -nb \"#101010\" -nf \"#484862\" -sb \"#080808\" -sf \"#FFDD0E\""
 
-#define TERM "terminology" // Set the terminal to use
+#define TERM "terminator" // Set the terminal to use
 
 #define CMD(app) app "&"
 
