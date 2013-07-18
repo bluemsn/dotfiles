@@ -32,7 +32,7 @@ PROMPT+='%{${fg[default]}%}$(vcs_super_info)' # Default color, Git status
 PROMPT+='%{${fg[default]}%} $ ' # Default color, prompt
 
 # Set the right side of my prompt
-RPROMPT=$'$(acpi | grep -o \'[0-9]*%\')% %T' # Default color, batter, time
+RPROMPT=$'%T' # Default color, [battery], time
 
 # Sets history options.
 #

@@ -15,10 +15,10 @@ if test ! $(which brew); then
 fi
 
 # Install little utilities
-brew install ack
-brew install the_silver_searcher
+#brew install ack
+#brew install the_silver_searcher
 brew install par
-brew install hub
+#brew install hub
 brew install figlet
 # Not really brew but to hell with it
 git clone https://github.com/drbunsen/formd.git ~/bin
@@ -40,7 +40,7 @@ brew install python3
 # Install tmux
 brew install tmux
 brew install reattach-to-user-namespace
-brew install https://github.com/downloads/zolrath/wemux/wemux.rb
+#brew install https://github.com/downloads/zolrath/wemux/wemux.rb
 
 # Install/update Vim
 brew install macvim --env-std --custom-icons --override-system-vim --with-python3
@@ -48,5 +48,3 @@ brew install macvim --env-std --custom-icons --override-system-vim --with-python
 # Link all the installed apps
 mkdir -pv ~/Applications
 brew linkapps
-
-echo 'Done, I installed your stuff, you can thank me later.'

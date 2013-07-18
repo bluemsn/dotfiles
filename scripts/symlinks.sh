@@ -7,13 +7,16 @@ symlink() {
 	ln -fsv $HOME/dotfiles/$1 $HOME/$2
 }
 
-symlink config/alopex      .config/alopex
-mkdir $HOME/.config/tint2
-symlink config/tint2rc.txt .config/tint2/tint2rc
-symlink conkyrc.txt        .conkyrc
-symlink curlrc             .curlrc
-symlink xbindkeysrc.txt    .xbindkeysrc
-symlink xinitrc.txt        .xinitrc
+# dotfiles symlinks
+if [ `uname -s` == 'Linux' ]; then
+	symlink config/alopex      .config/alopex
+	mkdir $HOME/.config/tint2
+	symlink config/tint2rc.txt .config/tint2/tint2rc
+	symlink conkyrc.txt        .conkyrc
+	symlink curlrc             .curlrc
+	symlink xbindkeysrc.txt    .xbindkeysrc
+	symlink xinitrc.txt        .xinitrc
+fi
 symlink gitmessage.txt     .gitmessage.txt
 symlink zsh                .zsh
 symlink zshrc              .zshrc
@@ -24,8 +27,16 @@ symlink gvimrc.vim         .gvimrc
 symlink vimrc.vim          .vimrc
 
 # Sublime Text
-ln -fsv $HOME/Dropbox/Sublime\ Text\ 2 $HOME/.config/sublime-text-2
-ln -fsv $HOME/Dropbox/Sublime\ Text\ 3 $HOME/.config/sublime-text-3
+if [ `uname -s` == 'Linux' ]; then
+	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3 $HOME/.config/sublime-text-3
+elif [ `uname -s` == 'Darwin' ]; then
+	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3 $HOME/Library/Application\ Support/Sublime\ Text\ 3
+fi
 
-sudo ln -fsv $HOME/dotfiles/bin/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
-#sudo ln -fs $HOME/dotfiles/bin/feh_browser.sh       /usr/local/bin/feh_browser
+# My own commands
+if [ `uname -s` == 'Linux' ]; then
+	sudo ln -fsv $HOME/dotfiles/bin/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
+	#sudo ln -fsv $HOME/dotfiles/bin/feh_browser.sh       /usr/local/bin/feh_browser
+elif [ `uname -s` == 'Darwin' ]; then
+	# Gotta do stuff here...
+fi

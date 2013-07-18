@@ -46,10 +46,10 @@ defaults write com.google.Keystone.Agent CheckInterval 0
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "Eduan's Mac Mini"
-sudo scutil --set HostName "Eduan's Mac Mini"
-sudo scutil --set LocalHostName "Eduan-Mac-Mini"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Eduan-Mac-Mini"
+sudo scutil --set ComputerName "eduan-mac-mini2011"
+sudo scutil --set HostName "eduan-mac-mini2011"
+sudo scutil --set LocalHostName "eduan-mac-mini2011"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "eduan-mac-mini2011"
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false

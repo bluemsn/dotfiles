@@ -2,7 +2,7 @@
 
 Welcome to my dotfiles repo! This is one of those repos in between thousands that are named the same, however have different contents.
 
-This repo contains lots of customizations for [Vim][1] (not `vi` mind you), [Zsh][2], [Bash][3], [tmux][4], [Git][5] and lots of Linux software. I am running [Arch Linux][6] as my main OS.
+This repo contains lots of customizations for [Vim][1] (not `vi` mind you), [Zsh][2], [Bash][3], [tmux][4], [Git][5] and lots of Linux software. I am running [Arch Linux][6] as my main OS in a Vostro 1500 laptop. I am running Mac OS X in a Mac Mini 2011 as well.
 
 I don't suggest you use these dotfiles as-is, because these are optimized for me, and I'm using a Mac Mini (2011) and a Dell Vostro 1500 laptop as well, both running Arch Linux. I suggest you simply glance through them or look for a solution in them, and if you find something that looks nice then just implement it in *your* dotfiles, made to work for *you*.
 
