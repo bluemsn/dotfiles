@@ -37,6 +37,11 @@ brew install hg
 brew install python
 brew install python3
 
+# Install Node.js and related stuff
+brew install node
+curl https://npmjs.org/install.sh | sh
+sudo npm install -g docpad@6
+
 # Install tmux
 brew install tmux
 brew install reattach-to-user-namespace

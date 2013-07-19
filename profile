@@ -8,5 +8,5 @@ else
 fi
 
 # Define $PATH variable
-export PATH=$PATH
+export PATH="/usr/local/share/npm/bin:$PATH"
 
