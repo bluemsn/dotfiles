@@ -23,9 +23,6 @@ brew install figlet
 # Not really brew but to hell with it
 git clone https://github.com/drbunsen/formd.git ~/bin
 
-# Install Markdown
-brew install markdown
-
 # Update shells
 brew install bash
 brew install zsh
@@ -36,6 +33,9 @@ brew install hg
 # Install/update Python
 brew install python
 brew install python3
+brew install markdown
+brew install clojure
+brew install leiningen
 
 # Install Node.js and related stuff
 brew install node

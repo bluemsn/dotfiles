@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: Jul 9th, 2013
+" Last Change: Jul 21st, 2013
 
 " Basic stuff {{{
 
@@ -68,6 +68,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'AndrewRadev/sideways.vim'
 "Bundle 'benmills/vimux'
 "Bundle 'bkad/CamelCaseMotion'
+"Bundle 'bling/vim-airline'
 Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'davidoc/taskpaper.vim'
@@ -122,6 +123,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/vitality.vim'
 "Bundle 'suan/vim-instant-markdown'
 Bundle 'svermeulen/vim-easyclip'
+Bundle 'takac/vim-commandcaps'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 "Bundle 'teranex/jk-jumps.vim'
 "Bundle 'terryma/vim-expand-region'
