@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: Jul 21st, 2013
+" Last Change: Jul 24th, 2013
 
 " Basic stuff {{{
 
@@ -84,6 +84,7 @@ Bundle 'Greduan/vim-usefulstatusline'
 "Bundle 'jeetsukumaran/vim-buffergator'
 "Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'jszakmeister/vim-togglecursor'
+Bundle 'justinmk/vim-ipmotion'
 ""Bundle 'junegunn/vim-scroll-position'
 "Bundle 'justincampbell/vim-eighties'
 ""Bundle 'kablamo/vim-git-log'
@@ -124,6 +125,7 @@ Bundle 'sjl/vitality.vim'
 "Bundle 'suan/vim-instant-markdown'
 Bundle 'svermeulen/vim-easyclip'
 Bundle 'takac/vim-commandcaps'
+"Bundle 'takac/vim-hardtime'
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
 "Bundle 'teranex/jk-jumps.vim'
 "Bundle 'terryma/vim-expand-region'
@@ -536,7 +538,9 @@ noremap <F1> <esc>
 " }}}
 " New mappings {{{
 
-" Nothing here yet...
+" For Latin American layout and similar
+nnoremap ñ :w<CR>
+nnoremap <S-ñ> :wq!<CR>
 
 " }}}
 
@@ -1059,12 +1063,6 @@ set isfname-== " Remove '=' from filename characters
 
 " To output the current file in HTML. It comes along with syntax highlighting.
 " :%TOhtml
-
-" Useful mappings:
-"
-" ZZ     - save and close current file
-" zz     - makes current line the center of editor
-" cc, S  - cuts current line and puts you in insert mode
 
 " }}}
 

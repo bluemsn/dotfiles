@@ -124,4 +124,5 @@ sudo pacman -S xclip
 #pip2 install jrnl
 
 packer -S nodejs
-npm install -g docpad
+sudo npm install -g docpad@6
+sudo npm install -g grunt-cli

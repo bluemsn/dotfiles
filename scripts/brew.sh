@@ -41,6 +41,7 @@ brew install leiningen
 brew install node
 curl https://npmjs.org/install.sh | sh
 sudo npm install -g docpad@6
+sudo npm install -g grunt-cli
 
 # Install tmux
 brew install tmux
