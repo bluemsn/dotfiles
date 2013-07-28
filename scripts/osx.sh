@@ -51,6 +51,9 @@ sudo scutil --set HostName "eduan-mac-mini2011"
 sudo scutil --set LocalHostName "eduan-mac-mini2011"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "eduan-mac-mini2011"
 
+# Set standby delay to 24 hours (default is 1 hour)
+#sudo pmset -a standbydelay 86400
+
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
@@ -61,7 +64,14 @@ defaults write com.apple.menuextra.battery ShowTime -string "YES"
 # Menu bar: hide the useless Time Machine and Volume icons
 defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
+# Set highlight color to green
+defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.568600'
+
+# Set sidebar icon size to medium
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
 # Always show scrollbars
+# Possible values: `WhenScrolling`, `Automatic` and `Always`
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 # Disable smooth scrolling
@@ -177,8 +187,6 @@ defaults write com.apple.BezelServices kDim -bool true
 defaults write com.apple.BezelServices kDimTime -int 300
 
 # Set language and text formats
-# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
-# `Inches`, and `true` with `false`.
 defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
 defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
@@ -238,6 +246,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Finder: show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
 
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
 # Finder: allow text selection in Quick Look
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
@@ -249,6 +260,12 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Enable spring loading for directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
+# Remove the spring loading delay for directories
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -299,20 +316,23 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
+# Enablethe MacBook Air SuperDrive on any Mac
+sudo nvram boot-args="mbasd=1"
+
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
 # Remove Dropbox’s green checkmark icons in Finder
-file=/Applications/Dropbox.app/Contents/Resources/check.icns
+file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
 [ -e "$file" ] && mv -f "$file" "$file.bak"
 unset file
 
 ###############################################################################
-# Dock & hot corners                                                          #
+# Dock, Dashboard & hot corners                                               #
 ###############################################################################
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilte-stack -bool true
+defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 30
@@ -338,11 +358,17 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 # (i.e. use the old Exposé behavior instead)
 defaults write com.apple.dock expose-group-by-app -bool false
 
+# Disable Dashboard
+defaults write com.apple.dashboard mcs-disabled -bool true
+
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
 # Remove the auto-hiding Dock delay
-defaults write com.apple.Dock autohide-delay -float 0
+defaults write com.apple.dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock
 defaults write com.apple.dock autohide-time-modifier -float 0
 
@@ -377,6 +403,7 @@ find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 #  7: Dashboard
 # 10: Put display to sleep
 # 11: Launchpad
+# 12: Notification Center
 # Top left screen corner → Mission Control
 defaults write com.apple.dock wvous-tl-corner -int 2
 defaults write com.apple.dock wvous-tl-modifier -int 0
@@ -384,8 +411,8 @@ defaults write com.apple.dock wvous-tl-modifier -int 0
 defaults write com.apple.dock wvous-tr-corner -int 4
 defaults write com.apple.dock wvous-tr-modifier -int 0
 # Bottom left screen corner → Start screen saver
-defaults write com.apple.dock wvous-bl-corner -int 5
-defaults write com.apple.dock wvous-bl-modifier -int 0
+#defaults write com.apple.dock wvous-bl-corner -int 5
+#defaults write com.apple.dock wvous-bl-modifier -int 0
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -455,6 +482,41 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 # Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
+
+###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# Hide Spotlight tray-icon (and subsequent helper)
+#sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+# Disable Spotlight indexing for any volume that gets mounted and has not yet
+# been indexed before.
+# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# Change indexing order and disable some file types
+defaults write com.apple.spotlight orderedItems -array \
+  '{"enabled" = 1;"name" = "APPLICATIONS";}' \
+  '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+  '{"enabled" = 1;"name" = "DIRECTORIES";}' \
+  '{"enabled" = 1;"name" = "PDF";}' \
+  '{"enabled" = 1;"name" = "FONTS";}' \
+  '{"enabled" = 0;"name" = "DOCUMENTS";}' \
+  '{"enabled" = 0;"name" = "MESSAGES";}' \
+  '{"enabled" = 0;"name" = "CONTACT";}' \
+  '{"enabled" = 0;"name" = "EVENT_TODO";}' \
+  '{"enabled" = 0;"name" = "IMAGES";}' \
+  '{"enabled" = 0;"name" = "BOOKMARKS";}' \
+  '{"enabled" = 0;"name" = "MUSIC";}' \
+  '{"enabled" = 0;"name" = "MOVIES";}' \
+  '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+  '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+  '{"enabled" = 0;"name" = "SOURCE";}'
+# Load new settings before rebuilding the index
+killall mds
+# Make sure indexing is enabled for the main volume
+sudo mdutil -i on /
+# Rebuild the index from scratch
+sudo mdutil -E /
 
 ###############################################################################
 # Terminal                                                                    #

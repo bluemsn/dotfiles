@@ -12,7 +12,7 @@
 git config --global user.name "Eduan Lavaque"
 
 # Setup Git email
-git config --global user.email "eduan@snapsimpletech.com"
+git config --global user.email "eduanlavaque@gmail.com"
 
 # Setup commit editor
 git config --global core.editor vim
