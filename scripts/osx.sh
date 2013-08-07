@@ -30,16 +30,16 @@ chsh -s /bin/zsh
 sudo chsh -s /bin/zsh
 
 # Finder: Hide sidebar permamently except in some special folders
-defaults write com.apple.finder ShowSidebar -bool false
+#defaults write com.apple.finder ShowSidebar -bool false
 
 # Spotlight: disable indexing
-sudo mdutil -a -i off
+#sudo mdutil -a -i off
 
 # Spotlight: hide menu bar icon
-sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+#sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
 # Chrome: disable Google update
-defaults write com.google.Keystone.Agent CheckInterval 0
+#defaults write com.google.Keystone.Agent CheckInterval 0
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -335,7 +335,7 @@ unset file
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 30
+defaults write com.apple.dock tilesize -int 36
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -349,7 +349,7 @@ defaults write com.apple.dock show-process-indicators -bool true
 defaults write com.apple.dock persistent-apps -array
 
 # Don’t animate opening applications from the Dock
-defaults write com.apple.dock launchanim -bool false
+#defaults write com.apple.dock launchanim -bool false
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
