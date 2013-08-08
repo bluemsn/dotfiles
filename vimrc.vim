@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: Jul 24th, 2013
+" Last Change: Aug 7th, 2013
 
 " Basic stuff {{{
 
@@ -79,7 +79,6 @@ Bundle 'chreekat/vim-paren-crosshairs'
 ""Bundle 'goldfeld/vim-seek'
 "Bundle 'greyblake/vim-preview'
 Bundle 'Greduan/vim-numbertoggle'
-Bundle 'Greduan/vim-usefulstatusline'
 "Bundle 'hwrod/interactive-replace'
 "Bundle 'jeetsukumaran/vim-buffergator'
 "Bundle 'jistr/vim-nerdtree-tabs'
