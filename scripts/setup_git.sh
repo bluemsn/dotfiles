@@ -9,10 +9,10 @@
 # =============================================================================
 
 # Setup Git username
-git config --global user.name "Eduan Lavaque"
+git config --global user.name "Greduan"
 
 # Setup Git email
-git config --global user.email "eduanlavaque@gmail.com"
+git config --global user.email "eduanlavaque+git@gmail.com"
 
 # Setup commit editor
 git config --global core.editor vim

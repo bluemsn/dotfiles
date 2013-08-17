@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: Aug 7th, 2013
+" Last Change: Aug 15th, 2013
 
 " Basic stuff {{{
 
@@ -78,9 +78,9 @@ Bundle 'chreekat/vim-paren-crosshairs'
 "Bundle 'godlygeek/tabular'
 ""Bundle 'goldfeld/vim-seek'
 "Bundle 'greyblake/vim-preview'
-Bundle 'Greduan/vim-numbertoggle'
 "Bundle 'hwrod/interactive-replace'
 "Bundle 'jeetsukumaran/vim-buffergator'
+Bundle "jelera/vim-javascript-syntax"
 "Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'jszakmeister/vim-togglecursor'
 Bundle 'justinmk/vim-ipmotion'
@@ -102,6 +102,7 @@ Bundle 'justinmk/vim-ipmotion'
 "Bundle 'mhinz/vim-signify'
 ""Bundle 'mhinz/vim-tmuxify'
 "Bundle 'mihaifm/vimpanel'
+Bundle "mikewest/vimroom"
 "Bundle 'mileszs/ack.vim'
 ""Bundle 'nathanaelkane/vim-command-w'
 "Bundle 'nathanaelkane/vim-indent-guides'
@@ -579,6 +580,7 @@ set listchars=tab:\|\ ,eol:$,trail:_ " Set chars to use for 'list'
 " Disable softwrap by default, and set it's options, even if disabled
 set nowrap    " By default soft-wrap text at window border
 set linebreak " Visual linebreak at 'breakat' rather than last char in window
+set relativenumber " Relative line numbers
 
 set title          " Change Terminal's title
 set colorcolumn=79 " Put a marker in array of column numbers
