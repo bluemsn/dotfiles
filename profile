@@ -6,7 +6,3 @@ elif [ -e /usr/share/terminfo/x/xterm-256color ]; then
 else
 	export TERM='xterm-color'
 fi
-
-# Define $PATH variable
-export PATH="/usr/local/share/npm/bin:$PATH"
-

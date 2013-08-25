@@ -1,6 +1,6 @@
 " Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
 " Maintainer URL: https://github.com/Greduan
-" Last Change: Aug 15th, 2013
+" Last Change: Aug 19th, 2013
 
 " Basic stuff {{{
 
@@ -98,6 +98,7 @@ Bundle 'justinmk/vim-ipmotion'
 "Bundle 'Lokaltog/vim-easymotion'
 ""Bundle 'lyokha/vim-xkbswitch'
 "Bundle 'mattn/gist-vim'
+Bundle 'matze/vim-move'
 ""Bundle 'mbbill/VimExplorer'
 "Bundle 'mhinz/vim-signify'
 ""Bundle 'mhinz/vim-tmuxify'
@@ -501,16 +502,6 @@ nnoremap vv ^vg_
 " Visually select the text that was last edited/pasted
 " http://vimcasts.org/episodes/bubbling-text/
 nnoremap gV `[v`]
-
-" Bubble single lines
-" http://vimcasts.org/episodes/bubbling-text/
-nmap <S-up> [e
-nmap <S-down> ]e
-
-" Bubble multiple lines
-" http://vimcasts.org/episodes/bubbling-text/
-vmap <S-up> [egv
-vmap <S-down> ]egv
 
 " Fix the '&' command in normal and visual modes
 " https://github.com/nelstrom/dotfiles/blob/d245b5cf67/vimrc#L99-L101

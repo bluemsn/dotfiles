@@ -33,10 +33,10 @@ sudo chsh -s /bin/zsh
 #defaults write com.apple.finder ShowSidebar -bool false
 
 # Spotlight: disable indexing
-#sudo mdutil -a -i off
+sudo mdutil -a -i off
 
 # Spotlight: hide menu bar icon
-#sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
 # Chrome: disable Google update
 #defaults write com.google.Keystone.Agent CheckInterval 0

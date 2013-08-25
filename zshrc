@@ -7,6 +7,9 @@ export EDITOR VISUAL GIT_EDITOR # Export these options
 # Set the config home
 export XDG_CONFIG_HOME="${HOME}/.config"
 
+# Define $PATH variable
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:~/bin:$PATH"
+
 alias ls="ls -la -Gp -F"        # Make 'ls' do lotsa stuff
 alias reload!="source ~/.zshrc" # Make 'reload!' source the .zshrc file
 alias sudo="sudo "              # Fix using aliases after sudo
