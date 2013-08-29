@@ -42,3 +42,7 @@ Now, you can open an issue expressing your ideas, or you can just fork this proj
   [4]: http://tmux.sourceforge.net/
   [5]: http://git-scm.com/
   [6]: https://www.archlinux.org/
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Greduan/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
