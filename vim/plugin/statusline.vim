@@ -3,6 +3,12 @@ if has('statusline')
 " The default statusline is:
 " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
+" Current mode variable {{{
+if (!exists('g:currentmode'))
+	let g:currentmode={ 'n':'Normal', 'no':'N·Operator Pending', 'v':'Visual', 'V':'V·Line', '^V':'V·Block', 's':'Select', 'S':'S·Line', '^S':'S·Block', 'i':'Insert', 'R':'Replace', 'Rv':'V·Replace', 'c':'Command', 'cv':'Vim Ex', 'ce':'Ex', 'r':'Prompt', 'rm':'More', 'r?':'Confirm', '!':'Shell' }
+endif
+" }}}
+
 " Colorize statusline {{{
 function! Colorize()
 	" Solarized && g:solarized_vars {{{
@@ -114,12 +120,6 @@ function! Colorize()
 
 	return ''
 endfunction
-" }}}
-
-" Current mode variable {{{
-if (!exists('g:currentmode'))
-	let g:currentmode={ 'n':'Normal', 'no':'N·Operator Pending', 'v':'Visual', 'V':'V·Line', '^V':'V·Block', 's':'Select', 'S':'S·Line', '^S':'S·Block', 'i':'Insert', 'R':'Replace', 'Rv':'V·Replace', 'c':'Command', 'cv':'Vim Ex', 'ce':'Ex', 'r':'Prompt', 'rm':'More', 'r?':'Confirm', '!':'Shell' }
-endif
 " }}}
 
 " File size {{{
@@ -247,11 +247,11 @@ function! Statusline()
 	let s:stl.='"%t"' " Current buffer's file name
 	let s:stl.=' '    " Separator
 	let s:stl.='['    " Opening square bracket for file info
-	let s:stl.='%{&ft!=""?&ft.",":""}'
-	let s:stl.='%{&fenc!=""?&fenc.",":&enc.","}'
-	let s:stl.='%{(&bomb?"BOM,":"")}'
-	let s:stl.='%{&ff!=""?&ff.",":""}'
-	let s:stl.='%{FileSizePure(1)}'
+	let s:stl.='%{&ft!=""?&ft.",":""}' " Filetype
+	let s:stl.='%{&fenc!=""?&fenc.",":&enc.","}' " File encoding
+	let s:stl.='%{(&bomb?"BOM,":"")}'  " BOM encoding
+	let s:stl.='%{&ff!=""?&ff.",":""}' " Line ending?
+	let s:stl.='%{FileSizePure(1)}'    " File size
 	let s:stl.=']'    " Closing square bracket for file info
 	let s:stl.=' '
 	let s:stl.='%{DateTime(3, 1)}'

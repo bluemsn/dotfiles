@@ -14,42 +14,46 @@ if test ! $(which brew); then
 	ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 fi
 
-# Install little utilities
+# Utilities
+brew install par
+brew install figlet
+git clone https://github.com/drbunsen/formd.git ~/bin
 #brew install ack
 #brew install the_silver_searcher
-brew install par
 #brew install hub
-brew install figlet
-# Not really brew but to hell with it
-git clone https://github.com/drbunsen/formd.git ~/bin
 
-# Update shells
+# CLI shells
 brew install bash
 brew install zsh
+brew install urxvt
 
-# Install Mercurial
+# VCS software
 brew install hg
+brew install git
 
-# Install/update Python
+# Languages
 brew install python
 brew install python3
 brew install markdown
-brew install clojure
-brew install leiningen
+#brew install clojure
+#brew install leiningen
+brew install clisp
+brew install clozure-cl
 
-# Install Node.js and related stuff
+# Node.js stuff
 brew install node
-curl https://npmjs.org/install.sh | sh
 sudo npm install -g docpad@6
 sudo npm install -g grunt-cli
+sudo npm install -g coffee-script
 
-# Install tmux
+# Tmux
 brew install tmux
-brew install reattach-to-user-namespace
+brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste --wrap-launchctl
 #brew install https://github.com/downloads/zolrath/wemux/wemux.rb
 
 # Install/update Vim
 brew install macvim --env-std --custom-icons --override-system-vim --with-python3
+brew install vim --override-system-vi
 
 # Link all the installed apps
 mkdir -pv ~/Applications

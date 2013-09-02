@@ -17,14 +17,15 @@ if [ `uname -s` == 'Linux' ]; then
 	symlink xbindkeysrc.txt    .xbindkeysrc
 	symlink xinitrc.txt        .xinitrc
 fi
-symlink gitmessage.txt     .gitmessage.txt
-symlink zsh                .zsh
-symlink zshrc              .zshrc
-symlink profile            .profile
-symlink tmux.conf          .tmux.conf
-symlink vim                .vim
-symlink gvimrc.vim         .gvimrc
-symlink vimrc.vim          .vimrc
+symlink gitmessage.txt .gitmessage.txt
+symlink zsh            .zsh
+symlink zshrc          .zshrc
+symlink profile        .profile
+symlink tmux.conf      .tmux.conf
+symlink vim            .vim
+symlink gvimrc.vim     .gvimrc
+symlink vimrc.vim      .vimrc
+symlink editorconfig   .editorconfig
 
 # Sublime Text
 if [ `uname -s` == 'Linux' ]; then

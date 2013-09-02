@@ -31,6 +31,7 @@ git config --global color.ui true
 
 # Automatically use LF line endings when commiting
 git config --global core.eol lf
+git config --global core.autocrlf input
 
 # Create Git aliases...
 git config --global alias.logg 'log --graph --decorate --oneline --abbrev-commit --all'

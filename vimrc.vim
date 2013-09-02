@@ -1,34 +1,24 @@
-" Maintainer: Eduan Lavaque <eduan@snapsimpletech.com>
-" Maintainer URL: https://github.com/Greduan
-" Last Change: Aug 19th, 2013
-
-" Basic stuff {{{
-
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-set hidden                 " Keep changed buffers without requiring saves
-set viewoptions=unix,slash " Better Unix/Windows compatibility
-set modeline               " Allow file specific Vim settings
-set viminfo+=!             " Keep global uppercase variables
-set noesckeys              " I don't use any mappings starting with <Esc>
+set hidden
+set viewoptions=unix,slash
+set modeline   " Allow file specific Vim settings
+set viminfo+=! " Keep global uppercase variables
+set noesckeys
 
-" Use the system's clipboard
 " http://twitter.com/mbadran/status/111011179907915776
 set clipboard+=unnamed
 set clipboard+=unnamedplus
 
-" Make sure Vim has autocmd support
 if (has('autocmd'))
-	" Reload .vimrc and .gvimrc files as soon as they have a change
 	augroup VimReload
 		autocmd!
 		autocmd BufWritePost $MYVIMRC source $MYVIMRC
 		autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
 	augroup END
 
-	" Reload statusline.vim file as soon as it changes
 	augroup StatuslineReload
 		autocmd!
 		autocmd BufWritePost ~/.vim/plugin/statusline.vim source
@@ -36,21 +26,13 @@ if (has('autocmd'))
 	augroup END
 endif
 
-" }}}
-" Runtime stuff {{{
-
-" Enable use of the :Man command, for man pages, explained here:
 " http://crumbtrail.chesmart.in/post/5024677985/man-vim-dude
-runtime ftplugin/man.vim
+runtime! ftplugin/man.vim
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-" Found this trick here: https://github.com/tpope/vim-sensible
+" https://github.com/tpope/vim-sensible
 if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
   runtime! macros/matchit.vim
 endif
-
-" }}}
-" Vundle & other extensions (syntaxes, filetypes etc.) {{{
 
 " Set the filetype stuff to off, required for Vundle
 filetype plugin indent off
@@ -58,122 +40,52 @@ filetype plugin indent off
 set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
 call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 
-" Bundles {{{
-
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
 
 " General
-"Bundle 'aaronbieber/quicktask'
-"Bundle 'AndrewRadev/sideways.vim'
-"Bundle 'benmills/vimux'
-"Bundle 'bkad/CamelCaseMotion'
-"Bundle 'bling/vim-airline'
 Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
-"Bundle 'davidoc/taskpaper.vim'
-""Bundle 'ervandew/supertab'
-"Bundle 'gmarik/sudo-gui.vim'
-"Bundle 'godlygeek/csapprox'
-"Bundle 'godlygeek/tabular'
-""Bundle 'goldfeld/vim-seek'
-"Bundle 'greyblake/vim-preview'
-"Bundle 'hwrod/interactive-replace'
-"Bundle 'jeetsukumaran/vim-buffergator'
-Bundle "jelera/vim-javascript-syntax"
-"Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'drmikehenry/vim-fixkey'
+Bundle "jiangmiao/auto-pairs"
 Bundle 'jszakmeister/vim-togglecursor'
-Bundle 'justinmk/vim-ipmotion'
-""Bundle 'junegunn/vim-scroll-position'
-"Bundle 'justincampbell/vim-eighties'
-""Bundle 'kablamo/vim-git-log'
-"Bundle 'kana/vim-arpeggio'
-"Bundle 'kana/vim-fakeclip'
-""Bundle 'kana/vim-textobj-indent'
-""Bundle 'kbarrette/mediummode'
-"Bundle 'kien/ctrlp.vim'
-""Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'kikijump/tslime.vim'
-"Bundle 'Lokaltog/powerline'
-"Bundle 'Lokaltog/vim-easymotion'
-""Bundle 'lyokha/vim-xkbswitch'
-"Bundle 'mattn/gist-vim'
+Bundle 'kien/ctrlp.vim'
+"---------------TRYING OUT
+Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'matze/vim-move'
-""Bundle 'mbbill/VimExplorer'
-"Bundle 'mhinz/vim-signify'
-""Bundle 'mhinz/vim-tmuxify'
-"Bundle 'mihaifm/vimpanel'
 Bundle "mikewest/vimroom"
-"Bundle 'mileszs/ack.vim'
-""Bundle 'nathanaelkane/vim-command-w'
-"Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'nelstrom/vim-americanize'
-"Bundle 'nelstrom/vim-docopen'
-"Bundle 'nelstrom/vim-visual-star-search'
-"Bundle 'neochrome/todo.vim'
-"Bundle 'Peeja/vim-cdo'
-""Bundle 'PotHix/Vimpress'
-"Bundle 'rking/ag.vim'
-""Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
-""Bundle 'scrooloose/whitespace2.0.vim'
-"Bundle 'Shougo/neocomplcache'
-"Bundle 'SirVer/ultisnips'
-"Bundle 'sjl/clam.vim'
-"Bundle 'sjl/gundo.vim'
 Bundle 'sjl/vitality.vim'
-"Bundle 'suan/vim-instant-markdown'
 Bundle 'svermeulen/vim-easyclip'
 Bundle 'takac/vim-commandcaps'
-"Bundle 'takac/vim-hardtime'
-"Bundle 'techlivezheng/vim-plugin-minibufexpl'
-"Bundle 'teranex/jk-jumps.vim'
-"Bundle 'terryma/vim-expand-region'
-"Bundle 'terryma/vim-smooth-scroll'
-Bundle 'Townk/vim-autoclose'
 Bundle 'tpope/vim-abolish'
-"Bundle 'tpope/vim-capslock'
-"Bundle 'tpope/vim-characterize'
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'tpope/vim-obsession'
-"Bundle 'tpope/vim-pastie'
 Bundle 'tpope/vim-repeat'
-"Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-"Bundle 'troydm/easybuffer.vim'
-""Bundle 'tsaleh/vim-align'
-"Bundle 'Valloric/YouCompleteMe'
-""Bundle 'wikitopian/hardmode'
-"Bundle 'xolox/vim-shell'
-Bundle 'yonchu/accelerated-smooth-scroll'
+Bundle 'troydm/easybuffer.vim'
 Bundle 'zhaocai/GoldenView.Vim'
 
 " Syntax files
-"Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'cakebaker/scss-syntax.vim'
 "Bundle 'groenewege/vim-less'
-"Bundle 'kloppster/Wordpress-Vim-Syntax'
-"Bundle 'mutewinter/vim-css3-syntax'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'kloppster/Wordpress-Vim-Syntax'
+Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
-"Bundle 'othree/html5.vim'
+Bundle 'othree/html5.vim'
 Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
-Bundle 'wavded/vim-stylus'
+"Bundle 'wavded/vim-stylus'
 Bundle 'zaiste/tmux.vim'
 
 " Language specific bundles
-"Bundle 'ap/vim-css-color'
+Bundle 'gorodinskiy/vim-coloresque'
 Bundle 'gregsexton/MatchTag'
-"Bundle 'HTML-AutoCloseTag'
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'robmiller/vim-movar'
 Bundle 'spf13/PIV'
 
 " Color schemes
@@ -184,21 +96,16 @@ Bundle 'Greduan/vim-colors-solarized'
 "Bundle 'tomasr/molokai'
 
 " vim-scripts repos
-"Bundle 'blinking_statusline.vim"
-"Bundle 'bufkill.vim'
-"Bundle 'Conque-Shell'
-"Bundle 'IndexedSearch'
-"Bundle 'progressbar-widget'
+Bundle 'Conque-Shell'
+Bundle 'IndexedSearch'
 "Bundle 'restore_view.vim'
-"Bundle 'SearchComplete'
-"Bundle 'sessionman.vim'
-"Bundle 'ShowMarks'
-"Bundle 'YankRing.vim'
-"Bundle 'VimRepress'
+Bundle 'sessionman.vim'
 
-" }}}
 " Bundle settings {{{
 
+" vim-move {{{
+let g:move_key_modifier='S'
+" }}}
 " togglecursor {{{
 let g:togglecursor_default='block' " Cursor for everything except insert mode
 let g:togglecursor_insert='line' " Cursor for insert mode
@@ -248,9 +155,6 @@ endif
 " Set the filetype stuff to on, no longer required off
 filetype plugin indent on
 
-" }}}
-" Search & matching {{{
-
 set wrapscan     " Set the search scan to wrap around to the top of the file
 set ignorecase   " Set search scan to ignore case when search is all lowercase
 set smartcase    " But recognize uppercase if it is specified
@@ -290,11 +194,8 @@ if (use_ack != 0)
 	endif
 endif
 
-" }}}
-" Formatting {{{
-
 set noexpandtab   " Make sure that every file uses real tabs, not spaces
-set shiftround    " Round indent to pultiple of 'shiftwidth'
+set shiftround    " Round indent to multiple of 'shiftwidth'
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set smartindent   " Do smart indenting when starting a new line
 set autoindent    " Copy indent from current line, over to the new line
@@ -315,17 +216,11 @@ if (has('autocmd'))
 	augroup END
 endif
 
-" }}}
-" Commands' options {{{
-
 set cpoptions+=$    " Default but put a '$' at the end of motion string
 set iskeyword+=-    " Add '-' as a keyword
 
 set timeout         " Do time out on mappings and others
 
-" When you’re pressing Escape to leave insert mode in the terminal, it will by
-" default take a second or another keystroke to leave insert mode completely
-" and update the statusline. This fixes that. I got this from:
 " https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
 set ttimeoutlen=2000
 augroup FastEscape
@@ -334,22 +229,13 @@ augroup FastEscape
 	au InsertLeave * set timeoutlen=2000
 augroup END
 
-" }}}
-" Command line options {{{
-
 set cmdheight=2 " Make the command input line two lines high
 set shellslash  " Set to use forward slash, in case you're in Windows
 set showmode    " Always show the current mode
 set showcmd     " Show (partial) command in the last line of screen
 set report=0    " Report this or greater number of changes
 
-" }}}
-" History {{{
-
 set history=1000 " Keep {num} entries in the command history
-
-" }}}
-" Backups {{{
 
 set backup     " Enable backup files
 set swapfile   " Use a swap file in current buffer
@@ -364,9 +250,6 @@ if (!isdirectory(expand(&backupdir)))
 	call mkdir(expand(&backupdir), 'p')
 endif
 
-" }}}
-" Undo {{{
-
 if (has('persistent_undo'))
 	set undofile " Enable persistent undo
 
@@ -378,9 +261,6 @@ if (has('persistent_undo'))
 	endif
 endif
 
-" }}}
-" Folds {{{
-
 set foldenable        " Make sure folding is enabled
 set foldmethod=marker " Use manual markers for folds
 set foldlevelstart=0  " Always close folds when switching buffers
@@ -388,181 +268,115 @@ set foldlevelstart=0  " Always close folds when switching buffers
 " These commands open, or can open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
-" }}}
-" Keyboard {{{
-
-" Keymappings {{{
-
-" Leader key(s) {{{
-
-" Set Leader key to ',', instead of '/'
 let mapleader=','
-
-" Set my local Leader key to '\'
 let maplocalLeader = '\\'
 
-" Map CTRL-E to do what ',' used to do
-nnoremap <C-e> ,
-vnoremap <C-e> ,
+nn <C-e> ,
+vn <C-e> ,
 
-" }}}
-" Edit files mappings {{{
-
-" Open .vimrc file as a buffer in this split window
-nnoremap <silent> <leader>eev :e $MYVIMRC<CR>
-
-" Open .vimrc file in a vertical split
-nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
-
-" Open .gvimrc file as a buffer in this split window
-nnoremap <silent> <leader>eeg :e $MYGVIMRC<CR>
-
-" Open .gvimrc file in a vertical split
-nnoremap <silent> <leader>eg :sp $MYGVIMRC<CR>
-
-" Open statusline.vim file as a buffer in this split window
-nnoremap <silent> <leader>ees :e ~/.vim/plugin/statusline.vim<CR>
-
-" Open statusline.vim file in a vertical split
-nnoremap <silent> <leader>es :sp ~/.vim/plugin/statusline.vim<CR>
-
-" Open the tmux_iterm.vim file as a buffer in this split window
-nnoremap <silent> <leader>eec :e ~/.vim/after/plugin/tmux_iterm.vim<CR>
-
-" Open tmux_iterm.vim file in a vertical split
-nnoremap <silent> <leader>ec :sp ~/.vim/after/plugin/tmux_iterm.vim<CR>
-
-" }}}
-" Arrow keys and 'hjkl' keys {{{
+nn <silent> <leader>eev :e $MYVIMRC<CR>
+nn <silent> <leader>ev :sp $MYVIMRC<CR>
+nn <silent> <leader>eeg :e $MYGVIMRC<CR>
+nn <silent> <leader>eg :sp $MYGVIMRC<CR>
+nn <silent> <leader>ees :e ~/.vim/plugin/statusline.vim<CR>
+nn <silent> <leader>es :sp ~/.vim/plugin/statusline.vim<CR>
+nn <silent> <leader>eec :e ~/.vim/plugin/tmux_navigator.vim<CR>
+nn <silent> <leader>ec :sp ~/.vim/plugin/tmux_navigator.vim<CR>
 
 " Completely disable the use of the arrow keys in command and visual modes
-noremap <up> <NOP>
-noremap <down> <NOP>
-noremap <left> <NOP>
-noremap <right> <NOP>
+no <up> <NOP>
+no <down> <NOP>
+no <left> <NOP>
+no <right> <NOP>
 
 " Fix moving line by line in the paragraph, when soft wrap is on
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+nn j gj
+nn k gk
+vn j gj
+vn k gk
 
 " Smart way to move between windows, uses 'Ctrl+hjkl' instead of 'Ctrl+w+hjkl'
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" }}}
-" Leader key mappings {{{
+nn <C-j> <C-w>j
+nn <C-k> <C-w>k
+nn <C-h> <C-w>h
+nn <C-l> <C-w>l
 
 " Makes it easy to clear out a search, by typing ',<space>'
-nnoremap <leader><space> :noh<CR>
+nn <leader><space> :noh<CR>
 
 " Same as *, but doesn't move the cursor, only highlights
 " http://twitter.com/dmedvinsky/status/109304047206547456
-nnoremap <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
+nn <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
 
 " Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<cCR>
+no <leader>p :set paste<CR>:put  *<CR>:set nopaste<cCR>
 
 " Use ',z' to focus current fold, closing every other fold in the process
 " http://twitter.com/dotvimrc/status/129979569045381120
-nnoremap <leader>z zMzvzz
+nn <leader>z zMzvzz
 
 " Use capital H/L to first/last non-whitespace character
 " http://twitter.com/dotvimrc/status/132489424494792704
-noremap H ^
-noremap L g_
+no H ^
+no L g_
 
 " Call Preserve() and delete any trailing white space in buffer
-nnoremap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+nn <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 " Make window controls easy
-nnoremap <leader>w <C-w>
-
-" }}}
-" Ctrl mappings {{{
+nn <leader>w <C-w>
 
 " Better help tags navigation (IMO)
-nnoremap <C-S-Right> <C-]>
-nnoremap <C-S-Left>  <C-t>
-
-" }}}
-" Re-mappings {{{
+nn <C-S-Right> <C-]>
+nn <C-S-Left>  <C-t>
 
 " Indent in visual and select mode automatically re-selects
-vnoremap > >gv
-vnoremap < <gv
+vn > >gv
+vn < <gv
 
 " Select (charwise) the contents of the current line, excluding indentation
 " http://twitter.com/dotvimrc/status/155748943001694208
-nnoremap vv ^vg_
-
-" Visually select the text that was last edited/pasted
-" http://vimcasts.org/episodes/bubbling-text/
-nnoremap gV `[v`]
+nn vv ^vg_
 
 " Fix the '&' command in normal and visual modes
 " https://github.com/nelstrom/dotfiles/blob/d245b5cf67/vimrc#L99-L101
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
+nn & :&&<CR>
+xn & :&&<CR>
 
 " Make 'Y' behave like 'D' and 'C'
 " https://github.com/blueyed/dotfiles/blob/4407ba7905/vimrc#L1129-L1131
-nnoremap Y y$
-xnoremap Y y$
+nn Y y$
+xn Y y$
 
 " <C-e> and <C-y> scroll the viewport a single line, bump this up a bit
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" }}}
-" Function keys mappings {{{
+nn <C-e> 3<C-e>
+nn <C-y> 3<C-y>
 
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map('<F5>')
 
 " Disable pressing 'F1' for help, and set it equal to Escape
-noremap <F1> <esc>
-
-" }}}
-" New mappings {{{
+no <F1> <esc>
 
 " For Latin American layout and similar
-nnoremap ñ :w<CR>
-nnoremap <S-ñ> :wq!<CR>
-
-" }}}
-
-" }}}
-" Special CAPS lock {{{
+nn ñ :w<CR>
+nn <S-ñ> :wq!<CR>
 
 " http://vim.wikia.com/wiki/Insert-mode_only_Caps_Lock
 
 " Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z
 for c in range(char2nr('A'), char2nr('Z'))
-  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
-  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
+  execute 'ln '.nr2char(c+32).' '.nr2char(c)
+  execute 'ln '.nr2char(c).' '.nr2char(c+32)
 endfor
 
 " Kill the capslock when leaving insert mode
 autocmd InsertLeave * set iminsert=0
 
 " Use <F6> instead of <C-^> for toggleing CAPS lock
-noremap <F6> :let &l:imi = !&l:imi<CR>
-inoremap <F6> <C-o>:let &l:imi = !&l:imi<CR>
-cnoremap <F6> <C-^>
-
-" }}}
-
-" }}}
-" Abbreviations {{{
-
-" Still gotta put stuff here
-
-" }}}
-" UI related {{{
+no <F6> :let &l:imi = !&l:imi<CR>
+ino <F6> <C-o>:let &l:imi = !&l:imi<CR>
+cno <F6> <C-^>
 
 " Enable list by default, but set it's options for when it is used
 set list                            " Show hidden characters
@@ -577,20 +391,11 @@ set title          " Change Terminal's title
 set colorcolumn=79 " Put a marker in array of column numbers
 set shortmess=astI " :h shortmess
 
-" NOTICE!
-" Line numbers are controlled by this Vundle bundle:
-" https://github.com/Greduan/vim-numbertoggle
-
-" Screen redrawing {{{
-
 set ttyfast     " Faster Terminal, redraws stuff quicker!
 set linespace=0 " No extra spaces between text lines
 set lazyredraw  " Don't update the display while executing macros
 
-" }}}
-" Status line {{{
-
-set laststatus=2 " Always use a statusline 
+set laststatus=2 " Always use a statusline
 set ruler        " Put a ruler, when my custom statusline doesn't load
 
 " The Vim statusline is set in a plugin that loads after the .vimrc has been
@@ -598,12 +403,9 @@ set ruler        " Put a ruler, when my custom statusline doesn't load
 " file that defines the statusline can be found under
 " "~/.vim/plugin/statusline.vim"
 
-" }}}
-" Cursor & mouse {{{
-
-set scrolloff=999   " Keep the cursor in the middle of the window
-"set scrolloff=15    " How near the cursor can get to the top/bottom of window
-set sidescrolloff=4 " Same as above, but for side scrolling
+"set scrolloff=999   " Keep the cursor in the middle of the window
+set scrolloff=30    " How near the cursor can get to the top/bottom of window
+set sidescrolloff=10 " Same as above, but for side scrolling
 set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
@@ -620,9 +422,6 @@ augroup cursorline
 	au WinLeave,InsertEnter * set nocursorcolumn
 	au WinEnter,InsertLeave * set cursorcolumn
 augroup END
-
-" }}}
-" Windows/Split-windows {{{
 
 set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:- " Set the various fill
                                                     " characters for stuff
@@ -647,9 +446,6 @@ if (has('autocmd'))
 		au WinLeave * :wa
 	augroup End
 endif
-
-" }}}
-" Syntax highlighting {{{
 
 if (&t_Co > 2 || has('gui_running'))
 	" Switch syntax highlighting on, when the Terminal has colors
@@ -691,15 +487,7 @@ let g:solarized_italic=1
 set background=dark " Use the light/dark version the color scheme
 silent! colorscheme solarized " Set the color scheme to use, no errors allowed
 
-" }}}
-
-" }}}
-" Diff {{{
-
 set diffopt+=iwhite " Add ignorance of whitespace to diff
-
-" }}}
-" Command line auto-completion {{{
 
 set wildmenu              " Better command line auto-completion
 set wildchar=<Tab>        " Set char to trigger wild-card expansion in
@@ -711,23 +499,12 @@ set wildignore+=*.o,*.obj,.git,.svn
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.mp3
 set wildignore+=*.sw?
 
-" }}}
-" Auto-completion {{{
-
 set complete=.,w,b,t " Define how keyword auto-completion in insert mode
                      " should work
 set pumheight=15     " Max lines to show in auto-complete box
 set completeopt=longest,menuone " Settings for auto-completion
 set showfulltag      " Show whole tag, not just function name, when
                      " autocompleting by tag
-
-" }}}
-" Macros {{{
-
-" Nothing here yet...
-
-" }}}
-" File/Buffer encryption, encoding etc. {{{
 
 set key=             " Disable encryption file and buffer encryption 
 set nobomb           " Don't use BOMs (Byte Order Marks)
@@ -739,9 +516,6 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8,iso-8859-15
 setglobal fileencoding=utf-8
-
-" }}}
-" File type specific stuff {{{
 
 " Make sure Vim has autocmd support
 if (has('autocmd'))
@@ -772,9 +546,6 @@ if (has('autocmd'))
 		autocmd FileType gitcommit setlocal formatprg=par\ w72r
 	augroup END
 endif
-
-" }}}
-" Functions {{{
 
 " Motion for "next/last object" {{{
 
@@ -1039,23 +810,6 @@ nnoremap <silent> <leader>tw :call ListWrapToggle()<CR>
 
 " }}}
 
-" }}}
-" Random stuff {{{
-
 set isfname-== " Remove '=' from filename characters
-
-" }}}
-" Tips {{{
-
-" To show all help topics containing 'help'
-" :h word<CTRL-d>
-
-" To open a certain URL in Vim
-" $ vim $URL
-
-" To output the current file in HTML. It comes along with syntax highlighting.
-" :%TOhtml
-
-" }}}
 
 " vim: set nowrap fdm={{{,}}}
