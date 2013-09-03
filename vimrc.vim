@@ -1,30 +1,15 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+" ==============
+" Basic settings
+" ==============
 
+set nocompatible
 set hidden
-set viewoptions=unix,slash
-set modeline   " Allow file specific Vim settings
-set viminfo+=! " Keep global uppercase variables
-set noesckeys
+set modeline
+set viminfo+=!
 
 " http://twitter.com/mbadran/status/111011179907915776
 set clipboard+=unnamed
 set clipboard+=unnamedplus
-
-if (has('autocmd'))
-	augroup VimReload
-		autocmd!
-		autocmd BufWritePost $MYVIMRC source $MYVIMRC
-		autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
-	augroup END
-
-	augroup StatuslineReload
-		autocmd!
-		autocmd BufWritePost ~/.vim/plugin/statusline.vim source
-			\ ~/.vim/plugin/statusline.vim
-	augroup END
-endif
 
 " http://crumbtrail.chesmart.in/post/5024677985/man-vim-dude
 runtime! ftplugin/man.vim
@@ -33,6 +18,10 @@ runtime! ftplugin/man.vim
 if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
   runtime! macros/matchit.vim
 endif
+
+" ======
+" Vundle
+" ======
 
 " Set the filetype stuff to off, required for Vundle
 filetype plugin indent off
@@ -43,7 +32,6 @@ call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
 " Let Vundle handle itself as a bundle, REQUIRED!
 Bundle 'gmarik/vundle'
 
-" General
 Bundle 'chip/vim-fat-finger'
 Bundle 'chreekat/vim-paren-crosshairs'
 Bundle 'drmikehenry/vim-fixkey'
@@ -53,7 +41,8 @@ Bundle 'kien/ctrlp.vim'
 "---------------TRYING OUT
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'matze/vim-move'
-Bundle "mikewest/vimroom"
+Bundle 'mikewest/vimroom'
+Bundle 'rhysd/clever-f.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/vitality.vim'
 Bundle 'svermeulen/vim-easyclip'
@@ -67,10 +56,11 @@ Bundle 'tpope/vim-surround'
 Bundle 'troydm/easybuffer.vim'
 Bundle 'zhaocai/GoldenView.Vim'
 
-" Syntax files
+Bundle 'AndrewRadev/vim-eco'
 Bundle 'cakebaker/scss-syntax.vim'
 "Bundle 'groenewege/vim-less'
 Bundle 'jelera/vim-javascript-syntax'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'kloppster/Wordpress-Vim-Syntax'
 Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'olivierverdier/python-syntax.vim'
@@ -81,27 +71,29 @@ Bundle 'tpope/vim-markdown'
 "Bundle 'wavded/vim-stylus'
 Bundle 'zaiste/tmux.vim'
 
-" Language specific bundles
 Bundle 'gorodinskiy/vim-coloresque'
 Bundle 'gregsexton/MatchTag'
 Bundle 'mattn/emmet-vim'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'spf13/PIV'
 
-" Color schemes
 "Bundle 'chriskempson/base16-vim'
 Bundle 'Greduan/vim-colors-solarized'
 "Bundle 'molok/vim-vombato-colorscheme'
 "Bundle 'nanotech/jellybeans.vim'
 "Bundle 'tomasr/molokai'
 
-" vim-scripts repos
 Bundle 'Conque-Shell'
 Bundle 'IndexedSearch'
 "Bundle 'restore_view.vim'
 Bundle 'sessionman.vim'
 
-" Bundle settings {{{
+" Set the filetype stuff to on, no longer required off
+filetype plugin indent on
+
+" ===============
+" Bundle settings
+" ===============
 
 " vim-move {{{
 let g:move_key_modifier='S'
@@ -125,24 +117,6 @@ let g:neocomplcache_enable_at_startup=1 " Enable at startup
 let g:TodoExplicitCommentsEnabled=1 " Enable explicit comments
 hi! link TodoItemAdditionalText TodoItem
 " }}}
-" Git Branch Info {{{
-let g:git_branch_status_text=' ' " Add a space before info
-let g:git_branch_status_head_current=1 " Only show current branch
-let g:git_branch_status_nogit='' " Message when there's no Git repo
-let g:git_branch_status_around='()' " Enclose the branch in between these
-let g:git_branch_file_based=1 " Check the file for info, instead of directory
-" }}}
-" MiniBufExplorer {{{
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplUseSingleClick=1
-let g:miniBufExplForceSyntaxEnable=1
-" }}}
-" numbertoggle {{{
-let g:numbertoggle_defaultmodeoff='number'
-let g:NumberToggleOff='<leader>tnO'
-let g:NumberToggleTrigger='<leader>tn'
-let g:NumberToggleOn='<leader>tno'
-" }}}
 " Vitality.vim {{{
 if (!has('gui_running'))
 	let g:vitality_always_assume_iterm=1
@@ -150,11 +124,11 @@ if (!has('gui_running'))
 endif
 " }}}
 
-" }}}
+" ===================
+" Search and matching
+" ===================
 
-" Set the filetype stuff to on, no longer required off
-filetype plugin indent on
-
+set iskeyword+=-    " Add '-' as a keyword
 set wrapscan     " Set the search scan to wrap around to the top of the file
 set ignorecase   " Set search scan to ignore case when search is all lowercase
 set smartcase    " But recognize uppercase if it is specified
@@ -168,11 +142,8 @@ set showcmd      " Show the current command in the lower right corner
 set magic        " Allow use of regular expressions in the search scans
 
 if (&t_Co > 2 || has('gui_running'))
-	set hls " Enable the highlighting of the search
+	set hls
 endif
-
-" Highlight VCS conflict markers
-" match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 if (has('win32') || has('win64'))
 	" This is for Windows/cygwin and to add -H.
@@ -194,13 +165,18 @@ if (use_ack != 0)
 	endif
 endif
 
-set noexpandtab   " Make sure that every file uses real tabs, not spaces
-set shiftround    " Round indent to multiple of 'shiftwidth'
-set backspace=indent,eol,start " Backspace over everything in insert mode
-set smartindent   " Do smart indenting when starting a new line
-set autoindent    " Copy indent from current line, over to the new line
 set fo=vt         " Set the format options ('formatoptions')
 set nojoinspaces  " :h joinspaces
+
+" ===========
+" Indentation
+" ===========
+
+set backspace=indent,eol,start " Backspace over everything in insert mode
+set noexpandtab   " Make sure that every file uses real tabs, not spaces
+set shiftround    " Round indent to multiple of 'shiftwidth'
+set smartindent   " Do smart indenting when starting a new line
+set autoindent    " Copy indent from current line, over to the new line
 
 " Set the tab width
 let s:tabwidth=4
@@ -208,18 +184,56 @@ exec 'set tabstop='    .s:tabwidth
 exec 'set softtabstop='.s:tabwidth
 exec 'set shiftwidth=' .s:tabwidth
 
-if (has('autocmd'))
-	augroup par_settings
-		autocmd!
-		autocmd FileType text setlocal formatprg=par\ w79r
-		autocmd FileType gitcommit setlocal formatprg=par\ w72r
-	augroup END
-endif
+" ================
+" Command settings
+" ================
 
 set cpoptions+=$    " Default but put a '$' at the end of motion string
-set iskeyword+=-    " Add '-' as a keyword
 
-set timeout         " Do time out on mappings and others
+" =======
+" History
+" =======
+
+set history=1000 " Keep {num} entries in the command history
+
+" =====================
+" Backup and undo files
+" =====================
+
+set backup     " Enable backup files
+set swapfile   " Use a swap file in current buffer
+set nowb       " Write backup before saving
+set backupdir=~/.vim/tmpdir
+set directory=~/.vim/tmpdir
+if (!isdirectory(expand(&backupdir)))
+	call mkdir(expand(&backupdir), 'p')
+endif
+
+if (has('persistent_undo'))
+	set undofile
+	set undodir=~/.vim/undodir
+	if (!isdirectory(expand(&undodir)))
+		call mkdir(expand(&undodir), 'p')
+	endif
+endif
+
+" =====
+" Folds
+" =====
+
+set foldenable        " Make sure folding is enabled
+set foldmethod=marker " Use manual markers for folds
+set foldlevelstart=0  " Always close folds when switching buffers
+
+" These commands open, or can open folds
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+
+" ========================
+" Mappings and re-mappings
+" ========================
+
+set noesckeys
+set timeout
 
 " https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
 set ttimeoutlen=2000
@@ -229,45 +243,7 @@ augroup FastEscape
 	au InsertLeave * set timeoutlen=2000
 augroup END
 
-set cmdheight=2 " Make the command input line two lines high
-set shellslash  " Set to use forward slash, in case you're in Windows
-set showmode    " Always show the current mode
-set showcmd     " Show (partial) command in the last line of screen
-set report=0    " Report this or greater number of changes
-
-set history=1000 " Keep {num} entries in the command history
-
-set backup     " Enable backup files
-set swapfile   " Use a swap file in current buffer
-set nowb       " Write backup before saving
-
-" Set backup directory
-set backupdir=~/.vim/tmpdir
-set directory=~/.vim/tmpdir
-
-" Create backup directory if it doesn't exist
-if (!isdirectory(expand(&backupdir)))
-	call mkdir(expand(&backupdir), 'p')
-endif
-
-if (has('persistent_undo'))
-	set undofile " Enable persistent undo
-
-	" Set persistent undo directory
-	set undodir=~/.vim/undodir
-	" Create undo directory if it doesn't exist
-	if (!isdirectory(expand(&undodir)))
-		call mkdir(expand(&undodir), 'p')
-	endif
-endif
-
-set foldenable        " Make sure folding is enabled
-set foldmethod=marker " Use manual markers for folds
-set foldlevelstart=0  " Always close folds when switching buffers
-
-" These commands open, or can open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
-
+no <F1> <esc>
 let mapleader=','
 let maplocalLeader = '\\'
 
@@ -288,8 +264,12 @@ no <up> <NOP>
 no <down> <NOP>
 no <left> <NOP>
 no <right> <NOP>
+ino <up> <NOP>
+ino <down> <NOP>
+ino <left> <NOP>
+ino <right> <NOP>
 
-" Fix moving line by line in the paragraph, when soft wrap is on
+" Fix moving line by line in a paragraph when soft wrap is on
 nn j gj
 nn k gk
 vn j gj
@@ -300,9 +280,6 @@ nn <C-j> <C-w>j
 nn <C-k> <C-w>k
 nn <C-h> <C-w>h
 nn <C-l> <C-w>l
-
-" Makes it easy to clear out a search, by typing ',<space>'
-nn <leader><space> :noh<CR>
 
 " Same as *, but doesn't move the cursor, only highlights
 " http://twitter.com/dmedvinsky/status/109304047206547456
@@ -315,15 +292,13 @@ no <leader>p :set paste<CR>:put  *<CR>:set nopaste<cCR>
 " http://twitter.com/dotvimrc/status/129979569045381120
 nn <leader>z zMzvzz
 
-" Use capital H/L to first/last non-whitespace character
 " http://twitter.com/dotvimrc/status/132489424494792704
 no H ^
 no L g_
 
-" Call Preserve() and delete any trailing white space in buffer
+" Clean trailing white space
 nn <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
-" Make window controls easy
 nn <leader>w <C-w>
 
 " Better help tags navigation (IMO)
@@ -334,16 +309,11 @@ nn <C-S-Left>  <C-t>
 vn > >gv
 vn < <gv
 
-" Select (charwise) the contents of the current line, excluding indentation
-" http://twitter.com/dotvimrc/status/155748943001694208
-nn vv ^vg_
-
 " Fix the '&' command in normal and visual modes
 " https://github.com/nelstrom/dotfiles/blob/d245b5cf67/vimrc#L99-L101
 nn & :&&<CR>
 xn & :&&<CR>
 
-" Make 'Y' behave like 'D' and 'C'
 " https://github.com/blueyed/dotfiles/blob/4407ba7905/vimrc#L1129-L1131
 nn Y y$
 xn Y y$
@@ -355,55 +325,34 @@ nn <C-y> 3<C-y>
 " Allow change of theme from light to dark and vice-versa, with a hotkey
 call togglebg#map('<F5>')
 
-" Disable pressing 'F1' for help, and set it equal to Escape
-no <F1> <esc>
 
-" For Latin American layout and similar
 nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
-" http://vim.wikia.com/wiki/Insert-mode_only_Caps_Lock
+nn <leader>b :CtrlP<CR>
+nn <leader>B :CtrlPBuffer<CR>
 
-" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z
-for c in range(char2nr('A'), char2nr('Z'))
-  execute 'ln '.nr2char(c+32).' '.nr2char(c)
-  execute 'ln '.nr2char(c).' '.nr2char(c+32)
-endfor
+" ==============
+" Screen drawing
+" ==============
 
-" Kill the capslock when leaving insert mode
-autocmd InsertLeave * set iminsert=0
-
-" Use <F6> instead of <C-^> for toggleing CAPS lock
-no <F6> :let &l:imi = !&l:imi<CR>
-ino <F6> <C-o>:let &l:imi = !&l:imi<CR>
-cno <F6> <C-^>
-
-" Enable list by default, but set it's options for when it is used
+set cmdheight=2 " Make the command input line two lines high
+set shellslash  " Set to use forward slash, in case you're in Windows
+set showmode    " Always show the current mode
+set showcmd     " Show (partial) command in the last line of screen
+set report=0    " Report this or greater number of changes
 set list                            " Show hidden characters
 set listchars=tab:\|\ ,eol:$,trail:_ " Set chars to use for 'list'
-
-" Disable softwrap by default, and set it's options, even if disabled
 set nowrap    " By default soft-wrap text at window border
 set linebreak " Visual linebreak at 'breakat' rather than last char in window
-set relativenumber " Relative line numbers
-
-set title          " Change Terminal's title
+set number " Line numbers
 set colorcolumn=79 " Put a marker in array of column numbers
 set shortmess=astI " :h shortmess
-
 set ttyfast     " Faster Terminal, redraws stuff quicker!
 set linespace=0 " No extra spaces between text lines
 set lazyredraw  " Don't update the display while executing macros
-
 set laststatus=2 " Always use a statusline
 set ruler        " Put a ruler, when my custom statusline doesn't load
-
-" The Vim statusline is set in a plugin that loads after the .vimrc has been
-" loaded, otherwise we can't if certain plugins exist and stuff like that. The
-" file that defines the statusline can be found under
-" "~/.vim/plugin/statusline.vim"
-
-"set scrolloff=999   " Keep the cursor in the middle of the window
 set scrolloff=30    " How near the cursor can get to the top/bottom of window
 set sidescrolloff=10 " Same as above, but for side scrolling
 set sidescroll=1    " Minimal columns to scroll horizontally
@@ -411,18 +360,11 @@ set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable mouse
 
-augroup cursorline
-	autocmd!
+" =======================
+" Window/split management
+" =======================
 
-	" Only show 'cursorline' in the current window and in normal mode
-	au WinLeave,InsertEnter * set nocursorline
-	au WinEnter,InsertLeave * set cursorline
-
-	" Only show 'cursorcolumn' in current window and in normal mode
-	au WinLeave,InsertEnter * set nocursorcolumn
-	au WinEnter,InsertLeave * set cursorcolumn
-augroup END
-
+set title          " Change Terminal's title
 set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:- " Set the various fill
                                                     " characters for stuff
 set autowrite                " When switching buffers save file automatically
@@ -434,118 +376,72 @@ set winheight=3              " Just to avoid errors, don't pay attention here
 set winminheight=3           " Minimum window height (split window)
 set winheight=10             " Height current split should have
 
-" Make sure Vim has autocmd support
-if (has('autocmd'))
-	au VimResized * :wincmd = " Resize split windows when the window is resized
-
-	" Save all buffers when Vim loses focus
-	augroup SaveAll
-		autocmd!
-
-		au FocusLost * :wa
-		au WinLeave * :wa
-	augroup End
-endif
+" ===============
+" Syntax coloring
+" ===============
 
 if (&t_Co > 2 || has('gui_running'))
-	" Switch syntax highlighting on, when the Terminal has colors
-	" Or when the GUI is being used
 	syntax on
 endif
-
-set synmaxcol=1024 " Max chars to highlight in a single, long line
-
 if (!has('gui_running'))
-	" Enable Terminal transparency
 	let g:solarized_termtrans=1
-
 	if (&t_Co >= 256 || $TERM == 'xterm-256color')
-		" Do nothing, it handles itself.
 	else
-		" Make Solarized use 16 colors for Terminal support
 		let g:solarized_termcolors=16
 	endif
 endif
 
-" Leave this at normal at all times
 let g:solarized_contrast='normal'
-
-" Non-text items visibility, normal low or high
 let g:solarized_visibility='normal'
-
-" Show trailing white spaces
 let g:solarized_hitrail=1
-
-" Disable the Solarized menu, when using GUI
 let g:solarized_menu=0
-
-" Allow Solarized to use all the styles
 let g:solarized_underline=1
 let g:solarized_bold=1
 let g:solarized_italic=1
 
-set background=dark " Use the light/dark version the color scheme
-silent! colorscheme solarized " Set the color scheme to use, no errors allowed
+set synmaxcol=1024
+set background=dark
+silent! colorscheme solarized
 
+" ====
+" Diff
+" ====
+
+set isfname-== " Remove '=' from filename characters
 set diffopt+=iwhite " Add ignorance of whitespace to diff
 
-set wildmenu              " Better command line auto-completion
-set wildchar=<Tab>        " Set char to trigger wild-card expansion in
-                          " command line
-set wildmode=list:longest " Settings for when wildchar is used
+" ===============
+" Auto-completion
+" ===============
 
-" Ignore the following stuff when expanding wildcards
+set wildmenu
+set wildchar=<Tab>
+set wildmode=list:longest
 set wildignore+=*.o,*.obj,.git,.svn
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.mp3
-set wildignore+=*.sw?
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set complete=.,w,b,t
+set pumheight=30
+set completeopt=longest,menuone
+set showfulltag
 
-set complete=.,w,b,t " Define how keyword auto-completion in insert mode
-                     " should work
-set pumheight=15     " Max lines to show in auto-complete box
-set completeopt=longest,menuone " Settings for auto-completion
-set showfulltag      " Show whole tag, not just function name, when
-                     " autocompleting by tag
+" =================================
+" File encoding, encryption and EOL
+" =================================
 
-set key=             " Disable encryption file and buffer encryption 
-set nobomb           " Don't use BOMs (Byte Order Marks)
-set ffs=unix,dos,mac " Set filetype to Unix, Windows and then Mac (Power PC)
-set endofline        " Always add a EOL to every file
-
-" Set the buffer encoding to be UTF-8
+set viewoptions=unix,slash
+set key= 
+set nobomb
+set ffs=unix,dos,mac
+set endofline
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8,iso-8859-15
 setglobal fileencoding=utf-8
 
-" Make sure Vim has autocmd support
-if (has('autocmd'))
-	" Set to use manual folds in Vim files
-	augroup filetype_vim
-		autocmd!
-		autocmd FileType vim setlocal foldmethod=marker
-	augroup END
-
-	" Specific settings for the Openbox rc.xml file
-	augroup file_openboxrc
-		autocmd!
-		autocmd BufRead rc.xml setlocal expandtab
-		autocmd BufRead rc.xml setlocal shiftwidth=2
-		autocmd BufRead rc.xml setlocal tabstop=2
-		autocmd BufRead rc.xml setlocal softtabstop=2
-	augroup END
-
-	" Some settings for fugitive.vim by Tim Pope
-	augroup fugitive
-		autocmd!
-		autocmd BufReadPost fugitive://* set bufhidden=delete
-	augroup END
-
-	augroup par_settings
-		autocmd!
-		autocmd FileType text setlocal formatprg=par\ w79r
-		autocmd FileType gitcommit setlocal formatprg=par\ w72r
-	augroup END
-endif
+" =========
+" Functions
+" =========
 
 " Motion for "next/last object" {{{
 
@@ -810,6 +706,64 @@ nnoremap <silent> <leader>tw :call ListWrapToggle()<CR>
 
 " }}}
 
-set isfname-== " Remove '=' from filename characters
+" =============
+" Auto commands
+" =============
+
+if (has('autocmd'))
+	augroup cursorline
+		autocmd!
+		" Only show 'cursorline' in the current window and in normal mode
+		au WinLeave,InsertEnter * set nocursorline
+		au WinEnter,InsertLeave * set cursorline
+		" Only show 'cursorcolumn' in current window and in normal mode
+		au WinLeave,InsertEnter * set nocursorcolumn
+		au WinEnter,InsertLeave * set cursorcolumn
+	augroup END
+
+	" Set to use manual folds in Vim files
+	augroup filetype_vim
+		autocmd!
+		autocmd FileType vim setlocal foldmethod=marker
+	augroup END
+
+	" Specific settings for the Openbox rc.xml file
+	augroup file_openboxrc
+		autocmd!
+		autocmd BufRead rc.xml setlocal expandtab
+		autocmd BufRead rc.xml setlocal shiftwidth=2
+		autocmd BufRead rc.xml setlocal tabstop=2
+		autocmd BufRead rc.xml setlocal softtabstop=2
+	augroup END
+
+	" Some settings for fugitive.vim by Tim Pope
+	augroup fugitive
+		autocmd!
+		autocmd BufReadPost fugitive://* set bufhidden=delete
+	augroup END
+
+	" Using `par` on Git commits and text files
+	augroup par_settings
+		autocmd!
+		autocmd FileType text setlocal formatprg=par\ w79r
+		autocmd FileType gitcommit setlocal formatprg=par\ w72r
+	augroup END
+
+	" Resize splits when window is resized
+	au VimResized * :wincmd =
+
+	augroup VimReload
+		autocmd!
+		autocmd BufWritePost $MYVIMRC source $MYVIMRC
+		autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
+	augroup END
+
+	augroup StatuslineReload
+		autocmd!
+		autocmd BufWritePost ~/.vim/plugin/statusline.vim source
+					\ ~/.vim/plugin/statusline.vim
+	augroup END
+endif
 
 " vim: set nowrap fdm={{{,}}}
+
