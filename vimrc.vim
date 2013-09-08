@@ -19,77 +19,83 @@ if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
   runtime! macros/matchit.vim
 endif
 
-" ======
-" Vundle
-" ======
+" =========
+" NeoBundle
+" =========
 
 " Set the filetype stuff to off, required for Vundle
 filetype plugin indent off
 
-set rtp+=~/.vim/bundle/vundle/ " Add Vundle to the list of things to load
-call vundle#rc() " Call a Vundle function... Probably loads Vundle itself
+ if has('vim_starting')
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Let Vundle handle itself as a bundle, REQUIRED!
-Bundle 'gmarik/vundle'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-Bundle 'chip/vim-fat-finger'
-Bundle 'chreekat/vim-paren-crosshairs'
-Bundle 'drmikehenry/vim-fixkey'
-Bundle "jiangmiao/auto-pairs"
-Bundle 'jszakmeister/vim-togglecursor'
-Bundle 'kien/ctrlp.vim'
+NeoBundle 'chip/vim-fat-finger'
+NeoBundle 'chreekat/vim-paren-crosshairs'
+NeoBundle 'drmikehenry/vim-fixkey'
+NeoBundle "jiangmiao/auto-pairs"
+NeoBundle 'jszakmeister/vim-togglecursor'
+"NeoBundle 'kien/ctrlp.vim'
 "---------------TRYING OUT
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'matze/vim-move'
-Bundle 'mikewest/vimroom'
-Bundle 'rhysd/clever-f.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'sjl/vitality.vim'
-Bundle 'svermeulen/vim-easyclip'
-Bundle 'takac/vim-commandcaps'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'troydm/easybuffer.vim'
-Bundle 'zhaocai/GoldenView.Vim'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'matze/vim-move'
+NeoBundle 'mikewest/vimroom'
+NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'sjl/vitality.vim'
+NeoBundle 'svermeulen/vim-easyclip'
+"NeoBundle 'takac/vim-commandcaps'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'troydm/easybuffer.vim'
+"NeoBundle 'zhaocai/GoldenView.Vim'
 
-Bundle 'AndrewRadev/vim-eco'
-Bundle 'cakebaker/scss-syntax.vim'
-"Bundle 'groenewege/vim-less'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'kloppster/Wordpress-Vim-Syntax'
-Bundle 'mutewinter/vim-css3-syntax'
-Bundle 'olivierverdier/python-syntax.vim'
-Bundle 'othree/html5.vim'
-Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-markdown'
-"Bundle 'wavded/vim-stylus'
-Bundle 'zaiste/tmux.vim'
+NeoBundle 'AndrewRadev/vim-eco'
+NeoBundle 'cakebaker/scss-syntax.vim'
+"NeoBundle 'groenewege/vim-less'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'kloppster/Wordpress-Vim-Syntax'
+NeoBundle 'mutewinter/vim-css3-syntax'
+"NeoBundle 'olivierverdier/python-syntax.vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'tpope/vim-git'
+NeoBundle 'tpope/vim-markdown'
+"NeoBundle 'wavded/vim-stylus'
+NeoBundle 'zaiste/tmux.vim'
 
-Bundle 'gorodinskiy/vim-coloresque'
-Bundle 'gregsexton/MatchTag'
-Bundle 'mattn/emmet-vim'
-Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'spf13/PIV'
+NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'gregsexton/MatchTag'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'nelstrom/vim-markdown-folding'
+NeoBundle 'spf13/PIV'
 
-"Bundle 'chriskempson/base16-vim'
-Bundle 'Greduan/vim-colors-solarized'
-"Bundle 'molok/vim-vombato-colorscheme'
-"Bundle 'nanotech/jellybeans.vim'
-"Bundle 'tomasr/molokai'
+"NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'Greduan/vim-colors-solarized'
+"NeoBundle 'molok/vim-vombato-colorscheme'
+"NeoBundle 'nanotech/jellybeans.vim'
+"NeoBundle 'tomasr/molokai'
 
-Bundle 'Conque-Shell'
-Bundle 'IndexedSearch'
-"Bundle 'restore_view.vim'
-Bundle 'sessionman.vim'
+NeoBundle 'Conque-Shell'
+NeoBundle 'IndexedSearch'
+"NeoBundle 'restore_view.vim'
+NeoBundle 'sessionman.vim'
 
 " Set the filetype stuff to on, no longer required off
 filetype plugin indent on
+
+" Installation check
+NeoBundleCheck
 
 " ===============
 " Bundle settings
@@ -137,7 +143,7 @@ set noerrorbells " Enable use of (visual) error bells
 set incsearch    " Show results of search scan as it finds them
 set noshowmatch  " Disable show match, using matchparen instead
 " Set the match pairs for matchparen
-set matchpairs=(:),{:},[:],':',":",<:>
+set matchpairs=(:),{:},[:],':',":"
 set showcmd      " Show the current command in the lower right corner
 set magic        " Allow use of regular expressions in the search scans
 
@@ -329,8 +335,8 @@ call togglebg#map('<F5>')
 nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
-nn <leader>b :CtrlP<CR>
-nn <leader>B :CtrlPBuffer<CR>
+nn <leader>b :NERDTreeToggle<CR>
+nn <leader>B :EasyBuffer<CR>
 
 " ==============
 " Screen drawing
@@ -346,6 +352,7 @@ set listchars=tab:\|\ ,eol:$,trail:_ " Set chars to use for 'list'
 set nowrap    " By default soft-wrap text at window border
 set linebreak " Visual linebreak at 'breakat' rather than last char in window
 set number " Line numbers
+set relativenumber
 set colorcolumn=79 " Put a marker in array of column numbers
 set shortmess=astI " :h shortmess
 set ttyfast     " Faster Terminal, redraws stuff quicker!
@@ -372,9 +379,9 @@ set autoread                 " Auto read files when edited outside Vim
 set tabpagemax=1             " Max tabs to open with the '-p' option
 set showtabline=0            " Don't show the Vim tab line
 set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
-set winheight=3              " Just to avoid errors, don't pay attention here
-set winminheight=3           " Minimum window height (split window)
-set winheight=10             " Height current split should have
+" set winheight=3              " Just to avoid errors, don't pay attention here
+" set winminheight=3           " Minimum window height (split window)
+" set winheight=10             " Height current split should have
 
 " ===============
 " Syntax coloring
@@ -752,11 +759,11 @@ if (has('autocmd'))
 	" Resize splits when window is resized
 	au VimResized * :wincmd =
 
-	augroup VimReload
-		autocmd!
-		autocmd BufWritePost $MYVIMRC source $MYVIMRC
-		autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
-	augroup END
+	" augroup VimReload
+	" 	autocmd!
+	" 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+	" 	autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
+	" augroup END
 
 	augroup StatuslineReload
 		autocmd!
