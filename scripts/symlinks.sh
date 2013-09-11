@@ -17,13 +17,13 @@ if [ `uname -s` == 'Linux' ]; then
 	symlink xbindkeysrc.txt    .xbindkeysrc
 	symlink xinitrc.txt        .xinitrc
 fi
+symlink bin            bin
 symlink gitmessage.txt .gitmessage.txt
 symlink zsh            .zsh
 symlink zshrc          .zshrc
 symlink profile        .profile
 symlink tmux.conf      .tmux.conf
 symlink vim            .vim
-symlink gvimrc.vim     .gvimrc
 symlink vimrc.vim      .vimrc
 symlink editorconfig   .editorconfig
 
@@ -32,12 +32,4 @@ if [ `uname -s` == 'Linux' ]; then
 	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3 $HOME/.config/sublime-text-3
 elif [ `uname -s` == 'Darwin' ]; then
 	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3 $HOME/Library/Application\ Support/Sublime\ Text\ 3
-fi
-
-# My own commands
-if [ `uname -s` == 'Linux' ]; then
-	sudo ln -fsv $HOME/dotfiles/bin/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
-	#sudo ln -fsv $HOME/dotfiles/bin/feh_browser.sh       /usr/local/bin/feh_browser
-elif [ `uname -s` == 'Darwin' ]; then
-	# Gotta do stuff here...
 fi

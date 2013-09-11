@@ -17,7 +17,7 @@ fi
 # Utilities
 brew install par
 brew install figlet
-git clone https://github.com/drbunsen/formd.git ~/bin
+#git clone https://github.com/drbunsen/formd.git ~/bin/formd
 #brew install ack
 #brew install the_silver_searcher
 #brew install hub

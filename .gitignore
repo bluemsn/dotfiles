@@ -19,9 +19,8 @@ Thumbs.db
 .directory
 
 # Vim stuff
-vim/bundle/Vimpress/custom/configs.vim
-vim/custom/configs.vim
 vim/bundle/
+vim/autoload/pathogen.vim
 vim/undodir/
 vim/tmpdir/
 

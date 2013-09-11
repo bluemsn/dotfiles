@@ -19,115 +19,16 @@ if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
   runtime! macros/matchit.vim
 endif
 
-" =========
-" NeoBundle
-" =========
+" ===========================
+" Pathogen and plugin settings
+" ===========================
 
-" Set the filetype stuff to off, required for Vundle
-filetype plugin indent off
-
- if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-" Let Vundle handle itself as a bundle, REQUIRED!
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'chip/vim-fat-finger'
-NeoBundle 'chreekat/vim-paren-crosshairs'
-NeoBundle 'drmikehenry/vim-fixkey'
-NeoBundle "jiangmiao/auto-pairs"
-NeoBundle 'jszakmeister/vim-togglecursor'
-"NeoBundle 'kien/ctrlp.vim'
-"---------------TRYING OUT
-NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'matze/vim-move'
-NeoBundle 'mikewest/vimroom'
-NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'sjl/vitality.vim'
-NeoBundle 'svermeulen/vim-easyclip'
-"NeoBundle 'takac/vim-commandcaps'
-NeoBundle 'tpope/vim-abolish'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-eunuch'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'troydm/easybuffer.vim'
-"NeoBundle 'zhaocai/GoldenView.Vim'
-
-NeoBundle 'AndrewRadev/vim-eco'
-NeoBundle 'cakebaker/scss-syntax.vim'
-"NeoBundle 'groenewege/vim-less'
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'kloppster/Wordpress-Vim-Syntax'
-NeoBundle 'mutewinter/vim-css3-syntax'
-"NeoBundle 'olivierverdier/python-syntax.vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'tpope/vim-git'
-NeoBundle 'tpope/vim-markdown'
-"NeoBundle 'wavded/vim-stylus'
-NeoBundle 'zaiste/tmux.vim'
-
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'gregsexton/MatchTag'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'nelstrom/vim-markdown-folding'
-NeoBundle 'spf13/PIV'
-
-"NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'Greduan/vim-colors-solarized'
-"NeoBundle 'molok/vim-vombato-colorscheme'
-"NeoBundle 'nanotech/jellybeans.vim'
-"NeoBundle 'tomasr/molokai'
-
-NeoBundle 'Conque-Shell'
-NeoBundle 'IndexedSearch'
-"NeoBundle 'restore_view.vim'
-NeoBundle 'sessionman.vim'
-
-" Set the filetype stuff to on, no longer required off
+" Execute Pathogen
+execute pathogen#infect()
 filetype plugin indent on
 
-" Installation check
-NeoBundleCheck
-
-" ===============
-" Bundle settings
-" ===============
-
-" vim-move {{{
-let g:move_key_modifier='S'
-" }}}
-" togglecursor {{{
-let g:togglecursor_default='block' " Cursor for everything except insert mode
-let g:togglecursor_insert='line' " Cursor for insert mode
-let g:togglecursor_leave='block' " Cursor to set when leaving Vim
-" }}}
-" Indent Guides {{{
-let g:indent_guides_color_change_percent=5 " % at which to change lightness
-let g:indent_guides_guide_size=1 " Set width of marker to one wide
-let g:indent_guides_start_level=1 " Level at which to start highlighting
-let g:indent_guides_space_guides=1 " Make sure to recognize space tabs
-let g:indent_guides_enable_on_vim_startup=1 " Load bundle at startup
-" }}}
-" neocomplcache {{{
-let g:neocomplcache_enable_at_startup=1 " Enable at startup
-" }}}
-" todo.vim {{{
-let g:TodoExplicitCommentsEnabled=1 " Enable explicit comments
-hi! link TodoItemAdditionalText TodoItem
-" }}}
 " Vitality.vim {{{
-if (!has('gui_running'))
-	let g:vitality_always_assume_iterm=1
-	let g:vitality_fix_cursor=0
-endif
+let g:vitality_fix_cursor=0
 " }}}
 
 " ===================
@@ -256,15 +157,6 @@ let maplocalLeader = '\\'
 nn <C-e> ,
 vn <C-e> ,
 
-nn <silent> <leader>eev :e $MYVIMRC<CR>
-nn <silent> <leader>ev :sp $MYVIMRC<CR>
-nn <silent> <leader>eeg :e $MYGVIMRC<CR>
-nn <silent> <leader>eg :sp $MYGVIMRC<CR>
-nn <silent> <leader>ees :e ~/.vim/plugin/statusline.vim<CR>
-nn <silent> <leader>es :sp ~/.vim/plugin/statusline.vim<CR>
-nn <silent> <leader>eec :e ~/.vim/plugin/tmux_navigator.vim<CR>
-nn <silent> <leader>ec :sp ~/.vim/plugin/tmux_navigator.vim<CR>
-
 " Completely disable the use of the arrow keys in command and visual modes
 no <up> <NOP>
 no <down> <NOP>
@@ -366,6 +258,7 @@ set sidescroll=1    " Minimal columns to scroll horizontally
 set virtualedit=all " Allow the cursor to go to invalid places
 set mousehide       " Hide the mouse pointer while typing
 set mouse=          " Disable mouse
+set statusline=%n:%t\ %m%r%w%<%=[L%l/%L\ C%c-%v]\ (%p%%)
 
 " =======================
 " Window/split management
