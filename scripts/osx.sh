@@ -1,19 +1,7 @@
 #!/usr/bin/zsh
-# =============================================================================
-# set_osx_defaults.sh
-# -----------------------------------------------------------------------------
-# This file will set stuff like I like it in Mac OS X, like show hidden files
-# and other useful and important stuff.
-#
-# Thanks to the legendary @mathiasbynens:
-# https://github.com/mathiasbynens/dotfiles/blob/master/.osx
-#
-# I literally did copy paste of his file, and added my own settings, and
-# removed those of his that I didn't like.
-# =============================================================================
-# Eduan Lavaque <eduan@snapsimpletech.com>
-# Licensed under the MIT license (htpp://eduan.mit-license.org/2012-2013)
-# =============================================================================
+# osx.sh by Eduan Lavaque <eduanlavaque@gmail.com>
+# Licensed under the MIT license (http://eduan.mit-license.org/)
+# Original file: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
 # Ask for the root/administrator password upfront
 sudo -v

@@ -1,3 +1,7 @@
+#!/usr/bin/zsh
+# vim.sh by Eduan Lavaque <eduanlavaque@gmail.com>
+# Licensed under the MIT license (http://eduan.mit-license.org/)
+
 # Make folders for Pathogen
 mkdir -p ~/.vim/autoload ~/.vim/bundle
 

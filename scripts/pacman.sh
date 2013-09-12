@@ -1,14 +1,6 @@
 #!/usr/bin/zsh
-# =============================================================================
-# setup_archlinux.sh
-# -----------------------------------------------------------------------------
-# This file is meant to install stuff that doesn't come pre-installed with Arch
-# Linux, but that you do need. Also stuff that you didn't install during the
-# setup process...
-# =============================================================================
-# Eduan Lavaque <eduan@snapsimpletech.com>
+# pacman.sh by Eduan Lavaque <eduanlavaque@gmail.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
-# =============================================================================
 
 # DRIVERS / HARDWARE
 

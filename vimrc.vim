@@ -35,18 +35,19 @@ let g:vitality_fix_cursor=0
 " Search and matching
 " ===================
 
-set iskeyword+=-    " Add '-' as a keyword
-set wrapscan     " Set the search scan to wrap around to the top of the file
-set ignorecase   " Set search scan to ignore case when search is all lowercase
-set smartcase    " But recognize uppercase if it is specified
-set novisualbell " Set to use visual bell --  the beeping sucks!
-set noerrorbells " Enable use of (visual) error bells
-set incsearch    " Show results of search scan as it finds them
-set noshowmatch  " Disable show match, using matchparen instead
-" Set the match pairs for matchparen
+set iskeyword+=-
+set wrapscan
+set ignorecase
+set smartcase
+set novisualbell
+set noerrorbells
+set incsearch
+set noshowmatch
 set matchpairs=(:),{:},[:],':',":"
-set showcmd      " Show the current command in the lower right corner
-set magic        " Allow use of regular expressions in the search scans
+set showcmd
+set magic
+set formatoptions=vt
+set nojoinspaces
 
 if (&t_Co > 2 || has('gui_running'))
 	set hls
@@ -58,34 +59,16 @@ if (has('win32') || has('win64'))
 	set grepprg=grep\ -nH\ $*\ /dev/null
 endif
 
-" Set this to 1 if you want to use Ack instead of Grep, or ag instead of Ack
-let use_ack=0
-let use_ag=0
-
-" Check if I want to use Ack
-if (use_ack != 0)
-	" Use Ack instead of Grep when available
-	if (executable('ack'))
-		set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
-	elseif (executable('ack-grep'))
-		set grepprg=ack-grep\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
-	endif
-endif
-
-set fo=vt         " Set the format options ('formatoptions')
-set nojoinspaces  " :h joinspaces
-
 " ===========
 " Indentation
 " ===========
 
-set backspace=indent,eol,start " Backspace over everything in insert mode
-set noexpandtab   " Make sure that every file uses real tabs, not spaces
-set shiftround    " Round indent to multiple of 'shiftwidth'
-set smartindent   " Do smart indenting when starting a new line
-set autoindent    " Copy indent from current line, over to the new line
+set backspace=indent,eol,start
+set noexpandtab
+set shiftround
+set smartindent
+set autoindent
 
-" Set the tab width
 let s:tabwidth=4
 exec 'set tabstop='    .s:tabwidth
 exec 'set softtabstop='.s:tabwidth
@@ -95,21 +78,21 @@ exec 'set shiftwidth=' .s:tabwidth
 " Command settings
 " ================
 
-set cpoptions+=$    " Default but put a '$' at the end of motion string
+set cpoptions+=$
 
 " =======
 " History
 " =======
 
-set history=1000 " Keep {num} entries in the command history
+set history=1000
 
 " =====================
 " Backup and undo files
 " =====================
 
-set backup     " Enable backup files
-set swapfile   " Use a swap file in current buffer
-set nowb       " Write backup before saving
+set backup
+set swapfile
+set nowritebackup
 set backupdir=~/.vim/tmpdir
 set directory=~/.vim/tmpdir
 if (!isdirectory(expand(&backupdir)))
@@ -128,11 +111,9 @@ endif
 " Folds
 " =====
 
-set foldenable        " Make sure folding is enabled
-set foldmethod=marker " Use manual markers for folds
-set foldlevelstart=0  " Always close folds when switching buffers
-
-" These commands open, or can open folds
+set foldenable
+set foldmethod=marker
+set foldlevelstart=0
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " ========================
@@ -173,31 +154,17 @@ nn k gk
 vn j gj
 vn k gk
 
-" Smart way to move between windows, uses 'Ctrl+hjkl' instead of 'Ctrl+w+hjkl'
+" Smart way to move between windows
 nn <C-j> <C-w>j
 nn <C-k> <C-w>k
 nn <C-h> <C-w>h
 nn <C-l> <C-w>l
 
-" Same as *, but doesn't move the cursor, only highlights
 " http://twitter.com/dmedvinsky/status/109304047206547456
 nn <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
 
 " Preserve indentation while pasting text from the OS X clipboard
-no <leader>p :set paste<CR>:put  *<CR>:set nopaste<cCR>
-
-" Use ',z' to focus current fold, closing every other fold in the process
-" http://twitter.com/dotvimrc/status/129979569045381120
-nn <leader>z zMzvzz
-
-" http://twitter.com/dotvimrc/status/132489424494792704
-no H ^
-no L g_
-
-" Clean trailing white space
-nn <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
-
-nn <leader>w <C-w>
+no <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " Better help tags navigation (IMO)
 nn <C-S-Right> <C-]>
@@ -234,47 +201,43 @@ nn <leader>B :EasyBuffer<CR>
 " Screen drawing
 " ==============
 
-set cmdheight=2 " Make the command input line two lines high
-set shellslash  " Set to use forward slash, in case you're in Windows
-set showmode    " Always show the current mode
-set showcmd     " Show (partial) command in the last line of screen
-set report=0    " Report this or greater number of changes
-set list                            " Show hidden characters
-set listchars=tab:\|\ ,eol:$,trail:_ " Set chars to use for 'list'
-set nowrap    " By default soft-wrap text at window border
-set linebreak " Visual linebreak at 'breakat' rather than last char in window
-set number " Line numbers
+set cmdheight=2
+set shellslash
+set showmode
+set showcmd
+set report=0
+set list
+set listchars=tab:\|\ ,eol:$,trail:_
+set nowrap
+set linebreak
+set number
 set relativenumber
-set colorcolumn=79 " Put a marker in array of column numbers
-set shortmess=astI " :h shortmess
-set ttyfast     " Faster Terminal, redraws stuff quicker!
-set linespace=0 " No extra spaces between text lines
-set lazyredraw  " Don't update the display while executing macros
-set laststatus=2 " Always use a statusline
-set ruler        " Put a ruler, when my custom statusline doesn't load
-set scrolloff=30    " How near the cursor can get to the top/bottom of window
-set sidescrolloff=10 " Same as above, but for side scrolling
-set sidescroll=1    " Minimal columns to scroll horizontally
-set virtualedit=all " Allow the cursor to go to invalid places
-set mousehide       " Hide the mouse pointer while typing
-set mouse=          " Disable mouse
-set statusline=%n:%t\ %m%r%w%<%=[L%l/%L\ C%c-%v]\ (%p%%)
+set colorcolumn=79
+set shortmess=astI
+set ttyfast
+set linespace=0
+set lazyredraw
+set laststatus=2
+set scrolloff=30
+set sidescrolloff=10
+set sidescroll=1
+set virtualedit=all
+set mousehide
+set mouse=
+set ruler
+set statusline=%n:[%t]\ %m%r%w%<%=[L%l/%L\ C%c-%v]\ (%p%%)
 
 " =======================
 " Window/split management
 " =======================
 
-set title          " Change Terminal's title
-set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:- " Set the various fill
-                                                    " characters for stuff
-set autowrite                " When switching buffers save file automatically
-set autoread                 " Auto read files when edited outside Vim
-set tabpagemax=1             " Max tabs to open with the '-p' option
-set showtabline=0            " Don't show the Vim tab line
-set switchbuf=useopen,usetab " Switch to tab/window if buffer is already open
-" set winheight=3              " Just to avoid errors, don't pay attention here
-" set winminheight=3           " Minimum window height (split window)
-" set winheight=10             " Height current split should have
+set title
+set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
+set autowrite
+set autoread
+set tabpagemax=1
+set showtabline=0
+set switchbuf=useopen,usetab
 
 " ===============
 " Syntax coloring
@@ -330,7 +293,7 @@ set showfulltag
 " =================================
 
 set viewoptions=unix,slash
-set key= 
+set key=
 set nobomb
 set ffs=unix,dos,mac
 set endofline
@@ -482,38 +445,6 @@ function! s:NextTextObject(motion, dir)
 endfunction
 
 " }}}
-" Numbers {{{
-
-" Motion for numbers. Great for CSS. Lets you do things like this:
-"
-" margin-top: 200px; -> daN -> margin-top: px;
-"              ^                          ^
-" TODO: Handle floats.
-
-onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
-
-function! s:NumberTextObject(whole)
-	normal! v
-	
-	while getline('.')[col('.')] =~# '\v[0-9]'
-		normal! l
-	endwhile
-	
-	if a:whole
-		normal! o
-	
-		while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-			normal! h
-		endwhile
-	endif
-endfunction
-
-" }}}
 " Add a "number" motion object {{{
 
 " Add's a number as a text object, so from '#123456' the number is everything
@@ -531,14 +462,11 @@ xnoremap iN :<c-u>call <SID>NumberTextObject(1)<CR>
 
 function! s:NumberTextObject(whole)
 	normal! v
-
 	while getline('.')[col('.')] =~# '\v[0-9]'
 		normal! l
 	endwhile
-
 	if a:whole
 		normal! o
-
 		while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
 			normal! h
 		endwhile
@@ -562,24 +490,6 @@ function! <SID>SynStack()
 endfunc
 
 nnoremap <C-S-p> :call <SID>SynStack()<CR>
-
-" }}}
-" Preserve() {{{
-
-" I got this one from here:
-" http://vimcasts.org/episodes/tidying-whitespace/
-
-function! Preserve(command)
-	" Preparation: save last search, and cursor position.
-	let _s=@/
-	let l = line(".")
-	let c = col(".")
-	" Do the business:
-	execute a:command
-	" Clean up: restore previous search history, and cursor position
-	let @/=_s
-	call cursor(l, c)
-endfunction
 
 " }}}
 " ListWrapToggle() {{{

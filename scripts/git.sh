@@ -1,12 +1,6 @@
 #!/usr/bin/zsh
-# =============================================================================
-# setup_git.sh
-# -----------------------------------------------------------------------------
-# Sets up Git for first use.
-# =============================================================================
-# Eduan Lavaque <eduan@snapsimpletech.com>
-# Licensed under the MIT license (http://eduan.mit-license.org)
-# =============================================================================
+# git.sh by Eduan Lavaque <eduanlavaque@gmail.com>
+# Licensed under the MIT license (http://eduan.mit-license.org/)
 
 # Setup Git username
 git config --global user.name "Greduan"

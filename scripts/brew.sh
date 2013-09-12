@@ -1,12 +1,6 @@
 #!/usr/bin/zsh
-# =============================================================================
-# brew_installs.sh
-# -----------------------------------------------------------------------------
-# This file will automatically install some important stuff using Homebrew.
-# =============================================================================
-# Eduan Lavaque <eduan@snapsimpletech.com>
-# Licensed under the MIT license (http://eduan.mit-license.org/2012-2013)
-# =============================================================================
+# brew.sh by Eduan Lavaque <eduanlavaque@gmail.com>
+# Licensed under the MIT license (http://eduan.mit-license.org/)
 
 # Check if Homebrew is installed
 if test ! $(which brew); then

@@ -1,7 +1,6 @@
 #!/usr/bin/zsh
-# symlinks.sh by Eduan Lavaque <eduan@snapsimpletech.com>
+# symlinks.sh by Eduan Lavaque <eduanlavaque@gmail.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
-# This file will generate my symlinks. For new installs.
 
 symlink() {
 	ln -fsv $HOME/dotfiles/$1 $HOME/$2
