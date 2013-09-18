@@ -21,8 +21,7 @@ Thumbs.db
 # Vim stuff
 vim/bundle/
 vim/autoload/pathogen.vim
-vim/undodir/
-vim/tmpdir/
+vim/tmp/
 
 # Zsh history
 shells/zsh/zsh_history/

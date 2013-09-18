@@ -14,18 +14,24 @@ alias ls="ls -la -Gp -F"        # Make 'ls' do lotsa stuff
 alias reload!="source ~/.zshrc" # Make 'reload!' source the .zshrc file
 alias sudo="sudo "              # Fix using aliases after sudo
 alias eduan="cd ~/Desktop/Eduan"
+alias t='python ~/bin/t/t.py --task-dir ~/tasks --list tasks'
 
 # Initialize colors.
 autoload -U colors
 colors
+autoload -U predict-on
+predict-on
+
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==02=01}:${(s.:.)LS_COLORS}")'
 
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
-# Load settings for Git prompt
-source ~/.zsh/vcs-prompt.sh
+# Source paste script
+source ~/.zsh/safe-paste.sh
 
-# Load Git prompt
+# Git prompt
+source ~/.zsh/vcs-prompt.sh
 source ~/.zsh/zsh-vcs-prompt/zshrc.sh
 
 # Set the prompt

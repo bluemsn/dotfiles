@@ -2,6 +2,9 @@
 # vim.sh by Eduan Lavaque <eduanlavaque@gmail.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 
+# Make folders for tmp stuff
+mkdir -pv ~/.vim/tmp/{backup,swap,undo}
+
 # Make folders for Pathogen
 mkdir -p ~/.vim/autoload ~/.vim/bundle
 
@@ -28,6 +31,7 @@ git clone https://github.com/gorodinskiy/vim-coloresque.git
 git clone https://github.com/mattn/emmet-vim.git
 # Color schemes...
 git clone https://github.com/Greduan/vim-colors-solarized.git
+git clone https://github.com/sjl/badwolf.git
 # Syntaxes...
 git clone https://github.com/AndrewRadev/vim-eco.git
 git clone https://github.com/cakebaker/scss-syntax.vim.git

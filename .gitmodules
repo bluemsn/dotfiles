@@ -1,3 +1,6 @@
 [submodule "zsh/zsh-vcs-prompt"]
 	path = zsh/zsh-vcs-prompt
 	url = https://github.com/yonchu/zsh-vcs-prompt.git
+[submodule "bin/t"]
+	path = bin/t
+	url = https://github.com/sjl/t.git
