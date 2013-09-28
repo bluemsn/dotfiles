@@ -27,6 +27,9 @@ filetype plugin indent on
 " Vitality.vim {{{
 let g:vitality_fix_cursor=0
 " }}}
+" " CtrlP {{{
+let g:ctrlp_custom_ignore = '\.git\|.svn\|\.hg\|node_modules'
+" }}}
 
 " }}}
 " Search and matching {{{
@@ -41,7 +44,6 @@ set noshowmatch
 set matchpairs=(:),{:},[:],':',":"
 set showcmd
 set magic
-set formatoptions=vt
 set nojoinspaces
 
 if (&t_Co > 2 || has('gui_running'))
@@ -56,11 +58,13 @@ endif
 " }}}
 " Indentation {{{
 set backspace=indent,eol,start
+set noautoindent
+set nocindent
+set nosmartindent
+setlocal indentexpr=
+
 set noexpandtab
 set shiftround
-set smartindent
-set autoindent
-
 let s:tabwidth=4
 exec 'set tabstop='    .s:tabwidth
 exec 'set softtabstop='.s:tabwidth
@@ -129,12 +133,6 @@ vn k gk
 " Don't move on match
 nn * *<C-o>
 
-" Smart way to move between windows
-nn <C-j> <C-w>j
-nn <C-k> <C-w>k
-nn <C-h> <C-w>h
-nn <C-l> <C-w>l
-
 " http://twitter.com/dmedvinsky/status/109304047206547456
 nn <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
 
@@ -170,6 +168,7 @@ nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
 nn <leader>b :NERDTreeToggle<CR>
+nn <leader>bb :CtrlP<CR>
 nn <leader>B :EasyBuffer<CR>
 " }}}
 " Screen drawing {{{
@@ -181,7 +180,6 @@ set showcmd
 set report=0
 set list
 set listchars=tab:\|\ ,eol:$,trail:_,extends:),precedes:(
-set nowrap
 set linebreak
 set number
 set relativenumber
@@ -198,10 +196,11 @@ set virtualedit=all
 set mousehide
 set mouse=
 set ruler
-set statusline=%n:[%t]\ %m%r%w%<%=[L%l/%L\ C%c-%v]\ (%p%%)
+set statusline=[%n]\ %f%<\ %(%M%R%W%)%=[%l,%v]\ (%L,%p%%)
 " }}}
 " Window/split management {{{
 set title
+set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
 set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 set autowrite
 set autoread
@@ -226,7 +225,10 @@ set synmaxcol=1024
 set background=dark
 let g:badwolf_darkgutter=1
 let g:badwolf_html_link_underline=0
-silent! colorscheme badwolf
+
+let g:rehash256=1
+let g:molokai_original=1
+silent! colorscheme molokai
 " }}}
 " Diff {{{
 set isfname-== " Remove '=' from filename characters
@@ -236,7 +238,6 @@ set diffopt+=iwhite " Add ignorance of whitespace to diff
 set wildmenu
 set wildchar=<Tab>
 set wildmode=list:longest
-set wildignore+=*.o,*.obj,.git,.svn
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.mp3
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set complete=.,w,b,t
@@ -285,20 +286,6 @@ endfunc
 nnoremap <C-S-p> :call <SID>SynStack()<CR>
 " http://vimcasts.org/episodes/creating-colorschemes-for-vim/
 " }}}
-function! ListWrapToggle() " {{{
-	if(&list == 1)
-		set nolist
-		set wrap
-	elseif(&wrap == 1)
-		set nowrap
-		set list
-	else
-		set nowrap
-		set list
-	endif
-endfunction
-nnoremap <silent> <leader>tw :call ListWrapToggle()<CR>
-" }}}
 function! MyFoldText() " {{{
 	let line = getline(v:foldstart)
 
@@ -317,45 +304,28 @@ endfunction
 " I'm sorry I stole this from you Steve
 set foldtext=MyFoldText()
 " }}}
+function! WriteMode() " {{{
+	setlocal formatoptions=ant
+	setlocal textwidth=80
+	setlocal wrapmargin=0
+endfunction
+nn <leader>w :call <SID>WriteMode()<CR>
+" }}}
 " }}}
 " Auto commands {{{
 if (has('autocmd'))
-	" augroup cursorline
-	" 	autocmd!
-	" 	" Only show 'cursorline' in the current window and in normal mode
-	" 	au WinLeave,InsertEnter * set nocursorline
-	" 	au WinEnter,InsertLeave * set cursorline
-	" 	" Only show 'cursorcolumn' in current window and in normal mode
-	" 	au WinLeave,InsertEnter * set nocursorcolumn
-	" 	au WinEnter,InsertLeave * set cursorcolumn
-	" augroup END
-
-	" Set to use manual folds in Vim files
-	augroup filetype_vim
-		autocmd!
-		autocmd FileType vim setlocal foldmethod=marker
-	augroup END
-
-	" Some settings for fugitive.vim by Tim Pope
-	augroup fugitive
-		autocmd!
-		autocmd BufReadPost fugitive://* set bufhidden=delete
-	augroup END
-
-	" Using `par` on Git commits and text files
-	augroup par_settings
-		autocmd!
-		autocmd FileType text setlocal formatprg=par\ w79r
-		autocmd FileType gitcommit setlocal formatprg=par\ w72r
-	augroup END
-
 	" Resize splits when window is resized
 	au VimResized * :wincmd =
 
-	" augroup VimReload
-	" 	autocmd!
-	" 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
-	" 	autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
-	" augroup END
+	augroup filetypes
+		autocmd!
+		autocmd BufNewFile,BufRead *.cljs set filetype=clojure
+		autocmd BufNewFile,BufRead *.css.scss set filetype=scss
+		autocmd BufNewFile,BufRead *.html.md set filetype=markdown
+		autocmd BufReadPost fugitive://* set bufhidden=delete
+		autocmd FileType text setlocal formatprg=par\ w79r
+		autocmd FileType gitcommit setlocal formatprg=par\ w72r
+		autocmd FileType vim setlocal foldmethod=marker
+	augroup END
 endif
 " }}}

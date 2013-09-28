@@ -28,7 +28,9 @@ symlink editorconfig   .editorconfig
 
 # Sublime Text
 if [ `uname -s` == 'Linux' ]; then
-	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3 $HOME/.config/sublime-text-3
+	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages $HOME/.config/sublime-text-3/Packages
+	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Installed\ Packages $HOME/.config/sublime-text-3/Installed\ Packages
 elif [ `uname -s` == 'Darwin' ]; then
-	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3 $HOME/Library/Application\ Support/Sublime\ Text\ 3
+	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages
+	ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Installed\ Packages $HOME/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages
 fi

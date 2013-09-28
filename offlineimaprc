@@ -1,0 +1,43 @@
+[general]
+ui = ttyui
+accounts = eduanlavaque
+pythonfile=~/.mutt/offlineimap.py
+fsync = False
+
+
+[Account eduanlavaque]
+localrepository = eduanlavaque-local
+remoterepository = eduanlavaque-remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+
+[Repository eduanlavaque-local]
+type = Maildir
+localfolders = ~/.mail/eduanlavaque-gmail.com
+nametrans = lambda folder: {
+	'drafts':  '[Gmail]/Drafts',
+	'sent':    '[Gmail]/Sent Mail',
+	'flagged': '[Gmail]/Starred',
+	'trash':   '[Gmail]/Trash',
+	'archive': '[Gmail]/All Mail',}.get(folder, folder)
+
+
+[Repository eduanlavaque-remote]
+type = Gmail
+remoteuser = eduanlavaque@gmail.com
+remotepasseval = get_keychain_pass(account="eduanlavaque@gmail.com", server="imap.gmail.com")
+realdelete = no
+maxconnections = 1
+cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
+
+nametrans = lambda folder: {
+	'[Gmail]/Drafts':    'drafts',
+	'[Gmail]/Sent Mail': 'sent',
+	'[Gmail]/Starred':   'flagged',
+	'[Gmail]/Trash':     'trash',
+	'[Gmail]/All Mail':  'archive',}.get(folder, folder)
+folderfilter = lambda folder: folder not in [
+	'[Gmail]/Trash',
+	'[Gmail]/Important',
+	'[Gmail]/Spam',]

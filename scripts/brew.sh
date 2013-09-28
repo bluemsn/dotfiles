@@ -10,11 +10,9 @@ fi
 
 # Utilities
 brew install par
-brew install figlet
-#git clone https://github.com/drbunsen/formd.git ~/bin/formd
+#brew install figlet
 #brew install ack
 #brew install the_silver_searcher
-#brew install hub
 
 # CLI shells
 brew install bash
@@ -29,8 +27,8 @@ brew install git
 brew install python
 brew install python3
 brew install markdown
-#brew install clojure
-#brew install leiningen
+brew install leiningen
+brew install clojurescript
 brew install clisp
 brew install clozure-cl
 
@@ -43,7 +41,6 @@ sudo npm install -g coffee-script
 # Tmux
 brew install tmux
 brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste --wrap-launchctl
-#brew install https://github.com/downloads/zolrath/wemux/wemux.rb
 
 # Install/update Vim
 brew install macvim --env-std --custom-icons --override-system-vim --with-python3

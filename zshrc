@@ -8,19 +8,18 @@ export EDITOR VISUAL GIT_EDITOR # Export these options
 export XDG_CONFIG_HOME="${HOME}/.config"
 
 # Define $PATH variable
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:~/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:/Users/eduan/bin:$PATH"
 
 alias ls="ls -la -Gp -F"        # Make 'ls' do lotsa stuff
 alias reload!="source ~/.zshrc" # Make 'reload!' source the .zshrc file
 alias sudo="sudo "              # Fix using aliases after sudo
-alias eduan="cd ~/Desktop/Eduan"
 alias t='python ~/bin/t/t.py --task-dir ~/tasks --list tasks'
 
 # Initialize colors.
 autoload -U colors
 colors
-autoload -U predict-on
-predict-on
+# autoload -U predict-on
+# predict-on
 
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==02=01}:${(s.:.)LS_COLORS}")'
 
@@ -35,7 +34,7 @@ source ~/.zsh/vcs-prompt.sh
 source ~/.zsh/zsh-vcs-prompt/zshrc.sh
 
 # Set the prompt
-PROMPT=$'%{${fg[green]}%}%n@%m:'  # Green color, current user@server
+PROMPT=$'%{${fg[green]}%}%n%{${fg[default]}%}@%{${fg[green]}%}%m:'  # Green color, current user@server
 PROMPT+='%{${fg[blue]}%}%~'       # Blue color, current directory, from $HOME
 PROMPT+='%{${fg[default]}%}$(vcs_super_info)' # Default color, Git status
 PROMPT+='%{${fg[default]}%} $ ' # Default color, prompt
@@ -171,5 +170,7 @@ if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
 #	bindkey "\e[H" beginning-of-line
 #	bindkey "\e[F" end-of-line
 #fi
+
+source ~/.zsh/fish-highlighting/zsh-syntax-highlighting.zsh
 
 # vim: set foldmarker={{{,}}}

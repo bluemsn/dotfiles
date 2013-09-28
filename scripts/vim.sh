@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/bash
 # vim.sh by Eduan Lavaque <eduanlavaque@gmail.com>
 # Licensed under the MIT license (http://eduan.mit-license.org/)
 
@@ -15,10 +15,11 @@ curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen
 # General plugins...
 git clone https://github.com/chreekat/vim-paren-crosshairs.git
 git clone https://github.com/drmikehenry/vim-fixkey.git
-git clone https://github.com/kana/vim-smartinput.git
+git clone https://github.com/vim-scripts/Auto-Pairs.git
 git clone https://github.com/kien/rainbow_parentheses.vim.git
 git clone https://github.com/rhysd/clever-f.vim.git
 git clone https://github.com/scrooloose/nerdtree.git
+git clone https://github.com/kien/ctrlp.vim.git
 git clone https://github.com/ConradIrwin/vim-bracketed-paste.git
 git clone https://github.com/sjl/vitality.vim.git
 git clone https://github.com/svermeulen/vim-easyclip.git
@@ -29,6 +30,7 @@ git clone https://github.com/troydm/easybuffer.vim.git
 #git clone https://github.com/tpope/vim-fugitive.git
 git clone https://github.com/gorodinskiy/vim-coloresque.git
 git clone https://github.com/mattn/emmet-vim.git
+git clone https://github.com/christoomey/vim-tmux-navigator.git
 # Color schemes...
 git clone https://github.com/Greduan/vim-colors-solarized.git
 git clone https://github.com/sjl/badwolf.git
@@ -41,6 +43,7 @@ git clone https://github.com/othree/html5.vim.git
 git clone https://github.com/tpope/vim-git.git
 git clone https://github.com/tpope/vim-markdown.git
 git clone https://github.com/zaiste/tmux.vim.git
+git clone https://github.com/clojure/clojurescript.git
 # Vim packages
 git clone https://github.com/vim-scripts/IndexedSearch.git
 

@@ -4,3 +4,6 @@
 [submodule "bin/t"]
 	path = bin/t
 	url = https://github.com/sjl/t.git
+[submodule "zsh/fish-highlighting"]
+	path = zsh/fish-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
