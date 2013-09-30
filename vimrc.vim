@@ -133,9 +133,6 @@ vn k gk
 " Don't move on match
 nn * *<C-o>
 
-" http://twitter.com/dmedvinsky/status/109304047206547456
-nn <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
-
 " Preserve indentation while pasting text from the OS X clipboard
 no <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
@@ -167,9 +164,10 @@ call togglebg#map('<F5>')
 nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
-nn <leader>b :NERDTreeToggle<CR>
-nn <leader>bb :CtrlP<CR>
-nn <leader>B :EasyBuffer<CR>
+nn <leader>b :CtrlP<CR>
+nn <leader>B :NERDTreeToggle<CR>
+nn <leader>t :call VimuxRunCommand('')
+nn <leader>T :VimuxRunLastCommand<CR>
 " }}}
 " Screen drawing {{{
 "set whichwrap+=<,>,h,l,[,]
@@ -322,6 +320,7 @@ if (has('autocmd'))
 		autocmd BufNewFile,BufRead *.cljs set filetype=clojure
 		autocmd BufNewFile,BufRead *.css.scss set filetype=scss
 		autocmd BufNewFile,BufRead *.html.md set filetype=markdown
+		autocmd BufNewFile,BufRead *.html.md.eco set filetype=markdown
 		autocmd BufReadPost fugitive://* set bufhidden=delete
 		autocmd FileType text setlocal formatprg=par\ w79r
 		autocmd FileType gitcommit setlocal formatprg=par\ w72r

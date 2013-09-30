@@ -7,3 +7,6 @@
 [submodule "zsh/fish-highlighting"]
 	path = zsh/fish-highlighting
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "tmuxifier/tmuxifier"]
+	path = tmuxifier/tmuxifier
+	url = https://github.com/jimeh/tmuxifier.git

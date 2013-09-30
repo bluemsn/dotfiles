@@ -31,6 +31,7 @@ git clone https://github.com/troydm/easybuffer.vim.git
 git clone https://github.com/gorodinskiy/vim-coloresque.git
 git clone https://github.com/mattn/emmet-vim.git
 git clone https://github.com/christoomey/vim-tmux-navigator.git
+git clone https://github.com/benmills/vimux.git
 # Color schemes...
 git clone https://github.com/Greduan/vim-colors-solarized.git
 git clone https://github.com/sjl/badwolf.git

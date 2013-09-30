@@ -22,6 +22,7 @@ symlink zsh            .zsh
 symlink zshrc          .zshrc
 symlink profile        .profile
 symlink tmux.conf      .tmux.conf
+symlink tmuxifier      .tmuxifier
 symlink vim            .vim
 symlink vimrc.vim      .vimrc
 symlink editorconfig   .editorconfig
