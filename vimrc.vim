@@ -23,11 +23,12 @@ endif
 " Execute Pathogen
 execute pathogen#infect()
 filetype plugin indent on
+filetype indent off
 
 " Vitality.vim {{{
 let g:vitality_fix_cursor=0
 " }}}
-" " CtrlP {{{
+" CtrlP {{{
 let g:ctrlp_custom_ignore = '\.git\|.svn\|\.hg\|node_modules'
 " }}}
 
@@ -157,9 +158,6 @@ xn Y y$
 nn <C-e> 3<C-e>
 nn <C-y> 3<C-y>
 
-" Allow change of theme from light to dark and vice-versa, with a hotkey
-call togglebg#map('<F5>')
-
 
 nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
@@ -210,23 +208,22 @@ set switchbuf=useopen,usetab
 if (&t_Co > 2 || has('gui_running'))
 	syntax on
 endif
-if (!has('gui_running'))
-	let g:solarized_termtrans=1
-endif
 if ($TERM == 'xterm-256color' || $TERM == 'screen-256color' || &t_Co >= 256)
 	set t_Co=256
-else
-	let g:solarized_termcolors=16
 endif
 
 set synmaxcol=1024
 set background=dark
+
 let g:badwolf_darkgutter=1
 let g:badwolf_html_link_underline=0
 
 let g:rehash256=1
 let g:molokai_original=1
-silent! colorscheme molokai
+
+let g:gruvbox_italic=0
+
+silent! colorscheme gruvbox
 " }}}
 " Diff {{{
 set isfname-== " Remove '=' from filename characters

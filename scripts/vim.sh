@@ -6,7 +6,7 @@
 mkdir -pv ~/.vim/tmp/{backup,swap,undo}
 
 # Make folders for Pathogen
-mkdir -p ~/.vim/autoload ~/.vim/bundle
+mkdir -p ~/.vim/{autoload,bundle}
 
 # Install Pathogen
 curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
@@ -33,8 +33,7 @@ git clone https://github.com/mattn/emmet-vim.git
 git clone https://github.com/christoomey/vim-tmux-navigator.git
 git clone https://github.com/benmills/vimux.git
 # Color schemes...
-git clone https://github.com/Greduan/vim-colors-solarized.git
-git clone https://github.com/sjl/badwolf.git
+git clone https://github.com/morhetz/gruvbox.git
 # Syntaxes...
 git clone https://github.com/AndrewRadev/vim-eco.git
 git clone https://github.com/cakebaker/scss-syntax.vim.git
