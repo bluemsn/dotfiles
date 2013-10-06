@@ -1,0 +1,17 @@
+[user]
+	name = Greduan
+	email = eduanlavaque@gmail.com
+[core]
+	editor = vim
+	pager = less -r
+	autocrlf = input
+	eol = lf
+[commit]
+	template = /Users/eduan/.gitmessage.txt
+[help]
+	autocorrect = 1
+[color]
+	ui = true
+[alias]
+	logg = log --graph --decorate --oneline --abbrev-commit --all
+	root = rev-parse --show-toplevel
