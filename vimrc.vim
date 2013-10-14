@@ -29,7 +29,10 @@ filetype indent off
 let g:vitality_fix_cursor=0
 " }}}
 " CtrlP {{{
-let g:ctrlp_custom_ignore = '\.git\|.svn\|\.hg\|node_modules'
+let g:ctrlp_custom_ignore='\.git\|.svn\|\.hg\|node_modules'
+" }}}
+" MiniBufExpl {{{
+let g:miniBufExplBuffersNeeded=0
 " }}}
 
 " }}}
@@ -162,10 +165,14 @@ nn <C-y> 3<C-y>
 nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
+" Plugin keymappings
 nn <leader>b :CtrlP<CR>
 nn <leader>B :NERDTreeToggle<CR>
 nn <leader>t :call VimuxRunCommand('')
 nn <leader>T :VimuxRunLastCommand<CR>
+
+" Stuff to keep in mind:
+" ;    Repeat latest f, t, F or T [count] times.
 " }}}
 " Screen drawing {{{
 "set whichwrap+=<,>,h,l,[,]
@@ -314,6 +321,7 @@ if (has('autocmd'))
 
 	augroup filetypes
 		autocmd!
+		autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 		autocmd BufNewFile,BufRead *.cljs set filetype=clojure
 		autocmd BufNewFile,BufRead *.css.scss set filetype=scss
 		autocmd BufNewFile,BufRead *.html.md set filetype=markdown
@@ -322,6 +330,10 @@ if (has('autocmd'))
 		autocmd FileType text setlocal formatprg=par\ w79r
 		autocmd FileType gitcommit setlocal formatprg=par\ w72r
 		autocmd FileType vim setlocal foldmethod=marker
+		au VimEnter * RainbowParenthesesToggle
+		au Syntax clojure RainbowParenthesesLoadRound
+		au Syntax clojure RainbowParenthesesLoadSquare
+		au Syntax clojure RainbowParenthesesLoadBraces
 	augroup END
 endif
 " }}}
