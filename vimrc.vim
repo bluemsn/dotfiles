@@ -20,6 +20,8 @@ if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
 	runtime! macros/matchit.vim
 endif
 
+"let g:pathogen_disabled=['vim-markdown', 'html5.vim']
+
 " Execute Pathogen
 execute pathogen#infect()
 filetype plugin indent on
@@ -34,6 +36,9 @@ let g:ctrlp_custom_ignore='\.git\|.svn\|\.hg\|node_modules'
 " MiniBufExpl {{{
 let g:miniBufExplBuffersNeeded=0
 " }}}
+" Emmet.vim {{{
+let g:user_emmet_install_global=0
+" }}}
 
 " }}}
 " Search and matching {{{
@@ -45,7 +50,6 @@ set novisualbell
 set noerrorbells
 set incsearch
 set noshowmatch
-set matchpairs=(:),{:},[:],':',":"
 set showcmd
 set magic
 set nojoinspaces
@@ -65,10 +69,9 @@ set backspace=indent,eol,start
 set noautoindent
 set nocindent
 set nosmartindent
-setlocal indentexpr=
-
 set noexpandtab
 set shiftround
+
 let s:tabwidth=4
 exec 'set tabstop='    .s:tabwidth
 exec 'set softtabstop='.s:tabwidth
@@ -157,19 +160,14 @@ xn & :&&<CR>
 nn Y y$
 xn Y y$
 
-" <C-e> and <C-y> scroll the viewport a single line, bump this up a bit
-nn <C-e> 3<C-e>
-nn <C-y> 3<C-y>
-
 
 nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
 " Plugin keymappings
+ino <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 nn <leader>b :CtrlP<CR>
-nn <leader>B :NERDTreeToggle<CR>
-nn <leader>t :call VimuxRunCommand('')
-nn <leader>T :VimuxRunLastCommand<CR>
+nn <leader>B :CtrlPBuffer<CR>
 
 " Stuff to keep in mind:
 " ;    Repeat latest f, t, F or T [count] times.
@@ -181,9 +179,9 @@ set shellslash
 set showmode
 set showcmd
 set report=0
+set nowrap
 set list
 set listchars=tab:\|\ ,eol:$,trail:_,extends:),precedes:(
-set linebreak
 set number
 set relativenumber
 set colorcolumn=79
@@ -199,7 +197,7 @@ set virtualedit=all
 set mousehide
 set mouse=
 set ruler
-set statusline=[%n]\ %f%<\ %(%M%R%W%)%=[%l,%v]\ (%L,%p%%)
+set statusline=[%n]\ %f\ %y%<\ %(%M%R%W%)%=[%l,%v]\ (%L,%p%%)
 " }}}
 " Window/split management {{{
 set title
@@ -224,13 +222,18 @@ set background=dark
 
 let g:badwolf_darkgutter=1
 let g:badwolf_html_link_underline=0
+let g:badwolf_css_props_highlight=1
 
 let g:rehash256=1
-let g:molokai_original=1
 
 let g:gruvbox_italic=0
 
-silent! colorscheme gruvbox
+let g:solarized_termtrans=0
+let g:solarized_bold=0
+let g:solarized_underline=0
+let g:solarized_italic=0
+
+silent! colorscheme zenburn
 " }}}
 " Diff {{{
 set isfname-== " Remove '=' from filename characters
@@ -306,12 +309,25 @@ endfunction
 " I'm sorry I stole this from you Steve
 set foldtext=MyFoldText()
 " }}}
-function! WriteMode() " {{{
-	setlocal formatoptions=ant
-	setlocal textwidth=80
-	setlocal wrapmargin=0
+function! <SID>WriteMode() " {{{
+        setlocal formatoptions=tcroj
+        setlocal textwidth=79
+        setlocal wrapmargin=0
 endfunction
 nn <leader>w :call <SID>WriteMode()<CR>
+" }}}
+function! FiletypeIndent(tab, size) " {{{
+	" use a real tab or spaces?
+	if (a:tab == 1)
+		setlocal noexpandtab
+	else
+		setlocal expandtab
+	endif
+	" set the tab size
+	exec 'setlocal tabstop='    .a:size
+	exec 'setlocal softtabstop='.a:size
+	exec 'setlocal shiftwidth=' .a:size
+endfunction
 " }}}
 " }}}
 " Auto commands {{{
@@ -321,19 +337,27 @@ if (has('autocmd'))
 
 	augroup filetypes
 		autocmd!
-		autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-		autocmd BufNewFile,BufRead *.cljs set filetype=clojure
-		autocmd BufNewFile,BufRead *.css.scss set filetype=scss
-		autocmd BufNewFile,BufRead *.html.md set filetype=markdown
-		autocmd BufNewFile,BufRead *.html.md.eco set filetype=markdown
-		autocmd BufReadPost fugitive://* set bufhidden=delete
-		autocmd FileType text setlocal formatprg=par\ w79r
-		autocmd FileType gitcommit setlocal formatprg=par\ w72r
-		autocmd FileType vim setlocal foldmethod=marker
-		au VimEnter * RainbowParenthesesToggle
-		au Syntax clojure RainbowParenthesesLoadRound
-		au Syntax clojure RainbowParenthesesLoadSquare
-		au Syntax clojure RainbowParenthesesLoadBraces
+		" plugins
+		au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+		au FileType html,css EmmetInstall
+		au BufReadPost fugitive://*         set bufhidden=delete
+		au FileType json,clojure call FiletypeIndent(0,2)
+		au FileType json,clojure RainbowParenthesesToggle
+		au FileType json,clojure RainbowParenthesesLoadRound
+		au FileType json,clojure RainbowParenthesesLoadSquare
+		au FileType json,clojure RainbowParenthesesLoadBraces
+		" docpad
+		au BufNewFile,BufRead *.cljs        setlocal filetype=clojure
+		au BufNewFile,BufRead *.css.scss    setlocal filetype=scss
+		au BufNewFile,BufRead *.html.md     setlocal filetype=markdown
+		au BufNewFile,BufRead *.html.md.eco setlocal filetype=markdown
+		au BufNewFile,BufRead *.html.md     setlocal wrap
+		au BufNewFile,BufRead *.html.md.eco setlocal wrap
+		
+		au FileType text      setlocal formatprg=par\ w79r
+		au FileType markdown  setlocal formatprg=par\ w79r
+		au FileType gitcommit setlocal formatprg=par\ w72r
+		au FileType vim       setlocal foldmethod=marker
 	augroup END
 endif
 " }}}

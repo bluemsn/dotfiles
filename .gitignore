@@ -22,6 +22,11 @@ Thumbs.db
 vim/bundle/
 vim/autoload/pathogen.vim
 vim/tmp/
+vim/.netrwhist
+
+# emacs.d
+emacs.d/*
+!emacs.d/init.el
 
 # Zsh history
 shells/zsh/zsh_history/

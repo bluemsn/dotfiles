@@ -2,7 +2,7 @@ EDITOR=vim
 VISUAL=vim
 GIT_EDITOR=vim
 export EDITOR VISUAL GIT_EDITOR
-source ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
+#source ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/bin:$HOME/.tmuxifier/tmuxifier/bin:$PATH"

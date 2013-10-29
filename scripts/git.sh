@@ -12,7 +12,7 @@ git config --global user.email "eduanlavaque+git@gmail.com"
 git config --global core.editor vim
 
 # Setup commit template
-git config --global commit.template $HOME/.gitmessage.txt
+#git config --global commit.template $HOME/.gitmessage.txt
 
 # Setup script to use to show commit history etc.
 git config --global core.pager 'less'

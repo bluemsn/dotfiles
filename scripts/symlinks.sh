@@ -17,8 +17,11 @@ if [ `uname -s` == 'Linux' ]; then
 	symlink xinitrc.txt        .xinitrc
 fi
 symlink bin            bin
+symlink emacs.d        .emacs.d
 symlink gitconfig      .gitconfig
 symlink gitmessage.txt .gitmessage.txt
+symlink inputrc        .inputrc
+symlink irssi          .irssi
 symlink zsh            .zsh
 symlink zshrc          .zshrc
 symlink profile        .profile

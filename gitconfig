@@ -6,8 +6,6 @@
 	pager = less -r
 	autocrlf = input
 	eol = lf
-[commit]
-	template = /Users/eduan/.gitmessage.txt
 [help]
 	autocorrect = 1
 [color]
