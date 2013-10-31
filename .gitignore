@@ -19,10 +19,7 @@ Thumbs.db
 .directory
 
 # Vim stuff
-vim/bundle/
-vim/autoload/pathogen.vim
-vim/tmp/
-vim/.netrwhist
+vim/*
 
 # emacs.d
 emacs.d/*

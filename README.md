@@ -2,7 +2,7 @@
 
 Welcome to my dotfiles repo! This is one of those repos in between thousands that are named the same, however will always have different contents. This is my take on dotfiles, take what you like and ignore what you don't like.
 
-This repo contains lots of customizations for [Vim][1] (not `vi` mind you), [Zsh][2], [tmux][4], [Git][5] and lots of Linux software. I am running [Arch Linux][6] as my main OS in a Vostro 1500 laptop. I am running Mac OS X in a Mac Mini 2011 as well.
+This repo contains lots of customizations for [Vim][1] (not `vi` mind you), [GNU Emacs](http://www.gnu.org/software/emacs/), [Zsh][2], [tmux][4], [Git][5] and lots of GNU/Linux software. I am running [Arch Linux][6] as my main OS in a Vostro 1500 laptop. I am running Mac OS X in a Mac Mini 2011 as well.
 
 I don't suggest you just grab a  file and copy it over to your dotfiles, in fact I really discourage this. I suggest instead you read the file and grab what you like. It's bad practice to copy a file verbatim.
 
