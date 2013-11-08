@@ -13,3 +13,5 @@
 [alias]
 	logg = log --graph --decorate --oneline --abbrev-commit --all
 	root = rev-parse --show-toplevel
+[push]
+	default = simple

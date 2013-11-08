@@ -29,3 +29,6 @@ git config --global core.autocrlf input
 
 # Create Git aliases...
 git config --global alias.logg 'log --graph --decorate --oneline --abbrev-commit --all'
+
+# For Git 2.x, set default method of pushing
+git config --global push.default simple

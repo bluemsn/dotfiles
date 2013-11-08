@@ -166,8 +166,8 @@ nn <S-ñ> :wq!<CR>
 
 " Plugin keymappings
 ino <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-nn <leader>b :CtrlP<CR>
-nn <leader>B :CtrlPBuffer<CR>
+nn <leader>b :Unite file buffer<CR>
+nn <leader>B :Unite -quick-match buffer<CR>
 
 " Stuff to keep in mind:
 " ;    Repeat latest f, t, F or T [count] times.
@@ -233,7 +233,7 @@ let g:solarized_bold=0
 let g:solarized_underline=0
 let g:solarized_italic=0
 
-silent! colorscheme zenburn
+silent! colorscheme gruvbox
 " }}}
 " Diff {{{
 set isfname-== " Remove '=' from filename characters

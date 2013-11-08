@@ -2,6 +2,7 @@ EDITOR=vim
 VISUAL=vim
 GIT_EDITOR=vim
 export EDITOR VISUAL GIT_EDITOR
+export TERM=xterm-256color
 #source ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
 
 export XDG_CONFIG_HOME="${HOME}/.config"

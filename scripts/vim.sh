@@ -13,11 +13,12 @@ curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen
 
 # Install all the plugins:
 # General plugins...
-git clone https://github.com/kien/ctrlp.vim.git
+#git clone https://github.com/kien/ctrlp.vim.git
 git clone https://github.com/mattn/emmet-vim.git
 git clone https://github.com/fholgado/minibufexpl.vim.git
 git clone https://github.com/kien/rainbow_parentheses.vim.git
 git clone https://github.com/tomtom/tcomment_vim.git
+git clone https://github.com/Shougo/unite.vim.git
 git clone https://github.com/ConradIrwin/vim-bracketed-paste.git
 git clone https://github.com/gorodinskiy/vim-coloresque.git
 git clone https://github.com/drmikehenry/vim-fixkey.git

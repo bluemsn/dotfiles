@@ -30,8 +30,6 @@ However please don't oppen issues/pull requests for stuff that's completely up t
 
 Now, you can open an issue expressing your ideas, or you can just fork this project and make the suggested changes, then just make a pull request with your changes. I will then check your changes, give comments if necessary, modify it if I find it necessary, and then merge it, or just close the pull request if I don't like the change.
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Greduan/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
   [1]: http://www.vim.org/
   [2]: http://es.wikipedia.org/wiki/Zsh
   [3]: http://es.wikipedia.org/wiki/Bash
