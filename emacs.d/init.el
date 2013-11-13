@@ -13,7 +13,7 @@
   (package-refresh-contents))
 
 ; list the packages you want
-(setq package-list '(better-defaults evil evil-leader surround mmm-mode project-explorer projectile markdown-mode scss-mode php-mode clojure-mode smartparens guide-key coffee-mode rainbow-delimiters flx-ido multiple-cursors rainbow-mode smart-mode-line))
+(setq package-list '(better-defaults evil evil-leader surround mmm-mode project-explorer projectile markdown-mode scss-mode php-mode clojure-mode smartparens guide-key coffee-mode rainbow-delimiters flx-ido multiple-cursors rainbow-mode smart-mode-line multi-term))
 
 ; install the missing packages
 (dolist (package package-list)
@@ -46,21 +46,26 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "b" 'projectile-find-file
-  "B" 'projectile-switch-to-buffer)
+  "B" 'projectile-switch-to-buffer
+  "o" 'prelude-open-with)
 (evil-mode t)
 (global-surround-mode 1)
 (global-rainbow-delimiters-mode)
 
 ;; file-type settings
+;;; php
 (autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+;;; css
 (defun all-css-modes() (css-mode) (rainbow-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . all-css-modes))
+;;; scss
 (setq exec-path (cons (expand-file-name "/usr/local/opt/ruby/bin") exec-path))
 (autoload 'scss-mode "scss-mode")
 (defun all-scss-modes() (scss-mode) (rainbow-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . all-scss-modes))
+;;; clojure
 (setq clojure-defun-style-default-indent t)
 
 
@@ -68,16 +73,15 @@
 ;; other settings ;;
 ;; ============== ;;
 
+;; display
 ;(require 'whitespace)
 ;(global-whitespace-mode)
+(global-linum-mode t)
+(setq linum-format "%d ")
 
 ;; colorscheme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-theme-gruvbox")
 (load-theme 'gruvbox t)
-
-;; line numbers
-(global-linum-mode t)
-(setq linum-format "%d ")
 
 ;; mode line
 (display-time-mode t)
@@ -91,3 +95,34 @@
 (tool-bar-mode nil)
 (blink-cursor-mode nil)
 
+;; tab/indent settings
+(setq-default default-tab-width 4) ; make tab 4 chars wide
+(setq-default tab-stop-list (number-sequence 4 200 4))
+(setq-default indent-tabs-mode t)
+(global-set-key (kbd "TAB") 'self-insert-command)
+(setq c-backspace-function 'backward-delete-char)
+
+;; (multi-)term
+(setq multi-term-program "/bin/zsh")
+(setq system-uses-terminfo nil)
+
+;; random
+(set-buffer-file-coding-system 'unix)
+
+
+;; ========= ;;
+;; functions ;;
+;; ========= ;;
+
+;; http://batsov.com/articles/2011/11/12/emacs-tip-number-2-open-file-in-external-program/
+(defun prelude-open-with ()
+  "Simple function that allows us to open the underlying
+file of a buffer in an external program."
+  (interactive)
+  (when buffer-file-name
+    (shell-command (concat
+                    (if (eq system-type 'darwin)
+                        "open"
+                      (read-shell-command "Open current file with: "))
+                    " "
+                    buffer-file-name))))

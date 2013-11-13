@@ -22,6 +22,7 @@ git clone https://github.com/Shougo/unite.vim.git
 git clone https://github.com/ConradIrwin/vim-bracketed-paste.git
 git clone https://github.com/gorodinskiy/vim-coloresque.git
 git clone https://github.com/drmikehenry/vim-fixkey.git
+git clone https://github.com/osyo-manga/vim-over.git
 git clone https://github.com/chreekat/vim-paren-crosshairs.git
 git clone https://github.com/tpope/vim-repeat.git
 git clone https://github.com/justinmk/vim-sneak.git
