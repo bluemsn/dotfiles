@@ -1,3 +1,7 @@
+if $SHELL =~ 'fish'
+	set shell=/bin/sh
+endif
+
 " Basic settings {{{
 set nocompatible
 set hidden
@@ -353,7 +357,7 @@ if (has('autocmd'))
 		au BufNewFile,BufRead *.html.md.eco setlocal filetype=markdown
 		au BufNewFile,BufRead *.html.md     setlocal wrap
 		au BufNewFile,BufRead *.html.md.eco setlocal wrap
-		
+
 		au FileType text      setlocal formatprg=par\ w79r
 		au FileType markdown  setlocal formatprg=par\ w79r
 		au FileType gitcommit setlocal formatprg=par\ w72r

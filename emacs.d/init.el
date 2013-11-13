@@ -2,6 +2,7 @@
 ;; package manager ;;
 ;; =============== ;;
 
+(add-to-list 'load-path "~/.emacs.d/")
 (require 'package)
 (setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -103,8 +104,9 @@
 (setq c-backspace-function 'backward-delete-char)
 
 ;; (multi-)term
-(setq multi-term-program "/bin/zsh")
+(setq multi-term-program "/bin/sh")
 (setq system-uses-terminfo nil)
+(setq shell-file-name "/bin/sh")
 
 ;; random
 (set-buffer-file-coding-system 'unix)

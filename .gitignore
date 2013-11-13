@@ -31,3 +31,8 @@ shells/zsh/zsh_history/
 # Environment specific files
 .c9revisions
 .idea
+
+# Fish shell
+config/fish/*
+!config/fish/config.fish
+!config/fish/functions/

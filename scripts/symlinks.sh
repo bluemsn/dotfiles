@@ -30,6 +30,7 @@ symlink tmuxifier      .tmuxifier
 symlink vim            .vim
 symlink vimrc.vim      .vimrc
 symlink editorconfig   .editorconfig
+symlink config/fish    .config/fish
 
 # Sublime Text
 if [ `uname -s` == 'Linux' ]; then
