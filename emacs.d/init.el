@@ -3,24 +3,15 @@
 ;; =============== ;;
 
 (add-to-list 'load-path "~/.emacs.d/")
+
 (require 'package)
 (setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
-; fetch the list of packages available 
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-; list the packages you want
-(setq package-list '(better-defaults evil evil-leader surround mmm-mode project-explorer projectile markdown-mode scss-mode php-mode clojure-mode smartparens guide-key coffee-mode rainbow-delimiters flx-ido multiple-cursors rainbow-mode smart-mode-line multi-term))
-
-; install the missing packages
-(dolist (package package-list)
-  (when (not (package-installed-p package))
-    (package-install package)))
-(package-initialize)
+(require 'cask "~/bin/cask/cask.el")
+(cask-initialize)
 
 
 ;; =============== ;;
@@ -47,8 +38,9 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "b" 'projectile-find-file
-  "B" 'projectile-switch-to-buffer
-  "o" 'prelude-open-with)
+  "B" 'ace-jump-buffer
+  "o" 'prelude-open-with
+  "f" 'ace-jump-char-mode)
 (evil-mode t)
 (global-surround-mode 1)
 (global-rainbow-delimiters-mode)
@@ -110,6 +102,7 @@
 
 ;; random
 (set-buffer-file-coding-system 'unix)
+(setq inhibit-startup-screen t)
 
 
 ;; ========= ;;

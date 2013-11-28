@@ -10,3 +10,6 @@
 [submodule "tmuxifier/tmuxifier"]
 	path = tmuxifier/tmuxifier
 	url = https://github.com/jimeh/tmuxifier.git
+[submodule "bin/cask"]
+	path = bin/cask
+	url = https://github.com/cask/cask.git

@@ -24,6 +24,7 @@ vim/*
 # emacs.d
 emacs.d/*
 !emacs.d/init.el
+!emacs.d/Cask
 
 # Zsh history
 shells/zsh/zsh_history/

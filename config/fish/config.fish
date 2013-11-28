@@ -18,4 +18,4 @@ set -U VISUAL emacs
 set -U GIT_EDITOR vim
 set -U TERM xterm-256color
 
-set PATH /usr/local/bin /usr/local/sbin /usr/local/share/npm/bin /usr/local/opt/ruby/bin $HOME/bin $HOME/.tmuxifier/tmuxifier/bin $PATH
+set PATH /usr/local/bin /usr/local/sbin /usr/local/share/npm/bin /usr/local/opt/ruby/bin $HOME/bin/cask/bin $HOME/.tmuxifier/tmuxifier/bin $PATH
