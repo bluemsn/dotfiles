@@ -25,14 +25,12 @@ brew install clojurescript
 brew install clisp
 brew install clozure-cl
 brew install node
-sudo npm install -g docpad@6
-sudo npm install -g grunt-cli
-sudo npm install -g coffee-script
 brew install tmux
 brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste --wrap-launchctl
-brew install macvim --env-std --custom-icons --override-system-vim --with-python3
+#brew install macvim --env-std --custom-icons --override-system-vim --with-python3
 brew install vim --override-system-vi
-brew install emacs
+brew install emacs --cocoa --srgb
+
 mkdir -pv ~/Applications
 brew linkapps
 brew unlink macvim && brew link vim

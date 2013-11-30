@@ -6,8 +6,8 @@
 
 (require 'package)
 (setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("gnu"       . "http://elpa.gnu.org/packages/")
+                         ("melpa"     . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
 (require 'cask "~/bin/cask/cask.el")
@@ -17,6 +17,9 @@
 ;; =============== ;;
 ;; plugin settings ;;
 ;; =============== ;;
+
+(global-surround-mode 1)
+(global-rainbow-delimiters-mode)
 
 ;; projectile settings
 (projectile-global-mode)
@@ -40,14 +43,18 @@
   "b" 'projectile-find-file
   "B" 'ace-jump-buffer
   "o" 'prelude-open-with
-  "f" 'ace-jump-char-mode)
+  "f" 'ace-jump-char-mode
+  "F" 'ace-jump-line-mode)
 (evil-mode t)
-(global-surround-mode 1)
-(global-rainbow-delimiters-mode)
+(load "elscreen" "ElScreen" t)
+(define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create) ;creat tab
+(define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill) ;kill tab
+(define-key evil-normal-state-map "gT" 'elscreen-previous) ;previous tab
+(define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
 
 ;; file-type settings
 ;;; php
-(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
+(autoload 'php-mode "php-mode" t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
 ;;; css
@@ -66,11 +73,17 @@
 ;; other settings ;;
 ;; ============== ;;
 
-;; display
+;; line numbers
+(global-linum-mode t)
+(setq linum-relative-current-symbol "")
+(if window-system
+  (setq linum-relative-format "%3s|")
+  (setq linum-relative-format "%3s| "))
+(require 'linum-relative)
+
+;; whitespace
 ;(require 'whitespace)
 ;(global-whitespace-mode)
-(global-linum-mode t)
-(setq linum-format "%d ")
 
 ;; colorscheme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-theme-gruvbox")
@@ -94,6 +107,7 @@
 (setq-default indent-tabs-mode t)
 (global-set-key (kbd "TAB") 'self-insert-command)
 (setq c-backspace-function 'backward-delete-char)
+(setq default-truncate-lines t)
 
 ;; (multi-)term
 (setq multi-term-program "/bin/sh")
@@ -102,7 +116,35 @@
 
 ;; random
 (set-buffer-file-coding-system 'unix)
-(setq inhibit-startup-screen t)
+(setq inhibit-startup-screen t) ;; disable opening screen
+(when (window-system)
+  (tool-bar-mode -1) ;; disable toolbar
+  (scroll-bar-mode -1)) ;; disable scrollbars
+
+;; fix the PATH variable
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(when window-system (set-exec-path-from-shell-PATH))
+
+
+;; fonts
+(set-face-attribute 'default nil
+                    :family "Inconsolata"
+                    :height 140
+                    :weight 'normal
+                    :width 'normal)
+
+(when (functionp 'set-fontset-font)
+  (set-fontset-font "fontset-default"
+                    'unicode
+                    (font-spec :family "DejaVu Sans Mono"
+                               :width 'normal
+                               :size 12.4
+                               :weight 'normal)))
+
 
 
 ;; ========= ;;
