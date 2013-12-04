@@ -1,18 +1,18 @@
 EDITOR=vim
-VISUAL=vim
+VISUAL=emacs
 GIT_EDITOR=vim
 export EDITOR VISUAL GIT_EDITOR
 export TERM=xterm-256color
 #source ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
 
 export XDG_CONFIG_HOME="${HOME}/.config"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/bin:$HOME/.tmuxifier/tmuxifier/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/bin/cask/bin:$HOME/.tmuxifier/tmuxifier/bin:$PATH"
 export TMUXIFIER_LAYOUT_PATH="$HOME/.tmuxifier"
 eval "$(tmuxifier init -)"
 alias ls="ls -la -Gp -F"
-alias reload!="source ~/.zshrc"
 alias sudo="sudo "
 alias t='python ~/bin/t/t.py --task-dir ~/tasks --list tasks'
+alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|node_modules" --dirsfirst'
 
 autoload -U colors
 colors

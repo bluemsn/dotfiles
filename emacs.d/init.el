@@ -18,8 +18,13 @@
 ;; plugin settings ;;
 ;; =============== ;;
 
+(global-hl-line-mode t)
 (global-surround-mode 1)
 (global-rainbow-delimiters-mode)
+(smartparens-global-mode t)
+(show-paren-mode 0) ;;disable built-in pair finding
+(show-smartparens-global-mode t) ;;enable Smartparens pair finding
+(require 'project-explorer)
 
 ;; projectile settings
 (projectile-global-mode)
@@ -27,7 +32,7 @@
 (ido-everywhere 1)
 (flx-ido-mode 1)
 
-;; smart-mode-line settings
+;;; smart-mode-line settings
 ;(setq sml/theme 'respectful)
 ;(require 'smart-mode-line)
 ;(sml/setup)
@@ -51,6 +56,8 @@
 (define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill) ;kill tab
 (define-key evil-normal-state-map "gT" 'elscreen-previous) ;previous tab
 (define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
+(defadvice evil-ex-search-next (after advice-for-evil-ex-search-next activate)
+  (evil-scroll-line-to-center (line-number-at-pos)))
 
 ;; file-type settings
 ;;; php
@@ -145,7 +152,13 @@
                                :size 12.4
                                :weight 'normal)))
 
+;; put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
 
+;; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
 
 ;; ========= ;;
 ;; functions ;;
