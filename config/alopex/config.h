@@ -72,7 +72,7 @@ static Bool ignore_root_resize = True;
 /* VARIABLES AND STUFF */
 #define DMENU "dmenu_run -fn \"-misc-fixed-medium-r-normal--13-120-75-75-c-70-*-*\" -nb \"#101010\" -nf \"#484862\" -sb \"#080808\" -sf \"#FFDD0E\""
 
-#define TERM "terminator" // Set the terminal to use
+#define TERM "urxvt" // Set the terminal to use
 
 #define CMD(app) app "&"
 
@@ -96,7 +96,7 @@ static Key keys[] = {
 	// Launchers + Misc.
 	{ KEY1,      XK_Return,  spawn,      CMD(TERM)     }, // Launch terminal
 	{ KEY1,      XK_p,       spawn,      CMD(DMENU)    }, // Use Dmenu
-	//{ KEY1,      XK_w,       spawn,      CMD("chromium") }, // Launch web browser
+	{ KEY1,      XK_w,       spawn,      CMD("chromium") }, // Launch web browser
 	{ KEY1|KEY4, XK_q,       quit,       NULL          }, // Close Alopex
 	{ KEY2,      XK_F4,      killclient, NULL          }, // Close window
 	{ KEY1,      XK_f,       fullscreen, NULL          }, // Toggle fullscreen mode

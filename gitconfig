@@ -3,7 +3,7 @@
 	email = eduanlavaque@gmail.com
 [core]
 	editor = vim
-	pager = less
+	pager = less -r
 	autocrlf = input
 	eol = lf
 [help]

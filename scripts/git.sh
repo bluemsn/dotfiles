@@ -12,7 +12,7 @@ git config --global core.editor vim
 #git config --global commit.template $HOME/.gitmessage.txt
 
 # Setup script to use to show commit history etc.
-git config --global core.pager 'less'
+git config --global core.pager 'less -r'
 
 # Enable auto-correct
 git config --global help.autocorrect 1
