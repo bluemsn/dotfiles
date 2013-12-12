@@ -217,25 +217,14 @@ set switchbuf=useopen,usetab
 if (&t_Co > 2 || has('gui_running'))
 	syntax on
 endif
-if ($TERM == 'xterm-256color' || $TERM == 'screen-256color' || &t_Co >= 256)
+if ($TERM == 'rxvt-unicode' || $TERM == 'xterm-256color' || $TERM == 'screen-256color' || &t_Co >= 256)
 	set t_Co=256
 endif
 
 set synmaxcol=1024
 set background=dark
 
-let g:badwolf_darkgutter=1
-let g:badwolf_html_link_underline=0
-let g:badwolf_css_props_highlight=1
-
-let g:rehash256=1
-
 let g:gruvbox_italic=0
-
-let g:solarized_termtrans=0
-let g:solarized_bold=0
-let g:solarized_underline=0
-let g:solarized_italic=0
 
 silent! colorscheme gruvbox
 " }}}

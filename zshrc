@@ -12,6 +12,7 @@ alias ls="ls -la -Gp -F"
 alias sudo="sudo "
 alias t='python ~/bin/t/t.py --task-dir ~/tasks --list tasks'
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|node_modules" --dirsfirst'
+alias tmux='tmux -2'
 
 autoload -U colors
 colors
