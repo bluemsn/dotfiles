@@ -1,6 +1,4 @@
-#!/usr/bin/zsh
-# osx.sh by Eduan Lavaque <eduanlavaque@gmail.com>
-# Licensed under the MIT license (http://eduan.mit-license.org/)
+#!/bin/sh
 # Original file: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 # Current commit: 82e75915ae6596e55e6a267c83bc96ae99640917
 

@@ -1,14 +1,13 @@
 EDITOR=vim
-VISUAL=emacs
+VISUAL=vim
 GIT_EDITOR=vim
 export EDITOR VISUAL GIT_EDITOR
-export TERM=xterm-256color
-#source ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
+export TERM=rxvt-unicode
+source ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
 
 export XDG_CONFIG_HOME="${HOME}/.config"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/bin/cask/bin:$HOME/.tmuxifier/tmuxifier/bin:$PATH"
-export TMUXIFIER_LAYOUT_PATH="$HOME/.tmuxifier"
-eval "$(tmuxifier init -)"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/bin/cask/bin:$PATH"
+
 alias ls="ls -la -Gp -F"
 alias sudo="sudo "
 alias t='python ~/bin/t/t.py --task-dir ~/tasks --list tasks'
@@ -56,26 +55,24 @@ setopt HIST_BEEP              # Beep when accessing nonexistent history.
 # export PROMPT_COMMAND="history -a; history -n"
 
 # Fix some keys in Linux
-#if [ `uname -s` == 'Linux' ]; then
-#	bindkey "\e[1~" beginning-of-line
-#	bindkey "\e[4~" end-of-line
-#	bindkey "\e[5~" beginning-of-history
-#	bindkey "\e[6~" end-of-history
-#	bindkey "\e[7~" beginning-of-line
-#	bindkey "\e[3~" delete-char
-#	bindkey "\e[2~" quoted-insert
-#	bindkey "\e[5C" forward-word
-#	bindkey "\e[5D" backward-word
-#	bindkey "\e\e[C" forward-word
-#	bindkey "\e\e[D" backward-word
-#	bindkey "\e[1;5C" forward-word
-#	bindkey "\e[1;5D" backward-word
-#	bindkey "\e[8~" end-of-line
-#	bindkey "\eOH" beginning-of-line
-#	bindkey "\eOF" end-of-line
-#	bindkey "\e[H" beginning-of-line
-#	bindkey "\e[F" end-of-line
-#fi
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[7~" beginning-of-line
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\e[5D" backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+bindkey "\e[8~" end-of-line
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
 
 source ~/.zsh/fish-highlighting/zsh-syntax-highlighting.zsh
 

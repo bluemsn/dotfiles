@@ -60,6 +60,10 @@ static const int attachmode = 1;
 // How many windows can be visible in the stack region at any given time.
 static int stackcount = 3;
 
+// Workaround for SDL games: set to true if you only ever use one monitor or
+// otherwise want alopex to ignore any reconfigurations of the root window.
+static Bool ignore_root_resize = True;
+
 
 /* BEHAVIORAL ARRAYS
  * ---------------------------------------------------------------------------

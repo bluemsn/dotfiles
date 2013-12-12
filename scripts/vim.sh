@@ -1,7 +1,4 @@
-#!/bin/bash
-# vim.sh by Eduan Lavaque <eduanlavaque@gmail.com>
-# Licensed under the MIT license (http://eduan.mit-license.org/)
-
+#!/bin/sh
 # Make folders for tmp stuff
 mkdir -pv ~/.vim/tmp/{backup,swap,undo}
 

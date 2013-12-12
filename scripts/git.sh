@@ -1,12 +1,9 @@
-#!/usr/bin/zsh
-# git.sh by Eduan Lavaque <eduanlavaque@gmail.com>
-# Licensed under the MIT license (http://eduan.mit-license.org/)
-
+#!/bin/sh
 # Setup Git username
 git config --global user.name "Greduan"
 
 # Setup Git email
-git config --global user.email "eduanlavaque+git@gmail.com"
+git config --global user.email "eduanlavaque@gmail.com"
 
 # Setup commit editor
 git config --global core.editor vim
@@ -29,6 +26,7 @@ git config --global core.autocrlf input
 
 # Create Git aliases...
 git config --global alias.logg 'log --graph --decorate --oneline --abbrev-commit --all'
+git config --global alias.root 'rev-parse --show-toplevel'
 
 # For Git 2.x, set default method of pushing
 git config --global push.default simple

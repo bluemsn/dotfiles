@@ -17,6 +17,7 @@ if [ `uname -s` == 'Linux' ]; then
 	symlink curlrc             .curlrc
 	symlink xbindkeysrc        .xbindkeysrc
 	symlink xinitrc            .xinitrc
+	symlink Xresources         .Xresources
 fi
 symlink bin            bin
 symlink emacs.d        .emacs.d
