@@ -10,28 +10,28 @@ mkdir -p $HOME/.config
 
 # dotfiles symlinks
 if [ `uname -s` == 'Linux' ]; then
-	symlink config/alopex      .config/alopex
-	mkdir -p $HOME/.config/tint2
-	symlink config/tint2rc     .config/tint2/tint2rc
-	symlink conkyrc            .conkyrc
-	symlink curlrc             .curlrc
-	symlink xbindkeysrc        .xbindkeysrc
-	symlink xinitrc            .xinitrc
-	symlink Xresources         .Xresources
+	symlink config/alopex .config/alopex
+	symlink conkyrc       .conkyrc
+	symlink curlrc        .curlrc
+	symlink xbindkeysrc   .xbindkeysrc
+	symlink xinitrc       .xinitrc
+	symlink xmobarrc      .xmobarrc
+	symlink xmonad        .xmonad
 fi
-symlink bin            bin
-symlink emacs.d        .emacs.d
-symlink gitconfig      .gitconfig
-symlink inputrc        .inputrc
-symlink irssi          .irssi
-symlink zsh            .zsh
-symlink zshrc          .zshrc
-symlink profile        .profile
-symlink tmux.conf      .tmux.conf
-symlink vim            .vim
-symlink vimrc          .vimrc
-symlink editorconfig   .editorconfig
-symlink config/fish    .config/fish
+symlink bin          bin
+symlink Xdefaults    .Xdefaults
+symlink emacs.d      .emacs.d
+symlink gitconfig    .gitconfig
+symlink inputrc      .inputrc
+symlink irssi        .irssi
+symlink zsh          .zsh
+symlink zshrc        .zshrc
+symlink profile      .profile
+symlink tmux.conf    .tmux.conf
+symlink vim          .vim
+symlink vimrc        .vimrc
+symlink editorconfig .editorconfig
+symlink config/fish  .config/fish
 
 # Sublime Text
 if [ `uname -s` == 'Linux' ]; then

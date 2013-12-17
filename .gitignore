@@ -37,3 +37,7 @@ shells/zsh/zsh_history/
 config/fish/*
 !config/fish/config.fish
 !config/fish/functions/
+
+# XMonad
+xmonad/*
+!xmonad/xmonad.hs

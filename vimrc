@@ -5,8 +5,8 @@ endif
 " Basic settings {{{
 set nocompatible
 set hidden
-set nomodeline
-set modelines=0
+set modeline
+set modelines=5
 set viminfo+=!
 set history=1000
 set cpoptions+=$
@@ -346,6 +346,9 @@ if (has('autocmd'))
 		au BufNewFile,BufRead *.html.md.eco setlocal filetype=markdown
 		au BufNewFile,BufRead *.html.md     setlocal wrap
 		au BufNewFile,BufRead *.html.md.eco setlocal wrap
+		au BufNewFile,BufRead *.md syntax match Comment /\%^---\_.\{-}---$/
+		au BufNewFile,BufRead *.html.md syntax match Comment /\%^---\_.\{-}---$/
+		au BufNewFile,BufRead *.html.md.eco syntax match Comment /\%^---\_.\{-}---$/
 
 		au FileType text      setlocal formatprg=par\ w79r
 		au FileType markdown  setlocal formatprg=par\ w79r
