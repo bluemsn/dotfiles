@@ -20,6 +20,7 @@ Thumbs.db
 
 # Vim stuff
 vim/*
+!vim/bundles/update
 
 # emacs.d
 emacs.d/*

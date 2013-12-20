@@ -15,7 +15,7 @@ set cpoptions+=$
 set clipboard+=unnamed
 set clipboard+=unnamedplus
 " }}}
-" Pathogen and plugin settings {{{
+" Plugin stuff {{{
 " http://crumbtrail.chesmart.in/post/5024677985/man-vim-dude
 runtime! ftplugin/man.vim
 
@@ -24,12 +24,14 @@ if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
 	runtime! macros/matchit.vim
 endif
 
-"let g:pathogen_disabled=['vim-markdown', 'html5.vim']
+runtime bundles/tplugin_vim/macros/tplugin.vim
 
-" Execute Pathogen
-execute pathogen#infect()
+let g:tplugin_autoload=2
+
+TPlugin! gruvbox
+
+" Enable stuff
 filetype plugin indent on
-filetype indent off
 
 " Vitality.vim {{{
 let g:vitality_fix_cursor=0

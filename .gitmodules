@@ -10,3 +10,6 @@
 [submodule "bin/cask"]
 	path = bin/cask
 	url = https://github.com/cask/cask.git
+[submodule "vim/bundles/tplugin_vim"]
+	path = vim/bundles/tplugin_vim
+	url = https://github.com/tomtom/tplugin_vim.git
