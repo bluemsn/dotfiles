@@ -3,7 +3,7 @@ xbindkeys
 setxkbmap -layout "latam" -variant "deadtilde"
 
 # Startup programs
-dropboxd &
+#dropboxd &
 pidgin &
 
 # Xmonad

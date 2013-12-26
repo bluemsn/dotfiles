@@ -1,7 +1,8 @@
-if $SHELL =~ 'fish'
+" Fish {{{
+if ($SHELL =~ 'fish')
 	set shell=/bin/sh
 endif
-
+" }}}
 " Basic settings {{{
 set nocompatible
 set hidden
@@ -24,26 +25,33 @@ if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
 	runtime! macros/matchit.vim
 endif
 
+" Load TPlugin(s) and settings {{{
 runtime bundles/tplugin_vim/macros/tplugin.vim
-
 let g:tplugin_autoload=2
 
 TPlugin! gruvbox
+TPlugin! vim-surround
+TPlugin! vim-repeat
+" }}}
 
-" Enable stuff
 filetype plugin indent on
 
 " Vitality.vim {{{
 let g:vitality_fix_cursor=0
-" }}}
-" CtrlP {{{
-let g:ctrlp_custom_ignore='\.git\|.svn\|\.hg\|node_modules'
 " }}}
 " MiniBufExpl {{{
 let g:miniBufExplBuffersNeeded=0
 " }}}
 " Emmet.vim {{{
 let g:user_emmet_install_global=0
+au FileType html,css EmmetInstall
+au FileType html,css imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" }}}
+" Rainbow Parentheses {{{
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 " }}}
 
 " }}}
@@ -171,7 +179,6 @@ nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
 " Plugin keymappings
-ino <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 nn <leader>b :Unite file buffer<CR>
 nn <leader>B :Unite -quick-match buffer<CR>
 
@@ -225,8 +232,6 @@ endif
 
 set synmaxcol=1024
 set background=dark
-
-let g:gruvbox_italic=0
 
 silent! colorscheme gruvbox
 " }}}
@@ -334,13 +339,8 @@ if (has('autocmd'))
 		autocmd!
 		" plugins
 		au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-		au FileType html,css EmmetInstall
 		au BufReadPost fugitive://*         set bufhidden=delete
 		au FileType json,clojure call FiletypeIndent(0,2)
-		au FileType json,clojure RainbowParenthesesToggle
-		au FileType json,clojure RainbowParenthesesLoadRound
-		au FileType json,clojure RainbowParenthesesLoadSquare
-		au FileType json,clojure RainbowParenthesesLoadBraces
 		" docpad
 		au BufNewFile,BufRead *.cljs        setlocal filetype=clojure
 		au BufNewFile,BufRead *.css.scss    setlocal filetype=scss

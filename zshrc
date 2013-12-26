@@ -4,7 +4,7 @@ GIT_EDITOR=vim
 export EDITOR VISUAL GIT_EDITOR
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/bin/cask/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/.emacs.d/cask/bin:$PATH"
 
 # Aliases
 alias ls="ls -la -Gp -F"
@@ -68,5 +68,15 @@ setopt HIST_BEEP
 #bindkey "\e[F" end-of-line
 
 source ~/.zsh/fish-highlighting/zsh-syntax-highlighting.zsh
+
+gif-ify() {
+	if [[ -n "$1" && -n "$2" ]]; then
+		ffmpeg -i $1 -pix_fmt rgb24 temp.gif
+		convert -layers Optimize temp.gif $2
+		rm temp.gif
+	else
+		echo "proper usage: gif-ify <input_movie.mov> <output_file.gif>. You DO need to include extensions."
+	fi
+}
 
 # vim: set foldmarker={{{,}}}

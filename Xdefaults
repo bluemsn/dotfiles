@@ -1,5 +1,7 @@
 URxvt*loginShell: true
 URxvt*scrollBar_right: true
+URxvt*font: xft:DejaVu Sans Mono:antialias=true:size=8
+URxvt*boldFont: xft:DejaVu Sans Mono:style=bold:antialias=true:size=8
 
 ! -----------------------------------------------------------------------------
 ! File: gruvbox-dark.xresources

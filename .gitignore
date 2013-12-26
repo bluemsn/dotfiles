@@ -15,9 +15,6 @@
 ehthumbs.db
 Thumbs.db
 
-# KDE files
-.directory
-
 # Vim stuff
 vim/*
 !vim/bundles/update
@@ -28,11 +25,9 @@ emacs.d/*
 !emacs.d/Cask
 
 # Zsh history
-shells/zsh/zsh_history/
-
-# Environment specific files
-.c9revisions
-.idea
+zsh/*
+!zsh/safe-paste.sh
+!zsh/vcs-prompt.sh
 
 # Fish shell
 config/fish/*
