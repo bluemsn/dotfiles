@@ -20,9 +20,10 @@ source ~/.zsh/vcs-prompt.sh
 source ~/.zsh/zsh-vcs-prompt/zshrc.sh
 
 #                        user                @                server            path                git info                            prompt
-PROMPT=$'%{${fg[green]}%}%n%{${fg[default]}%}@%{${fg[green]}%}%m %{${fg[blue]}%}%~%{${fg[default]}%}$(vcs_super_info)%{${fg[default]}%} %{${fg[red]}%}$%{${fg[default]}%} '
+#PROMPT=$'%{${fg[green]}%}%n%{${fg[default]}%}@%{${fg[green]}%}%m %{${fg[blue]}%}%~%{${fg[default]}%}$(vcs_super_info)%{${fg[default]}%} %{${fg[red]}%}$%{${fg[default]}%} '
 #         time             last exit status
-RPROMPT=$'%T %{${fg[red]}%}[%?]'
+#RPROMPT=$'%T %{${fg[red]}%}[%?]'
+PROMPT='%{${fg[red]}%}$ '
 
 # History
 HISTFILE="$HOME/.zhistory"
