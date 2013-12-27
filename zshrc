@@ -23,7 +23,7 @@ source ~/.zsh/zsh-vcs-prompt/zshrc.sh
 #PROMPT=$'%{${fg[green]}%}%n%{${fg[default]}%}@%{${fg[green]}%}%m %{${fg[blue]}%}%~%{${fg[default]}%}$(vcs_super_info)%{${fg[default]}%} %{${fg[red]}%}$%{${fg[default]}%} '
 #         time             last exit status
 #RPROMPT=$'%T %{${fg[red]}%}[%?]'
-PROMPT='%{${fg[red]}%}$ '
+PROMPT=' %{${fg[red]}%}$%{${fg[default]}%} '
 
 # History
 HISTFILE="$HOME/.zhistory"

@@ -122,6 +122,7 @@ file of a buffer in an external program."
 (global-linum-mode 1)
 (require 'linum-relative)
 (global-hl-line-mode 1) ;; Highlight cursor line
+(setq ido-use-faces nil)
 
 ;;; Whitespace
 ;(require 'whitespace)
@@ -139,7 +140,6 @@ file of a buffer in an external program."
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
-
 
 ;; Major modes
 ;; =---------=
@@ -162,7 +162,6 @@ file of a buffer in an external program."
 ;; CSS
 (defun all-css-modes() (css-mode) (rainbow-mode)) ;; Enable rainbow-mode
 (add-to-list 'auto-mode-alist '("\\.css$" . all-css-modes))
-
 
 
 ;; GUI version settings
