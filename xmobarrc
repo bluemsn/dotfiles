@@ -3,18 +3,18 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , fgColor = "grey"
        , position = TopP 0 100
        , lowerOnStart = True
-       , commands = [ Run Network "wlan0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+       , commands = [ Run Network "wlan0" ["-t","<rx>KB|<tx>KB","-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run Network "eth0" ["-t","<rx>KB|<tx>KB","-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Memory ["-t","<usedratio>%"] 10
+                    , Run Swap ["-t","<usedratio>%"] 10
+                    , Run BatteryP ["BAT0"] ["-t","<acstatus><watts> (<left>%)","-L","10","-H","80","-p","3","--","-O","<fc=green>On</fc> - ","-i","","-L","-15","-H","-5","-l","red","-m","blue","-h","green"] 120
                     , Run Date "%F %R" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %wlan0% %eth0% | <fc=#ee9a00>%date%</fc> | %uname%"
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | W%wlan0% E%eth0% | %battery% <fc=#ee9a00>%date%</fc>"
        }
 
 -- vim: filetype=haskell

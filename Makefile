@@ -5,6 +5,13 @@ all:
 	git clone https://github.com/cask/cask.git emacs.d/cask
 	git clone https://github.com/tomtom/tplugin_vim.git vim/bundles/tplugin_vim
 
+npm:
+	sudo npm install -g coffee-script
+	sudo npm install -g docpad
+	sudo npm install -g grunt-cli
+	sudo npm install -g yo
+	sudo npm install -g generator-docpad
+
 git:
 	git config --global user.name "Greduan"
 	git config --global user.email "eduanlavaque@gmail.com"
@@ -66,6 +73,7 @@ symlink:
 	# dotfiles
 	if [ `uname -s` == 'Linux' ]; then
 		symlink config/alopex .config/alopex
+		symlink config/redshift.conf .config/redshift.conf
 		symlink conkyrc       .conkyrc
 		symlink xbindkeysrc   .xbindkeysrc
 		symlink xinitrc       .xinitrc
