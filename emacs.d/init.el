@@ -21,17 +21,27 @@
   (setq linum-relative-format "%3s|")
   (setq linum-relative-format "%3s| "))
 
+;; Smex
+(smex-initialize)
+(setq smex-show-unbound-commands 1)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 ;; Evil (Emacs vi layer) and related
 ;; ---------------------------------
 
 (evil-mode 1)
 
+(evilnc-default-hotkeys) ;;nerd-commenter
+
 (setq evil-search-module 'evil-search
       evil-want-C-u-scroll t
       evil-want-C-w-in-emacs-state t
       evil-default-cursor t)
+
+;; Center after jumping to next search match
 (defadvice evil-ex-search-next (after advice-for-evil-ex-search-next activate)
-  (evil-scroll-line-to-center (line-number-at-pos))) ;; Center after jumping to next search match
+  (evil-scroll-line-to-center (line-number-at-pos)))
 
 ;; Evil keybindings
 (define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create) ;; Create tab
@@ -49,6 +59,16 @@
   "f" 'ace-jump-char-mode
   "F" 'ace-jump-line-mode)
 
+;; Escape escapes *everything*
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
+
 
 ;; Other settings
 ;; ==============
@@ -58,9 +78,9 @@
 (load-theme 'gruvbox t)
 
 ;; Tab/indent settings
-(setq-default default-tab-width 4) ;; Make tab 4 chars wide
-(setq-default tab-stop-list (number-sequence 4 200 4))
-(setq-default indent-tabs-mode t) ;; Indent with tabs not spaces
+(setq default-tab-width 4) ;; Make tab 4 chars wide
+(setq tab-stop-list (number-sequence 4 200 4))
+(setq indent-tabs-mode 1) ;; Indent with tabs not spaces
 (global-set-key (kbd "TAB") 'self-insert-command)
 (setq c-backspace-function 'backward-delete-char)
 (setq default-truncate-lines t)
@@ -99,14 +119,29 @@ file of a buffer in an external program."
                     " "
                     buffer-file-name))))
 
+;; https://github.com/davvil/.emacs.d/blob/master/init.el
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+
 
 ;; Modes
 ;; =====
+
+;; Better defaults
+(require 'better-defaults)
 
 ;; Minor modes
 ;; =---------=
 
 ;; GUI stuff
+;; Disable all of this stuff, it's for sissies
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -124,9 +159,10 @@ file of a buffer in an external program."
 (global-hl-line-mode 1) ;; Highlight cursor line
 (setq ido-use-faces nil)
 
-;;; Whitespace
-;(require 'whitespace)
-;(global-whitespace-mode)
+;; Whitespace
+(require 'whitespace)
+(global-whitespace-mode)
+;(setq whitespace-style '(space tab newline space-mark tab-mark newline-mark))
 
 ;; Parentheses
 (global-surround-mode 1)
@@ -134,6 +170,7 @@ file of a buffer in an external program."
 (show-paren-mode -1) ;; Disable built-in pair finding
 (smartparens-global-mode 1)
 (show-smartparens-global-mode 1) ;; Enable Smartparens pair finding
+(require 'smartparens-config) ;; Smartparens config used by author
 
 ;; Projectile settings
 (projectile-global-mode 1)
@@ -141,9 +178,12 @@ file of a buffer in an external program."
 (ido-everywhere 1)
 (flx-ido-mode 1)
 
+;; Evil mode stuff
+
 ;; Major modes
 ;; =---------=
 
+;; Evil mode stuff
 ;;^ (evil-mode 1)
 ;;^ (global-evil-leader-mode 1)
 
@@ -170,7 +210,7 @@ file of a buffer in an external program."
 ;; Font
 (set-face-attribute 'default nil
                     :family "DejaVu Sans Mono"
-                    :height 100
+                    :height 90
                     :weight 'normal
                     :width 'normal)
 

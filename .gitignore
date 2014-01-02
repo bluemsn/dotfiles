@@ -1,20 +1,3 @@
-# Icon files
-*.(I|i)con?
-(I|i)con?
-*.icns
-
-# For Mac OS X files
-.fseventsd
-.DS_Store?
-.Trashes
-.TemporaryItems
-._*
-.Spotlight-V100
-
-# For Windows files
-ehthumbs.db
-Thumbs.db
-
 # Vim stuff
 vim/*
 !vim/bundles/update

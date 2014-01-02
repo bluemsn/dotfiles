@@ -13,7 +13,7 @@ myConfig = defaultConfig { modMask = mod4Mask
                          --, manageHook = manageDocks <+> manageHook defaultConfig
                          --, layoutHook = avoidStruts $ layoutHook defaultConfig
                          , terminal = "urxvt"
-                         , workspaces = ["1:main","2:media","3:comm","4:misc","5","6","7","8","9"]
+                         , workspaces = ["1:main","2:dev","3:comm","4:media","5:misc","6","7","8","9"]
                          , borderWidth = 2 }
                          --`additionalKeys` [ ((modMask, xK_c), kill) ]
 

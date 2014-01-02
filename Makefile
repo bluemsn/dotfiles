@@ -1,11 +1,20 @@
-all:
-	# Clone the repos, instead of Git modules
+symlink() {
+	ln -fsv $HOME/dotfiles/$1 $HOME/$2
+}
+
+# This Makefile only works on Arch Linux
+submodule:
 	git clone https://github.com/yonchu/zsh-vcs-prompt.git zsh/zsh-vcs-prompt
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git zsh/fish-highlighting
 	git clone https://github.com/cask/cask.git emacs.d/cask
 	git clone https://github.com/tomtom/tplugin_vim.git vim/bundles/tplugin_vim
 
+pip:
+	sudo pacman -S python-pip
+	sudo pip install jrnl
+
 npm:
+	sudo pacman -S nodejs
 	sudo npm install -g coffee-script
 	sudo npm install -g docpad
 	sudo npm install -g grunt-cli
@@ -16,7 +25,6 @@ git:
 	git config --global user.name "Greduan"
 	git config --global user.email "eduanlavaque@gmail.com"
 	git config --global core.editor vim
-	#git config --global commit.template $HOME/.gitmessage.txt
 	git config --global core.pager 'less -r'
 	git config --global help.autocorrect 1
 	git config --global color.ui true
@@ -26,51 +34,8 @@ git:
 	git config --global alias.root 'rev-parse --show-toplevel'
 	git config --global push.default simple
 
-vim:
-	mkdir -pv ~/.vim/tmp/{backup,swap,undo}
-	mkdir -pv ~/.vim/{autoload,bundle}
-	# General plugins...
-	#git clone https://github.com/kien/ctrlp.vim.git
-	git clone https://github.com/mattn/emmet-vim.git
-	git clone https://github.com/fholgado/minibufexpl.vim.git
-	git clone https://github.com/kien/rainbow_parentheses.vim.git
-	git clone https://github.com/tomtom/tcomment_vim.git
-	git clone https://github.com/Shougo/unite.vim.git
-	git clone https://github.com/ConradIrwin/vim-bracketed-paste.git
-	git clone https://github.com/gorodinskiy/vim-coloresque.git
-	git clone https://github.com/drmikehenry/vim-fixkey.git
-	git clone https://github.com/osyo-manga/vim-over.git
-	git clone https://github.com/chreekat/vim-paren-crosshairs.git
-	git clone https://github.com/tpope/vim-repeat.git
-	git clone https://github.com/tpope/vim-vinegar.git
-	git clone https://github.com/justinmk/vim-sneak.git
-	git clone https://github.com/tpope/vim-surround.git
-	git clone https://github.com/christoomey/vim-tmux-navigator.git
-	git clone https://github.com/sjl/vitality.vim.git
-	# Color schemes...
-	git clone https://github.com/morhetz/gruvbox.git
-	git clone https://github.com/jnurmine/Zenburn.git
-	# Syntaxes...
-	git clone https://github.com/othree/html5.vim.git
-	git clone https://github.com/cakebaker/scss-syntax.vim.git
-	git clone https://github.com/zaiste/tmux.vim.git
-	git clone https://github.com/guns/vim-clojure-static.git
-	git clone https://github.com/kchmck/vim-coffee-script.git
-	git clone https://github.com/mutewinter/vim-css3-syntax.git
-	git clone https://github.com/AndrewRadev/vim-eco.git
-	git clone https://github.com/tpope/vim-git.git
-	git clone https://github.com/elzr/vim-json.git
-	git clone https://github.com/tpope/vim-markdown.git
-	# Vim packages
-	#git clone https://github.com/vim-scripts/Auto-Pairs.git
-	git clone https://github.com/vim-scripts/IndexedSearch.git
-
 symlink:
-	symlink() {
-		ln -fsv $HOME/dotfiles/$1 $HOME/$2
-	}
 	mkdir -p $HOME/.config
-	# dotfiles
 	if [ `uname -s` == 'Linux' ]; then
 		symlink config/alopex .config/alopex
 		symlink config/redshift.conf .config/redshift.conf
@@ -85,6 +50,7 @@ symlink:
 	symlink curlrc       .curlrc
 	symlink emacs.d      .emacs.d
 	symlink gitconfig    .gitconfig
+	symlink gitignore_global .gitignore_global
 	symlink inputrc      .inputrc
 	symlink irssi        .irssi
 	symlink zsh          .zsh
@@ -95,7 +61,6 @@ symlink:
 	symlink vimrc        .vimrc
 	symlink editorconfig .editorconfig
 	symlink config/fish  .config/fish
-	# Sublime Text
 	if [ `uname -s` == 'Linux' ]; then
 		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages $HOME/.config/sublime-text-3/Packages
 		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Installed\ Packages $HOME/.config/sublime-text-3/Installed\ Packages
@@ -103,3 +68,54 @@ symlink:
 		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages
 		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Installed\ Packages $HOME/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages
 	fi
+
+pacman:
+	sudo pacman -S xf86-input-synaptics libtxc_dxtn
+	sudo pacman -S xorg-server-xephyr
+	sudo pacman -S dmenu
+	sudo pacman -S xbindkeys
+	sudo pacman -S zsh; chsh -s /bin/zsh && sudo chsh -s /bin/zsh
+	sudo pacman -S git
+	sudo pacman -S python2 python
+	sudo pacman -S gvim
+	sudo pacman -S tmux
+	sudo pacman -S filezilla
+	sudo pacman -S openssh
+	sudo pacman -S firefox
+	sudo pacman -S chromium
+	sudo pacman -S opera
+	sudo pacman -S wpa_supplicant bluez bluez-utils; sudo systemctl enable bluetooth; sudo systemctl start bluetooth;
+	sudo pacman -S connman; sudo systemctl enable connman; sudo systemctl start connman
+	sudo pacman -S flashplugin lib32-flashplugin
+	sudo pacman -S gimp
+	sudo pacman -S vlc
+	sudo pacman -S acpi
+	sudo pacman -S xclip
+	sudo pacman -S imagemagick
+	sudo pacman -S tree
+	sudo pacman -S libreoffice
+	sudo pacman -S redshift
+	sudo pacman -S xmonad
+	sudo pacman -S xmonad-contrib
+	sudo pacman -S xmobar
+	sudo pacman -S trayer
+	sudo pacman -S simplescreenrecorder
+	sudo pacman -S transmission-qt
+	sudo pacman -S kdenlive
+
+pacaur:
+	pacaur -Sa dmenu-launch
+	pacaur -Sa rxvt-unicode-256xresources
+	pacaur -Sa dropbox
+	pacaur -Sa econnman
+	pacaur -Sa ttf-dejavu ttf-source-code-pro ttf-anonymous-pro terminus-font-ttf
+	pacaur -Sa ttf-tahoma ttf-symbola
+	pacaur -Sa ttf-google-fonts-git ttf-ms-fonts ttf-vista-fonts ttf-mac-fonts
+	fc-cache -vf
+	pacaur -Sa par
+	pacaur -Sa leiningen
+	pacaur -Sa ldm; sudo systemctl enable ldm; sudo systemctl start ldm
+	pacaur -Sa ngrok
+	pacaur -Sa most
+
+arch: pacman pacaur

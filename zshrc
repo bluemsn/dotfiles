@@ -1,7 +1,8 @@
 EDITOR=vim
 VISUAL=vim
 GIT_EDITOR=vim
-export EDITOR VISUAL GIT_EDITOR
+PAGER=most
+export EDITOR VISUAL GIT_EDITOR PAGER
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/.emacs.d/cask/bin:$PATH"
@@ -15,9 +16,9 @@ alias perm='stat -c "%A  %a  %U:%G  $(pwd)/%n" .* *'
 
 autoload -U colors; colors
 setopt PROMPT_SUBST
-source ~/.zsh/safe-paste.sh
-source ~/.zsh/vcs-prompt.sh
-source ~/.zsh/zsh-vcs-prompt/zshrc.sh
+#source ~/.zsh/safe-paste.sh
+#source ~/.zsh/vcs-prompt.sh
+#source ~/.zsh/zsh-vcs-prompt/zshrc.sh
 
 #                        user                @                server            path                git info                            prompt
 #PROMPT=$'%{${fg[green]}%}%n%{${fg[default]}%}@%{${fg[green]}%}%m %{${fg[blue]}%}%~%{${fg[default]}%}$(vcs_super_info)%{${fg[default]}%} %{${fg[red]}%}$%{${fg[default]}%} '
@@ -68,9 +69,9 @@ setopt HIST_BEEP
 #bindkey "\e[H" beginning-of-line
 #bindkey "\e[F" end-of-line
 
-source ~/.zsh/fish-highlighting/zsh-syntax-highlighting.zsh
+#source ~/.zsh/fish-highlighting/zsh-syntax-highlighting.zsh
 
-gif-ify() {
+function gif-ify() {
 	if [[ -n "$1" && -n "$2" ]]; then
 		ffmpeg -i $1 -pix_fmt rgb24 temp.gif
 		convert -layers Optimize temp.gif $2
@@ -79,5 +80,6 @@ gif-ify() {
 		echo "proper usage: gif-ify <input_movie.mov> <output_file.gif>. You DO need to include extensions."
 	fi
 }
+function gi() { curl http://gitignore.io/api/$1 ;}
 
 # vim: set foldmarker={{{,}}}
