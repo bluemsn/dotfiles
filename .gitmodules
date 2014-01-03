@@ -1,0 +1,7 @@
+[submodule "vim/bundles/tplugin_vim"]
+	path = vim/bundles/tplugin_vim
+	url = https://github.com/tomtom/tplugin_vim.git
+
+[submodule "zsh/pure"]
+	path = zsh/pure
+	url = https://github.com/sindresorhus/pure.git

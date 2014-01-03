@@ -14,17 +14,11 @@ alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|node_modules" --dirsfirst'
 alias tmux='tmux -2'
 alias perm='stat -c "%A  %a  %U:%G  $(pwd)/%n" .* *'
 
+fpath=( "$HOME/.zsh/fpath" $fpath )
 autoload -U colors; colors
+autoload -Uz promptinit && promptinit
 setopt PROMPT_SUBST
-#source ~/.zsh/safe-paste.sh
-#source ~/.zsh/vcs-prompt.sh
-#source ~/.zsh/zsh-vcs-prompt/zshrc.sh
-
-#                        user                @                server            path                git info                            prompt
-#PROMPT=$'%{${fg[green]}%}%n%{${fg[default]}%}@%{${fg[green]}%}%m %{${fg[blue]}%}%~%{${fg[default]}%}$(vcs_super_info)%{${fg[default]}%} %{${fg[red]}%}$%{${fg[default]}%} '
-#         time             last exit status
-#RPROMPT=$'%T %{${fg[red]}%}[%?]'
-PROMPT=' %{${fg[red]}%}$%{${fg[default]}%} '
+prompt pure
 
 # History
 HISTFILE="$HOME/.zhistory"
@@ -68,8 +62,6 @@ setopt HIST_BEEP
 #bindkey "\eOF" end-of-line
 #bindkey "\e[H" beginning-of-line
 #bindkey "\e[F" end-of-line
-
-#source ~/.zsh/fish-highlighting/zsh-syntax-highlighting.zsh
 
 function gif-ify() {
 	if [[ -n "$1" && -n "$2" ]]; then

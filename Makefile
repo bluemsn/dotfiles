@@ -4,10 +4,7 @@ symlink() {
 
 # This Makefile only works on Arch Linux
 submodule:
-	git clone https://github.com/yonchu/zsh-vcs-prompt.git zsh/zsh-vcs-prompt
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git zsh/fish-highlighting
 	git clone https://github.com/cask/cask.git emacs.d/cask
-	git clone https://github.com/tomtom/tplugin_vim.git vim/bundles/tplugin_vim
 
 pip:
 	sudo pacman -S python-pip
