@@ -1,5 +1,5 @@
 EDITOR=vim
-VISUAL=vim
+VISUAL=subl3
 GIT_EDITOR=vim
 PAGER=most
 export EDITOR VISUAL GIT_EDITOR PAGER
@@ -13,12 +13,10 @@ alias sudo="sudo "
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|node_modules" --dirsfirst'
 alias tmux='tmux -2'
 alias perm='stat -c "%A  %a  %U:%G  $(pwd)/%n" .* *'
+alias t='python2 ~/bin/t/t.py --task-dir ~/tasks --list tasks.txt'
+alias z='. ~/bin/z/z.sh'
 
-fpath=( "$HOME/.zsh/fpath" $fpath )
-autoload -U colors; colors
-autoload -Uz promptinit && promptinit
-setopt PROMPT_SUBST
-prompt pure
+source ~/.zsh/prompt.sh
 
 # History
 HISTFILE="$HOME/.zhistory"

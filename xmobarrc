@@ -1,20 +1,21 @@
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , bgColor = "black"
-       , fgColor = "grey"
-       , position = TopP 0 100
+       , bgColor = "#282828"
+       , fgColor = "#fdf4c1"
+       , position = Static  { xpos = 0, ypos = 0, width = 1180, height = 16 }
        , lowerOnStart = True
-       , commands = [ Run Network "wlan0" ["-t","<rx>KB-<tx>KB","-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Network "eth0" ["-t","<rx>KB-<tx>KB","-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+       , commands = [ Run Network "wlan0" ["-t","wlan0: <rx>KB-<tx>KB ","-L","0","-H","32","--normal","#b8bb26","--high","#fb4934"] 10
+                    , Run Network "eth0" ["-t","eth0: <rx>KB-<tx>KB ","-L","0","-H","32","--normal","#b8bb26","--high","#fb4934"] 10
+                    , Run Cpu ["-L","3","-H","50","--normal","#b8bb26","--high","#fb4934"] 10
                     , Run Memory ["-t","<usedratio>%"] 10
                     , Run Swap ["-t","<usedratio>%"] 10
-                    , Run BatteryP ["BAT0"] ["-t","<acstatus><watts> (<left>%)","-L","10","-H","80","-p","3","--","-O","<fc=green>On</fc> - ","-i","","-L","-15","-H","-5","-l","red","-m","blue","-h","green"] 120
+                    , Run DiskIO [("/", "I/O: <read> <write>"), ("sda3", "<total>")] [] 10
+                    , Run BatteryP ["BAT0"] ["-t","<acstatus> (<left>%)","-L","10","-H","80","-p","3","--","-O","<fc=#b8bb26>On</fc>","-i","","-L","-15","-H","-5","-l","#fb4934","-m","#83a598","-h","#b8bb26"] 120
                     , Run Date "%F %R" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | W%wlan0% E%eth0% | %battery% <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %wlan0%%eth0%| %battery% <fc=#ee9a00>%date%</fc>"
        }
 
 -- vim: filetype=haskell

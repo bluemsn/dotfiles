@@ -1,3 +1,5 @@
+syntax: glob
+
 # Created by http://gitignore.io
 
 ### Linux ###
@@ -27,3 +29,4 @@ tramp
 Session.vim
 .netrwhist
 *~
+

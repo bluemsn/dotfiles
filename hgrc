@@ -1,0 +1,10 @@
+[ui]
+username = Greduan <eduanlavaque@gmail.com>
+ssh = ssh -C
+ignore = ~/.hgignore
+
+[extensions]
+fetch =
+
+[alias]
+untrack = rm -Af

@@ -1,14 +1,20 @@
+# This Makefile only works on Arch Linux
 symlink() {
 	ln -fsv $HOME/dotfiles/$1 $HOME/$2
 }
 
-# This Makefile only works on Arch Linux
+bin:
+	mkdir -p $HOME/bin $HOME/tasks
+	hg clone https://bitbucket.org/sjl/t ~/bin/t
+	git clone https://github.com/rupa/z.git ~/bin/z
+
 submodule:
 	git clone https://github.com/cask/cask.git emacs.d/cask
 
 pip:
 	sudo pacman -S python-pip
 	sudo pip install jrnl
+	sudo pip install d
 
 npm:
 	sudo pacman -S nodejs
@@ -37,6 +43,7 @@ symlink:
 		symlink config/alopex .config/alopex
 		symlink config/redshift.conf .config/redshift.conf
 		symlink conkyrc       .conkyrc
+		symlink fuzzy-windows .fuzzy-windows
 		symlink xbindkeysrc   .xbindkeysrc
 		symlink xinitrc       .xinitrc
 		symlink xmobarrc      .xmobarrc
@@ -48,6 +55,9 @@ symlink:
 	symlink emacs.d      .emacs.d
 	symlink gitconfig    .gitconfig
 	symlink gitignore_global .gitignore_global
+	symlink gvimrc       .gvimrc
+	symlink hgignore     .hgignore
+	symlink hgrc         .hgrc
 	symlink inputrc      .inputrc
 	symlink irssi        .irssi
 	symlink zsh          .zsh
@@ -59,11 +69,9 @@ symlink:
 	symlink editorconfig .editorconfig
 	symlink config/fish  .config/fish
 	if [ `uname -s` == 'Linux' ]; then
-		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages $HOME/.config/sublime-text-3/Packages
-		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Installed\ Packages $HOME/.config/sublime-text-3/Installed\ Packages
+		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages/User $HOME/.config/sublime-text-3/Packages/User
 	elif [ `uname -s` == 'Darwin' ]; then
-		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages
-		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Installed\ Packages $HOME/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages
+		ln -fsv $HOME/Dropbox/Sublime\ Text\ 3/Packages/User $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 	fi
 
 pacman:
@@ -99,6 +107,8 @@ pacman:
 	sudo pacman -S simplescreenrecorder
 	sudo pacman -S transmission-qt
 	sudo pacman -S kdenlive
+	sudo pacman -S mercurial
+	sudo pacman -S ranger
 
 pacaur:
 	pacaur -Sa dmenu-launch
@@ -114,5 +124,7 @@ pacaur:
 	pacaur -Sa ldm; sudo systemctl enable ldm; sudo systemctl start ldm
 	pacaur -Sa ngrok
 	pacaur -Sa most
+	pacaur -Sa z-git
+	pacaur -Sa workman-git
 
 arch: pacman pacaur
