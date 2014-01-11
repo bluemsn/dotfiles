@@ -25,13 +25,45 @@ if (!exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# '')
 	runtime! macros/matchit.vim
 endif
 
-" Load TPlugin(s) and settings {{{
-runtime bundles/tplugin_vim/macros/tplugin.vim
-let g:tplugin_autoload=2
+" vim-plug {{{
+call plug#begin()
 
-TPlugin! gruvbox
-TPlugin! vim-surround
-TPlugin! vim-repeat
+Plug 'kien/ctrlp.vim'
+Plug 'mattn/emmet-vim'
+Plug 'fholgado/minibufexpl.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'Shougo/unite.vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'tpope/vim-classpath'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'haya14busa/vim-easymotion'
+Plug 'tpope/vim-fireplace'
+Plug 'drmikehenry/vim-fixkey'
+Plug 'osyo-manga/vim-over'
+Plug 'chreekat/vim-paren-crosshairs'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-vinegar'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'sjl/vitality.vim'
+Plug 'morhetz/gruvbox'
+Plug 'jnurmine/Zenburn'
+Plug 'othree/html5.vim'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'zaiste/tmux.vim'
+Plug 'guns/vim-clojure-static'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mutewinter/vim-css3-syntax'
+Plug 'AndrewRadev/vim-eco'
+Plug 'tpope/vim-git'
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-markdown'
+Plug 'vim-scripts/Auto-Pairs'
+Plug 'vim-scripts/IndexedSearch'
+
+call plug#end()
 " }}}
 
 filetype plugin indent on
@@ -154,8 +186,8 @@ vn k gk
 " Don't move on match
 nn * *<C-o>
 
-" Preserve indentation while pasting text from the OS X clipboard
-no <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+" Preserve indentation while pasting
+no <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
 " Better help tags navigation (IMO)
 nn <C-S-Right> <C-]>
@@ -174,16 +206,13 @@ xn & :&&<CR>
 nn Y y$
 xn Y y$
 
-
+" Give the ñÑ in some keyboards a good use
 nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
 " Plugin keymappings
 nn <leader>b :Unite file buffer<CR>
 nn <leader>B :Unite -quick-match buffer<CR>
-
-" Stuff to keep in mind:
-" ;    Repeat latest f, t, F or T [count] times.
 " }}}
 " Screen drawing {{{
 "set whichwrap+=<,>,h,l,[,]
@@ -232,6 +261,8 @@ endif
 
 set synmaxcol=1024
 set background=dark
+
+let g:gruvbox_italic=0
 
 silent! colorscheme gruvbox
 " }}}
