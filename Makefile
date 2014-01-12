@@ -128,3 +128,6 @@ pacaur:
 	pacaur -Sa workman-git
 
 arch: pacman pacaur
+
+vim:
+	mkdir -pv ~/.vim/tmp/{backup,swap,undo,unite}

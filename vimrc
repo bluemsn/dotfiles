@@ -28,9 +28,9 @@ endif
 " vim-plug {{{
 call plug#begin()
 
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
-Plug 'fholgado/minibufexpl.vim'
+"Plug 'fholgado/minibufexpl.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'Shougo/unite.vim'
@@ -46,8 +46,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'sjl/vitality.vim'
+"Plug 'christoomey/vim-tmux-navigator'
+"Plug 'sjl/vitality.vim'
 Plug 'morhetz/gruvbox'
 Plug 'jnurmine/Zenburn'
 Plug 'othree/html5.vim'
@@ -60,8 +60,22 @@ Plug 'AndrewRadev/vim-eco'
 Plug 'tpope/vim-git'
 Plug 'elzr/vim-json'
 Plug 'tpope/vim-markdown'
-Plug 'vim-scripts/Auto-Pairs'
+"Plug 'vim-scripts/Auto-Pairs'
 Plug 'vim-scripts/IndexedSearch'
+"Plug 'Shougo/vimproc.vim'
+"Plug 'Shougo/vimshell.vim'
+Plug 'vim-scripts/bufkill.vim'
+Plug 'vim-scripts/Smart-Tabs'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/scratch.vim'
+Plug 'sjl/clam.vim'
+Plug 'terryma/vim-multiple-cursors'
+"Plug 'bling/vim-bufferline'
+Plug 'mhinz/vim-startify'
+Plug 'mattn/gist-vim'
+Plug 'chrisbra/NrrwRgn'
+Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 " }}}
@@ -84,6 +98,39 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+" }}}
+" Unite {{{
+" https://github.com/bling/dotvim/blob/0c9b4e7183/vimrc#L532-L581
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#set_profile('files', 'smartcase', 1)
+call unite#custom#source('line,outline','matchers','matcher_fuzzy')
+
+let g:unite_data_directory='~/.vim/tmp/unite'
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_source_rec_max_cache_files=5000
+let g:unite_prompt='> '
+
+if executable('ag')
+	let g:unite_source_grep_command='ag'
+	let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+	let g:unite_source_grep_recursive_opt=''
+elseif executable('ack')
+	let g:unite_source_grep_command='ack'
+	let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
+	let g:unite_source_grep_recursive_opt=''
+endif
+
+function! s:unite_settings()
+	nmap <buffer> Q <plug>(unite_exit)
+	nmap <buffer> <esc> <plug>(unite_exit)
+	imap <buffer> <esc> <plug>(unite_exit)
+endfunction
+autocmd FileType unite call s:unite_settings()
+" }}}
+" Airline {{{
+let g:airline#extensions#whitespace#enabled=0
 " }}}
 
 " }}}
@@ -163,9 +210,10 @@ vn <C-e> ,
 nn / /\v
 vn / /\v
 
-" Completely disable the use of the arrow keys in command and visual modes
-no <up> <NOP>
-no <down> <NOP>
+" I can never remember these
+no <up> <C-b>
+no <down> <C-d>
+" Completely disable the use of the arrow keys in normal and visual modes
 no <left> <NOP>
 no <right> <NOP>
 ino <up> <NOP>
@@ -190,8 +238,8 @@ nn * *<C-o>
 no <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
 " Better help tags navigation (IMO)
-nn <C-S-Right> <C-]>
-nn <C-S-Left>  <C-t>
+nn <C-S-right> <C-]>
+nn <C-S-left>  <C-t>
 
 " Indent in visual and select mode automatically re-selects
 vn > >gv
@@ -211,8 +259,20 @@ nn ñ :w<CR>
 nn <S-ñ> :wq!<CR>
 
 " Plugin keymappings
-nn <leader>b :Unite file buffer<CR>
-nn <leader>B :Unite -quick-match buffer<CR>
+" Unite {{{
+" https://github.com/bling/dotvim/blob/0c9b4e7183/vimrc#L532-L581
+nm <space> [unite]
+nn [unite] <NOP>
+nn <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async buffer file_mru bookmark<CR><C-u>
+nn <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async<CR><C-u>
+nn <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<CR>
+nn <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<CR>
+nn <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<CR>
+nn <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<CR>
+nn <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<CR>
+nn <silent> [unite]s :<C-u>Unite -quick-match buffer<CR>
+" }}}
+
 " }}}
 " Screen drawing {{{
 "set whichwrap+=<,>,h,l,[,]
@@ -239,7 +299,7 @@ set virtualedit=all
 set mousehide
 set mouse=
 set ruler
-set statusline=[%n]\ %f\ %y%<\ %(%M%R%W%)%=[%l,%v]\ (%L,%p%%)
+"set statusline=[%n]\ %f\ %y%<\ %(%M%R%W%)%=[%l,%v]\ (%L,%p%%)
 " }}}
 " Window/split management {{{
 set title
@@ -389,4 +449,7 @@ if (has('autocmd'))
 		au FileType vim       setlocal foldmethod=marker
 	augroup END
 endif
+" }}}
+" Gruvbox Airline {{{
+
 " }}}

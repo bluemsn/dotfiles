@@ -6,7 +6,8 @@ import XMonad.Hooks.DynamicLog
 --import System.IO
 
 myBar = "xmobar"
-myPP = xmobarPP { ppCurrent = xmobarColor "#fe8019" "" . wrap "[" "]" }
+myPP = xmobarPP { ppCurrent = xmobarColor "#fe8019" "" . wrap "[" "]"
+                , ppTitle = xmobarColor "#fe8019" "" }
 statusbarToggleKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 myConfig = defaultConfig { modMask = mod4Mask
