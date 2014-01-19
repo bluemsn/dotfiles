@@ -131,3 +131,4 @@ arch: pacman pacaur
 
 vim:
 	mkdir -pv ~/.vim/tmp/{backup,swap,undo,unite}
+	echo "\n\nREMEMBER TO COMPILE vimproc.vim WITH `make` (no arguments)"

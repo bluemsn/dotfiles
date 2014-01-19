@@ -3,8 +3,7 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , fgColor = "#fdf4c1"
        , position = Static  { xpos = 0, ypos = 0, width = 1180, height = 16 }
        , lowerOnStart = True
-       , commands = [ Run Network "wlan0" ["-t","wlan0: <rx>KB-<tx>KB ","-L","0","-H","32","--normal","#b8bb26","--high","#fb4934"] 10
-                    , Run Network "eth0" ["-t","eth0: <rx>KB-<tx>KB ","-L","0","-H","32","--normal","#b8bb26","--high","#fb4934"] 10
+       , commands = [ Run DynNetwork ["-t","<dev>: <rx>-<tx>","-L","0","-H","32","--normal","#b8bb26","--high","#fb4934","-S","True"] 10
                     , Run Cpu ["-L","3","-H","50","--normal","#b8bb26","--high","#fb4934"] 10
                     , Run Memory ["-t","<usedratio>%"] 10
                     , Run Swap ["-t","<usedratio>%"] 10
@@ -15,7 +14,7 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %wlan0%%eth0%| %battery% <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %dynnetwork% | %battery% <fc=#ee9a00>%date%</fc>"
        }
 
 -- vim: filetype=haskell

@@ -28,13 +28,10 @@ endif
 " vim-plug {{{
 call plug#begin()
 
-"Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
-"Plug 'fholgado/minibufexpl.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'Shougo/unite.vim'
-Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-classpath'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'haya14busa/vim-easymotion'
@@ -46,10 +43,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
-"Plug 'christoomey/vim-tmux-navigator'
-"Plug 'sjl/vitality.vim'
 Plug 'morhetz/gruvbox'
-Plug 'jnurmine/Zenburn'
 Plug 'othree/html5.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'zaiste/tmux.vim'
@@ -60,9 +54,9 @@ Plug 'AndrewRadev/vim-eco'
 Plug 'tpope/vim-git'
 Plug 'elzr/vim-json'
 Plug 'tpope/vim-markdown'
-"Plug 'vim-scripts/Auto-Pairs'
+Plug 'vim-scripts/Auto-Pairs'
 Plug 'vim-scripts/IndexedSearch'
-"Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim'
 "Plug 'Shougo/vimshell.vim'
 Plug 'vim-scripts/bufkill.vim'
 Plug 'vim-scripts/Smart-Tabs'
@@ -70,25 +64,26 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/scratch.vim'
 Plug 'sjl/clam.vim'
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'bling/vim-bufferline'
 Plug 'mhinz/vim-startify'
 Plug 'mattn/gist-vim'
 Plug 'chrisbra/NrrwRgn'
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
+Plug 'justinmk/vim-gtfo'
+"Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 " }}}
 
 filetype plugin indent on
 
-" Vitality.vim {{{
+" Vitality {{{
 let g:vitality_fix_cursor=0
 " }}}
 " MiniBufExpl {{{
 let g:miniBufExplBuffersNeeded=0
 " }}}
-" Emmet.vim {{{
+" Emmet {{{
 let g:user_emmet_install_global=0
 au FileType html,css EmmetInstall
 au FileType html,css imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -131,6 +126,9 @@ autocmd FileType unite call s:unite_settings()
 " }}}
 " Airline {{{
 let g:airline#extensions#whitespace#enabled=0
+" }}}
+" Sneak {{{
+let g:sneak#streak=1
 " }}}
 
 " }}}
@@ -286,7 +284,7 @@ set list
 set listchars=tab:\|\ ,eol:$,trail:_,extends:),precedes:(
 set number
 set relativenumber
-set colorcolumn=79
+set colorcolumn=80
 set shortmess=astI
 set ttyfast
 set linespace=0
@@ -402,7 +400,7 @@ set foldtext=MyFoldText()
 " }}}
 function! <SID>WriteMode() " {{{
         setlocal formatoptions=tcroj
-        setlocal textwidth=79
+        setlocal textwidth=80
         setlocal wrapmargin=0
 endfunction
 nn <leader>w :call <SID>WriteMode()<CR>
@@ -443,9 +441,9 @@ if (has('autocmd'))
 		au BufNewFile,BufRead *.html.md syntax match Comment /\%^---\_.\{-}---$/
 		au BufNewFile,BufRead *.html.md.eco syntax match Comment /\%^---\_.\{-}---$/
 
-		au FileType text      setlocal formatprg=par\ w79r
-		au FileType markdown  setlocal formatprg=par\ w79r
-		au FileType gitcommit setlocal formatprg=par\ w72r
+		au FileType text      setlocal formatprg=par\ w80r
+		au FileType markdown  setlocal formatprg=par\ w80r
+		au FileType gitcommit setlocal formatprg=par\ w80r
 		au FileType vim       setlocal foldmethod=marker
 	augroup END
 endif

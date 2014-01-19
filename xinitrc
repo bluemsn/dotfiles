@@ -4,13 +4,16 @@ setxkbmap -layout "latam" -variant "deadtilde"
 
 # Startup programs
 #dropboxd &
-pidgin &
-redshift-gtk &
+#pidgin &
+#redshift-gtk &
 
 # Xmonad
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype pixel --width 100 --heighttype pixel --height 16 --transparent true --alpha 0 --tint 0x282828 &
 xsetroot -cursor_name left_ptr
 exec xmonad
+
+# XFCE/LXDE
+#exec startlxde
 
 # fastwm
 #exec fastwm
