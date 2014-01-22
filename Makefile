@@ -41,7 +41,9 @@ symlink:
 	mkdir -p $HOME/.config
 	if [ `uname -s` == 'Linux' ]; then
 		symlink config/alopex .config/alopex
+		symlink config/bspwm  .config/bspwm
 		symlink config/redshift.conf .config/redshift.conf
+		symlink config/sxhkd  .config/sxhkd
 		symlink conkyrc       .conkyrc
 		symlink fuzzy-windows .fuzzy-windows
 		symlink xbindkeysrc   .xbindkeysrc
@@ -126,6 +128,8 @@ pacaur:
 	pacaur -Sa most
 	pacaur -Sa z-git
 	pacaur -Sa workman-git
+	pacaur -Sa bspwm
+	pacaur -Sa sxhkd
 
 arch: pacman pacaur
 

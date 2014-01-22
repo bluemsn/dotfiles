@@ -1,11 +1,11 @@
 EDITOR=vim
-VISUAL=gvim
+VISUAL='gvim -f'
 GIT_EDITOR=vim
 PAGER=most
 export EDITOR VISUAL GIT_EDITOR PAGER
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/.emacs.d/cask/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$HOME/.emacs.d/cask/bin:$HOME/.config/bspwm/panel:$PATH"
 
 # Aliases
 alias ls="ls -la -Gp -F"
@@ -70,6 +70,6 @@ function gif-ify() {
 		echo "proper usage: gif-ify <input_movie.mov> <output_file.gif>. You DO need to include extensions."
 	fi
 }
-function gi() { curl http://gitignore.io/api/$1 ;}
+function gi() { curl http://www.gitignore.io/api/$1 ;}
 
 # vim: set foldmarker={{{,}}}
