@@ -161,7 +161,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Whitespace
 (require 'whitespace)
-(global-whitespace-mode)
+;(global-whitespace-mode)
 ;(setq whitespace-style '(space tab newline space-mark tab-mark newline-mark))
 
 ;; Parentheses

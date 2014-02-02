@@ -10,7 +10,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/
 # Aliases
 alias ls="ls -la -Gp -F"
 alias sudo="sudo "
-alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|node_modules" --dirsfirst'
+alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules" --dirsfirst'
 alias tmux='tmux -2'
 alias perm='stat -c "%A  %a  %U:%G  $(pwd)/%n" .* *'
 alias t='python2 ~/bin/t/t.py --task-dir ~/tasks --list tasks.txt'

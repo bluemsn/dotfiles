@@ -40,15 +40,9 @@ git:
 symlink:
 	mkdir -p $HOME/.config
 	if [ `uname -s` == 'Linux' ]; then
-		symlink config/alopex .config/alopex
-		symlink config/bspwm  .config/bspwm
 		symlink config/redshift.conf .config/redshift.conf
 		symlink config/sxhkd  .config/sxhkd
-		symlink conkyrc       .conkyrc
-		symlink fuzzy-windows .fuzzy-windows
-		symlink xbindkeysrc   .xbindkeysrc
 		symlink xinitrc       .xinitrc
-		symlink xmobarrc      .xmobarrc
 		symlink xmonad        .xmonad
 	fi
 	symlink Xdefaults    .Xdefaults
@@ -64,7 +58,7 @@ symlink:
 	symlink irssi        .irssi
 	symlink zsh          .zsh
 	symlink zshrc        .zshrc
-	symlink profile      .profile
+	symlink zprofile     .zprofile
 	symlink tmux.conf    .tmux.conf
 	symlink vim          .vim
 	symlink vimrc        .vimrc
