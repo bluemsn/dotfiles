@@ -16,8 +16,8 @@ import qualified XMonad.StackSet as W
 
 main :: IO ()
 main = do
-    d <- spawnPipe "dzen2 -x 0 -y 0 -w 980 -h 16 -fg '#fe8019' -bg '#282828' -fn '-*-dejavu sans-*-r-*-*-12-*-*-*-*-*-*-*' -ta l -u -e 'onstart=lower'"
-    spawn $ "conky -c ~/.xmonad/conky_dzen | dzen2 -x 980 -y 0 -w 200 -h 16 -fg '#fdf4c1' -bg '#282828' -fn '-*-dejavu sans-*-r-*-*-12-*-*-*-*-*-*-*' -ta r -u -e 'onstart=lower' -p"
+    d <- spawnPipe "dzen2 -x 0 -y 0 -w 880 -h 16 -fg '#fe8019' -bg '#282828' -fn '-*-dejavu sans-*-r-*-*-11-*-*-*-*-*-*-*' -ta l -u -e 'onstart=lower'"
+    spawn $ "conky -c ~/.xmonad/conky_dzen | dzen2 -x 880 -y 0 -w 300 -h 16 -fg '#a89984' -bg '#282828' -fn '-*-dejavu sans-*-r-*-*-11-*-*-*-*-*-*-*' -ta r -u -e 'onstart=lower' -p"
     xmonad $ withMyUrgencyHook $ defaultConfig {
         keys = myKeys <+> keys defaultConfig,
         layoutHook = myLayoutHook,
@@ -31,10 +31,10 @@ main = do
 
 myKeys conf@(XConfig {modMask = modm}) = M.fromList $
     [
-     ((modm, xK_c), kill),
+     ((modm, xK_z), kill),
      ((modm, xK_p), spawn "dmenu-launch"),
      ((modm .|. shiftMask, xK_p), spawn "interrobang"),
-     ((modm, xK_q), spawn "killall conky && killall dzen2 && if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
+     ((modm, xK_q), spawn "killall conky dzen2; xmonad --recompile; xmonad --restart")
     ]
 
 -- STATUSBAR
@@ -46,7 +46,7 @@ myLogHook h = dynamicLogWithPP $ defaultPP {
     ppUrgent = dzenColor "#fb4934" "",
     ppSep = " :: ",
     ppWsSep = " ",
-    ppTitle = dzenColor "#fdf4c1" "" . shorten 100,
+    ppTitle = dzenColor "#fdf4c1" "",
     ppLayout = dzenColor "#a89984" "",
     ppOutput = hPutStrLn h
 }

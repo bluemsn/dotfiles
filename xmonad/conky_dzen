@@ -7,4 +7,4 @@ total_run_times 0
 double_buffer yes
 
 TEXT
-${time %a %b %d %H:%M}
+${mem} ^fg(\#fe8019)::^fg() ${battery_short} ^fg(\#fe8019)::^fg() ${time %F :: %T %Z}

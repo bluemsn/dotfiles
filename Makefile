@@ -98,7 +98,7 @@ pacman:
 	sudo pacman -S redshift
 	sudo pacman -S xmonad
 	sudo pacman -S xmonad-contrib
-	sudo pacman -S xmobar
+	sudo pacman -S dzen2
 	sudo pacman -S trayer
 	sudo pacman -S simplescreenrecorder
 	sudo pacman -S transmission-qt
@@ -122,7 +122,6 @@ pacaur:
 	pacaur -Sa most
 	pacaur -Sa z-git
 	pacaur -Sa workman-git
-	pacaur -Sa bspwm
 	pacaur -Sa sxhkd
 
 arch: pacman pacaur

@@ -1,5 +1,7 @@
 URxvt*loginShell: true
 URxvt*scrollBar_right: true
+URxvt*urgentOnBell: true
+URxvt*visualBell: false
 
 ! -----------------------------------------------------------------------------
 ! File: gruvbox-dark.xresources
