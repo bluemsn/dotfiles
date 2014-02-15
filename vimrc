@@ -29,7 +29,7 @@ endif
 call plug#begin()
 
 Plug 'mattn/emmet-vim'
-Plug 'kien/rainbow_parentheses.vim'
+"Plug 'kien/rainbow_parentheses.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-classpath'
@@ -71,6 +71,8 @@ Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'justinmk/vim-gtfo'
 "Plug 'wakatime/vim-wakatime'
+Plug 'reedes/vim-pencil'
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 " }}}
@@ -89,10 +91,11 @@ au FileType html,css EmmetInstall
 au FileType html,css imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " }}}
 " Rainbow Parentheses {{{
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
+let g:rainbow_active=1
 " }}}
 " Unite {{{
 " https://github.com/bling/dotvim/blob/0c9b4e7183/vimrc#L532-L581
@@ -130,6 +133,11 @@ let g:airline#extensions#whitespace#enabled=0
 " Sneak {{{
 let g:sneak#streak=1
 " }}}
+" vim-pencil {{{
+let g:pencil#textwidth=80
+let g:pencil#joinspaces=1
+let g:pencil#cursorwrap=0
+" }}}
 
 " }}}
 " Search and matching {{{
@@ -147,12 +155,6 @@ set nojoinspaces
 
 if (&t_Co > 2 || has('gui_running'))
 	set hls
-endif
-
-if (has('win32') || has('win64'))
-	" This is for Windows/cygwin and to add -H.
-	" '$*' is not passed to the shell, but used by Vim.
-	set grepprg=grep\ -nH\ $*\ /dev/null
 endif
 " }}}
 " Indentation {{{
@@ -428,26 +430,18 @@ if (has('autocmd'))
 		autocmd!
 		" plugins
 		au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-		au BufReadPost fugitive://*         set bufhidden=delete
+		au BufReadPost fugitive://* set bufhidden=delete
+		au BufNewFile,BufRead *.cljs setlocal filetype=clojure
 		au FileType json,clojure call FiletypeIndent(0,2)
 		" docpad
-		au BufNewFile,BufRead *.cljs        setlocal filetype=clojure
 		au BufNewFile,BufRead *.css.scss    setlocal filetype=scss
 		au BufNewFile,BufRead *.html.md     setlocal filetype=markdown
 		au BufNewFile,BufRead *.html.md.eco setlocal filetype=markdown
-		au BufNewFile,BufRead *.html.md     setlocal wrap
-		au BufNewFile,BufRead *.html.md.eco setlocal wrap
-		au BufNewFile,BufRead *.md syntax match Comment /\%^---\_.\{-}---$/
-		au BufNewFile,BufRead *.html.md syntax match Comment /\%^---\_.\{-}---$/
+		au BufNewFile,BufRead *.md          syntax match Comment /\%^---\_.\{-}---$/
+		au BufNewFile,BufRead *.html.md     syntax match Comment /\%^---\_.\{-}---$/
 		au BufNewFile,BufRead *.html.md.eco syntax match Comment /\%^---\_.\{-}---$/
 
-		au FileType text      setlocal formatprg=par\ w80r
-		au FileType markdown  setlocal formatprg=par\ w80r
-		au FileType gitcommit setlocal formatprg=par\ w80r
 		au FileType vim       setlocal foldmethod=marker
 	augroup END
 endif
-" }}}
-" Gruvbox Airline {{{
-
 " }}}

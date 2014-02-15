@@ -105,6 +105,7 @@ pacman:
 	sudo pacman -S kdenlive
 	sudo pacman -S mercurial
 	sudo pacman -S ranger
+	sudo pacman -S cmus
 
 pacaur:
 	pacaur -Sa dmenu-launch
